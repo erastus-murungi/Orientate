@@ -62,3 +62,6 @@ An app for insititutions to send students critical information and for students 
 
 * Events
    * Provide locations to the events, and a MapView to location
+   
+### 3. Wireframes
+![](https://i.imgur.com/jy8SM3r.jpg)
