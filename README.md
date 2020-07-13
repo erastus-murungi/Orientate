@@ -61,3 +61,4 @@ An app for insititutions to send students critical information and for students 
     * Users can edit their profile info and configure settings for their individual accounts
 
 * Events
+   * Provide locations to the events, and a MapView to location
