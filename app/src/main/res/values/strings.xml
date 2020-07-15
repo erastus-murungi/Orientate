@@ -13,4 +13,15 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="full_name">Full Name</string>
+
+
+    <string name="hint_full_name">
+        <font size="14">Full Name</font>
+    </string>
+
+    <string name="hint_email">
+        <font size="14">Email</font>
+    </string>
+    <string name="terms_of_service">By creating an account you agree to our Terms of Service and Privacy Policy</string>
 </resources>

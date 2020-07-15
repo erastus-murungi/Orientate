@@ -1,8 +1,13 @@
 apply plugin: 'com.android.application'
 
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
+
 
     defaultConfig {
         applicationId "com.erastus.orientate"
@@ -10,6 +15,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        buildConfigField("String", "MASTERKEY", apikeyProperties['MASTERKEY'])
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -31,6 +37,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation 'androidx.navigation:navigation-ui:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    implementation'com.github.parse-community.Parse-SDK-Android:parse:1.24.2'
+    implementation 'com.parse.bolts:bolts-android:1.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.1.0'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

@@ -4,31 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightPurple"
+    android:background="@color/lightBlue"
     tools:context=".login.StudentLoginActivity">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="322dp"
-        android:layout_height="65dp"
-        android:layout_marginBottom="112dp"
-        android:text="@string/_continue"
-        android:background="@drawable/button_continue_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/create_an_account"
-        android:textColor="@color/darkBlue"
-        android:textSize="24sp"
-        android:textStyle="bold"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="361dp"
+        android:layout_height="395dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/continue_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/create_account"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/create_an_account"
+            android:textColor="@color/darkBlue"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_view_username"
+            android:layout_width="312dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/text_view_background_signup"
+            android:fontFamily="@font/arial_unicode_ms"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:hint="@string/hint_full_name"
+            android:textColorHint="#BCE0FD"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_account" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_view_email"
+            android:layout_width="312dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/text_view_background_signup"
+            android:fontFamily="@font/arial_unicode_ms"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_email"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColorHint="#BCE0FD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_username" />
+
+
+        <TextView
+            android:id="@+id/text_view_terms_of_service"
+            android:layout_width="214dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/terms_of_service"
+            android:textAlignment="center"
+            android:textColor="@color/darkBlue"
+            android:textSize="11sp"
+            android:lineSpacingExtra="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SmallSp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/continue_button"
+        android:layout_width="321dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/button_enabled_background"
+        android:fontFamily="@font/arial_unicode_ms"
+        android:text="@string/_continue"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.544"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
