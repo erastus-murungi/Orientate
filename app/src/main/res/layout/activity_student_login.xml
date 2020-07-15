@@ -84,7 +84,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
+    <ImageView
         android:id="@+id/continue_button"
         android:layout_width="321dp"
         android:layout_height="54dp"
@@ -93,7 +93,7 @@
         android:fontFamily="@font/arial_unicode_ms"
         android:text="@string/_continue"
         android:textSize="12sp"
-        android:textStyle="bold"
+        android:src="@drawable/ic_baseline_arrow_forward_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.544"

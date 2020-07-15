@@ -12,10 +12,10 @@
         <activity
             android:name=".home.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name=".login.StudentLoginActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+            android:name=".studentsignup.StudentSignUpActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

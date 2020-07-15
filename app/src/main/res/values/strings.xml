@@ -23,5 +23,16 @@
     <string name="hint_email">
         <font size="14">Email</font>
     </string>
+
+    <string name="hint_password">
+        <font size="14">Password</font>
+    </string>
+
+    <string name="hint_confirm_password">
+        <font size="14">Confirm Password</font>
+    </string>
     <string name="terms_of_service">By creating an account you agree to our Terms of Service and Privacy Policy</string>
+    <string name="title_activity_student_sign_up">StudentSignUpActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>
