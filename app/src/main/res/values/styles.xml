@@ -8,6 +8,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/white</item>
+
+        <item name="materialCalendarTheme">@style/Theme.MaterialComponents</item>
+
     </style>
 
     <style name="ArialTextViewStyle" parent="Widget.AppCompat.TextView">
@@ -15,7 +18,7 @@
     </style>
 
     <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
+        <item name="windowActionBar">true</item>
         <item name="windowNoTitle">true</item>
     </style>
 
