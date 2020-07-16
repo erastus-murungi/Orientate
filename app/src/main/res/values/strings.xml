@@ -54,4 +54,11 @@
     <string name="reset_password">Reset Password?</string>
     <string name="sign_up">Sign Up</string>
     <string name="continue_as_student">Continue as Student</string>
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
 </resources>

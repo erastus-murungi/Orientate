@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,25 @@ public class EventFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
         // TODO: Use the ViewModel
+    }
+
+
+    private class EventStateAdapter extends FragmentStateAdapter {
+
+        public EventStateAdapter(@NonNull Fragment fragment) {
+            super(fragment);
+        }
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+            return null;
+        }
+
+        @Override
+        public int getItemCount() {
+            return 0;
+        }
     }
 
 }
