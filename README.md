@@ -79,6 +79,7 @@ An app for insititutions to send students critical information and for students 
 | password      | String   | User's unique password|
 | email         | String   | User's unique email |
 | is_student     | Boolean | Is set to true if the User is a student and false if user is an Institution |
+| profile_image | File     | the user's profile picture |
 
 #### Student
 |  Property     | Type      | Description |
@@ -116,15 +117,9 @@ An app for insititutions to send students critical information and for students 
 | starting_on | Date | The datetime when the event will start. This field is required |
 | ending_on   | Date | The datetime when the event is expected to end. This field is optional|
 | where | GeoPoint | The location of the event |
-
-
-#### EventContent
-##### All optional fields an event may contain
-| Property | Type | Description |
-| -------- | ---- | --------     |
-| objectID | String | Primary Key  |
 | sponsor  | Array[String]  | The names of the sponsors of the event |
 | url   | String | Link to a webpage for extra information about event |
+
 
 #### Announcement
 | Property | Type | Description |
@@ -134,6 +129,7 @@ An app for insititutions to send students critical information and for students 
 | updatedAt | Date | Timestamp indicating the time when Announcement info is updated|
 | urgency_level | Number | Level of importance of the announcement. Is translated to user a user readable string by the application |
 | title | String | The title of the announcement |
+| body  | String | Further explanation regarding the announcement |
 | owned_by | Pointer<Institution> | The institution which released the announcement |
 | url | String | A link where additional info about the announcement may be found |
 
