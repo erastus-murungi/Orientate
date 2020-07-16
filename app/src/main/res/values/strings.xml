@@ -31,6 +31,13 @@
     <string name="hint_confirm_password">
         <font size="14">Confirm Password</font>
     </string>
+
+
+    <string name="hint_username"><font size="14">Username</font></string>
+
+
+
+
     <string name="terms_of_service">By creating an account you agree to our Terms of Service and Privacy Policy</string>
     <string name="title_activity_student_sign_up">StudentSignUpActivity</string>
     <string name="tab_text_1">Tab 1</string>
@@ -41,4 +48,10 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_institution_dashboard">MainActivity</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="log_in_using_google_account">Log in using Google Account</string>
+    <string name="log_in_using_facebook_account">Log in using Facebook Account</string>
+    <string name="reset_password">Reset Password?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="continue_as_student">Continue as Student</string>
 </resources>

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="darkBlue">#2699FB</color>
-    <color name="blue">#7Fc4fd</color>
+    <color name="darkBlue">#002171</color>
+    <color name="blue">#0d47a1</color>
     <color name="midBlue">#bce0fd</color>
     <color name="lightBlue">#f1f9ff</color>
     <color name="white">#ffffff</color>
-    <color name="colorPrimary">#7Fc4fd</color>
-    <color name="colorPrimaryDark">#2699FB</color>
-    <color name="colorAccent">#2699FB</color>
-
-      #560027 #ffffff
+    <color name="colorPrimary">#0d47a1</color>
+    <color name="colorPrimaryDark">#002171</color>
+    <color name="colorAccent">#5472d3</color>
 </resources>

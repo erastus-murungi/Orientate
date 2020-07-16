@@ -10,18 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".insitutiondashboard.InstitutionDashboardActivity"
-            android:label="@string/title_activity_institution_dashboard" >
-        </activity>
-        <activity
-            android:name=".studentdashboard.StudentDashBoardActivity"
-            android:label="@string/title_activity_student_dash_board" />
-        <activity
-            android:name=".home.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
-        <activity
-            android:name=".studentsignup.StudentSignUpActivity"
+            android:name=".student.login.StudentLoginActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
