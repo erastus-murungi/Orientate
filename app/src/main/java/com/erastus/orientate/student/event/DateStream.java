@@ -17,11 +17,15 @@ public class DateStream implements Iterator<LocalDate> {
     private LocalDate startDate;
 
     public DateStream(LocalDate startDate) {
-        this.startDate = startDate;
+        this.startDate = startDate.minusDays(1);
     }
 
     public DateStream() {
-        this.startDate = LocalDate.now();
+        this.startDate = LocalDate.now().minusDays(1);
+    }
+
+    public void reset(LocalDate date) {
+        this.startDate = date.minusDays(1);
     }
 
     @Override
@@ -34,6 +38,4 @@ public class DateStream implements Iterator<LocalDate> {
         this.startDate = startDate.plusDays(1);  // number of days to add;
         return startDate;
     }
-
-
 }
