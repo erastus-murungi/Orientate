@@ -8,20 +8,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.student.event.dailyevent.DailyEventViewModel;
 import com.erastus.orientate.student.event.dummy.DummyContent.DummyItem;
+import com.erastus.orientate.student.event.models.Event;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
- * TODO: Replace the implementation with code for your data type.
+ * {@link RecyclerView.Adapter} that can display a {@link Event}.
  */
-public class MyDailyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyDailyEventRecyclerViewAdapter.ViewHolder> {
+public class MyDailyEventRecyclerViewAdapter
+        extends RecyclerView.Adapter<MyDailyEventRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final DailyEventViewModel mDailyEventViewModel;
 
-    public MyDailyEventRecyclerViewAdapter(List<DummyItem> items) {
-        mValues = items;
+    public MyDailyEventRecyclerViewAdapter(DailyEventViewModel dailyEventViewModel) {
+        mDailyEventViewModel = dailyEventViewModel;
     }
 
     @Override
@@ -33,21 +36,20 @@ public class MyDailyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyDail
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        final List<Event> events = mDailyEventViewModel.getEvents().getValue();
+        holder.bind(events.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return Objects.requireNonNull(mDailyEventViewModel.getEvents().getValue()).size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Event mItem;
 
         public ViewHolder(View view) {
             super(view);
@@ -59,6 +61,10 @@ public class MyDailyEventRecyclerViewAdapter extends RecyclerView.Adapter<MyDail
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
+        }
+
+        public void bind(Event event) {
+            mItem = event;
         }
     }
 }
