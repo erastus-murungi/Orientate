@@ -3,7 +3,9 @@ package com.erastus.orientate.applications;
 import android.app.Application;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.student.announcements.models.Announcement;
 import com.parse.Parse;
+import com.parse.ParseObject;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -16,7 +18,7 @@ public class ParseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-
+        ParseObject.registerSubclass(Announcement.class);
         //TODO only for troubleshooting -- remove this line for production
         Parse.setLogLevel(Parse.LOG_LEVEL_DEBUG);
 

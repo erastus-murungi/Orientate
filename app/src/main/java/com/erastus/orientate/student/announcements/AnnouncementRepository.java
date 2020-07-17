@@ -3,7 +3,7 @@ package com.erastus.orientate.student.announcements;
 import androidx.lifecycle.MutableLiveData;
 
 import com.erastus.orientate.student.announcements.models.Announcement;
-import com.erastus.orientate.student.announcements.models.DataState;
+import com.erastus.orientate.student.models.DataState;
 import com.parse.ParseQuery;
 import com.parse.boltsinternal.Task;
 

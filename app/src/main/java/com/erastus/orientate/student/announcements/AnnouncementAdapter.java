@@ -1,5 +1,6 @@
 package com.erastus.orientate.student.announcements;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.erastus.orientate.student.announcements.models.LocalAnnouncement;
 import com.erastus.orientate.utils.DateUtils;
 import com.google.android.material.textview.MaterialTextView;
@@ -16,13 +18,12 @@ import java.util.List;
 public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapter.AnnouncementViewHolder> {
 
     private List<LocalAnnouncement> mAnnouncements;
+    private Context mContext;
 
-    public AnnouncementAdapter(List<LocalAnnouncement> announcementList) {
-        this.mAnnouncements = mAnnouncements;
+    public AnnouncementAdapter(Context context, List<LocalAnnouncement> announcementList) {
+        this.mAnnouncements = announcementList;
+        this.mContext = context;
     }
-
-
-
 
     @NonNull
     @Override
@@ -56,7 +57,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             mPostedOnMaterialTextView.setText(DateUtils.getRelativeTimeAgo(localAnnouncement.getCreatedAt()));
             mPostedByMaterialTextView.setText(localAnnouncement.getPostedBy());
             mAnnouncementTitleMaterialTextView.setText(localAnnouncement.getTitle());
-
+            mAnnouncementBodyMaterialTextView.setText(localAnnouncement.getBody());
         }
     }
 }

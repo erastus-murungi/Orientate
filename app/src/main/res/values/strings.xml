@@ -68,4 +68,12 @@
     <string name="search">Search</string>
     <string name="helpful_information">Helpful Information</string>
     <string name="posted_on">Posted On</string>
+    <string name="sample_announcement_title">Announcement Title</string>
+
+    <string name="sample_announcement_body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget lacinia est. Maecenas turpis tellus, blandit vel justo sed, imperdiet condimentum justo. Sed tempor magna sit amet consectetur sollicitudin. Maecenas ut augue dolor. Ut dapibus vestibulum ligula, in mattis ipsum pulvinar id. Nullam non urna non est viverra fermentum. Ut sem leo, porta at metus eget, malesuada consequat turpis. Phasellus in felis ultrices lectus luctus dictum. Integer tristique congue fermentum. Nunc imperdiet auctor leo, at molestie ipsum tempus a. Morbi vel turpis vestibulum, suscipit ipsum a, placerat mauris. Nullam egestas est vel rutrum vulputate. Sed sed pharetra ex.</string>
+    <string name="posted_by">\@username</string>
+    <string name="login_in">"Logging in…"</string>
+    <string name="done">Done</string>
+    <string name="invalid_password">"Invalid Password</string>
+    <string name="invalid_username">"Invalid Username</string>
 </resources>

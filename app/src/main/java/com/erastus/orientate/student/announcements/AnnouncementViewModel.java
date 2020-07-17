@@ -6,16 +6,17 @@ import androidx.lifecycle.ViewModel;
 
 import com.erastus.orientate.student.announcements.models.Announcement;
 import com.erastus.orientate.student.announcements.models.AnnouncementState;
-import com.erastus.orientate.student.announcements.models.DataState;
+import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.announcements.models.LocalAnnouncement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AnnouncementViewModel extends ViewModel {
     private AnnouncementRepository announcementRepository;
     private MutableLiveData<AnnouncementState> mAnnouncementState = new MutableLiveData<>(new AnnouncementState(true));
 
-    private MutableLiveData<List<LocalAnnouncement>> mAnnouncements = new MutableLiveData<>();
+    private MutableLiveData<List<LocalAnnouncement>> mAnnouncements = new MutableLiveData<>(new ArrayList<>());
 
     public AnnouncementViewModel(AnnouncementRepository instance) {
         this.announcementRepository = instance;

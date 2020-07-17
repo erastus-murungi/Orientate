@@ -13,7 +13,9 @@ public class Institution extends ParseObject {
         return getString(KEY_INSTITUTION_NAME);
     }
 
-    public String getKeyInstitutionWebsite() {
+    public String getInstitutionWebsite() {
         return getString(KEY_INSTITUTION_WEBSITE);
     }
+
+    public String getLocation() {return getString(KEY_LOCATION);}
 }

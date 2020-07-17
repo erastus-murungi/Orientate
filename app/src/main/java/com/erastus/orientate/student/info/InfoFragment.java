@@ -1,5 +1,6 @@
 package com.erastus.orientate.student.info;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -31,7 +32,7 @@ public class InfoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(InfoViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(InfoViewModel.class);
         // TODO: Use the ViewModel
     }
 

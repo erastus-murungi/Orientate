@@ -1,6 +1,5 @@
 package com.erastus.orientate.student.announcements;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -18,11 +17,8 @@ import android.widget.ProgressBar;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.AnnouncementFragmentBinding;
-import com.erastus.orientate.student.announcements.models.AnnouncementState;
-import com.erastus.orientate.student.announcements.models.LocalAnnouncement;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.List;
 
 public class AnnouncementFragment extends Fragment {
 
@@ -42,6 +38,7 @@ public class AnnouncementFragment extends Fragment {
         mBinding = AnnouncementFragmentBinding.inflate(getLayoutInflater());
         View view = inflater.inflate(R.layout.announcement_fragment, container, false);
         mAnnouncementRecyclerView = mBinding.recyclerViewAnnouncement;
+        mProgressBar = mBinding.progressBarAnnouncements;
         return view;
     }
 
@@ -62,6 +59,9 @@ public class AnnouncementFragment extends Fragment {
     private void setUpObservers() {
         mViewModel.getAnnouncements().observe(getViewLifecycleOwner(), localAnnouncements -> mAdapter.notifyDataSetChanged());
         mViewModel.getState().observe(getViewLifecycleOwner(), announcementState -> {
+            if (announcementState == null) {
+                return;
+            }
             if (announcementState.isLoading()) {
                 mProgressBar.setVisibility(View.VISIBLE);
             } else {
