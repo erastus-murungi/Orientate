@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
@@ -20,11 +22,10 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class EventFragment extends Fragment {
-    public static final int DAYS_OF_WEEK = 7;
-
     private EventViewModel mViewModel;
     private ViewPager2 mViewPager2;
     private TabLayout mTabLayout;
+    private EventViewPagerAdapter mAdapter;
 
     public static EventFragment newInstance() {
         return new EventFragment();
@@ -44,6 +45,8 @@ public class EventFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(EventViewModel.class);
         // TODO: Use the ViewModel
+        mAdapter = new EventViewPagerAdapter(getParentFragmentManager(), getLifecycle());
+        mViewPager2.setAdapter(mAdapter);
 
         TabLayoutMediator mediator = new TabLayoutMediator(mTabLayout, mViewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
@@ -56,8 +59,8 @@ public class EventFragment extends Fragment {
 
     private class EventViewPagerAdapter extends FragmentStateAdapter {
 
-        public EventViewPagerAdapter(@NonNull Fragment fragment) {
-            super(fragment);
+        public EventViewPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
+            super(fragmentManager, lifecycle);
         }
 
         @NonNull
@@ -68,7 +71,7 @@ public class EventFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return DAYS_OF_WEEK;
+            return mViewModel.getNumPages();
         }
     }
 

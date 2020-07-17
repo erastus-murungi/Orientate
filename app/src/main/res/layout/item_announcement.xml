@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue">
+
+    <ImageView
+        android:id="@+id/image_view_profile_picture"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/ic_education" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_posted_by"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_posted_on"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top|end"
+        android:text="@string/posted_on"
+        android:textColor="@color/darkBlue" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_announcement_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,11 +1,17 @@
 package com.erastus.orientate.student.announcements.models;
 
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.erastus.orientate.institution.models.Institution;
 import com.erastus.orientate.student.models.Urgency;
+import com.erastus.orientate.utils.DateUtils;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
+
+import java.time.LocalDateTime;
 
 @ParseClassName("Announcement")
 public class Announcement extends ParseObject {
@@ -15,6 +21,7 @@ public class Announcement extends ParseObject {
     public static final String KEY_BODY = "body";
     public static final String KEY_URL = "url";
     public static final String KEY_INSTITUTION = "owner";
+    public static final String KEY_POSTED_BY = "posted_by";
 
 
     public Urgency getUrgencyLevel() {
@@ -45,5 +52,14 @@ public class Announcement extends ParseObject {
 
     public Institution getOwnerInstitution() {
         return (Institution) getParseObject(KEY_INSTITUTION);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public LocalDateTime getCreatedAtAsLocalDateTime() {
+        return DateUtils.localDateTimeFromDate(getCreatedAt());
+    }
+
+    public String getPostedBy() {
+        return getString(KEY_POSTED_BY);
     }
 }

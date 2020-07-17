@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "com.erastus.orientate"
-        minSdkVersion 22
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -29,6 +29,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -49,6 +53,7 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
     implementation 'com.google.android.material:material:1.3.0-alpha01'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

@@ -67,4 +67,5 @@
     <string name="location_pin">Location Pin</string>
     <string name="search">Search</string>
     <string name="helpful_information">Helpful Information</string>
+    <string name="posted_on">Posted On</string>
 </resources>
