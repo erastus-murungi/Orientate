@@ -68,7 +68,7 @@
             app:hintEnabled="false"
             app:passwordToggleContentDescription="See password"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/colorAccent">
+            app:passwordToggleTint="@color/colorPrimaryDark">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_view_password_login"
@@ -91,21 +91,11 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <TextView
-            android:id="@+id/password_reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:text="@string/reset_password"
-            android:textColor="@color/darkBlue"
-            android:textSize="12sp" />
-
         <Button
             android:id="@+id/continue_button"
             android:layout_width="301dp"
             android:layout_height="49dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button_enabled_background"
             android:fontFamily="@font/arial_unicode_ms"
             android:src="@drawable/ic_baseline_arrow_forward_24"
@@ -115,6 +105,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/text_view_password_login"
             app:layout_constraintStart_toStartOf="@+id/text_view_password_login" />
+
+
+
+        <TextView
+            android:id="@+id/password_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:text="@string/reset_password"
+            android:textColor="@color/darkBlue"
+            android:textAllCaps="true"
+            android:textSize="12sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -168,6 +171,7 @@
         android:text="@string/sign_up"
         android:textAlignment="center"
         android:textColor="@color/darkBlue"
+        android:textAllCaps="true"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/text_view_no_account"

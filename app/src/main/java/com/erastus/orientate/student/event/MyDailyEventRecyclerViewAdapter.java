@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.event.dailyevent.DailyEventViewModel;
-import com.erastus.orientate.student.event.dummy.DummyContent.DummyItem;
 import com.erastus.orientate.student.event.models.Event;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class MyDailyEventRecyclerViewAdapter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item, parent, false);
+                .inflate(R.layout.fragment_event_item, parent, false);
         return new ViewHolder(view);
     }
 

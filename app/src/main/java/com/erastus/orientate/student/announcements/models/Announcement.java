@@ -3,7 +3,7 @@ package com.erastus.orientate.student.announcements.models;
 import android.util.Log;
 
 import com.erastus.orientate.institution.models.Institution;
-import com.erastus.orientate.student.event.Urgency;
+import com.erastus.orientate.student.models.Urgency;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 

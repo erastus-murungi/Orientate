@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_student_events"
+            android:icon="@drawable/ic_baseline_event_24"
+            android:title="@string/menu_orientation_events" />
+        <item
+            android:id="@+id/nav_students_announcements"
+            android:icon="@drawable/ic_baseline_announcement_24"
+            android:title="@string/menu_announcements" />
+        <item
+            android:id="@+id/nav_student_chats"
+            android:icon="@drawable/ic_baseline_chat_bubble_24"
+            android:title="@string/menu_chats" />
+
+        <item
+            android:id="@+id/nav_helpful_information"
+            android:icon="@drawable/ic_baseline_info_24"
+            android:title="@string/helpful_information" />
+    </group>
+</menu>

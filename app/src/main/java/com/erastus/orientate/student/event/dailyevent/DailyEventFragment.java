@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.event.MyDailyEventRecyclerViewAdapter;
-import com.erastus.orientate.student.event.dummy.DummyContent;
 
 /**
  * A fragment representing a list of Items.
@@ -61,7 +60,7 @@ public class DailyEventFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_daily_event_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
