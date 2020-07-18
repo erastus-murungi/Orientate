@@ -43,6 +43,7 @@ public class StudentLoginViewModel extends ViewModel {
         return loginFormState;
     }
 
+    @org.jetbrains.annotations.Nullable
     LiveData<LoginResult> getLoginResult() {
         return loginResult;
     }

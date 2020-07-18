@@ -37,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColorHint="@color/midBlue"
+            android:layout_marginBottom="20dp"
             app:hintEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -44,7 +45,6 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/text_view_background_signup"
-                android:fontFamily="@font/arial"
                 android:gravity="center_vertical"
                 android:hint="@string/hint_username"
                 android:inputType="text"
@@ -52,7 +52,7 @@
                 android:paddingEnd="20dp"
                 android:textColorHint="@color/midBlue"
                 android:textColor="@color/darkBlue"
-                android:layout_marginBottom="20dp"
+                android:textSize="14sp"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.51"
@@ -67,6 +67,7 @@
             android:layout_height="wrap_content"
             android:textColorHint="@color/midBlue"
             app:hintEnabled="false"
+            app:boxStrokeErrorColor="@android:color/holo_red_dark"
             app:passwordToggleContentDescription="See password"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/colorPrimaryDark">
@@ -77,7 +78,6 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/text_view_background_signup"
-                android:fontFamily="@font/arial_unicode_ms"
                 android:gravity="center_vertical"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"

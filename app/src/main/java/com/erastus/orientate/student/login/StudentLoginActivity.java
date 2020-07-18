@@ -42,8 +42,8 @@ public class StudentLoginActivity extends AppCompatActivity {
         mLoginViewModel = new ViewModelProvider(this, new StudentLoginViewModelFactory())
                 .get(StudentLoginViewModel.class);
 
-        final TextInputLayout usernameEditText = activityStudentLoginBinding.textInputLayoutUsername;
-        final TextInputLayout passwordEditText = activityStudentLoginBinding.textInputLayoutPassword;
+        final TextInputLayout usernameTextInputLayout = activityStudentLoginBinding.textInputLayoutUsername;
+        final TextInputLayout passwordTextInputLayout = activityStudentLoginBinding.textInputLayoutPassword;
         final ProgressLoginInButtonBinding binding = activityStudentLoginBinding.buttonLogin;
         final View loginButton = binding.getRoot();
         final LoginButtonProgress loginButtonProgress = new LoginButtonProgress(binding);
@@ -54,10 +54,24 @@ public class StudentLoginActivity extends AppCompatActivity {
             }
             loginButton.setEnabled(loginFormState.isDataValid());
             if (loginFormState.getUsernameError() != null) {
-                Objects.requireNonNull(usernameEditText.getEditText()).setError(getString(loginFormState.getUsernameError()));
+                usernameTextInputLayout.setError(getString(loginFormState.getUsernameError()));
+                usernameTextInputLayout.getEditText()
+                        .setBackground(getDrawable(R.drawable.text_view_background_signup_error));
+            } else {
+                usernameTextInputLayout.setError(null);
+                usernameTextInputLayout.setErrorEnabled(false);
+                usernameTextInputLayout.getEditText()
+                        .setBackground(getDrawable(R.drawable.text_view_background_signup));
             }
             if (loginFormState.getPasswordError() != null) {
-                Objects.requireNonNull(passwordEditText.getEditText()).setError(getString(loginFormState.getPasswordError()));
+                passwordTextInputLayout.setError(getString(loginFormState.getPasswordError()));
+                passwordTextInputLayout.getEditText()
+                        .setBackground(getDrawable(R.drawable.text_view_background_signup_error));
+            } else {
+                passwordTextInputLayout.setError(null);
+                passwordTextInputLayout.setErrorEnabled(false);
+                passwordTextInputLayout.getEditText()
+                        .setBackground(getDrawable(R.drawable.text_view_background_signup));
             }
         });
 
@@ -93,25 +107,25 @@ public class StudentLoginActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                mLoginViewModel.loginDataChanged(usernameEditText.getEditText().getText().toString(),
-                        passwordEditText.getEditText().getText().toString());
+                mLoginViewModel.loginDataChanged(usernameTextInputLayout.getEditText().getText().toString(),
+                        passwordTextInputLayout.getEditText().getText().toString());
             }
         };
-        usernameEditText.getEditText().addTextChangedListener(afterTextChangedListener);
-        passwordEditText.getEditText().addTextChangedListener(afterTextChangedListener);
-        passwordEditText.getEditText().setOnEditorActionListener((v, actionId, event) -> {
+        usernameTextInputLayout.getEditText().addTextChangedListener(afterTextChangedListener);
+        passwordTextInputLayout.getEditText().addTextChangedListener(afterTextChangedListener);
+        passwordTextInputLayout.getEditText().setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 loginButtonProgress.buttonActivated();
-                mLoginViewModel.login(usernameEditText.getEditText().getText().toString(),
-                        passwordEditText.getEditText().getText().toString());
+                mLoginViewModel.login(usernameTextInputLayout.getEditText().getText().toString(),
+                        passwordTextInputLayout.getEditText().getText().toString());
             }
             return false;
         });
 
         loginButton.setOnClickListener(v -> {
             loginButtonProgress.buttonActivated();
-            mLoginViewModel.login(usernameEditText.getEditText().getText().toString(),
-                    passwordEditText.getEditText().getText().toString());
+            mLoginViewModel.login(usernameTextInputLayout.getEditText().getText().toString(),
+                    passwordTextInputLayout.getEditText().getText().toString());
         });
     }
 
