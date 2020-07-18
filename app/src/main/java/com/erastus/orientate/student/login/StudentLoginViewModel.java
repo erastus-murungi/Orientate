@@ -3,27 +3,41 @@ package com.erastus.orientate.student.login;
 import android.util.Patterns;
 
 import androidx.annotation.Nullable;
+import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.login.models.LoginFormState;
 import com.erastus.orientate.student.login.models.LoginResult;
 import com.erastus.orientate.student.models.DataState;
-import com.parse.ParseUser;
 
 public class StudentLoginViewModel extends ViewModel {
     private StudentLoginRepository mStudentLoginRepository;
+    private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
+    private MutableLiveData<DataState> mDataState = new MutableLiveData<>();
+    @Nullable
+    private LiveData<LoginResult> loginResult = new MutableLiveData<>();
 
     public StudentLoginViewModel(StudentLoginRepository studentLoginRepository) {
         this.mStudentLoginRepository = studentLoginRepository;
+        this.mDataState = studentLoginRepository.getState();
+
+        // one-to-one dynamic transformation : Like a Haskell Monad
+        // every time mDataState changes, Transformations.switchMap un-subscribes from the previous
+        // LiveData object to another provided by the converting function
+
+        this.loginResult = Transformations.switchMap(mDataState, input -> {
+            if (mDataState.getValue() instanceof DataState.Success) {
+                return new MutableLiveData<>(new LoginResult());
+            } else if (mDataState.getValue() instanceof DataState.Error) {
+                return new MutableLiveData<>(new LoginResult(((DataState.Error) mDataState.getValue()).getError().getMessage()));
+            }
+            return new MutableLiveData<>();
+        });
     }
-
-    private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
-    @Nullable
-    private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
-
 
     LiveData<LoginFormState> getLoginFormState() {
         return loginFormState;
@@ -34,13 +48,7 @@ public class StudentLoginViewModel extends ViewModel {
     }
 
     public void login(String username, String password) {
-        DataState<ParseUser> result = mStudentLoginRepository.login(username, password);
-
-        if (result instanceof DataState.Success) {
-            loginResult.setValue(new LoginResult());
-        } else if (result instanceof DataState.Error){
-            loginResult.setValue(new LoginResult(((DataState.Error) result).getError().getMessage()));
-        }
+        mStudentLoginRepository.login(username, password);
     }
 
     public void loginDataChanged(String username, String password) {

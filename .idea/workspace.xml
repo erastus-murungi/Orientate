@@ -15,38 +15,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/applications/ParseApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/applications/ParseApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/institution/models/Institution.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/institution/models/Institution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/institution/models/LocalInstitution.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/institution/models/LocalInstitution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/models/GenericUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/models/GenericUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/models/Announcement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/models/Announcement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/models/AnnouncementState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/models/AnnouncementState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/models/LoginResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/models/LoginResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/models/DataState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/models/DataState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/navigation/StudentNavActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/navigation/StudentNavActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_nav.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_nav.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/announcement_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/announcement_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_announcement.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_announcement.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/student_nav_app_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/student_nav_app_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,11 +223,11 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="360" y="222" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594771985845" />
-    <state x="709" y="276" width="737" height="554" key="#com.intellij.ide.util.MemberChooser" timestamp="1595042209723">
+    <state x="709" y="276" width="737" height="554" key="#com.intellij.ide.util.MemberChooser" timestamp="1595050453317">
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
     <state x="709" y="276" width="737" height="554" key="#com.intellij.ide.util.MemberChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1594984977875" />
-    <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1025@0.23.1792.1025" timestamp="1595042209723" />
+    <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1025@0.23.1792.1025" timestamp="1595050453317" />
     <state x="424" y="483" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1594855809559">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -303,54 +278,54 @@
       <screen x="0" y="23" width="1792" height="1031" />
     </state>
     <state x="673" y="247" key="Github.UntrackedFilesDialog/0.23.1792.1031@0.23.1792.1031" timestamp="1594313168601" />
-    <state width="1750" height="537" key="GridCell.Tab.0.bottom" timestamp="1595048139511">
+    <state width="1750" height="344" key="GridCell.Tab.0.bottom" timestamp="1595051792308">
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647712" />
-    <state width="1750" height="537" key="GridCell.Tab.0.bottom/0.23.1792.1025@0.23.1792.1025" timestamp="1595048139511" />
+    <state width="1750" height="344" key="GridCell.Tab.0.bottom/0.23.1792.1025@0.23.1792.1025" timestamp="1595051792308" />
     <state width="1750" height="537" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1595044906323" />
     <state width="1750" height="609" key="GridCell.Tab.0.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1594940900730" />
-    <state width="1750" height="537" key="GridCell.Tab.0.center" timestamp="1595048139510">
+    <state width="1750" height="344" key="GridCell.Tab.0.center" timestamp="1595051792307">
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647710" />
-    <state width="1750" height="537" key="GridCell.Tab.0.center/0.23.1792.1025@0.23.1792.1025" timestamp="1595048139510" />
+    <state width="1750" height="344" key="GridCell.Tab.0.center/0.23.1792.1025@0.23.1792.1025" timestamp="1595051792307" />
     <state width="1750" height="537" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1595044906323" />
     <state width="1750" height="609" key="GridCell.Tab.0.center/0.23.1792.1030@0.23.1792.1030" timestamp="1594940900730" />
-    <state width="1750" height="537" key="GridCell.Tab.0.left" timestamp="1595048139510">
+    <state width="1750" height="344" key="GridCell.Tab.0.left" timestamp="1595051792307">
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647709" />
-    <state width="1750" height="537" key="GridCell.Tab.0.left/0.23.1792.1025@0.23.1792.1025" timestamp="1595048139510" />
+    <state width="1750" height="344" key="GridCell.Tab.0.left/0.23.1792.1025@0.23.1792.1025" timestamp="1595051792307" />
     <state width="1750" height="537" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1595044906323" />
     <state width="1750" height="609" key="GridCell.Tab.0.left/0.23.1792.1030@0.23.1792.1030" timestamp="1594940900729" />
-    <state width="1750" height="537" key="GridCell.Tab.0.right" timestamp="1595048139510">
+    <state width="1750" height="344" key="GridCell.Tab.0.right" timestamp="1595051792308">
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647711" />
-    <state width="1750" height="537" key="GridCell.Tab.0.right/0.23.1792.1025@0.23.1792.1025" timestamp="1595048139510" />
+    <state width="1750" height="344" key="GridCell.Tab.0.right/0.23.1792.1025@0.23.1792.1025" timestamp="1595051792308" />
     <state width="1750" height="537" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1595044906323" />
     <state width="1750" height="609" key="GridCell.Tab.0.right/0.23.1792.1030@0.23.1792.1030" timestamp="1594940900730" />
-    <state width="1750" height="344" key="GridCell.Tab.1.bottom" timestamp="1595046906418">
+    <state width="1750" height="344" key="GridCell.Tab.1.bottom" timestamp="1595051792309">
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684358" />
-    <state width="1750" height="344" key="GridCell.Tab.1.bottom/0.23.1792.1025@0.23.1792.1025" timestamp="1595046906418" />
-    <state width="1750" height="344" key="GridCell.Tab.1.center" timestamp="1595046906418">
+    <state width="1750" height="344" key="GridCell.Tab.1.bottom/0.23.1792.1025@0.23.1792.1025" timestamp="1595051792309" />
+    <state width="1750" height="344" key="GridCell.Tab.1.center" timestamp="1595051792308">
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.center/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684357" />
-    <state width="1750" height="344" key="GridCell.Tab.1.center/0.23.1792.1025@0.23.1792.1025" timestamp="1595046906418" />
-    <state width="1750" height="344" key="GridCell.Tab.1.left" timestamp="1595046906418">
+    <state width="1750" height="344" key="GridCell.Tab.1.center/0.23.1792.1025@0.23.1792.1025" timestamp="1595051792308" />
+    <state width="1750" height="344" key="GridCell.Tab.1.left" timestamp="1595051792308">
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.left/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684357" />
-    <state width="1750" height="344" key="GridCell.Tab.1.left/0.23.1792.1025@0.23.1792.1025" timestamp="1595046906418" />
-    <state width="1750" height="344" key="GridCell.Tab.1.right" timestamp="1595046906418">
+    <state width="1750" height="344" key="GridCell.Tab.1.left/0.23.1792.1025@0.23.1792.1025" timestamp="1595051792308" />
+    <state width="1750" height="344" key="GridCell.Tab.1.right" timestamp="1595051792308">
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.right/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684358" />
-    <state width="1750" height="344" key="GridCell.Tab.1.right/0.23.1792.1025@0.23.1792.1025" timestamp="1595046906418" />
+    <state width="1750" height="344" key="GridCell.Tab.1.right/0.23.1792.1025@0.23.1792.1025" timestamp="1595051792308" />
     <state x="494" y="261" key="NewModule_or_Project.wizard" timestamp="1594986728490">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -401,8 +376,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginActivity.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="9" />
+          <line>63</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginActivity.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginActivity.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginActivity.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginActivity.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

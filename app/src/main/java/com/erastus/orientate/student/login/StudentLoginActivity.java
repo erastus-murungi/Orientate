@@ -20,7 +20,6 @@ import com.erastus.orientate.student.navigation.StudentNavActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
-import com.parse.ParseUser;
 
 import java.util.Objects;
 
@@ -119,10 +118,6 @@ public class StudentLoginActivity extends AppCompatActivity {
     private void goToStudentNavActivity() {
         // go the StudentNavigationActivity
         startActivity(new Intent(this, StudentNavActivity.class));
-    }
-
-    private void showLoginFailed(@StringRes Integer errorString) {
-        Snackbar.make(activityStudentLoginBinding.getRoot(), errorString, Snackbar.LENGTH_SHORT).show();
     }
 
     private void showLoginFailed(String errorString) {
