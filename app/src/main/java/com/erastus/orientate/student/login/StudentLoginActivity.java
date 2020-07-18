@@ -20,6 +20,9 @@ import com.erastus.orientate.student.navigation.StudentNavActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
+import com.parse.ParseUser;
+
+import java.util.Objects;
 
 
 public class StudentLoginActivity extends AppCompatActivity {
@@ -30,6 +33,11 @@ public class StudentLoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//
+//        if (ParseUser.getCurrentUser() != null) {
+//            goToStudentNavActivity();
+//        }
+
         activityStudentLoginBinding = ActivityStudentLoginBinding.inflate(getLayoutInflater());
         setContentView(activityStudentLoginBinding.getRoot());
         mLoginViewModel = new ViewModelProvider(this, new StudentLoginViewModelFactory())
@@ -47,10 +55,10 @@ public class StudentLoginActivity extends AppCompatActivity {
             }
             loginButton.setEnabled(loginFormState.isDataValid());
             if (loginFormState.getUsernameError() != null) {
-                usernameEditText.setError(getString(loginFormState.getUsernameError()));
+                Objects.requireNonNull(usernameEditText.getEditText()).setError(getString(loginFormState.getUsernameError()));
             }
             if (loginFormState.getPasswordError() != null) {
-                passwordEditText.setError(getString(loginFormState.getPasswordError()));
+                Objects.requireNonNull(passwordEditText.getEditText()).setError(getString(loginFormState.getPasswordError()));
             }
         });
 
@@ -58,16 +66,12 @@ public class StudentLoginActivity extends AppCompatActivity {
             if (loginResult == null) {
                 return;
             }
-            loginButtonProgress.buttonFinished();
-            if (loginResult.getError() != null) {
-                showLoginFailed(loginResult.getError());
-                loginButtonProgress.buttonReset();
-            }
             if (loginResult.getErrorMessage() != null) {
                 showLoginFailed(loginResult.getErrorMessage());
                 loginButtonProgress.buttonReset();
             } else {
-                updateUiWithUser();
+                loginButtonProgress.buttonActivated();
+                goToStudentNavActivity();
 
                 setResult(Activity.RESULT_OK);
 
@@ -98,6 +102,7 @@ public class StudentLoginActivity extends AppCompatActivity {
         passwordEditText.getEditText().addTextChangedListener(afterTextChangedListener);
         passwordEditText.getEditText().setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_DONE) {
+                loginButtonProgress.buttonActivated();
                 mLoginViewModel.login(usernameEditText.getEditText().getText().toString(),
                         passwordEditText.getEditText().getText().toString());
             }
@@ -111,7 +116,7 @@ public class StudentLoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUiWithUser() {
+    private void goToStudentNavActivity() {
         // go the StudentNavigationActivity
         startActivity(new Intent(this, StudentNavActivity.class));
     }

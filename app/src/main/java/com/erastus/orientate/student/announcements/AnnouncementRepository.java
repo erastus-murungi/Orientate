@@ -8,15 +8,18 @@ import com.parse.ParseQuery;
 import com.parse.boltsinternal.Task;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * singleton pattern
  */
 public class AnnouncementRepository {
+
+    public static long maxDuration = 50;
     private static AnnouncementRepository instance;
 
     /**
-     * By adding the keyword synchronized, we esnure that we still get one instance even in
+     * By adding the keyword synchronized, we ensure that we still get one instance even in
      * a multithreaded environment
      */
 
@@ -27,17 +30,25 @@ public class AnnouncementRepository {
         return instance;
     }
 
-    public DataState<MutableLiveData<List<Announcement>>> getAnnouncements() {
+    public DataState<List<Announcement>> getAnnouncements() {
         ParseQuery<Announcement> query = ParseQuery.getQuery(Announcement.class);
-        Task<List<Announcement>> task = query.findInBackground();
-        if (task.isCompleted()) {
-            return new DataState.Success<>(new MutableLiveData<>(task.getResult()));
+        Task<List<Announcement>> listTask = query.findInBackground();
+
+        try {
+            listTask.waitForCompletion(maxDuration, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        return new DataState.Error(task.getError());
+        if (listTask.isCompleted() && listTask.getError() == null) {
+            return new DataState.Success<>(listTask.getResult());
+        } if (!listTask.isCompleted() && listTask.getError() == null) {
+            return new DataState.TimedOut(maxDuration);
+        }
+        return new DataState.Error(listTask.getError());
     }
 
 
-    public DataState<MutableLiveData<List<Announcement>>> loadMore() {
+    public DataState<List<Announcement>> loadMore() {
         return null;
     }
 }

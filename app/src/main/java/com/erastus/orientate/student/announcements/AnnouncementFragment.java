@@ -1,5 +1,6 @@
 package com.erastus.orientate.student.announcements;
 
+import androidx.annotation.ColorRes;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.ProgressBar;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.AnnouncementFragmentBinding;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 
@@ -28,6 +30,9 @@ public class AnnouncementFragment extends Fragment {
     private AnnouncementAdapter mAdapter;
     private ProgressBar mProgressBar;
 
+    public AnnouncementFragment() {
+    }
+
     public static AnnouncementFragment newInstance() {
         return new AnnouncementFragment();
     }
@@ -35,45 +40,70 @@ public class AnnouncementFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        mViewModel = new ViewModelProvider(this,
+                new AnnouncementViewModelFactory()).get(AnnouncementViewModel.class);
+
         mBinding = AnnouncementFragmentBinding.inflate(getLayoutInflater());
-        View view = inflater.inflate(R.layout.announcement_fragment, container, false);
-        mAnnouncementRecyclerView = mBinding.recyclerViewAnnouncement;
+        View rootView = inflater.inflate(R.layout.announcement_fragment, container, false);
         mProgressBar = mBinding.progressBarAnnouncements;
-        return view;
+        mAnnouncementRecyclerView = rootView.findViewById(R.id.recycler_view_announcement);
+        initRecyclerView();
+        return rootView;
     }
 
+
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(AnnouncementViewModel.class);
-        initRecyclerView();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         setUpObservers();
+        mAdapter.notifyDataSetChanged();
     }
 
     private void initRecyclerView() {
-        mAdapter = new AnnouncementAdapter(mViewModel.getAnnouncements().getValue());
+        mAdapter = new AnnouncementAdapter(getActivity(), mViewModel.getAnnouncements().getValue());
         mAnnouncementRecyclerView.setAdapter(mAdapter);
         mAnnouncementRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     private void setUpObservers() {
-        mViewModel.getAnnouncements().observe(getViewLifecycleOwner(), localAnnouncements -> mAdapter.notifyDataSetChanged());
+
+        mViewModel.getAnnouncements().observe(getViewLifecycleOwner(), localAnnouncements -> {
+            mAdapter.setAnnouncements(localAnnouncements);
+            mAdapter.notifyDataSetChanged();
+        });
+
         mViewModel.getState().observe(getViewLifecycleOwner(), announcementState -> {
             if (announcementState == null) {
                 return;
             }
             if (announcementState.isLoading()) {
                 mProgressBar.setVisibility(View.VISIBLE);
-            } else {
-                mProgressBar.setVisibility(View.GONE);
             }
+            if (announcementState.getTimedOut() != null) {
+                mProgressBar.setVisibility(View.GONE);
+                promptReloadWithSnackBar();
+            }
+
             if (announcementState.getErrorMessage() != null) {
+                mProgressBar.setVisibility(View.GONE);
                 showErrorMessage(announcementState.getErrorMessage());
             }
         });
     }
 
+
+
     private void showErrorMessage(String errorMessage) {
+    }
+
+    private void promptReloadWithSnackBar() {
+        Snackbar.make(mBinding.getRoot(), "Request Timeout",
+                BaseTransientBottomBar.LENGTH_INDEFINITE)
+                .setBackgroundTint(getContext().getColor(R.color.white))
+                .setTextColor(getContext().getColor(R.color.darkBlue))
+                .setActionTextColor(getContext().getColor(R.color.darkBlue) )
+                .setAction(R.string.reload, view -> mViewModel.requestReload());
     }
 
 }

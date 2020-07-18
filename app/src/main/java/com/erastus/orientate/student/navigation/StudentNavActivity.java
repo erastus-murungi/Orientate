@@ -2,6 +2,7 @@ package com.erastus.orientate.student.navigation;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -81,7 +82,7 @@ public class StudentNavActivity extends AppCompatActivity {
         }
 
         try {
-            fragment = (Fragment) fragmentClass.newInstance();
+            fragment = fragmentClass.newInstance();
         } catch (IllegalAccessException | InstantiationException e) {
             Log.e(TAG, "Exception", e);
         }
@@ -89,14 +90,14 @@ public class StudentNavActivity extends AppCompatActivity {
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         assert fragment != null;
+        // Close the navigation drawer
+        mStudentNavDrawerLayout.closeDrawer(GravityCompat.START, false);
+        mStudentNavDrawerLayout.closeDrawers();
         fragmentManager.beginTransaction().replace(R.id.frame_layout_student_content, fragment).commit();
 
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
         // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        mStudentNavDrawerLayout.closeDrawers();
     }
 
     @Override

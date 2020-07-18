@@ -10,8 +10,6 @@ public class StudentLoginRepository {
     private static volatile StudentLoginRepository instance;
     public static final long maxDuration = 50;
 
-    // web
-
     // private constructor : singleton access
 
     public static synchronized StudentLoginRepository getInstance() {
@@ -27,7 +25,7 @@ public class StudentLoginRepository {
 
     // API requests
     public DataState<ParseUser> login(String username, String password) {
-        // handle login
+        // handle login on a background thread
         Task<ParseUser> parseUserTask = ParseUser.logInInBackground(username, password);
         try {
             parseUserTask.waitForCompletion(maxDuration, TimeUnit.SECONDS);
@@ -36,9 +34,11 @@ public class StudentLoginRepository {
         }
         if (parseUserTask.isCompleted() && parseUserTask.getError() == null) {
             return new DataState.Success<>(parseUserTask.getResult());
+        } else if (!parseUserTask.isCompleted() && parseUserTask.getError() == null) {
+            return new DataState.TimedOut(maxDuration);
         } else {
             Exception exception = parseUserTask.getError();
-            return new DataState.Error(exception == null ? new NullPointerException() : exception);
+            return new DataState.Error(exception == null ? new Exception() : exception);
         }
     }
 }

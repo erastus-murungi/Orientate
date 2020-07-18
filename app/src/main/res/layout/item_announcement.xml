@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:elevation="3dp"
     android:background="@drawable/item_announcements_background">
 
@@ -58,5 +58,7 @@
         android:layout_marginTop="15dp"
         android:textColor="@color/white"
         android:padding="10dp"
+        android:autoLink="all"
+        android:linksClickable="true"
         android:text="@string/sample_announcement_body" />
 </RelativeLayout>

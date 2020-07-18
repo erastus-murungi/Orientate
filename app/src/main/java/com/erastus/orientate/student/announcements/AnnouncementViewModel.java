@@ -11,25 +11,20 @@ import com.erastus.orientate.student.announcements.models.LocalAnnouncement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class AnnouncementViewModel extends ViewModel {
     private AnnouncementRepository announcementRepository;
-    private MutableLiveData<AnnouncementState> mAnnouncementState = new MutableLiveData<>(new AnnouncementState(true));
+    private MutableLiveData<AnnouncementState> mAnnouncementState =
+            new MutableLiveData<>(new AnnouncementState(true));
 
-    private MutableLiveData<List<LocalAnnouncement>> mAnnouncements = new MutableLiveData<>(new ArrayList<>());
+    private MutableLiveData<List<LocalAnnouncement>> mAnnouncements =
+            new MutableLiveData<>(new ArrayList<>());
 
     public AnnouncementViewModel(AnnouncementRepository instance) {
         this.announcementRepository = instance;
-        DataState<MutableLiveData<List<Announcement>>> state = this.announcementRepository.getAnnouncements();
-
-        if (state instanceof DataState.Error) {
-            mAnnouncementState.setValue(new
-                    AnnouncementState(((DataState.Error) state).getError().getMessage()));
-        } else if (state instanceof DataState.Success){
-            MutableLiveData<List<Announcement>> liveData = ((DataState.Success<MutableLiveData<List<Announcement>>>) state).getData();
-            mAnnouncements = new MutableLiveData
-                    (liveData.getValue().stream().map(LocalAnnouncement::localAnnouncementFromParseAnnouncement));
-        }
+        getAnnouncementsOnce();
     }
 
     public LiveData<List<LocalAnnouncement>> getAnnouncements() {
@@ -41,6 +36,48 @@ public class AnnouncementViewModel extends ViewModel {
     }
 
     public void requestMoreAnnouncements() {
-        DataState<MutableLiveData<List<Announcement>>> state = this.announcementRepository.loadMore();
+        mAnnouncementState.setValue(new AnnouncementState(true));
+        DataState<List<Announcement>> state = this.announcementRepository.loadMore();
+
+        if (state instanceof DataState.Error) {
+            mAnnouncementState.setValue(new
+                    AnnouncementState(((DataState.Error) state).getError().getMessage()));
+        } else if (state instanceof DataState.TimedOut) {
+            mAnnouncementState.setValue(new AnnouncementState(((DataState.TimedOut) state).getMaxDuration()));
+        } else if (state instanceof DataState.Success) {
+            List<Announcement> announcementList = ((DataState.Success<List<Announcement>>) state).getData();
+
+            Objects.requireNonNull(mAnnouncements.getValue()).addAll(announcementList
+                    .stream()
+                    .map(LocalAnnouncement::localAnnouncementFromParseAnnouncement)
+                    .collect(Collectors.toList()));
+            mAnnouncements.setValue(mAnnouncements.getValue());
+        }
+        mAnnouncementState.setValue(new AnnouncementState(false));
+    }
+
+    public void requestReload() {
+        getAnnouncementsOnce();
+    }
+
+    private void getAnnouncementsOnce() {
+        mAnnouncementState.setValue(new AnnouncementState(true));
+        DataState<List<Announcement>> state = this.announcementRepository.getAnnouncements();
+
+        if (state instanceof DataState.Error) {
+            mAnnouncementState.setValue(new
+                    AnnouncementState(((DataState.Error) state).getError().getMessage()));
+        } else if (state instanceof DataState.TimedOut) {
+            mAnnouncementState.setValue(new AnnouncementState(((DataState.TimedOut) state).getMaxDuration()));
+        } else if (state instanceof DataState.Success) {
+            List<Announcement> announcementList = ((DataState.Success<List<Announcement>>) state).getData();
+
+            mAnnouncements.setValue(announcementList
+                    .stream()
+                    .map(LocalAnnouncement::localAnnouncementFromParseAnnouncement)
+                    .collect(Collectors.toList()));
+        }
+        mAnnouncementState.setValue(new AnnouncementState(false));
+
     }
 }
