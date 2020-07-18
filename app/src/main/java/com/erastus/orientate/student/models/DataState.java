@@ -42,14 +42,4 @@ public class DataState<T> {
             return this.error;
         }
     }
-
-    public final static class TimedOut extends DataState {
-        private long maxDuration;
-
-        public TimedOut(long maxDuration) {this.maxDuration = maxDuration;}
-
-        public long getMaxDuration() {
-            return maxDuration;
-        }
-    }
 }

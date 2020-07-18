@@ -1,6 +1,7 @@
 package com.erastus.orientate.student.announcements;
 
 import androidx.annotation.ColorRes;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -18,8 +19,12 @@ import android.widget.ProgressBar;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.AnnouncementFragmentBinding;
+import com.erastus.orientate.student.announcements.models.LocalAnnouncement;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
+import java.util.Objects;
 
 
 public class AnnouncementFragment extends Fragment {
@@ -71,38 +76,31 @@ public class AnnouncementFragment extends Fragment {
         mViewModel.getAnnouncements().observe(getViewLifecycleOwner(), localAnnouncements -> {
             mAdapter.setAnnouncements(localAnnouncements);
             mAdapter.notifyDataSetChanged();
+            mProgressBar.setVisibility(View.GONE);
         });
 
         mViewModel.getState().observe(getViewLifecycleOwner(), announcementState -> {
             if (announcementState == null) {
+                mProgressBar.setVisibility(View.VISIBLE);
                 return;
             }
             if (announcementState.isLoading()) {
                 mProgressBar.setVisibility(View.VISIBLE);
-            }
-            if (announcementState.getTimedOut() != null) {
+            } else if (announcementState.getErrorMessage() != null) {
                 mProgressBar.setVisibility(View.GONE);
-                promptReloadWithSnackBar();
-            }
-
-            if (announcementState.getErrorMessage() != null) {
+                promptReloadWithSnackBar(announcementState.getErrorMessage());
+            } else {
                 mProgressBar.setVisibility(View.GONE);
-                showErrorMessage(announcementState.getErrorMessage());
             }
         });
     }
 
-
-
-    private void showErrorMessage(String errorMessage) {
-    }
-
-    private void promptReloadWithSnackBar() {
-        Snackbar.make(mBinding.getRoot(), "Request Timeout",
+    private void promptReloadWithSnackBar(String errorMessage) {
+        Snackbar.make(requireActivity().findViewById(R.id.drawer_layout_student), errorMessage,
                 BaseTransientBottomBar.LENGTH_INDEFINITE)
-                .setBackgroundTint(getContext().getColor(R.color.white))
-                .setTextColor(getContext().getColor(R.color.darkBlue))
-                .setActionTextColor(getContext().getColor(R.color.darkBlue) )
+                .setBackgroundTint(requireContext().getColor(R.color.white))
+                .setTextColor(requireContext().getColor(R.color.darkBlue))
+                .setActionTextColor(requireContext().getColor(R.color.darkBlue))
                 .setAction(R.string.reload, view -> mViewModel.requestReload());
     }
 

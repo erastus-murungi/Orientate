@@ -1,6 +1,5 @@
 package com.erastus.orientate.student.login;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.erastus.orientate.student.models.DataState;

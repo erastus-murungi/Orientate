@@ -3,15 +3,10 @@ package com.erastus.orientate.models;
 import android.util.Log;
 
 import com.erastus.orientate.student.announcements.models.Announcement;
-import com.erastus.orientate.student.announcements.models.AnnouncementState;
-import com.erastus.orientate.student.models.DataState;
 import com.parse.ParseClassName;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.boltsinternal.Task;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;

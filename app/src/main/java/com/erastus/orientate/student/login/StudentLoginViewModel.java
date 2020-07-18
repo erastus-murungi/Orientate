@@ -17,7 +17,7 @@ import com.erastus.orientate.student.models.DataState;
 public class StudentLoginViewModel extends ViewModel {
     private StudentLoginRepository mStudentLoginRepository;
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
-    private MutableLiveData<DataState> mDataState = new MutableLiveData<>();
+    private MutableLiveData<DataState> mDataState;
     @Nullable
     private LiveData<LoginResult> loginResult = new MutableLiveData<>();
 

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
 
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -20,8 +19,7 @@ import com.erastus.orientate.student.navigation.StudentNavActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
-
-import java.util.Objects;
+import com.parse.ParseUser;
 
 
 public class StudentLoginActivity extends AppCompatActivity {
@@ -32,10 +30,11 @@ public class StudentLoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//
-//        if (ParseUser.getCurrentUser() != null) {
-//            goToStudentNavActivity();
-//        }
+
+        // no need for login in again
+        if (ParseUser.getCurrentUser() != null) {
+            goToStudentNavActivity();
+        }
 
         activityStudentLoginBinding = ActivityStudentLoginBinding.inflate(getLayoutInflater());
         setContentView(activityStudentLoginBinding.getRoot());
@@ -155,11 +154,6 @@ public class StudentLoginActivity extends AppCompatActivity {
         void buttonActivated() {
             mProgressBar.setVisibility(View.VISIBLE);
             mTextView.setText(R.string.login_in);
-        }
-
-        void buttonFinished() {
-            mProgressBar.setVisibility(View.GONE);
-            mTextView.setText(R.string.done);
         }
     }
 }

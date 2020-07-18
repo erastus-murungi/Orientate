@@ -74,7 +74,8 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             mAnnouncementBodyMaterialTextView.setText(localAnnouncement.getBody());
             Glide.with(mContext)
                     .load(localAnnouncement.getOwner().getUser().getProfileImageUrl())
-                    .centerCrop()
+                    .fitCenter()
+                    .circleCrop()
                     .into(mProfilePictureImageView);
         }
     }

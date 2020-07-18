@@ -12,16 +12,17 @@
     <include
         layout="@layout/student_nav_app_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
-<!--    <ProgressBar-->
-<!--        android:id="@+id/progress_bar_announcements"-->
-<!--        android:layout_width="20dp"-->
-<!--        android:layout_height="20dp"-->
-<!--        android:indeterminateTint="@color/darkBlue"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:minHeight="20dp"-->
-<!--        android:minWidth="20dp" />-->
+    <!--    <ProgressBar-->
+    <!--        android:id="@+id/progress_bar_announcements"-->
+    <!--        android:layout_width="20dp"-->
+    <!--        android:layout_height="20dp"-->
+    <!--        android:indeterminateTint="@color/darkBlue"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:minHeight="20dp"-->
+    <!--        android:minWidth="20dp" />-->
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view_student"
@@ -29,9 +30,11 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/darkBlue"
+
         app:headerLayout="@layout/nav_student_header"
         app:itemTextAppearance="@style/navMenuStyle"
         app:menu="@menu/student_nav_drawer_items">
+
 
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

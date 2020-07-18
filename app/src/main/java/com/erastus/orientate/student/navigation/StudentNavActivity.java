@@ -2,7 +2,6 @@ package com.erastus.orientate.student.navigation;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,7 +19,6 @@ import com.erastus.orientate.databinding.ActivityStudentNavBinding;
 import com.erastus.orientate.student.announcements.AnnouncementFragment;
 import com.erastus.orientate.student.event.EventFragment;
 import com.erastus.orientate.student.info.InfoFragment;
-import com.erastus.orientate.student.web.ExtraListDialogFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class StudentNavActivity extends AppCompatActivity {
