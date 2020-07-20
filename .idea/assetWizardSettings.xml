@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/chat_bubble/baseline_chat_bubble_24.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/date_range/baseline_date_range_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -34,7 +34,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="dbdbdb" />
-                            <entry key="outputName" value="ic_baseline_chat_bubble_24" />
+                            <entry key="outputName" value="ic_baseline_date_range_24" />
                             <entry key="sourceFile" value="$USER_HOME$/Downloads/Education_(105).svg" />
                           </map>
                         </option>

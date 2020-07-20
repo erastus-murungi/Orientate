@@ -8,14 +8,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorPrimary">@color/darkBlue</item>
-
-        <item name="materialCalendarTheme">@style/Theme.MaterialComponents</item>
-
     </style>
 
     <style name="ArialTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/arial_unicode_ms</item>
     </style>
+
+    <style name="signUpDateOfBirthDatePicker"
+        parent="@android:style/Widget.DatePicker" />
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">true</item>

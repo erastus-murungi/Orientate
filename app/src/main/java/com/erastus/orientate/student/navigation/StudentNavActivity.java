@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ActivityStudentNavBinding;
 import com.erastus.orientate.student.announcements.AnnouncementFragment;
+import com.erastus.orientate.student.announcements.models.Announcement;
 import com.erastus.orientate.student.event.EventFragment;
 import com.erastus.orientate.student.info.InfoFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -76,7 +77,7 @@ public class StudentNavActivity extends AppCompatActivity {
                 fragmentClass = InfoFragment.class;
                 break;
             default:
-                fragmentClass = ExtraListDialogFragment.class;
+                fragmentClass = AnnouncementFragment.class;
         }
 
         try {
