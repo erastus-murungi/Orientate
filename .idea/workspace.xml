@@ -14,24 +14,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d08affa-353e-44e0-82f1-d083825d8189" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/models/LocalEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/adapters/EventContentAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/adapters/EventTimeAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_inner_event.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_outer_event.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/AnnouncementViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/models/LocalAnnouncement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/models/LocalAnnouncement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/models/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/models/EventResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/models/EventResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,9 +63,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="layoutResourceFile" />
         <option value="valueResourceFile" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -238,11 +241,11 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="360" y="222" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594771985845" />
-    <state x="709" y="275" width="737" height="554" key="#com.intellij.ide.util.MemberChooser" timestamp="1595223575162">
+    <state x="709" y="275" width="737" height="554" key="#com.intellij.ide.util.MemberChooser" timestamp="1595232109380">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state x="709" y="276" width="737" height="554" key="#com.intellij.ide.util.MemberChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1594984977875" />
-    <state x="709" y="275" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1021@0.23.1792.1021" timestamp="1595223575162" />
+    <state x="709" y="275" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1021@0.23.1792.1021" timestamp="1595232109380" />
     <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1025@0.23.1792.1025" timestamp="1595060867912" />
     <state x="424" y="483" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1594855809559">
       <screen x="0" y="0" width="1792" height="1120" />
@@ -274,17 +277,17 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="484" y="322" key="AndroidCreateResourceDirectoryDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594821334161" />
-    <state x="484" y="317" key="AndroidCreateResourceFileDialog" timestamp="1595216262489">
+    <state x="484" y="317" key="AndroidCreateResourceFileDialog" timestamp="1595229460757">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state x="484" y="322" key="AndroidCreateResourceFileDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594980416889" />
-    <state x="484" y="317" key="AndroidCreateResourceFileDialog/0.23.1792.1021@0.23.1792.1021" timestamp="1595216262489" />
+    <state x="484" y="317" key="AndroidCreateResourceFileDialog/0.23.1792.1021@0.23.1792.1021" timestamp="1595229460757" />
     <state x="484" y="318" key="AndroidCreateResourceFileDialog/0.23.1792.1025@0.23.1792.1025" timestamp="1595054171780" />
-    <state x="751" y="401" key="AndroidCreateXmlResourceDialog" timestamp="1595216746763">
+    <state x="751" y="401" key="AndroidCreateXmlResourceDialog" timestamp="1595229786284">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state x="751" y="414" key="AndroidCreateXmlResourceDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594979687421" />
-    <state x="751" y="401" key="AndroidCreateXmlResourceDialog/0.23.1792.1021@0.23.1792.1021" timestamp="1595216746763" />
+    <state x="751" y="401" key="AndroidCreateXmlResourceDialog/0.23.1792.1021@0.23.1792.1021" timestamp="1595229786284" />
     <state x="751" y="402" key="AndroidCreateXmlResourceDialog/0.23.1792.1025@0.23.1792.1025" timestamp="1595005400410" />
     <state x="515" y="161" key="CommitChangelistDialog2" timestamp="1594844403604">
       <screen x="0" y="0" width="1792" height="1120" />
@@ -393,11 +396,11 @@
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
     <state x="561" y="248" key="run.anything.popup/0.23.1792.1025@0.23.1792.1025" timestamp="1594989859130" />
-    <state x="561" y="252" width="670" height="617" key="search.everywhere.popup" timestamp="1595222314543">
+    <state x="561" y="252" width="670" height="617" key="search.everywhere.popup" timestamp="1595231804390">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state x="561" y="251" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1594877880339" />
-    <state x="561" y="252" width="670" height="617" key="search.everywhere.popup/0.23.1792.1021@0.23.1792.1021" timestamp="1595222314543" />
+    <state x="561" y="252" width="670" height="617" key="search.everywhere.popup/0.23.1792.1021@0.23.1792.1021" timestamp="1595231804390" />
     <state x="561" y="253" width="670" height="619" key="search.everywhere.popup/0.23.1792.1025@0.23.1792.1025" timestamp="1595064063360" />
   </component>
   <component name="XDebuggerManager">

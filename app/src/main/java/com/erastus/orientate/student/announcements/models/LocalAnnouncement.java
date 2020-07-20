@@ -4,6 +4,8 @@ import com.erastus.orientate.institution.models.LocalInstitution;
 import com.erastus.orientate.student.models.Urgency;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class LocalAnnouncement {
     private Urgency mUrgencyLevel;
@@ -23,6 +25,14 @@ public class LocalAnnouncement {
                 new LocalInstitution(announcement.getOwnerInstitution());
         this.mCreatedAt = announcement.getCreatedAtAsLocalDateTime();
         this.mPostedBy = announcement.getPostedBy();
+    }
+
+    public static List<LocalAnnouncement> toLocalAnnouncementsList(
+            List<Announcement> announcements) {
+        return announcements
+                .stream()
+                .map(LocalAnnouncement::new)
+                .collect(Collectors.toList());
     }
 
     public Urgency getUrgencyLevel() {

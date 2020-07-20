@@ -12,7 +12,10 @@ import com.erastus.orientate.student.event.models.EventResult;
 import com.erastus.orientate.student.event.models.LocalEvent;
 import com.erastus.orientate.student.models.DataState;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class EventViewModel extends ViewModel {
     public static final int MAX_NUMBER_OF_ANNOUNCEMENTS_TO_FETCH = 40;
@@ -49,6 +52,15 @@ public class EventViewModel extends ViewModel {
 
     public LiveData<EventResult> getEventsResult() {
         return mEventsResult;
+    }
+
+    public LiveData<List<LocalEvent>> getEventsSpecificTime(LocalDateTime localDateTime) {
+        return new MutableLiveData<>(
+                Objects.requireNonNull(mEventsList
+                        .getValue())
+                .stream()
+                .filter(localEvent -> localEvent.getStartingOn() == localDateTime)
+                .collect(Collectors.toList()));
     }
 
     public LiveData<List<LocalEvent>> getEvents() {

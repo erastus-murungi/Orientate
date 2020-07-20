@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_view_event_start_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:textColor="@color/darkBlue"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textFontWeight="800"
+        tools:text="Starting time" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_inner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_event_start_header"/>
+
+</RelativeLayout>

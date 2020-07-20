@@ -13,7 +13,6 @@ import com.erastus.orientate.student.announcements.models.LocalAnnouncement;
 import com.erastus.orientate.student.models.DataState;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AnnouncementViewModel extends ViewModel {
     public static final int MAX_NUMBER_OF_ANNOUNCEMENTS_TO_FETCH = 20;
@@ -31,7 +30,7 @@ public class AnnouncementViewModel extends ViewModel {
                 announcementRepository.getAnnouncements(MAX_NUMBER_OF_ANNOUNCEMENTS_TO_FETCH);
 
         this.mAnnouncements = Transformations.switchMap(announcements, input ->
-                new MutableLiveData<>(toLocalAnnouncementsList(input)));
+                new MutableLiveData<>(LocalAnnouncement.toLocalAnnouncementsList(input)));
         MutableLiveData<DataState> announcementRequestState = announcementRepository.getState();
 
         this.mAnnouncementState = Transformations.switchMap(announcementRequestState, dataState -> {
@@ -45,14 +44,6 @@ public class AnnouncementViewModel extends ViewModel {
             return new MutableLiveData<>();
         });
 
-    }
-
-    private List<LocalAnnouncement> toLocalAnnouncementsList(
-            List<Announcement> announcements) {
-        return announcements
-                .stream()
-                .map(LocalAnnouncement::new)
-                .collect(Collectors.toList());
     }
 
     public LiveData<List<LocalAnnouncement>> getAnnouncements() {
