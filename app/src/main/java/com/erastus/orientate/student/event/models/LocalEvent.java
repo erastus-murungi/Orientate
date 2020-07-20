@@ -23,6 +23,7 @@ public class LocalEvent {
     private boolean isMustAttend;
     private String title;
     private String body;
+    private String eventLocationString;
 
     public LatLng getEventLocation() {
         return eventLocation;
@@ -61,7 +62,7 @@ public class LocalEvent {
     }
 
     public LocalEvent(Event event) {
-        this.eventLocation = parseGeoPointToLatLng(event.getWhere());
+        this.eventLocation = event.getWhere();
         this.startingOn = Objects.requireNonNull(event.getStartDateTime(), "No happening date");
         this.endingOn = event.getEndingDateTime();
         this.url = event.getUrl();
@@ -70,20 +71,14 @@ public class LocalEvent {
         this.isMustAttend = event.getIsMustAttend();
         this.title = event.getTitle();
         this.body = event.getBody();
-
     }
 
     public static List<LocalEvent> getLocalEventsList(Collection<Event> events) {
         return events.stream().map(LocalEvent::new).collect(Collectors.toList());
     }
 
-    private LatLng parseGeoPointToLatLng(ParseGeoPoint point) {
-        try {
-            return new LatLng(point.getLatitude(), point.getLongitude());
-        } catch (NullPointerException e) {
-            Log.e(TAG, "parseGeoPointToLatLng: Latitude or Latitude Missing", e);
-            return null;
-        }
+    public String getStringLocation() {
+        return eventLocationString;
     }
 
 

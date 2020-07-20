@@ -33,4 +33,15 @@
         android:layout_below="@id/horizontal_calendar_view_events"
         android:layout_marginTop="1dp" />
 
+
+    <ProgressBar
+        android:id="@+id/progress_bar_events"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/darkBlue"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        android:minHeight="30dp"
+        android:minWidth="30dp" />
+
 </RelativeLayout>

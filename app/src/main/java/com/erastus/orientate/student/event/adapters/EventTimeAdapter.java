@@ -7,34 +7,40 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ItemOuterEventBinding;
 import com.erastus.orientate.student.event.EventViewModel;
+import com.erastus.orientate.student.event.models.LocalEvent;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class EventTimeAdapter extends RecyclerView.Adapter<EventTimeAdapter.EventTimeViewHolder> {
-    private List<LocalDateTime> mStartTimes;
+    private List<LocalEvent> mStartTimes;
     private Context mContext;
-    private ItemOuterEventBinding binding;
     private EventViewModel mEventViewModel;
     private RecyclerView.RecycledViewPool mViewPool;
 
 
-    public EventTimeAdapter(Context context, List<LocalDateTime> mStartTimes) {
+    public EventTimeAdapter(Context context,
+                            EventViewModel viewModel) {
         this.mContext = context;
-        this.mStartTimes = mStartTimes;
+        this.mStartTimes = viewModel.getEvents().getValue();
+        this.mEventViewModel = viewModel;
         mViewPool = new RecyclerView.RecycledViewPool();
+    }
 
+    public void setEvents(List<LocalEvent> events) {
+        mStartTimes = events;
     }
 
     @NonNull
     @Override
     public EventTimeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        binding = ItemOuterEventBinding.inflate(
+        ItemOuterEventBinding binding = ItemOuterEventBinding.inflate(
                 LayoutInflater.from(parent.getContext()),
                 parent, false);
         EventTimeViewHolder holder = new EventTimeViewHolder(binding);
@@ -49,7 +55,7 @@ public class EventTimeAdapter extends RecyclerView.Adapter<EventTimeAdapter.Even
 
     @Override
     public int getItemCount() {
-        return mStartTimes.size();
+        return mStartTimes == null ? 0 : mStartTimes.size();
     }
 
     class EventTimeViewHolder extends RecyclerView.ViewHolder {
@@ -62,14 +68,17 @@ public class EventTimeAdapter extends RecyclerView.Adapter<EventTimeAdapter.Even
             mRecyclerViewer = binding.recyclerViewInner;
         }
 
-        public void bind(LocalDateTime localDateTime) {
+        public void bind(LocalEvent localEvent) {
+            LocalDateTime localDateTime = localEvent.getStartingOn();
             mStartingOnTextView.setText(mContext.getString(R.string.format_time_hour_minute,
                     localDateTime.getHour(), localDateTime.getMinute()));
+            initRecyclerView(localDateTime);
         }
 
         private void initRecyclerView(LocalDateTime localDateTime) {
-            mRecyclerViewer.setAdapter(new EventContentAdapter(
+            mRecyclerViewer.setAdapter(new EventContentAdapter(mContext,
                     mEventViewModel.getEventsSpecificTime(localDateTime)));
+            mRecyclerViewer.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false));
         }
     }
 }

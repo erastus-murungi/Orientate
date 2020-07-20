@@ -8,7 +8,6 @@ public class EventResult {
         return isLoading;
     }
 
-    @Nullable
     public Boolean getEventsExist() {
         return eventsExist;
     }
@@ -18,11 +17,9 @@ public class EventResult {
         return errorMessage;
     }
 
-    @Nullable
-    private Boolean isLoading;
+    private boolean isLoading;
 
-    @Nullable
-    private Boolean eventsExist;
+    private boolean eventsExist;
 
     @Nullable
     private String errorMessage;
@@ -37,8 +34,8 @@ public class EventResult {
         eventsExist = false;
     }
 
-    public EventResult(@Nullable Boolean isLoading,
-                       @Nullable Boolean eventsExist,
+    public EventResult(boolean isLoading,
+                       boolean eventsExist,
                        @Nullable String errorMessage) {
         this.isLoading = isLoading;
         this.eventsExist = eventsExist;

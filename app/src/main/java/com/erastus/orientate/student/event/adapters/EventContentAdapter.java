@@ -1,35 +1,46 @@
 package com.erastus.orientate.student.event.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.databinding.ItemInnerEventBinding;
+import com.erastus.orientate.student.event.eventdetail.EventDetailFragment;
 import com.erastus.orientate.student.event.models.LocalEvent;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
 public class EventContentAdapter extends RecyclerView.Adapter<EventContentAdapter.EventContentViewHolder> {
     private List<LocalEvent> mEvents;
+    private Context mContext;
 
-    public EventContentAdapter(List<LocalEvent> eventsSpecificTime) {
+    public EventContentAdapter(Context context,
+                               List<LocalEvent> eventsSpecificTime) {
         mEvents = eventsSpecificTime;
+        mContext = context;
     }
 
     @NonNull
     @Override
     public EventContentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new EventContentViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_inner_event, parent, false));
+        ItemInnerEventBinding binding = ItemInnerEventBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new EventContentViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull EventContentViewHolder holder, int position) {
-
+        holder.bind(mEvents.get(position));
     }
 
     @Override
@@ -38,9 +49,39 @@ public class EventContentAdapter extends RecyclerView.Adapter<EventContentAdapte
     }
 
     class EventContentViewHolder extends RecyclerView.ViewHolder {
+        private TextView mStartingOnTextView;
+        private TextView mEndingOnTextView;
+        private TextView mTitleTextView;
+        private TextView mLocation;
 
-        public EventContentViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public EventContentViewHolder(@NonNull ItemInnerEventBinding binding) {
+            super(binding.getRoot());
+            mStartingOnTextView = binding.textViewStartingOn;
+            mEndingOnTextView = binding.textViewEndingOn;
+            mTitleTextView = binding.textViewEventTitle;
+            mLocation = binding.textViewEventLocation;
+
+            View.OnClickListener listener = view -> {
+                int position = getBindingAdapterPosition();
+                if (getBindingAdapterPosition() != RecyclerView.NO_POSITION) {
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("DATA", Parcels.wrap(mEvents.get(position)));
+                    EventDetailFragment fragmentEventDetail = new EventDetailFragment();
+                    fragmentEventDetail.setArguments(bundle);
+                }
+            };
+            binding.getRoot().setOnClickListener(listener);
+        }
+
+        public void bind(LocalEvent localEvent) {
+            mStartingOnTextView.setText(mContext.getString(R.string.format_time_hour_minute,
+                    localEvent.getStartingOn().getHour(),
+                    localEvent.getStartingOn().getMinute()));
+            mEndingOnTextView.setText(mContext.getString(R.string.format_time_hour_minute,
+                    localEvent.getEndingOn().getHour(),
+                    localEvent.getEndingOn().getMinute()));
+            mTitleTextView.setText(localEvent.getTitle());
+            mLocation.setText(localEvent.getStringLocation());
         }
     }
 }

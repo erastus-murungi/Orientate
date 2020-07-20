@@ -70,9 +70,6 @@ public class StudentNavActivity extends AppCompatActivity {
             case R.id.nav_student_events:
                 fragmentClass = EventFragment.class;
                 break;
-            case R.id.nav_students_announcements:
-                fragmentClass = AnnouncementFragment.class;
-                break;
             case R.id.nav_helpful_information:
                 fragmentClass = InfoFragment.class;
                 break;

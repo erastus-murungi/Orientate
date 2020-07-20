@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 
 import com.erastus.orientate.institution.models.Institution;
+import com.google.android.gms.maps.model.LatLng;
 import com.parse.ParseClassName;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -17,6 +18,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Objects;
 
 
 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -72,8 +74,9 @@ public class Event extends ParseObject {
         return getBoolean(KEY_MUST_ATTEND);
     }
 
-    public ParseGeoPoint getWhere() {
-        return getParseGeoPoint(KEY_WHERE);
+    public LatLng getWhere() {
+        ParseGeoPoint parseGeoPoint = Objects.requireNonNull(getParseGeoPoint(KEY_WHERE));
+        return new LatLng(parseGeoPoint.getLatitude(), parseGeoPoint.getLongitude());
     }
 
     public boolean getIsRecurring() {
