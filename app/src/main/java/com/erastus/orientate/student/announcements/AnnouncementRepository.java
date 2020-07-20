@@ -1,5 +1,6 @@
 package com.erastus.orientate.student.announcements;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.erastus.orientate.student.announcements.models.Announcement;
@@ -35,7 +36,7 @@ public class AnnouncementRepository {
         return mState;
     }
 
-    public MutableLiveData<List<Announcement>> getAnnouncements(Integer maxNumber) {
+    public LiveData<List<Announcement>> getAnnouncements(Integer maxNumber) {
         loadAnnouncements(maxNumber);
         return mDataSet;
     }

@@ -32,6 +32,8 @@ public class Event extends ParseObject {
     public static final String KEY_INSTITUTION = "owned_by";
     public static final String KEY_URL = "url";
     public static final String KEY_SPONSORS = "sponsors";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_BODY = "body";
 
     public LocalDateTime getStartDateTime() {
         Date date = getDate(KEY_STARTING_ON);
@@ -78,8 +80,8 @@ public class Event extends ParseObject {
         return getBoolean(KEY_IS_RECURRING);
     }
 
-    public Long getUpVoteCount() {
-        return getLong(KEY_UPVOTE_COUNT);
+    public Integer getUpVoteCount() {
+        return getInt(KEY_UPVOTE_COUNT);
     }
 
     public Institution getInstitution() {
@@ -109,5 +111,13 @@ public class Event extends ParseObject {
             s[i] = jsonArray.getString(i);
         }
         return s;
+    }
+
+    public String getTitle() {
+        return getString(KEY_TITLE);
+    }
+
+    public String getBody() {
+        return getString(KEY_BODY);
     }
 }

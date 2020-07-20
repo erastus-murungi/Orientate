@@ -88,7 +88,7 @@ public class EventFragment extends Fragment {
             if (eventsExist == null) {
                 return;
             }
-            if (eventsExist) {
+            if (eventsExist.isLoading()) {
                 mNoEventsTextView.setVisibility(View.GONE);
             } else {
                 mNoEventsTextView.setVisibility(View.VISIBLE);

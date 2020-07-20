@@ -1,17 +1,12 @@
 package com.erastus.orientate.student.announcements.models;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import com.erastus.orientate.institution.models.LocalInstitution;
 import com.erastus.orientate.student.models.Urgency;
 
 import java.time.LocalDateTime;
 
 public class LocalAnnouncement {
-    public static final String TAG = "LocalAnnouncement";
-    private Urgency mUrgency_level;
+    private Urgency mUrgencyLevel;
     private String mTitle;
     private String mBody;
     private String mUrl;
@@ -19,22 +14,19 @@ public class LocalAnnouncement {
     private LocalDateTime mCreatedAt;
     private String mPostedBy;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static LocalAnnouncement localAnnouncementFromParseAnnouncement(Announcement announcement) {
-        LocalAnnouncement localAnnouncement = new LocalAnnouncement();
-        localAnnouncement.mUrgency_level = announcement.getUrgencyLevel();
-        localAnnouncement.mTitle = announcement.getTitle();
-        localAnnouncement.mBody = announcement.getBody();
-        localAnnouncement.mUrl = announcement.getUrl();
-        localAnnouncement.mOwnerInstitution =
-                LocalInstitution.localInstitutionFromParseInstitution(announcement.getOwnerInstitution());
-        localAnnouncement.mCreatedAt = announcement.getCreatedAtAsLocalDateTime();
-        localAnnouncement.mPostedBy = announcement.getPostedBy();
-        return localAnnouncement;
+    public LocalAnnouncement(Announcement announcement) {
+        this.mUrgencyLevel = announcement.getUrgencyLevel();
+        this.mTitle = announcement.getTitle();
+        this.mBody = announcement.getBody();
+        this.mUrl = announcement.getUrl();
+        this.mOwnerInstitution =
+                new LocalInstitution(announcement.getOwnerInstitution());
+        this.mCreatedAt = announcement.getCreatedAtAsLocalDateTime();
+        this.mPostedBy = announcement.getPostedBy();
     }
 
-    public Urgency getUrgency_level() {
-        return mUrgency_level;
+    public Urgency getUrgencyLevel() {
+        return mUrgencyLevel;
     }
 
     public String getTitle() {
@@ -60,4 +52,7 @@ public class LocalAnnouncement {
     public String getPostedBy() {
         return mPostedBy;
     }
+
+
+
 }

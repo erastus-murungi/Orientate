@@ -27,14 +27,14 @@ public class AnnouncementViewModel extends ViewModel {
     @SuppressWarnings("unchecked")
     public AnnouncementViewModel(AnnouncementRepository announcementRepository) {
         this.mAnnouncementRepository = announcementRepository;
-        MutableLiveData<List<Announcement>> announcements =
+        LiveData<List<Announcement>> announcements =
                 announcementRepository.getAnnouncements(MAX_NUMBER_OF_ANNOUNCEMENTS_TO_FETCH);
 
         this.mAnnouncements = Transformations.switchMap(announcements, input ->
-                new MutableLiveData<>(fromParseAnnouncementsListToLocalAnnouncementsList(input)));
-        MutableLiveData<DataState> state = announcementRepository.getState();
+                new MutableLiveData<>(toLocalAnnouncementsList(input)));
+        MutableLiveData<DataState> announcementRequestState = announcementRepository.getState();
 
-        this.mAnnouncementState = Transformations.switchMap(state, dataState -> {
+        this.mAnnouncementState = Transformations.switchMap(announcementRequestState, dataState -> {
             if (dataState instanceof DataState.Success) {
                 return new MutableLiveData<>(new AnnouncementRequestResult(false));
             } else if (dataState instanceof DataState.Error) {
@@ -47,11 +47,11 @@ public class AnnouncementViewModel extends ViewModel {
 
     }
 
-    private List<LocalAnnouncement> fromParseAnnouncementsListToLocalAnnouncementsList(
+    private List<LocalAnnouncement> toLocalAnnouncementsList(
             List<Announcement> announcements) {
         return announcements
                 .stream()
-                .map(LocalAnnouncement::localAnnouncementFromParseAnnouncement)
+                .map(LocalAnnouncement::new)
                 .collect(Collectors.toList());
     }
 

@@ -4,6 +4,20 @@ import androidx.annotation.Nullable;
 
 public class EventResult {
 
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    @Nullable
+    public Boolean getEventsExist() {
+        return eventsExist;
+    }
+
+    @Nullable
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
     @Nullable
     private Boolean isLoading;
 
@@ -13,7 +27,7 @@ public class EventResult {
     @Nullable
     private String errorMessage;
 
-    public EventResult(@Nullable Boolean isLoading) {
+    public EventResult(boolean isLoading) {
         this.isLoading = isLoading;
     }
 

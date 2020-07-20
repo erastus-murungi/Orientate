@@ -19,7 +19,7 @@ public class StudentLoginViewModel extends ViewModel {
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<DataState> mDataState;
     @Nullable
-    private LiveData<LoginResult> loginResult = new MutableLiveData<>();
+    private LiveData<LoginResult> loginResult;
 
     public StudentLoginViewModel(StudentLoginRepository studentLoginRepository) {
         this.mStudentLoginRepository = studentLoginRepository;
@@ -43,7 +43,7 @@ public class StudentLoginViewModel extends ViewModel {
         return loginFormState;
     }
 
-    @org.jetbrains.annotations.Nullable
+    @Nullable
     LiveData<LoginResult> getLoginResult() {
         return loginResult;
     }

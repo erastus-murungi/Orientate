@@ -25,14 +25,12 @@ public class LocalInstitution {
         return mUser;
     }
 
-    public static LocalInstitution localInstitutionFromParseInstitution(Institution institution) {
-        LocalInstitution localInstitution = new LocalInstitution();
-        localInstitution.mInstitutionLocation = institution.getLocation();
-        localInstitution.mInstitutionName = institution.getInstitutionName();
-        localInstitution.mInstitutionWebsiteUrl = institution.getInstitutionWebsiteUrl();
-        localInstitution.mUser = institution.getUser();
-        localInstitution.mLocation = institution.getLocation();
-        return localInstitution;
+    public LocalInstitution(Institution institution) {
+        this.mInstitutionLocation = institution.getLocation();
+        this.mInstitutionName = institution.getInstitutionName();
+        this.mInstitutionWebsiteUrl = institution.getInstitutionWebsiteUrl();
+        this.mUser = institution.getUser();
+        this.mLocation = institution.getLocation();
     }
 
     public String getLocation() {
