@@ -14,38 +14,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d08affa-353e-44e0-82f1-d083825d8189" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_browser_browser_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_installreferrer_installreferrer_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_android_sdk_5_15_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_applinks_5_15_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_common_5_15_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_core_5_15_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_login_5_15_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_messenger_5_15_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_places_5_15_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_share_5_15_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_zxing_core_3_3_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/ConfigBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/HorizontalCalendar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/HorizontalCalendarView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/HorizontalLayoutManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/adapters/DateViewHolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/adapters/DaysAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/adapters/EventsAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/adapters/HorizontalCalendarBaseAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/adapters/MonthsAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/models/CalendarEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/models/CalendarItemStyle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/models/HorizontalCalendarConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/utils/CalendarEventsPredicate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/utils/HorizontalCalendarListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/utils/HorizontalCalendarPredicate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/utils/HorizontalSnapHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/utils/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_date_range_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_circle_white_8dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/hc_item_calendar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/attrs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/models/EventResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/models/EventsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_event_note_24.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -56,28 +27,21 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/DateStream.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/DateStreamBack.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/navigation/StudentNavActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/navigation/StudentNavActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/signup/dob/DobFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/signup/dob/DobFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/signup/dob/DobViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/signup/dob/DobViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/web/WebActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/web/WebActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_sign_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_student_sign_up.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/dob_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dob_fragment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/event_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/MyDailyEventRecyclerViewAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/dailyevent/DailyEventFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/dailyevent/DailyEventViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/dummy/DummyContent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/models/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/adapters/DaysAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/adapters/DaysAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_event.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hc_item_calendar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/hc_item_calendar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,11 +248,11 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="360" y="222" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594771985845" />
-    <state x="709" y="275" width="737" height="554" key="#com.intellij.ide.util.MemberChooser" timestamp="1595208264162">
+    <state x="709" y="275" width="737" height="554" key="#com.intellij.ide.util.MemberChooser" timestamp="1595218208787">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state x="709" y="276" width="737" height="554" key="#com.intellij.ide.util.MemberChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1594984977875" />
-    <state x="709" y="275" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1021@0.23.1792.1021" timestamp="1595208264162" />
+    <state x="709" y="275" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1021@0.23.1792.1021" timestamp="1595218208787" />
     <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1025@0.23.1792.1025" timestamp="1595060867912" />
     <state x="424" y="483" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1594855809559">
       <screen x="0" y="0" width="1792" height="1120" />
@@ -320,17 +284,17 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="484" y="322" key="AndroidCreateResourceDirectoryDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594821334161" />
-    <state x="484" y="317" key="AndroidCreateResourceFileDialog" timestamp="1595212807572">
+    <state x="484" y="317" key="AndroidCreateResourceFileDialog" timestamp="1595216262489">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state x="484" y="322" key="AndroidCreateResourceFileDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594980416889" />
-    <state x="484" y="317" key="AndroidCreateResourceFileDialog/0.23.1792.1021@0.23.1792.1021" timestamp="1595212807572" />
+    <state x="484" y="317" key="AndroidCreateResourceFileDialog/0.23.1792.1021@0.23.1792.1021" timestamp="1595216262489" />
     <state x="484" y="318" key="AndroidCreateResourceFileDialog/0.23.1792.1025@0.23.1792.1025" timestamp="1595054171780" />
-    <state x="751" y="401" key="AndroidCreateXmlResourceDialog" timestamp="1595207975945">
+    <state x="751" y="401" key="AndroidCreateXmlResourceDialog" timestamp="1595216746763">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state x="751" y="414" key="AndroidCreateXmlResourceDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594979687421" />
-    <state x="751" y="401" key="AndroidCreateXmlResourceDialog/0.23.1792.1021@0.23.1792.1021" timestamp="1595207975945" />
+    <state x="751" y="401" key="AndroidCreateXmlResourceDialog/0.23.1792.1021@0.23.1792.1021" timestamp="1595216746763" />
     <state x="751" y="402" key="AndroidCreateXmlResourceDialog/0.23.1792.1025@0.23.1792.1025" timestamp="1595005400410" />
     <state x="515" y="161" key="CommitChangelistDialog2" timestamp="1594844403604">
       <screen x="0" y="0" width="1792" height="1120" />
@@ -348,61 +312,61 @@
       <screen x="0" y="23" width="1792" height="1031" />
     </state>
     <state x="673" y="247" key="Github.UntrackedFilesDialog/0.23.1792.1031@0.23.1792.1031" timestamp="1594313168601" />
-    <state width="1750" height="342" key="GridCell.Tab.0.bottom" timestamp="1595214231234">
+    <state width="1750" height="500" key="GridCell.Tab.0.bottom" timestamp="1595217934611">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647712" />
-    <state width="1750" height="342" key="GridCell.Tab.0.bottom/0.23.1792.1021@0.23.1792.1021" timestamp="1595214231234" />
+    <state width="1750" height="500" key="GridCell.Tab.0.bottom/0.23.1792.1021@0.23.1792.1021" timestamp="1595217934611" />
     <state width="1750" height="300" key="GridCell.Tab.0.bottom/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826970" />
     <state width="1750" height="537" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1595044906323" />
     <state width="1750" height="609" key="GridCell.Tab.0.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1594940900730" />
-    <state width="1750" height="342" key="GridCell.Tab.0.center" timestamp="1595214231234">
+    <state width="1750" height="500" key="GridCell.Tab.0.center" timestamp="1595217934610">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647710" />
-    <state width="1750" height="342" key="GridCell.Tab.0.center/0.23.1792.1021@0.23.1792.1021" timestamp="1595214231234" />
+    <state width="1750" height="500" key="GridCell.Tab.0.center/0.23.1792.1021@0.23.1792.1021" timestamp="1595217934610" />
     <state width="1750" height="300" key="GridCell.Tab.0.center/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826969" />
     <state width="1750" height="537" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1595044906323" />
     <state width="1750" height="609" key="GridCell.Tab.0.center/0.23.1792.1030@0.23.1792.1030" timestamp="1594940900730" />
-    <state width="1750" height="342" key="GridCell.Tab.0.left" timestamp="1595214231233">
+    <state width="1750" height="500" key="GridCell.Tab.0.left" timestamp="1595217934610">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647709" />
-    <state width="1750" height="342" key="GridCell.Tab.0.left/0.23.1792.1021@0.23.1792.1021" timestamp="1595214231233" />
+    <state width="1750" height="500" key="GridCell.Tab.0.left/0.23.1792.1021@0.23.1792.1021" timestamp="1595217934610" />
     <state width="1750" height="300" key="GridCell.Tab.0.left/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826969" />
     <state width="1750" height="537" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1595044906323" />
     <state width="1750" height="609" key="GridCell.Tab.0.left/0.23.1792.1030@0.23.1792.1030" timestamp="1594940900729" />
-    <state width="1750" height="342" key="GridCell.Tab.0.right" timestamp="1595214231234">
+    <state width="1750" height="500" key="GridCell.Tab.0.right" timestamp="1595217934611">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647711" />
-    <state width="1750" height="342" key="GridCell.Tab.0.right/0.23.1792.1021@0.23.1792.1021" timestamp="1595214231234" />
+    <state width="1750" height="500" key="GridCell.Tab.0.right/0.23.1792.1021@0.23.1792.1021" timestamp="1595217934611" />
     <state width="1750" height="300" key="GridCell.Tab.0.right/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826970" />
     <state width="1750" height="537" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1595044906323" />
     <state width="1750" height="609" key="GridCell.Tab.0.right/0.23.1792.1030@0.23.1792.1030" timestamp="1594940900730" />
-    <state width="1750" height="342" key="GridCell.Tab.1.bottom" timestamp="1595214231234">
+    <state width="1750" height="342" key="GridCell.Tab.1.bottom" timestamp="1595215581145">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684358" />
-    <state width="1750" height="342" key="GridCell.Tab.1.bottom/0.23.1792.1021@0.23.1792.1021" timestamp="1595214231234" />
+    <state width="1750" height="342" key="GridCell.Tab.1.bottom/0.23.1792.1021@0.23.1792.1021" timestamp="1595215581145" />
     <state width="1750" height="344" key="GridCell.Tab.1.bottom/0.23.1792.1025@0.23.1792.1025" timestamp="1595066764842" />
-    <state width="1750" height="342" key="GridCell.Tab.1.center" timestamp="1595214231234">
+    <state width="1750" height="342" key="GridCell.Tab.1.center" timestamp="1595215581145">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.center/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684357" />
-    <state width="1750" height="342" key="GridCell.Tab.1.center/0.23.1792.1021@0.23.1792.1021" timestamp="1595214231234" />
+    <state width="1750" height="342" key="GridCell.Tab.1.center/0.23.1792.1021@0.23.1792.1021" timestamp="1595215581145" />
     <state width="1750" height="344" key="GridCell.Tab.1.center/0.23.1792.1025@0.23.1792.1025" timestamp="1595066764841" />
-    <state width="1750" height="342" key="GridCell.Tab.1.left" timestamp="1595214231234">
+    <state width="1750" height="342" key="GridCell.Tab.1.left" timestamp="1595215581145">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.left/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684357" />
-    <state width="1750" height="342" key="GridCell.Tab.1.left/0.23.1792.1021@0.23.1792.1021" timestamp="1595214231234" />
+    <state width="1750" height="342" key="GridCell.Tab.1.left/0.23.1792.1021@0.23.1792.1021" timestamp="1595215581145" />
     <state width="1750" height="344" key="GridCell.Tab.1.left/0.23.1792.1025@0.23.1792.1025" timestamp="1595066764841" />
-    <state width="1750" height="342" key="GridCell.Tab.1.right" timestamp="1595214231234">
+    <state width="1750" height="342" key="GridCell.Tab.1.right" timestamp="1595215581145">
       <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.right/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684358" />
-    <state width="1750" height="342" key="GridCell.Tab.1.right/0.23.1792.1021@0.23.1792.1021" timestamp="1595214231234" />
+    <state width="1750" height="342" key="GridCell.Tab.1.right/0.23.1792.1021@0.23.1792.1021" timestamp="1595215581145" />
     <state width="1750" height="344" key="GridCell.Tab.1.right/0.23.1792.1025@0.23.1792.1025" timestamp="1595066764842" />
     <state x="494" y="261" key="NewModule_or_Project.wizard" timestamp="1594986728490">
       <screen x="0" y="0" width="1792" height="1120" />
@@ -430,10 +394,11 @@
     </state>
     <state x="566" y="392" key="com.intellij.ide.util.TipDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594942361338" />
     <state x="566" y="382" key="com.intellij.ide.util.TipDialog/0.23.1792.1025@0.23.1792.1025" timestamp="1595045401760" />
-    <state x="548" y="317" width="695" height="486" key="find.popup" timestamp="1594940722398">
-      <screen x="0" y="0" width="1792" height="1120" />
+    <state x="548" y="312" width="781" height="486" key="find.popup" timestamp="1595214429611">
+      <screen x="0" y="23" width="1792" height="1021" />
     </state>
     <state x="548" y="317" width="695" height="486" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1594940722398" />
+    <state x="548" y="312" width="781" height="486" key="find.popup/0.23.1792.1021@0.23.1792.1021" timestamp="1595214429611" />
     <state x="561" y="248" key="run.anything.popup" timestamp="1594989859130">
       <screen x="0" y="23" width="1792" height="1025" />
     </state>
@@ -452,10 +417,11 @@
           <line>27</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/EventFragment.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="74" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-field">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/horizontalcalendar/models/HorizontalCalendarConfig.java</url>
+          <line>14</line>
+          <properties field="formatMiddleText" class="com.erastus.orientate.utils.horizontalcalendar.models.HorizontalCalendarConfig" />
+          <option name="timeStamp" value="78" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

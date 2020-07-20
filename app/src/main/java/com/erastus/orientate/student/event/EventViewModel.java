@@ -1,14 +1,16 @@
 package com.erastus.orientate.student.event;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class EventViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
-    private static final int DAYS_OF_WEEK = 7;
-    private MutableLiveData<String> mDate;
+import com.erastus.orientate.student.event.models.EventResult;
 
-    public int getNumPages() {
-        return DAYS_OF_WEEK;
+public class EventViewModel extends ViewModel {
+    private MutableLiveData<EventResult> mEventsResult = new MutableLiveData<>();
+
+    LiveData<EventResult> getEventsExist() {
+        return mEventsResult;
     }
+
 }

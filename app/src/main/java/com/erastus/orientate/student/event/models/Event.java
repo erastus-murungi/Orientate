@@ -95,6 +95,10 @@ public class Event extends ParseObject {
         }
     }
 
+    public String getUrl() {
+        return getString(KEY_URL);
+    }
+
     public static String[] jsonArrayToStringArray(JSONArray jsonArray) throws JSONException {
         if (jsonArray == null) {
             Log.e(TAG, "Null pointer");

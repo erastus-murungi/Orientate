@@ -8,6 +8,29 @@
     <com.erastus.orientate.utils.horizontalcalendar.HorizontalCalendarView
         android:id="@+id/horizontal_calendar_view_events"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/darkBlue" />
+
+
+    <TextView
+        android:id="@+id/text_view_no_events"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/horizontal_calendar_view_events"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_baseline_event_note_24"
+        android:drawablePadding="10dp"
+        android:text="@string/no_events"
+        android:textColor="@android:color/darker_gray" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_events"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@id/horizontal_calendar_view_events"
+        android:layout_marginTop="1dp" />
 
 </RelativeLayout>

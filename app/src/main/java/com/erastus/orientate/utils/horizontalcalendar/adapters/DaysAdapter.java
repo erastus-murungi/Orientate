@@ -46,7 +46,8 @@ public class DaysAdapter extends HorizontalCalendarBaseAdapter<DateViewHolder, C
         if (selectorColor != null) {
             holder.selectionView.setBackgroundColor(selectorColor);
         }
-        holder.textMiddle.setText(DateFormat.format(config.getFormatMiddleText(), day));
+        String s11 = config.getFormatMiddleText();
+        holder.textMiddle.setText(DateFormat.format(s11, day));
         holder.textMiddle.setTextSize(TypedValue.COMPLEX_UNIT_SP, config.getSizeMiddleText());
 
         if (config.isShowTopText()) {

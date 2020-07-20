@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class AnnouncementRepository {
     private static final Integer PAGE_ZERO = 0;
-    private static AnnouncementRepository instance;
+    private static volatile AnnouncementRepository instance;
 
     private MutableLiveData<DataState> mState = new MutableLiveData();
     private MutableLiveData<List<Announcement>> mDataSet = new MutableLiveData<>(new ArrayList<>());
