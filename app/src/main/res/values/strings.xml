@@ -177,5 +177,7 @@
     <string name="format_day_month_date">%s, %s %d</string>
     <string name="format_time_range">%s-%s</string>
     <string name="no_physical_location">No physical location provided for this event.</string>
+    <string name="no_more_details_for_this_event">No more details for this event.</string>
+    <string name="orientation_events">Orientation Events</string>
 
 </resources>

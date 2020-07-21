@@ -8,8 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/text_view_event_title"
@@ -43,14 +42,14 @@
             android:id="@+id/linear_layout_duration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="30dp"
-            android:padding="10dp"
-            android:layout_marginEnd="30dp"
-            android:elevation="20dp"
             android:layout_below="@+id/text_view_reminder"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
             android:background="@drawable/layout_event_duration_background"
-            android:orientation="horizontal">
+            android:elevation="20dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/text_view_date"
@@ -66,11 +65,11 @@
                 android:id="@+id/text_view_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
                 android:layout_alignParentEnd="true"
-                android:textStyle="bold"
+                android:layout_gravity="end"
                 android:textSize="14sp"
-                tools:text="11:30AM-12:30PM"/>
+                android:textStyle="bold"
+                tools:text="11:30AM-12:30PM" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -78,22 +77,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/linear_layout_duration">
-        <TextView
-            android:id="@+id/text_view_no_location_provided"
-            android:layout_width="match_parent"
-            android:text="@string/no_physical_location"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:drawableTop="@drawable/ic_baseline_location_off_24"
-            android:drawablePadding="4dp"
-            android:layout_height="100dp"
-            android:layout_margin="20dp"/>
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/map_view_event"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="20dp" />
+            <TextView
+                android:id="@+id/text_view_no_location_provided"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:layout_margin="20dp"
+                android:drawableTop="@drawable/ic_baseline_location_off_24"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="@string/no_physical_location" />
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/map_view_event"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="20dp" />
         </RelativeLayout>
 
 
@@ -102,19 +102,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/relative_layout_maps"
-            android:padding="5dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/text_view_go_back_to_main_events"
-                android:textColor="@color/darkBlue"
-                android:gravity="center"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
-                android:padding="5dp"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-                tools:text="Orientation Events"/>
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@color/darkBlue"
+                android:textSize="20sp"
+                tools:text="Orientation Events" />
 
             <View
                 android:layout_width="match_parent"
@@ -126,12 +126,12 @@
                 android:id="@+id/text_view_votes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_baseline_arrow_upward_24"
-                android:gravity="center_vertical"
-                android:drawablePadding="4dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                tools:text="Going: 200"/>
+                android:drawableStart="@drawable/ic_baseline_arrow_upward_24"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical"
+                tools:text="Going: 200" />
 
             <View
                 android:layout_width="match_parent"
@@ -139,11 +139,26 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <TextView
-                android:id="@+id/text_view_event_body"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/large_text"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text_view_no_event_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:drawableTop="@drawable/ic_baseline_short_text_24"
+                    android:text="@string/no_more_details_for_this_event" />
+
+                <TextView
+                    android:id="@+id/text_view_event_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/large_text" />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 

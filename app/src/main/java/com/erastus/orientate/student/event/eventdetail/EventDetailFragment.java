@@ -22,6 +22,7 @@ import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.navigation.ActionBarStatus;
 import com.erastus.orientate.student.navigation.StudentNavViewModel;
 import com.erastus.orientate.utils.DateUtils;
+import com.erastus.orientate.utils.FormatNumbers;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -49,6 +50,8 @@ public class EventDetailFragment extends Fragment {
     private TextView mNoLocationTextView;
     private TextView mBodyTextView;
     private TextView mUpVoteTextView;
+    private TextView mNoBodyTextView;
+    private TextView mGoBackTextView;
 
 
     private void hideMainNavBar() {
@@ -78,9 +81,12 @@ public class EventDetailFragment extends Fragment {
         mNoLocationTextView = mRootView.findViewById(R.id.text_view_no_location_provided);
         mBodyTextView = mRootView.findViewById(R.id.text_view_event_body);
         mUpVoteTextView = mRootView.findViewById(R.id.text_view_votes);
+        mNoBodyTextView = mRootView.findViewById(R.id.text_view_no_event_body);
+        mGoBackTextView = mRootView.findViewById(R.id.text_view_go_back_to_main_events);
 
         setUpBodyTextView();
         setUpVotesTextView();
+        setUpGoingBackTextView();
 
 
         if (Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation() != null) {
@@ -96,17 +102,28 @@ public class EventDetailFragment extends Fragment {
         return mRootView;
     }
 
+    private void setUpGoingBackTextView() {
+        mGoBackTextView.setText(R.string.orientation_events);
+    }
+
     private void setUpVotesTextView() {
         Integer voteCount = mViewModel.getLocalEvent().getValue().getUpVoteCount();
         if (voteCount == null || voteCount == 0) {
             mUpVoteTextView.setText(null);
         } else {
-
+            mUpVoteTextView.setText(FormatNumbers.format(voteCount));
         }
     }
 
     private void setUpBodyTextView() {
-        mBodyTextView.setText(mViewModel.getLocalEvent().getValue().getBody());
+        String textBody = mViewModel.getLocalEvent().getValue().getBody();
+        if (textBody == null) {
+            mNoBodyTextView.setVisibility(View.VISIBLE);
+            mBodyTextView.setVisibility(View.GONE);
+        } else {
+            mBodyTextView.setVisibility(View.VISIBLE);
+            mNoBodyTextView.setVisibility(View.GONE);
+        }
     }
 
 
@@ -128,7 +145,7 @@ public class EventDetailFragment extends Fragment {
         Log.d(TAG, "zoomToLoc: moving the camera to lat:" + latitude + "lng:" + longitude);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.addMarker(new MarkerOptions().position(latLng).title(address.toString()));
+        mMap.addMarker(new MarkerOptions().position(latLng).title(address.getFeatureName()));
         mMap.animateCamera(cameraUpdate);
     }
 
