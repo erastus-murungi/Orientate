@@ -76,7 +76,7 @@
     <string name="done">Done</string>
     <string name="invalid_password">Password must be >= 8 characters!</string>
     <string name="invalid_username">Invalid Username</string>
-    <string name="reload">Reload</string>
+    <string name="reload">Reload?</string>
     <string name="format_date"> %d/%d/%d</string>
     <string name="date_of_birth">Date of Birth</string>
     <string name="no_events">No events on this date.</string>
@@ -173,4 +173,8 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="none">NONE</string>
+    <string name="format_day_month_date">%s, %s %d</string>
+    <string name="format_time_range">%s-%s</string>
+
 </resources>

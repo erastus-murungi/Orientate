@@ -1,23 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/text_view_reminder"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_baseline_alarm_24"
-        tools:text="2 hours" />
+        android:background="@color/lightBlue">
 
-    <com.google.android.gms.maps.MapView
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        <TextView
+            android:id="@+id/text_view_event_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:textAlignment="center"
+            android:textFontWeight="700"
+            android:textSize="16sp"
+            tools:text="By Students, For Students: Conquering MIT" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/text_view_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_event_title"
+            android:layout_centerHorizontal="true"
+            android:drawableStart="@drawable/ic_baseline_alarm_24"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:text="@string/none"
+            android:textColor="@color/darkBlue"
+            tools:text="2 hours" />
+
+        <RelativeLayout
+            android:id="@+id/linear_layout_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:padding="10dp"
+            android:layout_marginEnd="30dp"
+            android:elevation="20dp"
+            android:layout_below="@+id/text_view_reminder"
+            android:background="@drawable/layout_event_duration_background"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_view_date"
+                android:layout_width="153dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="57dp"
+                android:layout_toStartOf="@+id/text_view_duration"
+                android:gravity="start"
+                android:textSize="14sp"
+                tools:text="Friday, August 30" />
+
+            <TextView
+                android:id="@+id/text_view_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                tools:text="11:30AM-12:30PM"/>
+        </RelativeLayout>
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map_view_event"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/linear_layout_duration"
+            android:layout_margin="20dp" />
+
+    </RelativeLayout>
+</ScrollView>

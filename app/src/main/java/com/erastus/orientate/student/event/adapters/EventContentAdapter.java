@@ -1,9 +1,6 @@
 package com.erastus.orientate.student.event.adapters;
 
-import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -11,22 +8,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.erastus.orientate.databinding.ItemInnerEventBinding;
-import com.erastus.orientate.student.event.eventdetail.EventDetailFragment;
 import com.erastus.orientate.student.event.models.LocalEvent;
 import com.erastus.orientate.utils.DateUtils;
-
-import org.parceler.Parcels;
 
 import java.util.List;
 
 public class EventContentAdapter extends RecyclerView.Adapter<EventContentAdapter.EventContentViewHolder> {
     private List<LocalEvent> mEvents;
-    private Context mContext;
+    private OnEventClickedListener mOnEventClickedListener;
 
-    public EventContentAdapter(Context context,
-                               List<LocalEvent> eventsSpecificTime) {
+
+    public interface OnEventClickedListener {
+        void onEventCLickedListener(LocalEvent event);
+    }
+
+    public EventContentAdapter(List<LocalEvent> eventsSpecificTime, OnEventClickedListener listener) {
         mEvents = eventsSpecificTime;
-        mContext = context;
+        mOnEventClickedListener = listener;
     }
 
     @NonNull
@@ -58,16 +56,11 @@ public class EventContentAdapter extends RecyclerView.Adapter<EventContentAdapte
             mTitleTextView = binding.textViewEventTitle;
             mLocation = binding.textViewEventLocation;
 
-            View.OnClickListener listener = view -> {
+            binding.getRoot().setOnClickListener(view -> {
                 int position = getBindingAdapterPosition();
-                if (getBindingAdapterPosition() != RecyclerView.NO_POSITION) {
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelable("DATA", Parcels.wrap(mEvents.get(position)));
-                    EventDetailFragment fragmentEventDetail = new EventDetailFragment();
-                    fragmentEventDetail.setArguments(bundle);
-                }
-            };
-            binding.getRoot().setOnClickListener(listener);
+                mOnEventClickedListener.onEventCLickedListener(
+                        position == RecyclerView.NO_POSITION ? null : mEvents.get(position));
+            });
         }
 
         public void bind(LocalEvent localEvent) {

@@ -29,10 +29,12 @@ public class EventTimeAdapter extends RecyclerView.Adapter<EventTimeAdapter.Even
     private Context mContext;
     private EventViewModel mEventViewModel;
     private RecyclerView.RecycledViewPool mViewPool = new RecyclerView.RecycledViewPool();
+    private EventContentAdapter.OnEventClickedListener mEventClickedListener;
 
 
     public EventTimeAdapter(Context context,
-                            EventViewModel viewModel) {
+                            EventViewModel viewModel,
+                            EventContentAdapter.OnEventClickedListener listener) {
         this.mContext = context;
         Map<String, Set<LocalEvent>> m = viewModel.getEvents().getValue();
         if (m == null) {
@@ -40,6 +42,7 @@ public class EventTimeAdapter extends RecyclerView.Adapter<EventTimeAdapter.Even
         }
         mergeMaps(mStartTimes, Objects.requireNonNull(m));
         this.mEventViewModel = viewModel;
+        this.mEventClickedListener = listener;
     }
 
     public <K, V> void mergeMaps(Map<K, Set<V>> a, Map<K, Set<V>> b) {
@@ -92,8 +95,10 @@ public class EventTimeAdapter extends RecyclerView.Adapter<EventTimeAdapter.Even
         }
 
         private void initRecyclerView(String time) {
-            mRecyclerView.setAdapter(new EventContentAdapter(mContext,
-                    new ArrayList<>(Objects.requireNonNull(mStartTimes.get(time)))));
+            mRecyclerView.setAdapter(new EventContentAdapter(
+                    new ArrayList<>(Objects.requireNonNull(mStartTimes.get(time))),
+                    mEventClickedListener));
+
             mRecyclerView.setLayoutManager(new
                     LinearLayoutManager(mContext, RecyclerView.VERTICAL, false));
             final DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mContext,

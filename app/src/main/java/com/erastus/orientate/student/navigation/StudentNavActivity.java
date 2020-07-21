@@ -13,6 +13,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ActivityStudentNavBinding;
@@ -25,6 +28,7 @@ import com.google.android.material.navigation.NavigationView;
 public class StudentNavActivity extends AppCompatActivity {
     public static final String TAG = "StudentNavActivity";
     private DrawerLayout mStudentNavDrawerLayout;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +36,33 @@ public class StudentNavActivity extends AppCompatActivity {
         final ActivityStudentNavBinding studentNavBinding = ActivityStudentNavBinding.inflate(getLayoutInflater());
         setContentView(studentNavBinding.getRoot());
 
-        final Toolbar toolbar = findViewById(R.id.toolbar_student_nav);
-        setSupportActionBar(toolbar);
+        StudentNavViewModel viewModel = new ViewModelProvider(this).get(StudentNavViewModel.class);
+
+        mToolbar = findViewById(R.id.toolbar_student_nav);
+        setSupportActionBar(mToolbar);
         mStudentNavDrawerLayout = findViewById(R.id.drawer_layout_student);
 
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mStudentNavDrawerLayout,
-                toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mStudentNavDrawerLayout.addDrawerListener(toggle);
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_notes_24);
+        mToolbar.setNavigationIcon(R.drawable.ic_baseline_notes_24);
         setupDrawerContent(studentNavBinding.navViewStudent);
+        setUpObservers(viewModel);
+    }
+
+    private void setUpObservers(StudentNavViewModel viewModel) {
+        viewModel.getActionBarStatus().observe(this, actionBarStatus -> {
+            if (actionBarStatus == null) {
+                return;
+            } if (actionBarStatus.actionBarTitle != null) {
+                getSupportActionBar().setTitle(actionBarStatus.actionBarTitle);
+            }
+            if (!actionBarStatus.isShowActionBar()) {
+               getSupportActionBar().hide();
+            }
+        });
     }
 
     @Override

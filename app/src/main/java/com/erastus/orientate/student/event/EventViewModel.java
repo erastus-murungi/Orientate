@@ -95,6 +95,7 @@ public class EventViewModel extends ViewModel {
         return map;
     }
 
-    public void reload() {
+    public void reload(Calendar c) {
+        mRepository.loadEventsSpecificDate(MAX_NUMBER_OF_ANNOUNCEMENTS_TO_FETCH, c);
     }
 }
