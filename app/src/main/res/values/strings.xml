@@ -176,5 +176,6 @@
     <string name="none">NONE</string>
     <string name="format_day_month_date">%s, %s %d</string>
     <string name="format_time_range">%s-%s</string>
+    <string name="no_physical_location">No physical location provided for this event.</string>
 
 </resources>

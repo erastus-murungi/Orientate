@@ -1,8 +1,8 @@
 package com.erastus.orientate.student.event.eventdetail;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
 import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,36 +12,33 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.event.EventFragment;
 import com.erastus.orientate.student.event.models.LocalEvent;
+import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.navigation.ActionBarStatus;
 import com.erastus.orientate.student.navigation.StudentNavViewModel;
 import com.erastus.orientate.utils.DateUtils;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.parceler.Parcels;
+import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class EventDetailFragment extends BottomSheetDialogFragment {
+public class EventDetailFragment extends Fragment {
     private static final String TAG = "EventDetailFragment";
-    public static final float DEFAULT_ZOOM = 10F;
+    public static final float DEFAULT_ZOOM = 20.0f;
     private EventDetailsViewModel mViewModel;
     private TextView mEventTitleTextView;
     private View mRootView;
@@ -49,6 +46,15 @@ public class EventDetailFragment extends BottomSheetDialogFragment {
     private TextView mDurationTextView;
     private MapView mEventMapView;
     private GoogleMap mMap;
+    private TextView mNoLocationTextView;
+    private TextView mBodyTextView;
+    private TextView mUpVoteTextView;
+
+
+    private void hideMainNavBar() {
+        StudentNavViewModel viewModel = new ViewModelProvider(this).get(StudentNavViewModel.class);
+        viewModel.getActionBarStatus().postValue(new ActionBarStatus(null, false));
+    }
 
 
     @Nullable
@@ -57,49 +63,60 @@ public class EventDetailFragment extends BottomSheetDialogFragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
+
         mViewModel = new ViewModelProvider(this,
                 new EventDetailsViewModelFactory((LocalEvent) Parcels.unwrap(requireArguments()
                         .getParcelable(EventFragment.KEY))))
                 .get(EventDetailsViewModel.class);
-        StudentNavViewModel viewModel = new ViewModelProvider(this).get(StudentNavViewModel.class);
-        viewModel.getActionBarStatus().postValue(new ActionBarStatus(null, false));
 
         mRootView = inflater.inflate(R.layout.fragment_event_detail, container, false);
+
         mEventTitleTextView = mRootView.findViewById(R.id.text_view_event_title);
         mDateTextView = mRootView.findViewById(R.id.text_view_date);
         mDurationTextView = mRootView.findViewById(R.id.text_view_duration);
         mEventMapView = mRootView.findViewById(R.id.map_view_event);
-        mEventMapView.onCreate(savedInstanceState);
+        mNoLocationTextView = mRootView.findViewById(R.id.text_view_no_location_provided);
+        mBodyTextView = mRootView.findViewById(R.id.text_view_event_body);
+        mUpVoteTextView = mRootView.findViewById(R.id.text_view_votes);
+
+        setUpBodyTextView();
+        setUpVotesTextView();
+
 
         if (Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation() != null) {
-            setUpMaps();
+            setUpMaps(savedInstanceState);
+            mNoLocationTextView.setVisibility(View.GONE);
+            mEventMapView.setVisibility(View.VISIBLE);
+        } else {
+            mEventMapView.setVisibility(View.GONE);
+            mNoLocationTextView.setVisibility(View.VISIBLE);
         }
-        setUpObservers();
+        hideMainNavBar();
+
         return mRootView;
     }
 
-    private void setUpMaps() {
+    private void setUpVotesTextView() {
+        Integer voteCount = mViewModel.getLocalEvent().getValue().getUpVoteCount();
+        if (voteCount == null || voteCount == 0) {
+            mUpVoteTextView.setText(null);
+        } else {
+
+        }
+    }
+
+    private void setUpBodyTextView() {
+        mBodyTextView.setText(mViewModel.getLocalEvent().getValue().getBody());
+    }
+
+
+    private void setUpMaps(Bundle savedInstanceState) {
+        mEventMapView.onCreate(savedInstanceState);
         mEventMapView.getMapAsync(googleMap -> {
-
             mMap = googleMap;
-//            mMap.getUiSettings().setMyLocationButtonEnabled(true);
-//            if (ActivityCompat.checkSelfPermission(requireContext(),
-//                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-//                    ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
-//                            != PackageManager.PERMISSION_GRANTED) {
-//                // TODO: Consider calling
-//                //    ActivityCompat#requestPermissions
-//                // here to request the missing permissions, and then overriding
-//                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//                //                                          int[] grantResults)
-//                // to handle the case where the user grants the permission. See the documentation
-//                // for ActivityCompat#requestPermissions for more details.
-//                return;
-//            }
-//            mMap.setMyLocationEnabled(true);
-
-            // Needs to call MapsInitializer before doing any CameraUpdateFactory calls
             MapsInitializer.initialize(requireActivity());
+            mViewModel.getLocation(new Geocoder(requireContext()),
+                    Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation());
         });
     }
 
@@ -118,7 +135,7 @@ public class EventDetailFragment extends BottomSheetDialogFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel.getLocalEvent().observe(this, event -> {
+        mViewModel.getLocalEvent().observe(getViewLifecycleOwner(), event -> {
             mEventTitleTextView.setText(event.getTitle());
             LocalDateTime time = event.getStartingOn();
             mDateTextView.setText(getString(R.string.format_day_month_date,
@@ -130,6 +147,7 @@ public class EventDetailFragment extends BottomSheetDialogFragment {
                 mDurationTextView.setText(DateUtils.getTimeAmPm(time));
             }
         });
+        setUpObservers();
     }
 
 
@@ -153,17 +171,32 @@ public class EventDetailFragment extends BottomSheetDialogFragment {
 
 
     private void checkPermissions() {
-        String[] permissions  = {Manifest.permission.ACCESS_COARSE_LOCATION,
+        String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION};
 //        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCE))
 
     }
 
+    @SuppressWarnings("unchecked")
     private void setUpObservers() {
-        mViewModel.getAddress().observe(this, address -> {
-            if (address != null) {
-                zoomToLoc(address);
+        mViewModel.getLocationAddress().observe(getViewLifecycleOwner(), dataState -> {
+            if (dataState instanceof DataState.Success) {
+                Address address = ((DataState.Success<Address>) dataState).getData();
+                if (address == null) {
+                    notifyUserOfErrorUsingSnackBar("No Addresses found");
+                    Log.d(TAG, "setUpObservers: No addresses found");
+                } else {
+                    zoomToLoc(address);
+                }
+            } else if (dataState instanceof DataState.Error){
+                notifyUserOfErrorUsingSnackBar(((DataState.Error) dataState).getError().getMessage());
+                Log.e(TAG, "setUpObservers: Exception", ((DataState.Error) dataState).getError());
             }
         });
     }
+
+    private void notifyUserOfErrorUsingSnackBar(String errorMessage) {
+    }
+
+
 }

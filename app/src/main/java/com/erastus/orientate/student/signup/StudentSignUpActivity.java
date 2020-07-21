@@ -58,7 +58,7 @@ public class StudentSignUpActivity extends AppCompatActivity {
                 .setAction("Action", null).show();
     }
 
-
+    @Override
     public void onBackPressed() {
         if (mViewPager.getCurrentItem() == 0) {
             // If the user is currently looking at the first step, allow the system to handle the

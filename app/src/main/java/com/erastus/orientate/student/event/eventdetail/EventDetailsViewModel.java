@@ -2,34 +2,30 @@ package com.erastus.orientate.student.event.eventdetail;
 
 import android.location.Address;
 import android.location.Geocoder;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.erastus.orientate.student.event.EventViewModel;
 import com.erastus.orientate.student.event.models.LocalEvent;
+import com.erastus.orientate.student.models.DataState;
+import com.erastus.orientate.utils.TaskRunner;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-import kotlin.coroutines.CoroutineContext;
+import java.util.concurrent.Callable;
 
 public class EventDetailsViewModel extends ViewModel {
     private static final String TAG = "EventDetailsViewModel";
     public static final int ERROR_DIALOG_REQUEST = 9001;
     private MutableLiveData<LocalEvent> mLocalEvent;
-    private MutableLiveData<Address> mAddress = new MutableLiveData<>();
 
-    public LiveData<Address> getAddress() {
-        return mAddress;
+    private MutableLiveData<DataState> mGetLocationAddress = new MutableLiveData<>();
+
+    public LiveData<DataState> getLocationAddress() {
+        return mGetLocationAddress;
     }
 
     public EventDetailsViewModel(LocalEvent event) {
@@ -54,13 +50,34 @@ public class EventDetailsViewModel extends ViewModel {
 //
 //        }
 
-    private Address getLocation(Geocoder geocoder, LatLng latLng) {
-        try {
-            List<Address> matches = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-            return (matches.isEmpty() ? null : matches.get(0));
-        } catch (IOException e) {
-            e.printStackTrace();
+    static class ReverseGeoCodeAsync implements Callable<DataState<Address>> {
+        private final LatLng latLng;
+        private final Geocoder geocoder;
+
+        ReverseGeoCodeAsync(Geocoder geocoder, LatLng latLng) {
+            this.latLng = latLng;
+            this.geocoder = geocoder;
         }
-        return null;
+
+        @Override
+        public DataState<Address> call() {
+            try {
+                List<Address> matches = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+                Log.d(TAG, "call: " + matches);
+                return new DataState.Success<>(matches.isEmpty() ? null : matches.get(0));
+            } catch (IOException e) {
+                Log.e(TAG, "call: IOException", e);
+                return new DataState.Error(e);
+            }
+        }
     }
+
+    /**
+     * Here we use {@link MutableLiveData#postValue(Object)} because TaskRunner operates in a different thread
+     */
+    public void getLocation(Geocoder geocoder, LatLng latLng) {
+        TaskRunner.getInstance().executeAsync(new ReverseGeoCodeAsync(geocoder, latLng),
+                (data) -> mGetLocationAddress.postValue(data));
+    }
+
 }

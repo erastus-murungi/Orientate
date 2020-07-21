@@ -147,7 +147,7 @@ public class EventFragment extends Fragment {
             EventDetailFragment fragmentEventDetail = new EventDetailFragment();
             fragmentEventDetail.setArguments(bundle);
             getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_student_content,
-                    fragmentEventDetail).commit();
+                    fragmentEventDetail).addToBackStack(null).commit();
         };
 
         mEventTimeAdapter = new EventTimeAdapter(getContext(),

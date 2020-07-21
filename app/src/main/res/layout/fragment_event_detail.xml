@@ -3,12 +3,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/lightBlue">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/lightBlue">
+        >
 
         <TextView
             android:id="@+id/text_view_event_title"
@@ -72,12 +73,79 @@
                 tools:text="11:30AM-12:30PM"/>
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/relative_layout_maps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_duration">
+        <TextView
+            android:id="@+id/text_view_no_location_provided"
+            android:layout_width="match_parent"
+            android:text="@string/no_physical_location"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:drawableTop="@drawable/ic_baseline_location_off_24"
+            android:drawablePadding="4dp"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"/>
+
         <com.google.android.gms.maps.MapView
             android:id="@+id/map_view_event"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_below="@id/linear_layout_duration"
             android:layout_margin="20dp" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear_layout_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relative_layout_maps"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_view_go_back_to_main_events"
+                android:textColor="@color/darkBlue"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                tools:text="Orientation Events"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/text_view_votes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_arrow_upward_24"
+                android:gravity="center_vertical"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                tools:text="Going: 200"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/text_view_event_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/large_text"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 </ScrollView>

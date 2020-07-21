@@ -118,11 +118,15 @@ public class StudentNavActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         if (mStudentNavDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mStudentNavDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            int count = getSupportFragmentManager().getBackStackEntryCount();
+            if (count != 0) {
+                getSupportFragmentManager().popBackStack();
+            }
         }
     }
+
 }

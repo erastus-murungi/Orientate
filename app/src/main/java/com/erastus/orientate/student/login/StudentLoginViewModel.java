@@ -63,7 +63,7 @@ public class StudentLoginViewModel extends ViewModel {
     }
 
     // A placeholder username validation check
-    private boolean isUserNameValid(String username) {
+    public boolean isUserNameValid(String username) {
         if (username == null) {
             return false;
         }

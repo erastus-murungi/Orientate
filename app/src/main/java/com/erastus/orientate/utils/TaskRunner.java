@@ -8,8 +8,16 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class TaskRunner {
+    private static volatile TaskRunner instance;
     private final Executor executor = Executors.newSingleThreadExecutor();
     private final Handler handler = new Handler(Looper.getMainLooper());
+
+    public static TaskRunner getInstance() {
+        if (instance == null) {
+            instance = new TaskRunner();
+        }
+        return instance;
+    }
 
     public interface Callback<R> {
         void onComplete(R result);
@@ -24,9 +32,7 @@ public class TaskRunner {
                 e.printStackTrace();
                 return;
             }
-            handler.post(() -> {
-                callback.onComplete(result);
-            });
+            handler.post(() -> callback.onComplete(result));
         });
     }
 
