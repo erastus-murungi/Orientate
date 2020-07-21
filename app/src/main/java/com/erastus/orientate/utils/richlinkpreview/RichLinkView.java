@@ -115,7 +115,6 @@ public class RichLinkView extends RelativeLayout {
                 }
             }
         });
-
     }
 
 

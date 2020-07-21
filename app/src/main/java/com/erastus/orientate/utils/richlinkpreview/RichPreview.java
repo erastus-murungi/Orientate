@@ -1,8 +1,8 @@
 package com.erastus.orientate.utils.richlinkpreview;
 
-import android.os.AsyncTask;
 import android.webkit.URLUtil;
 
+import com.erastus.orientate.utils.TaskRunner;
 import com.erastus.orientate.utils.richlinkpreview.models.LinkData;
 
 import org.jsoup.Jsoup;
@@ -13,33 +13,29 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.concurrent.Callable;
 
-/**
- * Created by ponna on 16-01-2018.
- */
 
 public class RichPreview {
 
-    LinkData LinkData;
     ResponseListener responseListener;
     String url;
 
     public RichPreview(ResponseListener responseListener) {
         this.responseListener = responseListener;
-        LinkData = new LinkData();
     }
 
     public void getPreview(String url){
         this.url = url;
-        new getData().execute();
+        TaskRunner.getInstance().executeAsync(new GetDataTask(),
+                linkData -> responseListener.onData(linkData));
     }
 
-    private class getData extends AsyncTask<Void , Void , Void> {
-
-
+    class GetDataTask implements Callable<LinkData> {
         @Override
-        protected Void doInBackground(Void... params) {
-            Document doc = null;
+        public LinkData call() {
+            LinkData linkData = new LinkData();
+            Document doc;
             try {
                 doc = Jsoup.connect(url)
                         .timeout(30*1000)
@@ -53,7 +49,7 @@ public class RichPreview {
                 if(title == null || title.isEmpty()) {
                     title = doc.title();
                 }
-                LinkData.setTitle(title);
+                linkData.setTitle(title);
 
                 //getDescription
                 String description = doc.select("meta[name=description]").attr("content");
@@ -66,7 +62,7 @@ public class RichPreview {
                 if (description.isEmpty()) {
                     description = "";
                 }
-                LinkData.setDescription(description);
+                linkData.setDescription(description);
 
 
                 // getMediaType
@@ -79,7 +75,7 @@ public class RichPreview {
                 } else {
                     type = doc.select("meta[property=og:type]").attr("content");
                 }
-                LinkData.setMediaType(type);
+                linkData.setMediaType(type);
 
 
                 //getImages
@@ -87,23 +83,23 @@ public class RichPreview {
                 if(imageElements.size() > 0) {
                     String image = imageElements.attr("content");
                     if(!image.isEmpty()) {
-                        LinkData.setImageUrl(resolveURL(url, image));
+                        linkData.setImageUrl(resolveURL(url, image));
                     }
                 }
-                if(LinkData.getImageUrl().isEmpty()) {
+                if(linkData.getImageUrl().isEmpty()) {
                     String src = doc.select("link[rel=image_src]").attr("href");
                     if (!src.isEmpty()) {
-                        LinkData.setImageUrl(resolveURL(url, src));
+                        linkData.setImageUrl(resolveURL(url, src));
                     } else {
                         src = doc.select("link[rel=apple-touch-icon]").attr("href");
                         if(!src.isEmpty()) {
-                            LinkData.setImageUrl(resolveURL(url, src));
-                            LinkData.setFavicon(resolveURL(url, src));
+                            linkData.setImageUrl(resolveURL(url, src));
+                            linkData.setFavicon(resolveURL(url, src));
                         } else {
                             src = doc.select("link[rel=icon]").attr("href");
                             if(!src.isEmpty()) {
-                                LinkData.setImageUrl(resolveURL(url, src));
-                                LinkData.setFavicon(resolveURL(url, src));
+                                linkData.setImageUrl(resolveURL(url, src));
+                                linkData.setFavicon(resolveURL(url, src));
                             }
                         }
                     }
@@ -112,11 +108,11 @@ public class RichPreview {
                 //Favicon
                 String src = doc.select("link[rel=apple-touch-icon]").attr("href");
                 if(!src.isEmpty()) {
-                    LinkData.setFavicon(resolveURL(url, src));
+                    linkData.setFavicon(resolveURL(url, src));
                 } else {
                     src = doc.select("link[rel=icon]").attr("href");
                     if(!src.isEmpty()) {
-                        LinkData.setFavicon(resolveURL(url, src));
+                        linkData.setFavicon(resolveURL(url, src));
                     }
                 }
 
@@ -124,15 +120,15 @@ public class RichPreview {
                     if(element.hasAttr("property")) {
                         String str_property = element.attr("property").toString().trim();
                         if(str_property.equals("og:url")) {
-                            LinkData.setUrl(element.attr("content").toString());
+                            linkData.setUrl(element.attr("content").toString());
                         }
                         if(str_property.equals("og:site_name")) {
-                            LinkData.setSiteName(element.attr("content").toString());
+                            linkData.setSiteName(element.attr("content").toString());
                         }
                     }
                 }
 
-                if(LinkData.getUrl().equals("") || LinkData.getUrl().isEmpty()) {
+                if(linkData.getUrl().equals("") || linkData.getUrl().isEmpty()) {
                     URI uri = null;
                     try {
                         uri = new URI(url);
@@ -140,9 +136,10 @@ public class RichPreview {
                         e.printStackTrace();
                     }
                     if(url == null) {
-                        LinkData.setUrl(url);
+                        linkData.setUrl(null);
                     } else {
-                        LinkData.setUrl(uri.getHost());
+                        assert uri != null;
+                        linkData.setUrl(uri.getHost());
                     }
                 }
 
@@ -150,13 +147,7 @@ public class RichPreview {
                 e.printStackTrace();
                 responseListener.onError(new Exception("No Html Received from " + url + " Check your Internet " + e.getLocalizedMessage()));
             }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            responseListener.onData(LinkData);
+            return linkData;
         }
     }
 
@@ -164,14 +155,14 @@ public class RichPreview {
         if(URLUtil.isValidUrl(part)) {
             return part;
         } else {
-            URI base_uri = null;
+            URI baseUri = null;
             try {
-                base_uri = new URI(url);
+                baseUri = new URI(url);
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
-            base_uri = base_uri.resolve(part);
-            return base_uri.toString();
+            baseUri = baseUri.resolve(part);
+            return baseUri.toString();
         }
     }
 
