@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
@@ -23,6 +24,8 @@ import com.erastus.orientate.student.navigation.ActionBarStatus;
 import com.erastus.orientate.student.navigation.StudentNavViewModel;
 import com.erastus.orientate.utils.DateUtils;
 import com.erastus.orientate.utils.FormatNumbers;
+import com.erastus.orientate.utils.richlinkpreview.RichLinkView;
+import com.erastus.orientate.utils.richlinkpreview.ViewListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,8 +35,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.parceler.Parcels;
-import org.w3c.dom.Text;
 
+import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -52,6 +55,7 @@ public class EventDetailFragment extends Fragment {
     private TextView mUpVoteTextView;
     private TextView mNoBodyTextView;
     private TextView mGoBackTextView;
+    private RichLinkView mRichLinkView;
 
 
     private void hideMainNavBar() {
@@ -83,23 +87,46 @@ public class EventDetailFragment extends Fragment {
         mUpVoteTextView = mRootView.findViewById(R.id.text_view_votes);
         mNoBodyTextView = mRootView.findViewById(R.id.text_view_no_event_body);
         mGoBackTextView = mRootView.findViewById(R.id.text_view_go_back_to_main_events);
+        mRichLinkView = mRootView.findViewById(R.id.rich_link_preview);
 
+        initiateUrlChecker();
+        setUpMaps(savedInstanceState);
         setUpBodyTextView();
         setUpVotesTextView();
         setUpGoingBackTextView();
-
-
-        if (Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation() != null) {
-            setUpMaps(savedInstanceState);
-            mNoLocationTextView.setVisibility(View.GONE);
-            mEventMapView.setVisibility(View.VISIBLE);
-        } else {
-            mEventMapView.setVisibility(View.GONE);
-            mNoLocationTextView.setVisibility(View.VISIBLE);
-        }
+        initiateUrlChecker();
         hideMainNavBar();
 
         return mRootView;
+    }
+
+    private void initiateUrlChecker() {
+        final String url = mViewModel.getLocalEvent().getValue().getUrl();
+        if (url != null) {
+            mViewModel.checkUrlValidity(url);
+            mViewModel.getUrlValidityState().observe(getViewLifecycleOwner(), uriDataState -> {
+                if (uriDataState instanceof DataState.Success) {
+                    URI uri = ((DataState.Success<URI>) uriDataState).getData();
+                    mRichLinkView.setVisibility(View.VISIBLE);
+                    mRichLinkView.setLink(uri.toString(), new ViewListener() {
+                        @Override
+                        public void onSuccess(boolean status) {
+                            Log.d(TAG, "onSuccess: " + status);
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            notifyUserOfErrorUsingSnackBar(e.getMessage());
+                        }
+                    });
+                } else if (uriDataState instanceof DataState.Error) {
+                    notifyUserOfErrorUsingSnackBar(((DataState.Error) uriDataState).getError().getMessage());
+                    Log.e(TAG, "setUpObservers: Exception", ((DataState.Error) uriDataState).getError());
+                }
+            });
+        } else {
+            mRichLinkView.setVisibility(View.GONE);
+        }
     }
 
     private void setUpGoingBackTextView() {
@@ -109,7 +136,7 @@ public class EventDetailFragment extends Fragment {
     private void setUpVotesTextView() {
         Integer voteCount = mViewModel.getLocalEvent().getValue().getUpVoteCount();
         if (voteCount == null || voteCount == 0) {
-            mUpVoteTextView.setText(null);
+            mUpVoteTextView.setText(R.string.no_votes);
         } else {
             mUpVoteTextView.setText(FormatNumbers.format(voteCount));
         }
@@ -121,6 +148,7 @@ public class EventDetailFragment extends Fragment {
             mNoBodyTextView.setVisibility(View.VISIBLE);
             mBodyTextView.setVisibility(View.GONE);
         } else {
+            mBodyTextView.setText(textBody);
             mBodyTextView.setVisibility(View.VISIBLE);
             mNoBodyTextView.setVisibility(View.GONE);
         }
@@ -128,13 +156,21 @@ public class EventDetailFragment extends Fragment {
 
 
     private void setUpMaps(Bundle savedInstanceState) {
-        mEventMapView.onCreate(savedInstanceState);
-        mEventMapView.getMapAsync(googleMap -> {
-            mMap = googleMap;
-            MapsInitializer.initialize(requireActivity());
-            mViewModel.getLocation(new Geocoder(requireContext()),
-                    Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation());
-        });
+        if (Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation() != null) {
+            mEventMapView.onCreate(savedInstanceState);
+            mEventMapView.getMapAsync(googleMap -> {
+                mMap = googleMap;
+                MapsInitializer.initialize(requireActivity());
+                mViewModel.getLocation(new Geocoder(requireContext()),
+                        Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation());
+            });
+            mNoLocationTextView.setVisibility(View.GONE);
+            mEventMapView.setVisibility(View.VISIBLE);
+        } else {
+            mEventMapView.setVisibility(View.GONE);
+            mNoLocationTextView.setVisibility(View.VISIBLE);
+        }
+
     }
 
     private void zoomToLoc(Address address) {

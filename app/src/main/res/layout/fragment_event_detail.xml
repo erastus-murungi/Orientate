@@ -21,7 +21,7 @@
             android:layout_marginBottom="20dp"
             android:textAlignment="center"
             android:textFontWeight="700"
-            android:textSize="16sp"
+            android:textSize="20sp"
             tools:text="By Students, For Students: Conquering MIT" />
 
         <TextView
@@ -141,24 +141,37 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
+                android:background="@drawable/bg_event_body"
+                android:padding="5dp"
+                android:layout_marginTop="4dp"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/text_view_no_event_body"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:drawableTop="@drawable/ic_baseline_short_text_24"
-                    android:text="@string/no_more_details_for_this_event" />
+                <RelativeLayout
+                    android:id="@+id/relative_layout_event_body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/text_view_event_body"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/large_text" />
+                    <TextView
+                        android:id="@+id/text_view_no_event_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_baseline_short_text_24"
+                        android:gravity="center"
+                        android:text="@string/no_more_details_for_this_event" />
 
+                    <TextView
+                        android:id="@+id/text_view_event_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/large_text" />
+
+                </RelativeLayout>
+                <com.erastus.orientate.utils.richlinkpreview.RichLinkView
+                    android:layout_below="@+id/relative_layout_event_body"
+                    android:id="@+id/rich_link_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </RelativeLayout>
-
 
         </LinearLayout>
 

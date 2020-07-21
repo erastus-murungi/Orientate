@@ -14,6 +14,10 @@ import com.erastus.orientate.utils.TaskRunner;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -21,6 +25,8 @@ public class EventDetailsViewModel extends ViewModel {
     private static final String TAG = "EventDetailsViewModel";
     public static final int ERROR_DIALOG_REQUEST = 9001;
     private MutableLiveData<LocalEvent> mLocalEvent;
+
+    private MutableLiveData<DataState<URI>> mUrlValidityState = new MutableLiveData<>();
 
     private MutableLiveData<DataState> mGetLocationAddress = new MutableLiveData<>();
 
@@ -78,6 +84,20 @@ public class EventDetailsViewModel extends ViewModel {
     public void getLocation(Geocoder geocoder, LatLng latLng) {
         TaskRunner.getInstance().executeAsync(new ReverseGeoCodeAsync(geocoder, latLng),
                 (data) -> mGetLocationAddress.postValue(data));
+    }
+
+
+    public LiveData<DataState<URI>> getUrlValidityState() {
+        return mUrlValidityState;
+    }
+
+    public void checkUrlValidity(String stringUrl) {
+        try {
+            mUrlValidityState.setValue(new DataState.Success<>(new URL(stringUrl).toURI()));
+        } catch (URISyntaxException | MalformedURLException e) {
+            Log.d(TAG, "checkUrlValidity: invalid url" + stringUrl, e);
+            mUrlValidityState.setValue(new DataState.Error(e));
+        }
     }
 
 }
