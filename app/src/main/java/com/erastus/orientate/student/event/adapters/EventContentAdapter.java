@@ -1,7 +1,6 @@
 package com.erastus.orientate.student.event.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +8,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ItemInnerEventBinding;
 import com.erastus.orientate.student.event.eventdetail.EventDetailFragment;
 import com.erastus.orientate.student.event.models.LocalEvent;
+import com.erastus.orientate.utils.DateUtils;
 
 import org.parceler.Parcels;
 
@@ -42,7 +40,6 @@ public class EventContentAdapter extends RecyclerView.Adapter<EventContentAdapte
     public void onBindViewHolder(@NonNull EventContentViewHolder holder, int position) {
         holder.bind(mEvents.get(position));
     }
-
     @Override
     public int getItemCount() {
         return mEvents.size();
@@ -74,12 +71,8 @@ public class EventContentAdapter extends RecyclerView.Adapter<EventContentAdapte
         }
 
         public void bind(LocalEvent localEvent) {
-            mStartingOnTextView.setText(mContext.getString(R.string.format_time_hour_minute,
-                    localEvent.getStartingOn().getHour(),
-                    localEvent.getStartingOn().getMinute()));
-            mEndingOnTextView.setText(mContext.getString(R.string.format_time_hour_minute,
-                    localEvent.getEndingOn().getHour(),
-                    localEvent.getEndingOn().getMinute()));
+            mStartingOnTextView.setText(DateUtils.getTimeAmPm(localEvent.getStartingOn()));
+            mEndingOnTextView.setText(DateUtils.getTimeAmPm(localEvent.getEndingOn()));
             mTitleTextView.setText(localEvent.getTitle());
             mLocation.setText(localEvent.getStringLocation());
         }

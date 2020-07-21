@@ -21,11 +21,15 @@ import java.util.List;
  * @author Mulham-Raee
  * @since v1.3.3
  * <p>
- * See {devs.mulham.horizontalcalendar.R.layout#hc_item_calendar} Calendar CustomItem Layout
+ * @See {horizontalcalendar.R.layout#hc_item_calendar} Calendar CustomItem Layout
  */
 public class MonthsAdapter extends HorizontalCalendarBaseAdapter<DateViewHolder, Calendar> {
 
-    public MonthsAdapter(HorizontalCalendar horizontalCalendar, Calendar startDate, Calendar endDate, HorizontalCalendarPredicate disablePredicate, CalendarEventsPredicate eventsPredicate) {
+    public MonthsAdapter(HorizontalCalendar horizontalCalendar,
+                         Calendar startDate,
+                         Calendar endDate,
+                         HorizontalCalendarPredicate disablePredicate,
+                         CalendarEventsPredicate eventsPredicate) {
         super(R.layout.hc_item_calendar, horizontalCalendar, startDate, endDate, disablePredicate, eventsPredicate);
     }
 
@@ -34,7 +38,6 @@ public class MonthsAdapter extends HorizontalCalendarBaseAdapter<DateViewHolder,
         final DateViewHolder holder = new DateViewHolder(itemView);
 
         holder.layoutContent.setMinimumWidth(cellWidth);
-        //holder.textTop.setVisibility(View.GONE);
 
         return holder;
     }

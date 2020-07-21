@@ -1,5 +1,8 @@
 package com.erastus.orientate.student.event;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,16 +14,22 @@ import com.erastus.orientate.student.event.models.Event;
 import com.erastus.orientate.student.event.models.EventResult;
 import com.erastus.orientate.student.event.models.LocalEvent;
 import com.erastus.orientate.student.models.DataState;
+import com.erastus.orientate.utils.DateUtils;
 
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class EventViewModel extends ViewModel {
+    private static final String TAG = "EventViewModel";
     public static final int MAX_NUMBER_OF_ANNOUNCEMENTS_TO_FETCH = 40;
-    private LiveData<List<LocalEvent>> mEventsList;
+    private LiveData<Map<String, Set<LocalEvent>>> mEvents;
     private LiveData<EventResult> mEventsResult;
     private EventRepository mRepository;
 
@@ -29,8 +38,8 @@ public class EventViewModel extends ViewModel {
         LiveData<List<Event>> events =
                 mRepository.getEvents(MAX_NUMBER_OF_ANNOUNCEMENTS_TO_FETCH);
 
-        this.mEventsList = Transformations.switchMap(events,
-                input -> new MutableLiveData<>(LocalEvent.getLocalEventsList(input)));
+        this.mEvents = Transformations.switchMap(events, eventsFromRepo ->
+                new MutableLiveData<>(clusterEventsByTimes(LocalEvent.getLocalEventsSet(eventsFromRepo))));
 
         LiveData<DataState> eventsRequestResult = mRepository.getState();
 
@@ -51,7 +60,6 @@ public class EventViewModel extends ViewModel {
 
     public void requestEventsSpecificDate(Calendar calendar) {
         mRepository.loadEventsSpecificDate(MAX_NUMBER_OF_ANNOUNCEMENTS_TO_FETCH, calendar);
-
     }
 
     public LiveData<EventResult> getEventsResult() {
@@ -59,18 +67,34 @@ public class EventViewModel extends ViewModel {
     }
 
     public List<LocalEvent> getEventsSpecificTime(LocalDateTime localDateTime) {
-        return Objects.requireNonNull(mEventsList
-                        .getValue())
+        return Objects.requireNonNull(Objects.requireNonNull(mEvents
+                .getValue())
+                .get(DateUtils.getTimeAmPm(localDateTime)))
                         .stream()
-                        .filter(localEvent -> localEvent.getStartingOn() == localDateTime)
+                        .filter(localEvent -> localEvent.getStartingOn().getHour() == localDateTime.getHour())
                         .collect(Collectors.toList());
     }
 
-    public LiveData<List<LocalEvent>> getEvents() {
-        return mEventsList;
+    public LiveData<Map<String, Set<LocalEvent>>> getEvents() {
+        return mEvents;
+    }
+
+
+    public Map<String, Set<LocalEvent>> clusterEventsByTimes(@NonNull Set<LocalEvent> events) {
+        HashMap<String, Set<LocalEvent>> map = new HashMap<>();
+        for (LocalEvent event: events) {
+            String startTime = DateUtils.getTimeAmPm(event.getStartingOn());
+            if (map.containsKey(startTime)) {
+                Objects.requireNonNull(map.get(startTime)).add(event);
+            } else {
+                Set<LocalEvent> e = new HashSet<>();
+                e.add(event);
+                map.put(startTime, e);
+            }
+        }
+        return map;
     }
 
     public void reload() {
-
     }
 }

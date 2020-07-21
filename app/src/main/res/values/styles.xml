@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:textViewStyle">@style/ArialTextViewStyle</item>
+        <item name="android:textViewStyle">@style/ProximaTextViewStyle</item>
+        <item name="android:buttonStyle">@style/ProximaButtonStyle</item>
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -12,6 +13,14 @@
 
     <style name="ArialTextViewStyle" parent="Widget.AppCompat.TextView">
         <item name="android:fontFamily">@font/arial_unicode_ms</item>
+    </style>
+
+    <style name="ProximaTextViewStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/proxima_nova_regular</item>
+    </style>
+
+    <style name="ProximaButtonStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">@font/proxima_nova_regular</item>
     </style>
 
     <style name="signUpDateOfBirthDatePicker"

@@ -19,6 +19,10 @@ public class DateUtils {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
+    public static Date dateFromLocalTime(LocalDateTime localDateTime) {
+        return Date.from( localDateTime.atZone( ZoneId.systemDefault()).toInstant());
+    }
+
     public static String getRelativeTimeAgo(String rawJsonDate) {
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
         SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
@@ -44,5 +48,17 @@ public class DateUtils {
                 System.currentTimeMillis(), android.text.format.DateUtils.SECOND_IN_MILLIS).toString();
 
         return relativeDate;
+    }
+
+    public static String getTimeAmPm(LocalDateTime time) {
+        //Displaying current time in 12 hour format with AM/PM
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm aa", Locale.getDefault());
+        return dateFormat.format(dateFromLocalTime(time));
+    }
+
+    public static String getTimeWithYearAmPm(LocalDateTime time) {
+        //Displaying current date and time in 12 hour format with AM/PM
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm aa", Locale.getDefault());
+        return dateFormat.format(dateFromLocalTime(time));
     }
 }

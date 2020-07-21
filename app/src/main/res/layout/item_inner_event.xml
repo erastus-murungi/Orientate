@@ -4,21 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/lightBlue"
+    android:layout_marginEnd="10dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="121dp"
-        android:layout_height="56dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:background="@color/midBlue"
+        android:layout_marginTop="5dp"
         android:orientation="vertical"
         android:layout_marginEnd="20dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_event_title"
-        app:layout_constraintHorizontal_bias="0.21"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:gravity="center">
 
         <TextView
             android:id="@+id/text_view_starting_on"
@@ -42,11 +39,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_toEndOf="@id/linearLayout"
-        android:textSize="18sp"
-        android:textFontWeight="700"
-        android:textColor="@color/darkBlue"
         android:layout_marginBottom="5dp"
+        android:layout_toStartOf="@+id/image_button_set_reminder"
+        android:layout_toEndOf="@id/linearLayout"
+        android:textColor="@color/darkBlue"
+        android:textFontWeight="700"
+        android:textSize="14sp"
         tools:text="Title" />
 
     <TextView
@@ -55,9 +53,10 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/linearLayout"
         android:textColor="@color/darkBlue"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:layout_below="@id/text_view_event_title"
         android:drawableStart="@drawable/ic_baseline_location_on_24"
+        android:layout_marginEnd="5dp"
 
         tools:text="Location" />
 

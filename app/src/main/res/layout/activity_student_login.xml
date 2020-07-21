@@ -101,7 +101,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/arial_unicode_ms"
             android:src="@drawable/ic_baseline_arrow_forward_24"
             android:text="@string/continue_as_student"
             android:textSize="12sp"

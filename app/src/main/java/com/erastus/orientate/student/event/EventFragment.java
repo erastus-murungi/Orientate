@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,7 @@ import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 
 public class EventFragment extends Fragment {
@@ -52,6 +54,7 @@ public class EventFragment extends Fragment {
         mNoEventsTextView = mRootView.findViewById(R.id.text_view_no_events);
         mEventsLoadingProgressBar = mRootView.findViewById(R.id.progress_bar_events);
         mEventsRecyclerView = mRootView.findViewById(R.id.recycler_view_events);
+
         initRecyclerView();
 
         /* starts before 1 month from now */
@@ -81,7 +84,6 @@ public class EventFragment extends Fragment {
             public void onDateSelected(Calendar date, int position) {
                 // if there are events on this date, then show them in a recycler view
                 // otherwise show no events
-                Log.i(TAG, "onDateSelected: called");
                 mViewModel.requestEventsSpecificDate(date);
             }
 
@@ -105,7 +107,7 @@ public class EventFragment extends Fragment {
             if (eventResult.isLoading()) {
                 mEventsLoadingProgressBar.setVisibility(View.VISIBLE);
                 mNoEventsTextView.setVisibility(View.GONE);
-                mEventsRecyclerView.setVisibility(View.VISIBLE);
+                mEventsRecyclerView.setVisibility(View.GONE);
             } else if (eventResult.getEventsExist()) {
                 mEventsLoadingProgressBar.setVisibility(View.GONE);
                 mEventsRecyclerView.setVisibility(View.VISIBLE);
@@ -137,7 +139,6 @@ public class EventFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        mNoEventsTextView.setVisibility(View.GONE);
         mEventTimeAdapter = new EventTimeAdapter(getContext(),
                 mViewModel);
         mEventsRecyclerView.setAdapter(mEventTimeAdapter);
