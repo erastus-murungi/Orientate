@@ -5,14 +5,16 @@
     android:layout_height="wrap_content"
     android:background="@color/lightBlue"
     android:layout_marginEnd="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:elevation="5dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:background="@color/midBlue"
-        android:layout_marginTop="5dp"
+        android:layout_height="60dp"
+        android:background="@color/darkBlue"
         android:orientation="vertical"
         android:layout_marginEnd="20dp"
         android:gravity="center">
@@ -22,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/darkBlue"
+            android:textColor="@color/white"
+            android:layout_marginBottom="4dp"
             tools:text="Starting on" />
 
         <TextView
@@ -30,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/darkBlue"
+            android:textColor="@color/md_grey_200"
             tools:text="Ending on" />
     </LinearLayout>
 
@@ -38,7 +41,7 @@
         android:id="@+id/text_view_event_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="5dp"
         android:layout_toStartOf="@+id/image_button_set_reminder"
         android:layout_toEndOf="@id/linearLayout"
@@ -54,9 +57,10 @@
         android:layout_toEndOf="@id/linearLayout"
         android:textColor="@color/darkBlue"
         android:textSize="12sp"
+        android:gravity="center"
         android:layout_below="@id/text_view_event_title"
         android:drawableStart="@drawable/ic_baseline_location_on_24"
-        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
 
         tools:text="Location" />
 
@@ -67,6 +71,8 @@
         android:background="@color/lightBlue"
         android:contentDescription="@string/set_reminder"
         android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
         app:srcCompat="@drawable/ic_baseline_add_circle_24" />
 
 

@@ -47,10 +47,7 @@ public class AnnouncementRepository {
         query.findInBackground((announcements, e) -> {
 //            mState.setValue(new DataState.Error(new Exception("Fake Exception")));
             if (e == null) {
-                List<Announcement> l = mDataSet.getValue();
-                assert l != null;
-                l.addAll(announcements);
-                mDataSet.setValue(l);
+                mDataSet.setValue(announcements);
                 mState.setValue(new DataState.Success<>(announcements));
             } else {
                 mState.setValue(new DataState.Error(e));

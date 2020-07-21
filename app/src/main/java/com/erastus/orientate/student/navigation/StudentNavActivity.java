@@ -40,6 +40,7 @@ public class StudentNavActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar_student_nav);
         setSupportActionBar(mToolbar);
+        setTitle("Home");
         mStudentNavDrawerLayout = findViewById(R.id.drawer_layout_student);
 
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mStudentNavDrawerLayout,
@@ -114,6 +115,8 @@ public class StudentNavActivity extends AppCompatActivity {
         // Highlight the selected item has been done by NavigationView
         menuItem.setChecked(true);
         // Set action bar title
+
+        setTitle(menuItem.getTitle());
     }
 
     @Override

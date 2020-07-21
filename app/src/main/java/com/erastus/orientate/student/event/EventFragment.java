@@ -130,6 +130,7 @@ public class EventFragment extends Fragment {
             mEventTimeAdapter.setEvents(localEvents);
             mEventTimeAdapter.notifyDataSetChanged();
         });
+
     }
 
     private void shoWReloadSnackBar(String errorMessage) {

@@ -79,6 +79,7 @@ public class LocalEvent {
         this.isMustAttend = event.getIsMustAttend();
         this.title = event.getTitle();
         this.body = event.getBody();
+        this.eventLocationString = event.getLocationString();
     }
 
     public static @NonNull Set<LocalEvent> getLocalEventsSet(Collection<Event> events) {

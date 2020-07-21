@@ -3,64 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="4dp"
     android:layout_marginTop="10dp"
-    android:elevation="20dp"
-    android:background="@drawable/item_announcements_background">
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/item_announcements_background"
+    android:elevation="20dp">
 
-    <ImageView
-        android:id="@+id/image_view_profile_picture"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_view_profile_picture"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/ic_education" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_announcement_title"
+            android:layout_width="276dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@+id/text_view_posted_on"
+            android:layout_toEndOf="@id/image_view_profile_picture"
+            android:ellipsize="middle"
+            android:inputType="textCapWords"
+            android:paddingTop="10dp"
+            android:text="@string/sample_announcement_title"
+            android:textColor="@color/darkBlue"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_posted_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_announcement_title"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@id/image_view_profile_picture"
+            android:text="@string/posted_by"
+            android:textColor="@color/darkBlue" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_posted_on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="top|end"
+            android:padding="10dp"
+            android:text="@string/posted_on"
+            android:textColor="@color/darkBlue" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_layout"
         android:layout_margin="10dp"
-        app:srcCompat="@drawable/ic_education" />
+        android:background="@drawable/bg_event_body"
+        android:padding="5dp">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/text_view_announcement_title"
-        android:layout_width="276dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_toStartOf="@+id/text_view_posted_on"
-        android:layout_toEndOf="@id/image_view_profile_picture"
-        android:ellipsize="middle"
-        android:inputType="textCapWords"
-        android:paddingTop="10dp"
-        android:text="@string/sample_announcement_title"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_announcement_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:autoLink="all"
+            android:linksClickable="true"
+            android:padding="10dp"
+            android:text="@string/sample_announcement_body"
+            android:textColor="@color/md_grey_800" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/text_view_posted_by"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_view_announcement_title"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="1dp"
-        android:textColor="@color/white"
-        android:layout_toEndOf="@id/image_view_profile_picture"
-        android:text="@string/posted_by" />
+        <com.erastus.orientate.utils.richlinkpreview.RichLinkView
+            android:id="@+id/rich_link_view_announcement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_announcement_body"
+            android:layout_margin="10dp" />
+    </RelativeLayout>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/text_view_posted_on"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:gravity="top|end"
-        android:padding="10dp"
-        android:text="@string/posted_on"
-        android:textColor="@color/white" />
-
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/text_view_announcement_body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_view_posted_by"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        android:autoLink="all"
-        android:linksClickable="true"
-        android:text="@string/sample_announcement_body" />
 </RelativeLayout>

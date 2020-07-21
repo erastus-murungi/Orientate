@@ -47,14 +47,14 @@ public class EventContentAdapter extends RecyclerView.Adapter<EventContentAdapte
         private TextView mStartingOnTextView;
         private TextView mEndingOnTextView;
         private TextView mTitleTextView;
-        private TextView mLocation;
+        private TextView mEventLocationTextView;
 
         public EventContentViewHolder(@NonNull ItemInnerEventBinding binding) {
             super(binding.getRoot());
             mStartingOnTextView = binding.textViewStartingOn;
             mEndingOnTextView = binding.textViewEndingOn;
             mTitleTextView = binding.textViewEventTitle;
-            mLocation = binding.textViewEventLocation;
+            mEventLocationTextView = binding.textViewEventLocation;
 
             binding.getRoot().setOnClickListener(view -> {
                 int position = getBindingAdapterPosition();
@@ -67,7 +67,7 @@ public class EventContentAdapter extends RecyclerView.Adapter<EventContentAdapte
             mStartingOnTextView.setText(DateUtils.getTimeAmPm(localEvent.getStartingOn()));
             mEndingOnTextView.setText(DateUtils.getTimeAmPm(localEvent.getEndingOn()));
             mTitleTextView.setText(localEvent.getTitle());
-            mLocation.setText(localEvent.getStringLocation());
+            mEventLocationTextView.setText(localEvent.getStringLocation());
         }
     }
 }

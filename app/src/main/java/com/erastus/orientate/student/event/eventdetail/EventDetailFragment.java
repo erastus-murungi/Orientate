@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.event.EventFragment;
+import com.erastus.orientate.student.event.direction.MapsFragment;
 import com.erastus.orientate.student.event.models.LocalEvent;
 import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.navigation.ActionBarStatus;
@@ -42,7 +43,9 @@ import java.util.Objects;
 
 public class EventDetailFragment extends Fragment {
     private static final String TAG = "EventDetailFragment";
+    public static final String KEY = "LatLng";
     public static final float DEFAULT_ZOOM = 20.0f;
+
     private EventDetailsViewModel mViewModel;
     private TextView mEventTitleTextView;
     private View mRootView;
@@ -166,11 +169,19 @@ public class EventDetailFragment extends Fragment {
             });
             mNoLocationTextView.setVisibility(View.GONE);
             mEventMapView.setVisibility(View.VISIBLE);
+            mEventMapView.setOnClickListener(view -> {
+                LatLng latLng = mViewModel.getLocalEvent().getValue().getEventLocation();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(KEY, Parcels.wrap(latLng));
+                MapsFragment fragmentEventDetail = new MapsFragment();
+                fragmentEventDetail.setArguments(bundle);
+                getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_student_content,
+                        fragmentEventDetail).addToBackStack(null).commit();
+            });
         } else {
             mEventMapView.setVisibility(View.GONE);
             mNoLocationTextView.setVisibility(View.VISIBLE);
         }
-
     }
 
     private void zoomToLoc(Address address) {
@@ -250,6 +261,5 @@ public class EventDetailFragment extends Fragment {
 
     private void notifyUserOfErrorUsingSnackBar(String errorMessage) {
     }
-
 
 }

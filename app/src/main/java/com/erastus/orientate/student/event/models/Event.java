@@ -36,6 +36,7 @@ public class Event extends ParseObject {
     public static final String KEY_SPONSORS = "sponsors";
     public static final String KEY_TITLE = "title";
     public static final String KEY_BODY = "body";
+    public static final String KEY_LOCATION_STRING = "event_location_string";
 
     public LocalDateTime getStartDateTime() {
         Date date = getDate(KEY_STARTING_ON);
@@ -122,5 +123,9 @@ public class Event extends ParseObject {
 
     public String getBody() {
         return getString(KEY_BODY);
+    }
+
+    public String getLocationString() {
+        return getString(KEY_LOCATION_STRING);
     }
 }

@@ -81,7 +81,6 @@ public class AnnouncementFragment extends Fragment {
 
         mViewModel.getState().observe(getViewLifecycleOwner(), announcementState -> {
             if (announcementState == null) {
-                mProgressBar.setVisibility(View.VISIBLE);
                 return;
             }
             if (announcementState.isLoading()) {

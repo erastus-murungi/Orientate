@@ -13,8 +13,11 @@
         android:theme="@style/AppTheme">
 
         <androidx.appcompat.widget.Toolbar
+            app:titleTextAppearance="@style/toolbarTitleTextAppearance"
             android:id="@+id/toolbar_student_nav"
             android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
             app:menu="@menu/student_nav"

@@ -38,7 +38,7 @@ public class RichPreview {
             Document doc;
             try {
                 doc = Jsoup.connect(url)
-                        .timeout(30*1000)
+                        .timeout(30000)
                         .get();
 
                 Elements elements = doc.getElementsByTag("meta");

@@ -83,13 +83,13 @@ public class EventRepository {
         query.whereLessThan(Event.KEY_STARTING_ON, c.getTime());
 
         query.findInBackground((events, e) -> {
-            mState.setValue(new DataState.Error(new Exception("Fake Exception")));
-//            if (e == null) {
-//                mEventsDataSet.setValue(events);
-//                mState.setValue(new DataState.Success<>(events));
-//            } else {
-//                mState.setValue(new DataState.Error(e));
-//            }
+//            mState.setValue(new DataState.Error(new Exception("Fake Exception")));
+            if (e == null) {
+                mEventsDataSet.setValue(events);
+                mState.setValue(new DataState.Success<>(events));
+            } else {
+                mState.setValue(new DataState.Error(e));
+            }
         });
     }
 }
