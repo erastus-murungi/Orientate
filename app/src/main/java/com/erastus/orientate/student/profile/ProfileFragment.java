@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,11 +15,18 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.databinding.FragmentProfileBinding;
+import com.erastus.orientate.models.GenericUser;
+import com.erastus.orientate.student.models.Student;
 
 public class ProfileFragment extends Fragment {
     private static final String TAG = "ProfileFragment";
 
     private ProfileViewModel mViewModel;
+    private ProfileBottomFragment mBottomSheet;
+    private TextView mUsernameTextView;
+    private TextView mFullNameTextView;
+    private FragmentProfileBinding mBinding;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -27,9 +35,12 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        setUpToolBar();
+        mBinding = FragmentProfileBinding.inflate(getLayoutInflater(), container, false);
         mViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        return inflater.inflate(R.layout.profile_fragment, container, false);
+        setUpObservers();
+        setUpToolBar();
+        setUpNamesObservers();
+        return mBinding.getRoot();
     }
 
     private void setUpToolBar() {
@@ -47,8 +58,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        setUpObservers();
     }
 
     private void setUpObservers() {
@@ -56,16 +65,50 @@ public class ProfileFragment extends Fragment {
             if (shouldLogOut == null) {
                 return;
             }
-            if (shouldLogOut){
+            if (shouldLogOut) {
                 Log.d(TAG, "setUpObservers: logout");
+
+                mBottomSheet.dismiss();
+
                 requireActivity().finish();
             }
         });
     }
 
     private void setUpBottomSheet() {
-        ProfileBottomFragment fragment = new ProfileBottomFragment();
-        fragment.show(getParentFragmentManager(), fragment.getTag());
+        mBottomSheet = new ProfileBottomFragment();
+        mBottomSheet.show(getParentFragmentManager(),
+                mBottomSheet.getTag());
     }
 
+    private void setUpNamesObservers() {
+        mUsernameTextView = mBinding.textViewUsername;
+        mFullNameTextView = mBinding.textViewProfileFullName;
+        mViewModel.getStudent().observe(getViewLifecycleOwner(), studentSimpleState -> {
+            Log.d(TAG, "setUpNamesObservers: called");
+            if (studentSimpleState == null) {
+                Log.d(TAG, "setUpNamesObservers: called with null");
+                return;
+            }
+            if (studentSimpleState.getData() != null) {
+                Log.d(TAG, "setUpNamesObservers: called with data");
+                Student s = studentSimpleState.getData();
+                if (s.getMiddleName() == null) {
+                    mFullNameTextView.setText(getString(R.string.format_two_names, s.getFirstName(), s.getLastName()));
+                } else {
+                    mFullNameTextView.setText(getString(R.string.format_three_names, s.getFirstName(), s.getMiddleName(), s.getLastName()));
+                }
+            }
+            if (studentSimpleState.getErrorMessage() != null) {
+                Log.e(TAG, "setUpNamesObservers: " + studentSimpleState.getErrorMessage());
+            }
+        });
+
+        mViewModel.getUser().observe(getViewLifecycleOwner(), genericUser -> {
+            if (genericUser != null) {
+                mUsernameTextView.setText(getString(R.string.format_username,
+                        genericUser.getUsername()));
+            }
+        });
+    }
 }

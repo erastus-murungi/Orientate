@@ -13,23 +13,15 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ActivityStudentNavBinding;
 import com.erastus.orientate.student.announcements.AnnouncementFragment;
-import com.erastus.orientate.student.announcements.models.Announcement;
 import com.erastus.orientate.student.event.EventFragment;
-import com.erastus.orientate.student.event.direction.MapsFragment;
 import com.erastus.orientate.student.info.InfoFragment;
-import com.erastus.orientate.student.models.Student;
 import com.erastus.orientate.student.profile.ProfileFragment;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
-
-import org.parceler.Parcels;
 
 public class StudentNavActivity extends AppCompatActivity {
     public static final String TAG = "StudentNavActivity";

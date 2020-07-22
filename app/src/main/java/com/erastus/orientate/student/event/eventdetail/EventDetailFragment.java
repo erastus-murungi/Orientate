@@ -13,12 +13,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.event.EventFragment;
-import com.erastus.orientate.student.event.direction.MapsFragment;
+
 import com.erastus.orientate.student.event.models.LocalEvent;
 import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.navigation.ActionBarStatus;
@@ -170,13 +169,7 @@ public class EventDetailFragment extends Fragment {
             mNoLocationTextView.setVisibility(View.GONE);
             mEventMapView.setVisibility(View.VISIBLE);
             mEventMapView.setOnClickListener(view -> {
-                LatLng latLng = mViewModel.getLocalEvent().getValue().getEventLocation();
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(KEY, Parcels.wrap(latLng));
-                MapsFragment fragmentEventDetail = new MapsFragment();
-                fragmentEventDetail.setArguments(bundle);
-                getParentFragmentManager().beginTransaction().replace(R.id.frame_layout_student_content,
-                        fragmentEventDetail).addToBackStack(null).commit();
+                //TODO direct the user to google maps
             });
         } else {
             mEventMapView.setVisibility(View.GONE);

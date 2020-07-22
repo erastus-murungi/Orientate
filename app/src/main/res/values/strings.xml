@@ -190,5 +190,9 @@
     <string name="profile">Profile</string>
     <string name="options">Options</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="format_username">\@%s</string>
+
+    <string name="format_two_names">%s %s</string>
+    <string name="format_three_names">%s %s %s</string>
 
 </resources>

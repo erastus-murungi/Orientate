@@ -16,6 +16,8 @@ import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ActivityStudentLoginBinding;
 import com.erastus.orientate.databinding.ProgressLoginInButtonBinding;
 import com.erastus.orientate.student.navigation.StudentNavActivity;
+import com.erastus.orientate.utils.Utils;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
@@ -117,6 +119,7 @@ public class StudentLoginActivity extends AppCompatActivity {
                 loginButtonProgress.buttonActivated();
                 mLoginViewModel.login(usernameTextInputLayout.getEditText().getText().toString(),
                         passwordTextInputLayout.getEditText().getText().toString());
+                Utils.forceHide(this, usernameTextInputLayout.getEditText());
             }
             return false;
         });
@@ -134,8 +137,13 @@ public class StudentLoginActivity extends AppCompatActivity {
     }
 
     private void showLoginFailed(String errorString) {
-        Snackbar.make(activityStudentLoginBinding.getRoot(), errorString, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(activityStudentLoginBinding.getRoot(), errorString, BaseTransientBottomBar.LENGTH_LONG)
+                .setBackgroundTint(getColor(R.color.darkBlue))
+                .setTextColor(getColor(android.R.color.darker_gray))
+                .show();
     }
+
+
 
     private class LoginButtonProgress {
         private ProgressBar mProgressBar;

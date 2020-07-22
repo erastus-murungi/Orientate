@@ -7,6 +7,7 @@ import com.erastus.orientate.institution.models.Institution;
 import com.erastus.orientate.models.GenericUser;
 import com.erastus.orientate.student.announcements.models.Announcement;
 import com.erastus.orientate.student.event.models.Event;
+import com.erastus.orientate.student.models.Student;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -25,6 +26,7 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(GenericUser.class);
         ParseObject.registerSubclass(Institution.class);
         ParseObject.registerSubclass(Event.class);
+        ParseObject.registerSubclass(Student.class);
 
 
         //TODO only for troubleshooting -- remove this line for production

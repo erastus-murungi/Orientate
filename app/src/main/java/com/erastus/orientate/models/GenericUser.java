@@ -21,7 +21,13 @@ public class GenericUser extends ParseUser {
     public static final String KEY_EMAIL_VERIFIED = "emailVerified";
     public static final String TAG = "GenericUser";
 
-    public GenericUser() {}
+    public GenericUser() {
+    }
+
+    @Override
+    public String getUsername() {
+        return mUser.getUsername();
+    }
 
     private ParseUser mUser;
 
@@ -39,7 +45,8 @@ public class GenericUser extends ParseUser {
         }
         if (parseUserTask.isCompleted() && parseUserTask.getError() == null) {
             mUser = parseUserTask.getResult();
-        } if (!parseUserTask.isCompleted() && parseUserTask.getError() == null) {
+        }
+        if (!parseUserTask.isCompleted() && parseUserTask.getError() == null) {
             Log.e(TAG, "Error timed out", new TimeoutException());
         }
         return Objects.requireNonNull(mUser.getParseFile(KEY_PROFILE_IMAGE)).getUrl();

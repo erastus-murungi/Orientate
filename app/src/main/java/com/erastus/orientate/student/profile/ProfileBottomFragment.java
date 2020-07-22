@@ -1,7 +1,6 @@
 package com.erastus.orientate.student.profile;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
@@ -32,19 +30,21 @@ public class ProfileBottomFragment extends BottomSheetDialogFragment {
 
 
         mRootView = getLayoutInflater().inflate(R.layout.fragment_bottom_student_profile, container, false);
-        mProfileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        mProfileViewModel = new ViewModelProvider(requireActivity()).get(ProfileViewModel.class);
         bindTextViews();
+        setUpOnClickListeners();
         return mRootView;
     }
 
     private void bindTextViews() {
         mLogOutTextView = mRootView.findViewById(R.id.text_view_log_out);
         mAboutTextView = mRootView.findViewById(R.id.text_view_about);
+        mEditProfileTextView = mRootView.findViewById(R.id.text_view_edit_profile);
     }
 
     private void setUpOnClickListeners() {
-        mLogOutTextView.setOnClickListener(view ->
-                mProfileViewModel.notifyEventOptionSelected(ProfileOption.LOG_OUT));
+        mLogOutTextView.setOnClickListener(view -> {
+                    mProfileViewModel.notifyEventOptionSelected(ProfileOption.LOG_OUT); });
         mAboutTextView.setOnClickListener(view ->
                 mProfileViewModel.notifyEventOptionSelected(ProfileOption.ABOUT));
         mEditProfileTextView.setOnClickListener(view ->
