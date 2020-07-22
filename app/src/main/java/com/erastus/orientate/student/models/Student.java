@@ -14,6 +14,7 @@ public class Student extends ParseObject {
     public static final String KEY_LAST_NAME = "last_name";
     public static final String KEY_DOB = "date_of_birth";
     public static final String KEY_INSTITUTION = "institution";
+    public static final String KEY_USER = "user_info";
 
     public String getFirstName() {
         return getString(KEY_FIRST_NAME);

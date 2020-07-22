@@ -10,7 +10,6 @@
     <color name="colorAccent">#bce0fd</color>'
 
 
-
     <color name="grey_900">#212121</color>
     <color name="blue_grey_300">#616f76</color>
     <color name="blue_grey_700">#434f54</color>
@@ -312,5 +311,7 @@
     <color name="md_blue_grey_700">#455A64</color>
     <color name="md_blue_grey_800">#37474F</color>
     <color name="md_blue_grey_900">#263238</color>
+
+    <color name="black_overlay">#66000000</color>
 
 </resources>

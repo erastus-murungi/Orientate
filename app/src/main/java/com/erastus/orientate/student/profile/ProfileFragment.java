@@ -18,6 +18,7 @@ import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.FragmentProfileBinding;
 import com.erastus.orientate.models.GenericUser;
 import com.erastus.orientate.student.models.Student;
+import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
 
 public class ProfileFragment extends Fragment {
     private static final String TAG = "ProfileFragment";
@@ -27,6 +28,7 @@ public class ProfileFragment extends Fragment {
     private TextView mUsernameTextView;
     private TextView mFullNameTextView;
     private FragmentProfileBinding mBinding;
+    private AVLoadingIndicatorView mLoadingIndicator;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -84,6 +86,8 @@ public class ProfileFragment extends Fragment {
     private void setUpNamesObservers() {
         mUsernameTextView = mBinding.textViewUsername;
         mFullNameTextView = mBinding.textViewProfileFullName;
+        mLoadingIndicator = mBinding.avLoadingIndicatorProfileFullName;
+        mLoadingIndicator.show();
         mViewModel.getStudent().observe(getViewLifecycleOwner(), studentSimpleState -> {
             Log.d(TAG, "setUpNamesObservers: called");
             if (studentSimpleState == null) {
@@ -98,9 +102,11 @@ public class ProfileFragment extends Fragment {
                 } else {
                     mFullNameTextView.setText(getString(R.string.format_three_names, s.getFirstName(), s.getMiddleName(), s.getLastName()));
                 }
+                mLoadingIndicator.hide();
             }
             if (studentSimpleState.getErrorMessage() != null) {
                 Log.e(TAG, "setUpNamesObservers: " + studentSimpleState.getErrorMessage());
+                mLoadingIndicator.hide();
             }
         });
 

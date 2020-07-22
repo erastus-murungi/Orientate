@@ -1,6 +1,7 @@
 package com.erastus.orientate.student.profile;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.SplashScreen;
+import com.erastus.orientate.student.login.StudentLoginActivity;
+import com.erastus.orientate.student.signup.StudentSignUpActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.parse.ParseUser;
 
 public class ProfileBottomFragment extends BottomSheetDialogFragment {
     private View mRootView;
@@ -44,11 +50,20 @@ public class ProfileBottomFragment extends BottomSheetDialogFragment {
 
     private void setUpOnClickListeners() {
         mLogOutTextView.setOnClickListener(view -> {
-                    mProfileViewModel.notifyEventOptionSelected(ProfileOption.LOG_OUT); });
+                    mProfileViewModel.notifyEventOptionSelected(ProfileOption.LOG_OUT);
+                    dismiss();
+                    goToLoginActivity();});
         mAboutTextView.setOnClickListener(view ->
                 mProfileViewModel.notifyEventOptionSelected(ProfileOption.ABOUT));
         mEditProfileTextView.setOnClickListener(view ->
                 mProfileViewModel.notifyEventOptionSelected(ProfileOption.EDIT_PROFILE));
+    }
+
+    private void goToLoginActivity() {
+        //TODO go to Splash screen instead of log in activity
+        Intent i = new Intent(requireContext(), SplashScreen.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
     }
 
     @Override

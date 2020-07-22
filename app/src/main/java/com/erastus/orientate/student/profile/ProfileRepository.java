@@ -5,8 +5,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.models.Student;
-import com.parse.GetCallback;
-import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -39,7 +37,8 @@ public class ProfileRepository {
 
     private void requestStudent() {
         ParseQuery<Student> query = ParseQuery.getQuery(Student.class);
-        query.whereEqualTo("user_info", ParseUser.getCurrentUser());
+        query.include(Student.KEY_INSTITUTION);
+        query.whereEqualTo(Student.KEY_USER, ParseUser.getCurrentUser());
         query.getFirstInBackground((object, e) -> {
             if (e == null) {
                 mStudentDataState.setValue(new DataState.Success<>(object));

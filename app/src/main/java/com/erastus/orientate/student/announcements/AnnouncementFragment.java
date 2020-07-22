@@ -1,7 +1,5 @@
 package com.erastus.orientate.student.announcements;
 
-import androidx.annotation.ColorRes;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -19,12 +17,9 @@ import android.widget.ProgressBar;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.AnnouncementFragmentBinding;
-import com.erastus.orientate.student.announcements.models.LocalAnnouncement;
+import com.erastus.orientate.student.announcements.adapter.AnnouncementAdapter;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.List;
-import java.util.Objects;
 
 
 public class AnnouncementFragment extends Fragment {
@@ -74,7 +69,7 @@ public class AnnouncementFragment extends Fragment {
     private void setUpObservers() {
 
         mViewModel.getAnnouncements().observe(getViewLifecycleOwner(), localAnnouncements -> {
-            mAdapter.setAnnouncements(localAnnouncements);
+            mAdapter.onNewProducts(localAnnouncements);
             mAdapter.notifyDataSetChanged();
             mProgressBar.setVisibility(View.GONE);
         });
