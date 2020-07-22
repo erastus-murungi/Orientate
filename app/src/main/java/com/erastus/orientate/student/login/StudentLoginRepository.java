@@ -1,12 +1,14 @@
 package com.erastus.orientate.student.login;
 
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import com.erastus.orientate.student.models.DataState;
 import com.parse.ParseUser;
 
 public class StudentLoginRepository {
     private static volatile StudentLoginRepository instance;
+
 
     private MutableLiveData<DataState> mState = new MutableLiveData<>();
 

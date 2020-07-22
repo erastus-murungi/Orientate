@@ -20,16 +20,16 @@ import java.util.stream.Collectors;
 public class LocalEvent {
     private static final String TAG = "LocalEvent";
 
-    private LatLng eventLocation;
-    private LocalDateTime startingOn;
-    private LocalDateTime endingOn;
-    private String url;
-    private Integer upVoteCount;
-    private boolean isRecurring;
-    private boolean isMustAttend;
-    private String title;
-    private String body;
-    private String eventLocationString;
+    public LatLng eventLocation;
+    public LocalDateTime startingOn;
+    public LocalDateTime endingOn;
+    public String url;
+    public Integer upVoteCount;
+    public boolean isRecurring;
+    public boolean isMustAttend;
+    public String title;
+    public String body;
+    public String eventLocationString;
 
     public LocalEvent() {}
 

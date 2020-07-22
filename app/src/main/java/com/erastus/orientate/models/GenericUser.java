@@ -7,6 +7,8 @@ import com.parse.ParseClassName;
 import com.parse.ParseUser;
 import com.parse.boltsinternal.Task;
 
+import org.parceler.Parcel;
+
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -17,7 +19,7 @@ public class GenericUser extends ParseUser {
     public static final String KEY_IS_STUDENT = "is_student";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_EMAIL_VERIFIED = "emailVerified";
-    private static final String TAG = "GenericUser";
+    public static final String TAG = "GenericUser";
 
     public GenericUser() {}
 

@@ -180,5 +180,15 @@
     <string name="no_more_details_for_this_event">No more details for this event.</string>
     <string name="orientation_events">Orientation Events</string>
     <string name="no_votes">No Votes Yet</string>
+    <string name="john_doe">John Doe</string>
+    <string name="messages">Messages</string>
+    <string name="tagged_events">Tagged Events</string>
+    <string name="connections">Connections</string>
+    <string name="about">About</string>
+    <string name="quit">Quit</string>
+    <string name="log_out">Log Out</string>
+    <string name="profile">Profile</string>
+    <string name="options">Options</string>
+    <string name="edit_profile">Edit Profile</string>
 
 </resources>

@@ -22,13 +22,21 @@ import com.erastus.orientate.databinding.ActivityStudentNavBinding;
 import com.erastus.orientate.student.announcements.AnnouncementFragment;
 import com.erastus.orientate.student.announcements.models.Announcement;
 import com.erastus.orientate.student.event.EventFragment;
+import com.erastus.orientate.student.event.direction.MapsFragment;
 import com.erastus.orientate.student.info.InfoFragment;
+import com.erastus.orientate.student.models.Student;
+import com.erastus.orientate.student.profile.ProfileFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
+
+import org.parceler.Parcels;
 
 public class StudentNavActivity extends AppCompatActivity {
     public static final String TAG = "StudentNavActivity";
+    private static final String KEY = "User";
     private DrawerLayout mStudentNavDrawerLayout;
     private Toolbar mToolbar;
+    private StudentNavViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +44,11 @@ public class StudentNavActivity extends AppCompatActivity {
         final ActivityStudentNavBinding studentNavBinding = ActivityStudentNavBinding.inflate(getLayoutInflater());
         setContentView(studentNavBinding.getRoot());
 
-        StudentNavViewModel viewModel = new ViewModelProvider(this).get(StudentNavViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(StudentNavViewModel.class);
 
         mToolbar = findViewById(R.id.toolbar_student_nav);
         setSupportActionBar(mToolbar);
-        setTitle("Home");
+        setTitle(R.string.app_name);
         mStudentNavDrawerLayout = findViewById(R.id.drawer_layout_student);
 
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mStudentNavDrawerLayout,
@@ -50,7 +58,7 @@ public class StudentNavActivity extends AppCompatActivity {
         toggle.syncState();
         mToolbar.setNavigationIcon(R.drawable.ic_baseline_notes_24);
         setupDrawerContent(studentNavBinding.navViewStudent);
-        setUpObservers(viewModel);
+        setUpObservers(mViewModel);
     }
 
     private void setUpObservers(StudentNavViewModel viewModel) {
@@ -132,4 +140,19 @@ public class StudentNavActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_go_to_profile) {
+            // go to the profile fragment
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.frame_layout_student_content,
+                            new ProfileFragment())
+                    .addToBackStack(null)
+                    .commit();
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
