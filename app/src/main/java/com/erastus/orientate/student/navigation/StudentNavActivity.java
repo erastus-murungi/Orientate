@@ -27,7 +27,6 @@ import com.google.android.material.navigation.NavigationView;
 
 public class StudentNavActivity extends AppCompatActivity {
     public static final String TAG = "StudentNavActivity";
-    private static final String KEY = "User";
     private DrawerLayout mStudentNavDrawerLayout;
     private Toolbar mToolbar;
     private StudentNavViewModel mViewModel;

@@ -4,26 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/lightBlue"
-    android:layout_marginEnd="10dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
     android:elevation="5dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:background="@color/darkBlue"
         android:orientation="vertical"
-        android:layout_marginEnd="20dp"
-        android:gravity="center">
+        android:gravity="start">
 
         <TextView
             android:id="@+id/text_view_starting_on"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="start"
             android:textColor="@color/white"
             android:layout_marginBottom="4dp"
             tools:text="Starting on" />
@@ -32,7 +28,7 @@
             android:id="@+id/text_view_ending_on"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="start"
             android:textColor="@color/md_grey_200"
             tools:text="Ending on" />
     </LinearLayout>
@@ -47,7 +43,8 @@
         android:layout_toEndOf="@id/linearLayout"
         android:textColor="@color/darkBlue"
         android:textFontWeight="700"
-        android:textSize="14sp"
+        android:textSize="16sp"
+        android:layout_marginStart="5dp"
         tools:text="Title" />
 
     <TextView
@@ -56,11 +53,11 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/linearLayout"
         android:textColor="@color/darkBlue"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:gravity="center"
         android:layout_below="@id/text_view_event_title"
+        android:layout_marginStart="5dp"
         android:drawableStart="@drawable/ic_baseline_location_on_24"
-        android:layout_marginBottom="10dp"
 
         tools:text="Location" />
 

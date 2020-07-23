@@ -12,15 +12,14 @@
         android:background="@color/darkBlue"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <TextView
-            android:id="@+id/text_view_page_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_chat_nav"
+            app:title="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:minHeight="?actionBarSize"
-            android:padding="@dimen/appbar_padding"
-            android:text="@string/menu_chats"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout_chats"

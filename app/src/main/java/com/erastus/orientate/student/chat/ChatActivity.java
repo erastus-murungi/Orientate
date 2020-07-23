@@ -7,7 +7,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -22,9 +22,13 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getLifecycle());
         ViewPager2 viewPager = findViewById(R.id.view_pager_chats);
+
+        Toolbar toolbar = findViewById(R.id.toolbar_chat_nav);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabLayout = findViewById(R.id.tab_layout_chats);

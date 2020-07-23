@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="darkBlue">#007FEB</color>
+    <color name="darkBlue">#4788C7</color>
     <color name="blue">#7FC4FD</color>
     <color name="midBlue">#bce0fd</color>
     <color name="lightBlue">#f1f9ff</color>
     <color name="white">#ffffff</color>
     <color name="colorPrimary">#7FC4FD</color>
-    <color name="colorPrimaryDark">#007FEB</color>
+    <color name="colorPrimaryDark">#4788C7</color>
     <color name="colorAccent">#bce0fd</color>'
 
 

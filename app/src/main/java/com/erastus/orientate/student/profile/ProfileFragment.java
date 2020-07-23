@@ -1,13 +1,11 @@
 package com.erastus.orientate.student.profile;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,9 +14,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.FragmentProfileBinding;
+import com.erastus.orientate.student.chat.ChatPreviewFragment;
 import com.erastus.orientate.student.models.Student;
+import com.erastus.orientate.utils.circularimageview.CircularImageView;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
@@ -32,6 +33,10 @@ public class ProfileFragment extends Fragment {
     private TextView mFullNameTextView;
     private FragmentProfileBinding mBinding;
     private AVLoadingIndicatorView mLoadingIndicator;
+    private CircularImageView mProfilePictureCircularImageView;
+    private Button mMessagesButton;
+    private Button mConnectionsButton;
+    private Button mInterestsEventsButton;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -42,11 +47,20 @@ public class ProfileFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         mBinding = FragmentProfileBinding.inflate(getLayoutInflater(), container, false);
         mViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        setUpImageView();
+        setUpButtons();
         setUpObservers();
         setUpToolBar();
         setUpNamesObservers();
-        inflateMiddleFragment();
         return mBinding.getRoot();
+    }
+
+    private void setUpButtons() {
+        mMessagesButton = mBinding.textViewGoToMessages;
+        mMessagesButton.setOnClickListener(view -> {
+            goToChatPreviewFragment();
+        });
+
     }
 
     private void setUpToolBar() {
@@ -64,6 +78,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        inflateMiddleFragment();
     }
 
     private void setUpObservers() {
@@ -80,6 +95,13 @@ public class ProfileFragment extends Fragment {
                 requireActivity().finish();
             }
         });
+    }
+
+    private void setUpImageView() {
+        mProfilePictureCircularImageView = mBinding.imageViewStudentProfilePicture;
+        mProfilePictureCircularImageView.setBorderColor(R.color.colorPrimaryDark);
+        mProfilePictureCircularImageView.setBorderWidth(10);
+        mProfilePictureCircularImageView.setShadow(2, 10, 10, R.color.blue_grey_300);
     }
 
     private void setUpBottomSheet() {
@@ -120,6 +142,10 @@ public class ProfileFragment extends Fragment {
             if (genericUser != null) {
                 mUsernameTextView.setText(getString(R.string.format_username,
                         genericUser.getUsername()));
+                Glide.with(requireContext())
+                        .load(genericUser.getProfileImageUrl())
+                        .placeholder(R.drawable.ic_baseline_tag_faces_24)
+                        .into(mProfilePictureCircularImageView);
             }
         });
     }
@@ -132,9 +158,23 @@ public class ProfileFragment extends Fragment {
                 .show();
     }
 
+    private void showInformationSnackBar(String errorString) {
+        Snackbar.make(mBinding.getRoot(), errorString, BaseTransientBottomBar.LENGTH_LONG)
+                .setBackgroundTint(requireContext().getColor(R.color.darkBlue))
+                .setTextColor(requireContext().getColor(android.R.color.white))
+                .show();
+    }
+
+    private void goToChatPreviewFragment() {
+        getParentFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_layout_profile,
+                        ChatPreviewFragment.newInstance())
+                .commit();
+    }
+
     private void inflateMiddleFragment() {
         // TODO if no messages inflate with the empty messages view
-//        FrameLayout layout = requireActivity().findViewById(R.id.frame_layout_profile);
-//        getLayoutInflater().inflate(R.id.empty_message, layout, false);
+        goToChatPreviewFragment();
     }
 }

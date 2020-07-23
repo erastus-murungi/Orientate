@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginBottom="100dp"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/relative_layout_no_messages"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/empty_image_dummy"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_icon"
+            android:contentDescription="@string/app_logo" />
+
+        <TextView
+            android:id="@+id/text_view_oops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ops"
+            android:textSize="20sp"
+            android:contentDescription="@string/app_logo" />
+
+        <TextView
+            android:id="@+id/empty_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/no_messages"
+            android:layout_marginBottom="30dp"/>
+
+        <Button
+            android:id="@+id/button_go_to_chats"
+            android:layout_width="300dp"
+            android:padding="8dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@string/go_to_chats"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_continue_background"
+            />
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

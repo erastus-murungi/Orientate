@@ -206,6 +206,8 @@
     <string name="ops">Oops…</string>
     <string name="icon_animation">Icon Animation</string>
     <string name="hop_on_the_orient">Hop on the orient...</string>
+    <string name="app_logo">App Logo</string>
+    <string name="go_to_chats">Go To Chats</string>
 
 
 </resources>

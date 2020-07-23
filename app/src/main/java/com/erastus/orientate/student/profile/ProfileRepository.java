@@ -41,9 +41,9 @@ public class ProfileRepository {
         query.whereEqualTo(Student.KEY_USER, ParseUser.getCurrentUser());
         query.getFirstInBackground((object, e) -> {
             if (e == null) {
-                mStudentDataState.setValue(new DataState.Success<>(object));
+                mStudentDataState.postValue(new DataState.Success<>(object));
             } else {
-                mStudentDataState.setValue(new DataState.Error(e));
+                mStudentDataState.postValue(new DataState.Error(e));
             }
         });
     }

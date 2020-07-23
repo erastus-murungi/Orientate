@@ -79,8 +79,6 @@ public class ProfileViewModel extends ViewModel {
             case LOG_OUT:
                 // notify the main activity to end
                 mShouldLogOut.setValue(true);
-                mShouldLogOut.postValue(true);
-
                 logout();
 
                 break;

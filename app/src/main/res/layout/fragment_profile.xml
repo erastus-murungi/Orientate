@@ -13,13 +13,18 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
+        <com.erastus.orientate.utils.circularimageview.CircularImageView
             android:id="@+id/image_view_student_profile_picture"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="12dp"
-            android:src="@drawable/ic_baseline_tag_faces_24" />
+            android:src="@drawable/ic_baseline_tag_faces_24"
+            app:civ_border="true"
+            app:civ_borderColor="@color/colorPrimaryDark"
+            app:civ_borderWidth="4dp"
+
+            />
 
 
         <RelativeLayout
@@ -71,7 +76,8 @@
         android:layout_below="@id/divider_top"
         android:orientation="horizontal">
 
-        <TextView
+        <Button
+            android:id="@+id/text_view_go_to_messages"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -87,7 +93,7 @@
             android:layout_marginBottom="3dp"
             android:background="?android:attr/listDivider" />
 
-        <TextView
+        <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -102,7 +108,7 @@
             android:layout_marginBottom="3dp"
             android:background="?android:attr/listDivider" />
 
-        <TextView
+        <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
