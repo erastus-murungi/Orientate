@@ -1,5 +1,6 @@
 package com.erastus.orientate.student.navigation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.student.chat.ChatActivity;
 import com.erastus.orientate.databinding.ActivityStudentNavBinding;
 import com.erastus.orientate.student.announcements.AnnouncementFragment;
 import com.erastus.orientate.student.event.EventFragment;
@@ -85,6 +87,10 @@ public class StudentNavActivity extends AppCompatActivity {
 
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the fragment to show based on nav item clicked
+        if (menuItem.getItemId() == R.id.nav_student_chats) {
+            startActivity(new Intent(this, ChatActivity.class));
+            return;
+        }
         Fragment fragment = null;
         Class<? extends Fragment> fragmentClass;
         switch (menuItem.getItemId()) {

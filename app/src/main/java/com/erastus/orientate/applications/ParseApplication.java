@@ -3,6 +3,7 @@ package com.erastus.orientate.applications;
 import android.app.Application;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
 import com.erastus.orientate.institution.models.Institution;
 import com.erastus.orientate.models.GenericUser;
 import com.erastus.orientate.student.announcements.models.Announcement;
@@ -27,6 +28,7 @@ public class ParseApplication extends Application {
         ParseObject.registerSubclass(Institution.class);
         ParseObject.registerSubclass(Event.class);
         ParseObject.registerSubclass(Student.class);
+        ParseObject.registerSubclass(ChatMessage.class);
 
 
         //TODO only for troubleshooting -- remove this line for production
@@ -43,6 +45,5 @@ public class ParseApplication extends Application {
                 .clientBuilder(builder)
                 .clientKey(getString(R.string.MasterKey))
                 .server(SERVER_URL).build());
-
     }
 }

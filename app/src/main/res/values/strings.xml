@@ -199,5 +199,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="log_in_sign_up">Log in / Sign Up</string>
     <string name="log_in">Log in</string>
+    <string name="title_activity_chat">ChatActivity</string>
 
 </resources>

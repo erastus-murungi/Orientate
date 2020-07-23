@@ -36,6 +36,7 @@ public class StudentLoginActivity extends AppCompatActivity {
         // no need for login in again
         if (ParseUser.getCurrentUser() != null) {
             goToStudentNavActivity();
+            finish();
         }
 
         activityStudentLoginBinding = ActivityStudentLoginBinding.inflate(getLayoutInflater());
@@ -128,6 +129,7 @@ public class StudentLoginActivity extends AppCompatActivity {
             loginButtonProgress.buttonActivated();
             mLoginViewModel.login(usernameTextInputLayout.getEditText().getText().toString(),
                     passwordTextInputLayout.getEditText().getText().toString());
+            Utils.forceHide(this, usernameTextInputLayout.getEditText());
         });
     }
 
@@ -145,7 +147,7 @@ public class StudentLoginActivity extends AppCompatActivity {
 
 
 
-    private class LoginButtonProgress {
+    private static class LoginButtonProgress {
         private ProgressBar mProgressBar;
         private MaterialTextView mTextView;
 
@@ -163,5 +165,12 @@ public class StudentLoginActivity extends AppCompatActivity {
             mProgressBar.setVisibility(View.VISIBLE);
             mTextView.setText(R.string.login_in);
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

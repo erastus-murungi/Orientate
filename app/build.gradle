@@ -34,6 +34,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src/main/res', 'src/main/res/layouts/chats'
+            }
+        }
+    }
 }
 
 ext {
@@ -78,6 +85,8 @@ dependencies {
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.3.1"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.3.1"
+
+    implementation 'com.github.parse-community:ParseLiveQuery-Android:1.2.1'
 
     implementation 'org.jsoup:jsoup:1.10.3'
 

@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.parse-community:ParseLiveQuery-Android:1.2.1@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f801c39f7c6aa0978111691a80bf0b6d/jetified-ParseLiveQuery-Android-1.2.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f801c39f7c6aa0978111691a80bf0b6d/jetified-ParseLiveQuery-Android-1.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f801c39f7c6aa0978111691a80bf0b6d/jetified-ParseLiveQuery-Android-1.2.1/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.parse-community/ParseLiveQuery-Android/1.2.1/846b15988997b57c99a2cd579420fb66c779861b/ParseLiveQuery-Android-1.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.parse-community/ParseLiveQuery-Android/1.2.1/f3802a3801d13a9fc490fbe60e0399d7fd373b76/ParseLiveQuery-Android-1.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

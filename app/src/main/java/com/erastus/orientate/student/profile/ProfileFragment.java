@@ -11,14 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.FragmentProfileBinding;
-import com.erastus.orientate.models.GenericUser;
 import com.erastus.orientate.student.models.Student;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class ProfileFragment extends Fragment {
     private static final String TAG = "ProfileFragment";
@@ -69,6 +69,7 @@ public class ProfileFragment extends Fragment {
             }
             if (shouldLogOut) {
                 Log.d(TAG, "setUpObservers: logout");
+                showErrorSnackBar("You have been logged out");
 
                 mBottomSheet.dismiss();
 
@@ -106,6 +107,7 @@ public class ProfileFragment extends Fragment {
             }
             if (studentSimpleState.getErrorMessage() != null) {
                 Log.e(TAG, "setUpNamesObservers: " + studentSimpleState.getErrorMessage());
+                showErrorSnackBar(studentSimpleState.getErrorMessage());
                 mLoadingIndicator.hide();
             }
         });
@@ -116,5 +118,13 @@ public class ProfileFragment extends Fragment {
                         genericUser.getUsername()));
             }
         });
+    }
+
+
+    private void showErrorSnackBar(String errorString) {
+        Snackbar.make(mBinding.getRoot(), errorString, BaseTransientBottomBar.LENGTH_LONG)
+                .setBackgroundTint(requireContext().getColor(R.color.darkBlue))
+                .setTextColor(requireContext().getColor(android.R.color.holo_red_light))
+                .show();
     }
 }

@@ -5,10 +5,16 @@ import android.annotation.SuppressLint;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+
+import com.erastus.orientate.student.login.StudentLoginActivity;
+import com.erastus.orientate.student.signup.StudentSignUpActivity;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -32,7 +38,7 @@ public class SplashScreen extends AppCompatActivity {
      * and a change of the status and navigation bar.
      */
     private static final int UI_ANIMATION_DELAY = 300;
-    private final Handler mHideHandler = new Handler();
+    private final Handler mHideHandler = new Handler(Looper.getMainLooper());
     private View mContentView;
     private final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
@@ -102,9 +108,15 @@ public class SplashScreen extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.button_login_from_splash).setOnTouchListener(mDelayHideTouchListener);
+        Button logInButton = (Button) findViewById(R.id.button_login_from_splash);
+        Button signUpButton = (Button) findViewById(R.id.button_sign_up_from_splash);
         findViewById(R.id.button_sign_up_from_splash).setOnTouchListener(mDelayHideTouchListener);
-
+        logInButton.setOnTouchListener(mDelayHideTouchListener);
+        logInButton.setOnClickListener(view ->
+                startActivity(new Intent(view.getContext(), StudentLoginActivity.class)));
+        signUpButton.setOnTouchListener(mDelayHideTouchListener);
+        signUpButton.setOnClickListener(view -> startActivity(new Intent(view.getContext(),
+                StudentSignUpActivity.class)));
     }
 
     @Override
