@@ -118,7 +118,14 @@
         android:layout_height="1dp"
         android:layout_below="@id/linear_layout_options"
         android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"
         android:background="?android:attr/listDivider" />
+
+    <FrameLayout
+        android:id="@+id/frame_layout_profile"
+        android:layout_below="@id/divider_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 
 </RelativeLayout>

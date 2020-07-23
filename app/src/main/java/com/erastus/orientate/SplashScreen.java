@@ -112,7 +112,8 @@ public class SplashScreen extends AppCompatActivity {
         setLogoRotationAnimation(findViewById(R.id.image_view_app_logo));
 
         // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(view -> toggle());
+//        mContentView.setOnClickListener(view -> toggle());
+        findViewById(R.id.frame_layout_splash).setOnClickListener(view -> toggle());
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
@@ -187,7 +188,7 @@ public class SplashScreen extends AppCompatActivity {
                 Animation.RELATIVE_TO_SELF, 0.5f
         );
 
-        rotate.setDuration(1800);
+        rotate.setDuration(3600);
         rotate.setRepeatCount(Animation.INFINITE);
         rotate.setStartOffset(1000);
         imageView.startAnimation(rotate);

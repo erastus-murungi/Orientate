@@ -24,7 +24,7 @@
         <activity
             android:name=".student.chat.ChatActivity"
             android:label="@string/title_activity_chat"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <!-- <activity android:name=".student.web.WebActivity" /> -->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -36,6 +36,10 @@
         -->
         <activity
             android:name=".student.navigation.StudentNavActivity"
+            android:label="" />
+
+        <activity
+            android:name=".utils.AppRestart"
             android:label="" />
 
         <meta-data

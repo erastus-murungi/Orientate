@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Orientate</string>
+    <string name="app_name">Orient</string>
     <string name="create_an_account">Create an Account</string>
     <string name="_continue">CONTINUE</string>
     <string name="title_activity_main">MainActivity</string>
@@ -205,6 +205,7 @@
     <string name="no_messages">There are no messages here!</string>
     <string name="ops">Oops…</string>
     <string name="icon_animation">Icon Animation</string>
+    <string name="hop_on_the_orient">Hop on the orient...</string>
 
 
 </resources>

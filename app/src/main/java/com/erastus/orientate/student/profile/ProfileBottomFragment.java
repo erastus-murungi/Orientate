@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,6 +18,7 @@ import com.erastus.orientate.R;
 import com.erastus.orientate.SplashScreen;
 import com.erastus.orientate.student.login.StudentLoginActivity;
 import com.erastus.orientate.student.signup.StudentSignUpActivity;
+import com.erastus.orientate.utils.AppRestart;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.parse.ParseUser;
 
@@ -52,7 +54,8 @@ public class ProfileBottomFragment extends BottomSheetDialogFragment {
         mLogOutTextView.setOnClickListener(view -> {
                     mProfileViewModel.notifyEventOptionSelected(ProfileOption.LOG_OUT);
                     dismiss();
-                    goToLoginActivity();});
+            AppRestart.triggerRebirth(getContext());
+        });
         mAboutTextView.setOnClickListener(view ->
                 mProfileViewModel.notifyEventOptionSelected(ProfileOption.ABOUT));
         mEditProfileTextView.setOnClickListener(view ->

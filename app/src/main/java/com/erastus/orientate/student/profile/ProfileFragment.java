@@ -1,10 +1,13 @@
 package com.erastus.orientate.student.profile;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,6 +45,7 @@ public class ProfileFragment extends Fragment {
         setUpObservers();
         setUpToolBar();
         setUpNamesObservers();
+        inflateMiddleFragment();
         return mBinding.getRoot();
     }
 
@@ -126,5 +130,11 @@ public class ProfileFragment extends Fragment {
                 .setBackgroundTint(requireContext().getColor(R.color.darkBlue))
                 .setTextColor(requireContext().getColor(android.R.color.holo_red_light))
                 .show();
+    }
+
+    private void inflateMiddleFragment() {
+        // TODO if no messages inflate with the empty messages view
+//        FrameLayout layout = requireActivity().findViewById(R.id.frame_layout_profile);
+//        getLayoutInflater().inflate(R.id.empty_message, layout, false);
     }
 }

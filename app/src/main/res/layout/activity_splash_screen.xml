@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_layout_splash"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash_background"
@@ -9,31 +10,40 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+<!--    <TextView-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:id="@+id/text_view_app_name"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:gravity="center"-->
+<!--        android:keepScreenOn="true"-->
+<!--        android:text="@string/app_name"-->
+<!--        android:textColor="@color/darkBlue"-->
+<!--        android:textSize="50sp"-->
+<!--        android:textAllCaps="true"-->
+<!--        android:textStyle="bold" />-->
+
     <TextView
-        android:layout_marginTop="20dp"
-        android:id="@+id/text_view_app_name"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/darkBlue"
+        android:textSize="14sp"
+        android:text="@string/hop_on_the_orient"
+        />
 
     <ImageView
-        android:layout_marginTop="0dp"
         android:id="@+id/image_view_app_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="80dp"
         android:keepScreenOn="true"
         android:src="@drawable/ic_icon"
         android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold"
+        android:elevation="20dp"
         android:contentDescription="@string/icon_animation" />
 
     <!-- This FrameLayout insets its children based on system windows using
@@ -43,14 +53,11 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
-            style="?metaButtonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
@@ -60,6 +67,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="@color/darkBlue"
                 android:text="@string/log_in" />
 
 
@@ -76,6 +85,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="@color/darkBlue"
                 android:text="@string/sign_up" />
 
         </LinearLayout>
