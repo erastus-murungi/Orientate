@@ -41,11 +41,8 @@ public class StudentSignUpActivity extends AppCompatActivity {
 
         FloatingActionButton fab = signUpBinding.fab;
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //
-            }
+        fab.setOnClickListener(view -> {
+            //
         });
 
         WormDotsIndicator wormDotsIndicator = signUpBinding.wormDotSignUp;

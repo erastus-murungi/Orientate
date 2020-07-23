@@ -18,7 +18,7 @@ public class AnnouncementDiffUtilCallback extends DiffUtil.Callback {
 
     @Override
     public int getOldListSize() {
-        return previous.size();
+        return previous == null ? 0 : previous.size();
     }
 
     @Override

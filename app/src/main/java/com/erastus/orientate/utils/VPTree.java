@@ -55,7 +55,7 @@ public class VPTree<T, R extends Comparable<R>> {
     }
 
 
-    VPTree<T, R> selectVantagePoint() {
+    T selectVantagePoint() {
         return null;
     }
 

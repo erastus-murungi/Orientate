@@ -8,9 +8,9 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import com.erastus.orientate.student.announcements.models.Announcement;
-import com.erastus.orientate.student.announcements.models.AnnouncementRequestResult;
 import com.erastus.orientate.student.announcements.models.LocalAnnouncement;
 import com.erastus.orientate.student.models.DataState;
+import com.erastus.orientate.student.models.SimpleState;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class AnnouncementViewModel extends ViewModel {
     private AnnouncementRepository mAnnouncementRepository;
 
     @Nullable
-    private LiveData<AnnouncementRequestResult> mAnnouncementState;
+    private LiveData<SimpleState<LocalAnnouncement>> mAnnouncementState;
 
     private LiveData<List<LocalAnnouncement>> mAnnouncements;
 
@@ -35,9 +35,9 @@ public class AnnouncementViewModel extends ViewModel {
 
         this.mAnnouncementState = Transformations.switchMap(announcementRequestState, dataState -> {
             if (dataState instanceof DataState.Success) {
-                return new MutableLiveData<>(new AnnouncementRequestResult(false));
+                return new MutableLiveData<>(new SimpleState<>(false));
             } else if (dataState instanceof DataState.Error) {
-                return new MutableLiveData<>(new AnnouncementRequestResult(
+                return new MutableLiveData<>(new SimpleState<>(
                         ((DataState.Error) dataState).getError().getMessage()
                 ));
             }
@@ -51,7 +51,7 @@ public class AnnouncementViewModel extends ViewModel {
     }
 
     @NonNull
-    public LiveData<AnnouncementRequestResult> getState() {
+    public LiveData<SimpleState<LocalAnnouncement>> getState() {
         assert mAnnouncementState != null;
         return mAnnouncementState;
     }

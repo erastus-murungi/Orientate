@@ -47,10 +47,10 @@ public class AnnouncementRepository {
         query.findInBackground((announcements, e) -> {
 //            mState.setValue(new DataState.Error(new Exception("Fake Exception")));
             if (e == null) {
-                mDataSet.setValue(announcements);
-                mState.setValue(new DataState.Success<>(announcements));
+                mDataSet.postValue(announcements);
+                mState.postValue(new DataState.Success<>(announcements));
             } else {
-                mState.setValue(new DataState.Error(e));
+                mState.postValue(new DataState.Error(e));
             }
         });
     }

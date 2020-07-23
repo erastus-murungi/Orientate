@@ -40,6 +40,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                 DiffUtil.calculateDiff(
                         new AnnouncementDiffUtilCallback(mAnnouncements, newAnnouncements));
         diffResult.dispatchUpdatesTo(this);
+        mAnnouncements = newAnnouncements;
     }
 
     @NonNull

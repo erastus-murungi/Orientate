@@ -11,10 +11,14 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.erastus.orientate.student.login.StudentLoginActivity;
 import com.erastus.orientate.student.signup.StudentSignUpActivity;
+import com.parse.ParseUser;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -96,11 +100,16 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (ParseUser.getCurrentUser() != null) {
+            startActivity(new Intent(this, StudentLoginActivity.class));
+        }
+
         setContentView(R.layout.activity_splash_screen);
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.text_view_fullscreen_content);
+        mContentView = findViewById(R.id.image_view_app_logo);
+        setLogoRotationAnimation(findViewById(R.id.image_view_app_logo));
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(view -> toggle());
@@ -169,5 +178,18 @@ public class SplashScreen extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    private void setLogoRotationAnimation(ImageView imageView) {
+        RotateAnimation rotate = new RotateAnimation(
+                0, 360,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF, 0.5f
+        );
+
+        rotate.setDuration(1800);
+        rotate.setRepeatCount(Animation.INFINITE);
+        rotate.setStartOffset(1000);
+        imageView.startAnimation(rotate);
     }
 }

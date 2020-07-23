@@ -16,11 +16,11 @@ public class MedianLowFinder<Item extends Comparable<Item>> {
             throw new IndexOutOfBoundsException();
         }
         int mid = n >> 1;
-        return quickSelect(items, 0, items.size(), mid);
+        return quickSelect(items, 0, items.size() - 1, mid);
     }
 
     public Item quickSelect(@NonNull List<Item> items, int lo, int hi, int k) {
-        while ((hi - lo) > 0) {
+        while ((hi - lo) >= 0) {
             partition(items, lo, hi);
             if (k < info.nLows) {
                 hi = info.nLows - 1;
@@ -41,7 +41,7 @@ public class MedianLowFinder<Item extends Comparable<Item>> {
     }
 
     public int randomPivotSelector(int lo, int hi) {
-        return lo + ThreadLocalRandom.current().nextInt(hi - lo);
+        return lo + ThreadLocalRandom.current().nextInt(hi - lo + 1);
     }
 
     void partition(@NonNull List<Item> items, int lo, int hi) {

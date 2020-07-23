@@ -201,4 +201,10 @@
     <string name="log_in">Log in</string>
     <string name="title_activity_chat">ChatActivity</string>
 
+    <string name="chats">Chats</string>
+    <string name="no_messages">There are no messages here!</string>
+    <string name="ops">Oops…</string>
+    <string name="icon_animation">Icon Animation</string>
+
+
 </resources>

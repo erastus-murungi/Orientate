@@ -3,22 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/lightBlue"
     tools:context=".student.announcements.AnnouncementFragment">
+
+    <com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView
+        android:id="@+id/progress_bar_announcements"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:indicatorColor="@color/darkBlue"
+        android:layout_centerInParent="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_announcement"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <ProgressBar
-        android:id="@+id/progress_bar_announcements"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateTint="@color/darkBlue"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:minHeight="30dp"
-        android:minWidth="30dp" />
 
 </RelativeLayout>

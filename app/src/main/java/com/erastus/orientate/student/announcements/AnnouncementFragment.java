@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.AnnouncementFragmentBinding;
 import com.erastus.orientate.student.announcements.adapter.AnnouncementAdapter;
+import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -28,7 +29,7 @@ public class AnnouncementFragment extends Fragment {
     private RecyclerView mAnnouncementRecyclerView;
     private AnnouncementFragmentBinding mBinding;
     private AnnouncementAdapter mAdapter;
-    private ProgressBar mProgressBar;
+    private AVLoadingIndicatorView mProgressBar;
 
     public AnnouncementFragment() {
     }
@@ -57,7 +58,6 @@ public class AnnouncementFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setUpObservers();
-        mAdapter.notifyDataSetChanged();
     }
 
     private void initRecyclerView() {
@@ -70,21 +70,21 @@ public class AnnouncementFragment extends Fragment {
 
         mViewModel.getAnnouncements().observe(getViewLifecycleOwner(), localAnnouncements -> {
             mAdapter.onNewProducts(localAnnouncements);
-            mAdapter.notifyDataSetChanged();
             mProgressBar.setVisibility(View.GONE);
         });
 
         mViewModel.getState().observe(getViewLifecycleOwner(), announcementState -> {
             if (announcementState == null) {
+                mProgressBar.hide();
                 return;
             }
             if (announcementState.isLoading()) {
-                mProgressBar.setVisibility(View.VISIBLE);
+                mProgressBar.show();
             } else if (announcementState.getErrorMessage() != null) {
-                mProgressBar.setVisibility(View.GONE);
+                mProgressBar.hide();
                 promptReloadWithSnackBar(announcementState.getErrorMessage());
             } else {
-                mProgressBar.setVisibility(View.GONE);
+                mProgressBar.hide();
             }
         });
     }
