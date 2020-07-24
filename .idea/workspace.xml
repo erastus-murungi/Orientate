@@ -14,20 +14,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d08affa-353e-44e0-82f1-d083825d8189" name="Default Changelist" comment="Wrote a new SimpleState&lt;T&gt; class to convey data to the UI. Fixed bugs on the User Profile Page.">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_afollestad_material_dialogs_core_0_9_6_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__me_zhanghai_android_materialprogressbar_library_1_4_2_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatInfoFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatInfoViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ParentFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/UserAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/EndlessRecyclerViewScrollListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_chat_info.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_conv_date.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/users/layout/item_user.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_chat_info.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/conversations/ConversationFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/conversations/ConversationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/conversations/ConversationViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/conversations/MyConversationRecyclerViewAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/conversations/models/DummyContent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/customindicators/BallSpinFadeLoaderIndicator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_conversation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_conversation_item_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -38,27 +32,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/applications/ParseApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/applications/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/models/GenericUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/models/GenericUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/applications/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/applications/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/ChatActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/ChatActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatMessageHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatMessageHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatInfoFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatInfoFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatMessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatMessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/models/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/models/ChatMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/models/MessageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/models/MessageType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/eventdetail/EventDetailsViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/event/eventdetail/EventDetailsViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/models/DataState.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/models/DataState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/DateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/DateUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/UserAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/UserAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/models/Conversation.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/conversations/models/Conversation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/ui/main/SectionsPagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/ui/main/SectionsPagerAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,6 +159,9 @@
     <key name="android.template.-963803587">
       <recent name="com.erastus.orientate.institution.navigation" />
       <recent name="com.erastus.orientate.student.dashboard" />
+    </key>
+    <key name="android.template.-1431436046">
+      <recent name="com.erastus.orientate.student.chat.conversations" />
     </key>
     <key name="android.template.1431952089">
       <recent name="com.erastus.orientate" />
@@ -460,7 +446,7 @@
       <screen x="0" y="23" width="1792" height="1031" />
     </state>
     <state x="673" y="247" key="Github.UntrackedFilesDialog/0.23.1792.1031@0.23.1792.1031" timestamp="1594313168601" />
-    <state width="1750" height="659" key="GridCell.Tab.0.bottom" timestamp="1595560598863">
+    <state width="1750" height="659" key="GridCell.Tab.0.bottom" timestamp="1595561945732">
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647712" />
@@ -470,8 +456,8 @@
     <state width="1750" height="300" key="GridCell.Tab.0.bottom/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826970" />
     <state width="1750" height="338" key="GridCell.Tab.0.bottom/0.23.1792.1026@0.23.1792.1026" timestamp="1595486981916" />
     <state width="1750" height="659" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
-    <state width="1750" height="659" key="GridCell.Tab.0.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1595560598863" />
-    <state width="1750" height="659" key="GridCell.Tab.0.center" timestamp="1595560598862">
+    <state width="1750" height="659" key="GridCell.Tab.0.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1595561945732" />
+    <state width="1750" height="659" key="GridCell.Tab.0.center" timestamp="1595561945732">
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647710" />
@@ -481,8 +467,8 @@
     <state width="1750" height="300" key="GridCell.Tab.0.center/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826969" />
     <state width="1750" height="338" key="GridCell.Tab.0.center/0.23.1792.1026@0.23.1792.1026" timestamp="1595486981916" />
     <state width="1750" height="659" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
-    <state width="1750" height="659" key="GridCell.Tab.0.center/0.23.1792.1030@0.23.1792.1030" timestamp="1595560598862" />
-    <state width="1750" height="659" key="GridCell.Tab.0.left" timestamp="1595560598862">
+    <state width="1750" height="659" key="GridCell.Tab.0.center/0.23.1792.1030@0.23.1792.1030" timestamp="1595561945732" />
+    <state width="1750" height="659" key="GridCell.Tab.0.left" timestamp="1595561945731">
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647709" />
@@ -492,8 +478,8 @@
     <state width="1750" height="300" key="GridCell.Tab.0.left/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826969" />
     <state width="1750" height="338" key="GridCell.Tab.0.left/0.23.1792.1026@0.23.1792.1026" timestamp="1595486981915" />
     <state width="1750" height="659" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
-    <state width="1750" height="659" key="GridCell.Tab.0.left/0.23.1792.1030@0.23.1792.1030" timestamp="1595560598862" />
-    <state width="1750" height="659" key="GridCell.Tab.0.right" timestamp="1595560598862">
+    <state width="1750" height="659" key="GridCell.Tab.0.left/0.23.1792.1030@0.23.1792.1030" timestamp="1595561945731" />
+    <state width="1750" height="659" key="GridCell.Tab.0.right" timestamp="1595561945732">
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
     <state width="1750" height="609" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1594984647711" />
@@ -503,7 +489,7 @@
     <state width="1750" height="300" key="GridCell.Tab.0.right/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826970" />
     <state width="1750" height="338" key="GridCell.Tab.0.right/0.23.1792.1026@0.23.1792.1026" timestamp="1595486981916" />
     <state width="1750" height="659" key="GridCell.Tab.0.right/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
-    <state width="1750" height="659" key="GridCell.Tab.0.right/0.23.1792.1030@0.23.1792.1030" timestamp="1595560598862" />
+    <state width="1750" height="659" key="GridCell.Tab.0.right/0.23.1792.1030@0.23.1792.1030" timestamp="1595561945732" />
     <state width="1750" height="467" key="GridCell.Tab.1.bottom" timestamp="1595506312786">
       <screen x="0" y="23" width="1792" height="1028" />
     </state>

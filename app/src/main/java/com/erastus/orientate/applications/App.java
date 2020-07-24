@@ -7,7 +7,7 @@ import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
 import com.erastus.orientate.institution.models.Institution;
 import com.erastus.orientate.models.GenericUser;
 import com.erastus.orientate.student.announcements.models.Announcement;
-import com.erastus.orientate.student.chat.models.Conversation;
+import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.student.event.models.Event;
 import com.erastus.orientate.student.models.Student;
 import com.parse.Parse;

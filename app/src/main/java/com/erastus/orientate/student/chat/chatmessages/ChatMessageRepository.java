@@ -1,15 +1,11 @@
 package com.erastus.orientate.student.chat.chatmessages;
 
-import android.widget.ArrayAdapter;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
-import com.erastus.orientate.student.chat.models.Conversation;
+import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.student.models.DataState;
-import com.parse.FindCallback;
-import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.livequery.ParseLiveQueryClient;
 import com.parse.livequery.SubscriptionHandling;

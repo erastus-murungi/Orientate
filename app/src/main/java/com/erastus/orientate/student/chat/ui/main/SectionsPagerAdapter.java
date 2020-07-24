@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.student.chat.conversations.ConversationFragment;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +31,9 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
+        if (position == 0) {
+            return ConversationFragment.newInstance(1);
+        }
         return PlaceholderFragment.newInstance(position + 1);
     }
 

@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.erastus.orientate.R;
 import com.erastus.orientate.models.GenericUser;
-import com.erastus.orientate.student.chat.models.Conversation;
+import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.utils.EmptyView;
 
 import org.parceler.Parcels;
