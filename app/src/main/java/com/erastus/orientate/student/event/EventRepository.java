@@ -1,22 +1,14 @@
 package com.erastus.orientate.student.event;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.erastus.orientate.student.event.models.Event;
 import com.erastus.orientate.student.models.DataState;
-import com.erastus.orientate.utils.DateUtils;
 import com.parse.ParseQuery;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 public class EventRepository {

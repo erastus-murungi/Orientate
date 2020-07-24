@@ -52,6 +52,10 @@ public class DateUtils {
         return relativeDate;
     }
 
+    public static String getRelativeTimeAgo(Date date) {
+        return getRelativeTimeAgo(localDateTimeFromDate(date));
+    }
+
     public static String getTimeAmPm(LocalDateTime time) {
         //Displaying current time in 12 hour format with AM/PM
         SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm aa", Locale.getDefault());

@@ -1,19 +1,27 @@
 package com.erastus.orientate.student.chat.conversations;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.StringRes;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.erastus.orientate.R;
-import com.erastus.orientate.student.chat.conversations.models.DummyContent;
+import com.erastus.orientate.databinding.FragmentConversationBinding;
+import com.erastus.orientate.student.chat.conversations.models.Conversation;
+import com.erastus.orientate.utils.EmptyView;
+import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -24,6 +32,13 @@ public class ConversationFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+
+    private FragmentConversationBinding mBinding;
+    private RecyclerView mRecyclerView;
+    private EmptyView mEmptyView;
+    private AVLoadingIndicatorView mLoadingIndicator;
+    private ConversationViewModel mViewModel;
+    private ConversationAdapter mAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -54,19 +69,69 @@ public class ConversationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_conversation_item_list, container, false);
+
+        mBinding = FragmentConversationBinding.inflate(getLayoutInflater(), container, false);
+        mViewModel = new ViewModelProvider(this).get(ConversationViewModel.class);
+        mRecyclerView = mBinding.recyclerViewConversations;
+        mEmptyView = mBinding.emptyViewNoConversations;
+        mLoadingIndicator = mBinding.avLoadingConversations;
+        mLoadingIndicator.show();
+        setUpRecyclerView();
+        setUpObservers();
+        return mBinding.getRoot();
+    }
+
+    private void setUpObservers() {
+        mViewModel.getState().observe(getViewLifecycleOwner(), listSimpleState -> {
+            if (!listSimpleState.isLoading()) {
+                mLoadingIndicator.hide();
+            }
+            mLoadingIndicator.hide();
+            if (listSimpleState.getErrorMessage() != null) {
+                showErrorSnackBar(listSimpleState.getErrorMessage());
+            }
+            if (listSimpleState.getErrorCode() != null) {
+                showErrorSnackBar(listSimpleState.getErrorCode());
+            }
+            if (listSimpleState.getData() != null) {
+                if (listSimpleState.getData() == null || listSimpleState.getData().size() == 0) {
+                    mEmptyView.setVisibility(View.VISIBLE);
+                } else {
+                    notifyRecyclerViewer(listSimpleState.getData());
+                }
+            }
+        });
+    }
+
+    private void notifyRecyclerViewer(List<Conversation> data) {
+        mAdapter.update(data);
+    }
+
+    private void showErrorSnackBar(String errorString) {
+        Snackbar.make(mBinding.getRoot(), errorString, BaseTransientBottomBar.LENGTH_LONG)
+                .setBackgroundTint(requireContext().getColor(R.color.darkBlue))
+                .setTextColor(requireContext().getColor(android.R.color.holo_red_light))
+                .show();
+    }
+
+    private void showErrorSnackBar(@StringRes Integer errorCode) {
+        Snackbar.make(mBinding.getRoot(), errorCode, BaseTransientBottomBar.LENGTH_LONG)
+                .setBackgroundTint(requireContext().getColor(R.color.darkBlue))
+                .setTextColor(requireContext().getColor(android.R.color.holo_red_light))
+                .show();
+    }
+
+    private void setUpRecyclerView() {
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new MyConversationRecyclerViewAdapter(DummyContent.ITEMS));
+        mAdapter = new ConversationAdapter(getContext(), new ArrayList<>());
+        if (mColumnCount <= 1) {
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        } else {
+            mRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), mColumnCount));
         }
-        return view;
+        mRecyclerView.setAdapter(mAdapter);
+
     }
+
 }

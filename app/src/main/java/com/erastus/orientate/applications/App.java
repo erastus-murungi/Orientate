@@ -23,7 +23,9 @@ public class App extends Application {
     private ParseUser mCurrentUser;
 
     public ParseUser getCurrentUser() {
-        mCurrentUser = ParseUser.getCurrentUser();
+        if (mCurrentUser == null) {
+            mCurrentUser = ParseUser.getCurrentUser();
+        }
         return mCurrentUser;
     }
 

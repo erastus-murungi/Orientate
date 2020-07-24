@@ -17,12 +17,14 @@ import android.view.animation.AnimationUtils;
 
 import com.erastus.orientate.R;
 
+import org.jetbrains.annotations.NotNull;
+
 
 public class AVLoadingIndicatorView extends View {
 
     private static final String TAG = "AVLoadingIndicatorView";
 
-    private static final BallPulseSyncIndicator DEFAULT_INDICATOR = new BallPulseSyncIndicator();
+    private static final LineSpinFadeLoaderIndicator DEFAULT_INDICATOR = new LineSpinFadeLoaderIndicator();
 
     private static final int MIN_SHOW_TIME = 500; // ms
     private static final int MIN_DELAY = 500; // ms
@@ -35,25 +37,17 @@ public class AVLoadingIndicatorView extends View {
 
     private boolean mDismissed = false;
 
-    private final Runnable mDelayedHide = new Runnable() {
-
-        @Override
-        public void run() {
-            mPostedHide = false;
-            mStartTime = -1;
-            setVisibility(View.GONE);
-        }
+    private final Runnable mDelayedHide = () -> {
+        mPostedHide = false;
+        mStartTime = -1;
+        setVisibility(View.GONE);
     };
 
-    private final Runnable mDelayedShow = new Runnable() {
-
-        @Override
-        public void run() {
-            mPostedShow = false;
-            if (!mDismissed) {
-                mStartTime = System.currentTimeMillis();
-                setVisibility(View.VISIBLE);
-            }
+    private final Runnable mDelayedShow = () -> {
+        mPostedShow = false;
+        if (!mDismissed) {
+            mStartTime = System.currentTimeMillis();
+            setVisibility(View.VISIBLE);
         }
     };
 
@@ -178,9 +172,7 @@ public class AVLoadingIndicatorView extends View {
             setIndicator(indicator);
         } catch (ClassNotFoundException e) {
             Log.e(TAG, "Didn't find your class , check the name again !");
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
@@ -237,14 +229,14 @@ public class AVLoadingIndicatorView extends View {
             return;
         }
 
-        if (mIndicator instanceof Animatable) {
+        if (mIndicator != null) {
             mShouldStartAnimationDrawable = true;
         }
         postInvalidate();
     }
 
     void stopAnimation() {
-        if (mIndicator instanceof Animatable) {
+        if (mIndicator != null) {
             mIndicator.stop();
             mShouldStartAnimationDrawable = false;
         }
@@ -264,7 +256,7 @@ public class AVLoadingIndicatorView extends View {
     }
 
     @Override
-    protected void onVisibilityChanged(View changedView, int visibility) {
+    protected void onVisibilityChanged(@NotNull View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
         if (visibility == GONE || visibility == INVISIBLE) {
             stopAnimation();
@@ -274,7 +266,7 @@ public class AVLoadingIndicatorView extends View {
     }
 
     @Override
-    public void invalidateDrawable(Drawable dr) {
+    public void invalidateDrawable(@NotNull Drawable dr) {
         if (verifyDrawable(dr)) {
             final Rect dirty = dr.getBounds();
             final int scrollX = getScrollX() + getPaddingLeft();
@@ -345,7 +337,7 @@ public class AVLoadingIndicatorView extends View {
             d.draw(canvas);
             canvas.restoreToCount(saveCount);
 
-            if (mShouldStartAnimationDrawable && d instanceof Animatable) {
+            if (mShouldStartAnimationDrawable) {
                 ((Animatable) d).start();
                 mShouldStartAnimationDrawable = false;
             }

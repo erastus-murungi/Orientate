@@ -22,6 +22,7 @@ public class GenericUser extends ParseUser {
     public static final String KEY_EMAIL_VERIFIED = "emailVerified";
     public static final String TAG = "GenericUser";
 
+    // for parse
     public GenericUser() {
     }
 

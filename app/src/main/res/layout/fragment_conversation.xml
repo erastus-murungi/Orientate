@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/item_number"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView
+        android:id="@+id/av_loading_conversations"
+        style="@style/AVLoadingIndicatorView.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:layout_centerInParent="true"
+        app:indicatorColor="@color/colorPrimaryDark"
+        app:indicatorName="com.erastus.orientate.utils.customindicators.LineSpinFadeLoaderIndicator" />
 
-    <TextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
-</LinearLayout>
+    <com.erastus.orientate.utils.EmptyView
+        android:id="@+id/empty_view_no_conversations"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_conversations"
+        android:name="com.erastus.orientate.student.chat.conversations.ConversationFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".student.chat.conversations.ConversationFragment"
+        tools:listitem="@layout/fragment_conversation" />
+</RelativeLayout>

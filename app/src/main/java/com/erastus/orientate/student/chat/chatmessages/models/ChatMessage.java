@@ -1,84 +1,69 @@
 package com.erastus.orientate.student.chat.chatmessages.models;
 
-import android.util.Log;
-
-import androidx.lifecycle.LiveData;
-
-import com.erastus.orientate.models.GenericUser;
-import com.parse.GetCallback;
-import com.parse.Parse;
+import com.erastus.orientate.student.chat.conversations.LateInit;
 import com.parse.ParseClassName;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.boltsinternal.Task;
 
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-
-@ParseClassName("ChatMessage")
+@ParseClassName("Message")
 public class ChatMessage extends ParseObject {
-        private static final String TAG = "ChatMessage";
+    private static final String TAG = "ChatMessage";
 
-        public static final String KEY_CONVERSATION = "conversation";
-        public static final String KEY_SENDER = "sender";
-        public static final String KEY_CONTENT = "content";
-        public static final String KEY_MESSAGE_TYPE = "type";
-        public static final String KEY_USER = "user";
+    public static final String KEY_CONVERSATION = "conversation";
+    public static final String KEY_SENDER = "sender";
+    public static final String KEY_CONTENT = "content";
+    public static final String KEY_MESSAGE_TYPE = "type";
+    public static final String KEY_USER = "user";
+
+    public ChatMessage() {
+    }
+
+    private int messageType;
+    private boolean isOwnMessage;
+    private ParseUser mSender;
 
 
-        private int messageType;
-        private boolean isOwnMessage;
+    public int getMessageType() {
+        return messageType;
+    }
 
+    public void setMessageType(int messageType) {
+        this.messageType = messageType;
+    }
 
-        public int getMessageType() {
-                return messageType;
+    public boolean isOwnMessage() {
+        return isOwnMessage;
+    }
+
+    public void setOwnMessage(boolean ownMessage) {
+        isOwnMessage = ownMessage;
+    }
+
+    public String getSenderId() {
+        if (mSender == null) {
+            return null;
         }
+        return mSender.getObjectId();
+    }
 
-        public void setMessageType(int messageType) {
-                this.messageType = messageType;
-        }
+    /**
+     * This is a blocking method and should be used with LiveData
+     */
+    @LateInit
+    public ParseUser getSender() {
+        return mSender;
+    }
 
-        public boolean isOwnMessage() {
-                return isOwnMessage;
-        }
+    public String getContent() {
+        return getString(KEY_CONTENT);
+    }
 
-        public void setOwnMessage(boolean ownMessage) {
-                isOwnMessage = ownMessage;
-        }
+    public boolean isSent() {
+        return false;
+    }
 
-        public String getSenderId() {
-                return getParseObject(KEY_SENDER).getObjectId();
-        }
-
-        /**
-         * This is a blocking method and should be used with LiveData
-         * @return
-         */
-        public ParseUser getSender() {
-                ParseUser sender = null;
-                try {
-                        sender = getParseUser(KEY_SENDER).fetchIfNeeded();
-                } catch (ParseException e) {
-                        e.printStackTrace();
-                        Log.e(TAG, "getSender: ", e);
-                }
-                catch (NullPointerException e) {
-                        Log.e(TAG, "getSender: getParseUser(KEY_SENDER) returned null", e);
-                }
-                return sender;
-        }
-
-        public String getContent() {
-                return getString(KEY_CONTENT);
-        }
-
-        public boolean isSent() {
-                return false;
-        }
-
-        public boolean isOnline() {
-                return false;
-        }
+    public boolean isOnline() {
+        return false;
+    }
 
 }

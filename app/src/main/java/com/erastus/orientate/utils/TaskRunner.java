@@ -8,15 +8,16 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class TaskRunner {
-    private static volatile TaskRunner instance;
-    private final Executor executor = Executors.newSingleThreadExecutor();
-    private final Handler handler = new Handler(Looper.getMainLooper());
+    private static volatile TaskRunner sInstance;
+    public static final int DEFAULT_N_THREADS = 2;
+    private final Executor mExecutor = Executors.newFixedThreadPool(DEFAULT_N_THREADS);
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
 
     public static TaskRunner getInstance() {
-        if (instance == null) {
-            instance = new TaskRunner();
+        if (sInstance == null) {
+            sInstance = new TaskRunner();
         }
-        return instance;
+        return sInstance;
     }
 
     public interface Callback<R> {
@@ -24,7 +25,7 @@ public class TaskRunner {
     }
 
     public <R> void executeAsync(Callable<R> callable, Callback<R> callback) {
-        executor.execute(() -> {
+        mExecutor.execute(() -> {
             final R result;
             try {
                 result = callable.call();
@@ -32,7 +33,7 @@ public class TaskRunner {
                 e.printStackTrace();
                 return;
             }
-            handler.post(() -> callback.onComplete(result));
+            mHandler.post(() -> callback.onComplete(result));
         });
     }
 
