@@ -1,5 +1,6 @@
 package com.erastus.orientate.utils;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -8,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
@@ -60,5 +62,18 @@ public class DateUtils {
         //Displaying current date and time in 12 hour format with AM/PM
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm aa", Locale.getDefault());
         return dateFormat.format(dateFromLocalTime(time));
+    }
+
+    public static String getRelativeTimeAgo(long timeToken) {
+        return (String) android.text.format.DateUtils.getRelativeTimeSpanString(timeToken, Calendar.getInstance()
+                .getTimeInMillis(), 0L, android.text.format.DateUtils.FORMAT_ABBREV_ALL);
+    }
+
+    public static String parseDateTime(long timeToken) {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timeToken);
+        return sdf.format(calendar.getTime());
     }
 }

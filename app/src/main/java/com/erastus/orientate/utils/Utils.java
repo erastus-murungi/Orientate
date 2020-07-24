@@ -10,24 +10,6 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 
 public class Utils {
-    public static void hideSoftKeyboard(Activity activity) {
-        if (activity != null) {
-            InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-            if (activity.getCurrentFocus() != null && inputManager != null) {
-                inputManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-                inputManager.hideSoftInputFromInputMethod(activity.getCurrentFocus().getWindowToken(), 0);
-            }
-        }
-    }
-
-    public static void hideSoftKeyboard(View view) {
-        if (view != null) {
-            InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            if (inputManager != null) {
-                inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            }
-        }
-    }
 
     /**
      * Force show softKeyboard.
@@ -47,5 +29,21 @@ public class Utils {
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
         activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    public static String emphasizeText(String text) {
+        return "<b>" + text + "</b>";
+    }
+
+    public static String newLine() {
+        return "<br>";
+    }
+
+    public static void hideKeyboard(View view, Context context) {
+        if (context != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Activity
+                    .INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

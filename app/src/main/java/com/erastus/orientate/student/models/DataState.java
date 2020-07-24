@@ -1,6 +1,6 @@
 package com.erastus.orientate.student.models;
 
-public class DataState<T> {
+public class DataState {
     // hide the private constructor to limit subclass types (Success, Error)
     private DataState() {
     }
@@ -18,7 +18,7 @@ public class DataState<T> {
     }
 
     // Success sub-class
-    public final static class Success<T> extends DataState<T> {
+    public final static class Success<T> extends DataState {
         private T data;
 
         public Success(T data) {

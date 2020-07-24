@@ -21,7 +21,7 @@ class ChatMessageHelper {
 
         long offset = TimeUnit.MINUTES.toMillis(1);
 
-        boolean ownMessage = previousMsg.getUser().getObjectId().equals(currentMsg.getUser().getObjectId());
+        boolean ownMessage = previousMsg.getSender().getObjectId().equals(currentMsg.getSender().getObjectId());
         boolean chainable = false;
 
         if (ownMessage)
@@ -64,7 +64,7 @@ class ChatMessageHelper {
         return false;
     }
 
-    private static MessageType assignType(ChatMessage instance, int type) {
+    private static int assignType(ChatMessage instance, int type) {
         if (type == HEADER_FULL) {
             return instance.isOwnMessage() ? MessageType.OWN_HEADER_FULL : MessageType.REC_HEADER_FULL;
         }
@@ -77,6 +77,6 @@ class ChatMessageHelper {
         if (type == END) {
             return instance.isOwnMessage() ? MessageType.OWN_END : MessageType.REC_END;
         }
-        return null;
+        return -1;
     }
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:windowBackground"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/info_image"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/default_spacing" />
+
+    <TextView
+        android:id="@+id/info_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_image"
+        android:layout_marginBottom="@dimen/default_spacing"
+        android:gravity="center"
+        android:paddingStart="@dimen/default_spacing"
+        android:paddingLeft="@dimen/default_spacing"
+        android:paddingEnd="@dimen/default_spacing"
+        android:paddingRight="@dimen/default_spacing"
+        android:text="@string/chat_description"
+        android:visibility="visible"
+        tools:text="@string/lorem_ipsum_short" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/info_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/info_description" />
+
+    <com.erastus.orientate.utils.EmptyView
+        android:id="@+id/info_empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:evMessage="@string/no_members" />
+</RelativeLayout>

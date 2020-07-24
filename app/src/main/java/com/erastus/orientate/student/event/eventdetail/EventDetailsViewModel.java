@@ -26,7 +26,7 @@ public class EventDetailsViewModel extends ViewModel {
     public static final int ERROR_DIALOG_REQUEST = 9001;
     private MutableLiveData<LocalEvent> mLocalEvent;
 
-    private MutableLiveData<DataState<URI>> mUrlValidityState = new MutableLiveData<>();
+    private MutableLiveData<DataState> mUrlValidityState = new MutableLiveData<>();
 
     private MutableLiveData<DataState> mGetLocationAddress = new MutableLiveData<>();
 
@@ -56,7 +56,7 @@ public class EventDetailsViewModel extends ViewModel {
 //
 //        }
 
-    static class ReverseGeoCodeAsync implements Callable<DataState<Address>> {
+    static class ReverseGeoCodeAsync implements Callable<DataState> {
         private final LatLng latLng;
         private final Geocoder geocoder;
 
@@ -66,7 +66,7 @@ public class EventDetailsViewModel extends ViewModel {
         }
 
         @Override
-        public DataState<Address> call() {
+        public DataState call() {
             try {
                 List<Address> matches = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
                 Log.d(TAG, "call: " + matches);
@@ -87,7 +87,7 @@ public class EventDetailsViewModel extends ViewModel {
     }
 
 
-    public LiveData<DataState<URI>> getUrlValidityState() {
+    public LiveData<DataState> getUrlValidityState() {
         return mUrlValidityState;
     }
 

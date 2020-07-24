@@ -2,6 +2,7 @@ package com.erastus.orientate.models;
 
 import android.util.Log;
 
+import com.erastus.orientate.applications.App;
 import com.erastus.orientate.student.announcements.models.Announcement;
 import com.parse.ParseClassName;
 import com.parse.ParseUser;
@@ -62,5 +63,13 @@ public class GenericUser extends ParseUser {
 
     public boolean getIsEmailVerified() {
         return mUser.getBoolean(KEY_EMAIL_VERIFIED);
+    }
+
+    public boolean isMe() {
+        return this == App.get().getCurrentUser();
+    }
+
+    public boolean isOnline() {
+        return true;
     }
 }
