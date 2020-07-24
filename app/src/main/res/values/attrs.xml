@@ -83,4 +83,9 @@
     <declare-styleable name="CircularImageViewStyle">
         <attr name="circularImageViewDefault" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="EmptyView">
+        <attr name="evTitle" format="reference" />
+        <attr name="evMessage" format="reference" />
+    </declare-styleable>
 </resources>

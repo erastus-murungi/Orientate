@@ -14,24 +14,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d08affa-353e-44e0-82f1-d083825d8189" name="Default Changelist" comment="Wrote a new SimpleState&lt;T&gt; class to convey data to the UI. Fixed bugs on the User Profile Page.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/chats_divider.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/ic_attachment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/ic_back.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/ic_info.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/ic_launcher_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/ic_send.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/message_composer_bg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/message_received_bubble.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/message_sent_bubble.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/splash_bg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/layout/item_message_received.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/layout/item_message_received_end.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/layout/item_message_received_middle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/layout/item_message_sent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/layout/item_message_sent_end.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/layout/item_message_sent_middle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatMessageHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/EmptyView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/MessageComposer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/layout/fragment_chat_thread.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/models/ChatItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/models/MessageType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/models/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/models/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/models/ChatMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/splash_bg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable/splash_bg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layouts/chats/layout/empty_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layouts/chats/layout/empty_view.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/attrs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/attrs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +68,8 @@
         <option value="valueResourceFile" />
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -90,7 +95,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/test/java/com/erastus/orientate" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -140,11 +145,11 @@
       <recent name="com.erastus.orientate.login" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layouts/chats/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layouts/chats/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/font" />
     </key>
     <key name="android.template.-963803587">
       <recent name="com.erastus.orientate.institution.navigation" />
@@ -327,8 +332,8 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="360" y="222" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594771985845" />
-    <state x="709" y="277" width="737" height="554" key="#com.intellij.ide.util.MemberChooser" timestamp="1595509671512">
-      <screen x="0" y="23" width="1792" height="1028" />
+    <state x="709" y="277" width="737" height="554" key="#com.intellij.ide.util.MemberChooser" timestamp="1595545977791">
+      <screen x="0" y="23" width="1792" height="1030" />
     </state>
     <state x="709" y="276" width="737" height="554" key="#com.intellij.ide.util.MemberChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1594984977875" />
     <state x="709" y="275" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1020@0.23.1792.1020" timestamp="1595236859831" />
@@ -338,6 +343,7 @@
     <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1025@0.23.1792.1025" timestamp="1595060867912" />
     <state x="709" y="277" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1026@0.23.1792.1026" timestamp="1595485032869" />
     <state x="709" y="277" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1028@0.23.1792.1028" timestamp="1595509671512" />
+    <state x="709" y="277" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1030@0.23.1792.1030" timestamp="1595545977791" />
     <state x="835" y="208" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1595487985573">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
@@ -365,14 +371,15 @@
     </state>
     <state x="396" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594849594872" />
     <state x="396" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1792.1025@0.23.1792.1025" timestamp="1595065302949" />
-    <state x="634" y="312" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595499354336">
-      <screen x="0" y="23" width="1792" height="1028" />
+    <state x="634" y="313" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595548221216">
+      <screen x="0" y="23" width="1792" height="1030" />
     </state>
     <state x="634" y="314" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594973668566" />
     <state x="634" y="309" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1021@0.23.1792.1021" timestamp="1595074203335" />
     <state x="634" y="310" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1024@0.23.1792.1024" timestamp="1595238696398" />
     <state x="634" y="311" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1595483660351" />
     <state x="634" y="312" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1028@0.23.1792.1028" timestamp="1595499354336" />
+    <state x="634" y="313" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1792.1030@0.23.1792.1030" timestamp="1595548221216" />
     <state x="458" y="212" key="#orientate_in_app" timestamp="1595487956574">
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
@@ -556,12 +563,13 @@
     </state>
     <state x="792" y="174" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1595333131432" />
     <state x="792" y="175" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1595487997633" />
-    <state x="548" y="314" width="852" height="550" key="find.popup" timestamp="1595511483974">
-      <screen x="0" y="23" width="1792" height="1028" />
+    <state x="548" y="315" width="852" height="552" key="find.popup" timestamp="1595548184338">
+      <screen x="0" y="23" width="1792" height="1030" />
     </state>
     <state x="548" y="317" width="695" height="486" key="find.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1594940722398" />
     <state x="548" y="312" width="781" height="486" key="find.popup/0.23.1792.1021@0.23.1792.1021" timestamp="1595214429611" />
     <state x="548" y="314" width="852" height="550" key="find.popup/0.23.1792.1028@0.23.1792.1028" timestamp="1595511483974" />
+    <state x="548" y="315" width="852" height="552" key="find.popup/0.23.1792.1030@0.23.1792.1030" timestamp="1595548184338" />
     <state x="658" y="146" key="refactoring.ChangeSignatureDialog" timestamp="1595235494983">
       <screen x="0" y="23" width="1792" height="1020" />
     </state>
