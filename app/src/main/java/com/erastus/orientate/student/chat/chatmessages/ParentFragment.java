@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import org.jetbrains.annotations.NotNull;
+
 abstract class ParentFragment extends Fragment {
 
     private final String TAG = getClass().getSimpleName();
@@ -26,8 +28,6 @@ abstract class ParentFragment extends Fragment {
 
     public abstract void setViewBehaviour(boolean viewFromCache);
 
-    public abstract String setScreenTitle();
-
     public abstract void onReady();
 
     public void extractArguments() {
@@ -39,7 +39,7 @@ abstract class ParentFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
+    public View onCreateView(@NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
             savedInstanceState) {
         Log.d(TAG, "onCreateView");
         if (rootView != null) {
@@ -152,9 +152,4 @@ abstract class ParentFragment extends Fragment {
         Log.d(TAG, "onStop");
         super.onStop();
     }
-
-    void runOnUiThread(Runnable runnable) {
-        ((Activity) fragmentContext).runOnUiThread(runnable);
-    }
-
 }

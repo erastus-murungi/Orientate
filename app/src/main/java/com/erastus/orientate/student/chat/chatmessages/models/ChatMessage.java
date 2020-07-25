@@ -25,16 +25,11 @@ public class ChatMessage extends ParseObject {
     public static final String KEY_CONVERSATION = "conversation";
     public static final String KEY_SENDER = "sender";
     public static final String KEY_CONTENT = "content";
-    public static final String KEY_MESSAGE_TYPE = "type";
-    public static final String KEY_USER = "user";
 
     public ChatMessage() {
     }
 
     private int messageType;
-
-    private ExtendedParseUser mExtendedParseUser;
-
 
     public int getMessageType() {
         return messageType;

@@ -21,6 +21,7 @@ import com.erastus.orientate.student.chat.chatinfo.ChatInfoViewModel;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.utils.EmptyView;
 
+import org.jetbrains.annotations.NotNull;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class ChatInfoFragment extends ParentFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(this).get(ChatInfoViewModel.class);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
@@ -88,17 +89,6 @@ public class ChatInfoFragment extends ParentFragment {
     }
 
     @Override
-    public String setScreenTitle() {
-        return "";
-    }
-
-//    @Override
-//    public String setScreenTitle() {
-//        hostActivity.enableBackButton(true);
-//        return mConversation;
-//    }
-
-    @Override
     public void onReady() {
         mViewModel.initListener();
     }
@@ -116,7 +106,7 @@ public class ChatInfoFragment extends ParentFragment {
 
         if (viewState != -1) {
             int finalViewState = viewState;
-            runOnUiThread(() -> mEmptyView.setVisibility(finalViewState));
+            mEmptyView.setVisibility(finalViewState);
         }
     }
 

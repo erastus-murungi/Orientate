@@ -11,7 +11,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="chain" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="cha" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -26,25 +26,18 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/institution/models/Institution.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/institution/models/Institution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/institution/models/LocalInstitution.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/models/ExtendedParseUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/models/ExtendedParseUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/adapter/AnnouncementAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/adapter/AnnouncementAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/models/LocalAnnouncement.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/announcements/models/LocalAnnouncement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/ChatActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/ChatActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatInfoFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatInfoFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatInfoViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatinfo/ChatInfoViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatMessageHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatMessageHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatMessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatMessageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ChatViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ParentFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/ParentFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/models/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/chatmessages/models/ChatMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/conversations/ConversationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/conversations/ConversationAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/login/StudentLoginViewModelFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/conversations/ConversationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/chat/conversations/ConversationRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/models/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/ProfileFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/ProfileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/ProfileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/ProfileViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/ProfileViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/TaskRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/TaskRunner.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,12 +312,21 @@
       <option name="presentableId" value="Default" />
       <updated>1594313144274</updated>
     </task>
+    <task id="LOCAL-00001" summary="- Fixed major bugs&#10;- Removed LocalInstitution class after realizing that the Institution class inheriting from ParseObject is Parcelable&#10;- Moved the requestStudents method to the LoginSection, so that it is available to all parts of the application&#10;- The student Institution class and the Student class not each have their own getProfileImageUrl method, instead of sharing the one in the ParseUser Object">
+      <created>1595689891286</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1595689891286</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Wrote a new SimpleState&lt;T&gt; class to convey data to the UI. Fixed bugs on the User Profile Page." />
     <MESSAGE value="Wrote functionality to handle new messages using multiple background threads. Since ParseLiveQuery cannot handle nested queries, which would be used to filter which messages for conversations the user is in, I manually subscribe each conversation to the liveQueryClient" />
-    <option name="LAST_COMMIT_MESSAGE" value="Wrote functionality to handle new messages using multiple background threads. Since ParseLiveQuery cannot handle nested queries, which would be used to filter which messages for conversations the user is in, I manually subscribe each conversation to the liveQueryClient" />
+    <MESSAGE value="- Fixed major bugs&#10;- Removed LocalInstitution class after realizing that the Institution class inheriting from ParseObject is Parcelable&#10;- Moved the requestStudents method to the LoginSection, so that it is available to all parts of the application&#10;- The student Institution class and the Student class not each have their own getProfileImageUrl method, instead of sharing the one in the ParseUser Object" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed major bugs&#10;- Removed LocalInstitution class after realizing that the Institution class inheriting from ParseObject is Parcelable&#10;- Moved the requestStudents method to the LoginSection, so that it is available to all parts of the application&#10;- The student Institution class and the Student class not each have their own getProfileImageUrl method, instead of sharing the one in the ParseUser Object" />
   </component>
   <component name="WindowStateProjectService">
     <state x="421" y="296" key="#PSD" timestamp="1595214094059">
@@ -345,13 +347,13 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="360" y="222" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594771985845" />
-    <state x="709" y="276" width="737" height="554" key="#com.intellij.ide.util.MemberChooser" timestamp="1595670958684">
+    <state x="709" y="276" width="737" height="554" key="#com.intellij.ide.util.MemberChooser" timestamp="1595693108551">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state x="709" y="276" width="737" height="554" key="#com.intellij.ide.util.MemberChooser/0.0.1792.1120@0.0.1792.1120" timestamp="1594984977875" />
     <state x="709" y="275" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1020@0.23.1792.1020" timestamp="1595236859831" />
     <state x="709" y="275" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1021@0.23.1792.1021" timestamp="1595232109380" />
-    <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1022@0.23.1792.1022" timestamp="1595670958684" />
+    <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1022@0.23.1792.1022" timestamp="1595693108551" />
     <state x="709" y="275" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1023@0.23.1792.1023" timestamp="1595623285872" />
     <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1024@0.23.1792.1024" timestamp="1595240112569" />
     <state x="709" y="276" key="#com.intellij.ide.util.MemberChooser/0.23.1792.1025@0.23.1792.1025" timestamp="1595060867912" />
@@ -442,11 +444,11 @@
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
     <state x="484" y="249" key="AndroidThemeDialog/0.23.1792.1030@0.23.1792.1030" timestamp="1595555288039" />
-    <state x="515" y="169" key="CommitChangelistDialog2" timestamp="1595672823451">
+    <state x="0" y="169" key="CommitChangelistDialog2" timestamp="1595689890655">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state x="515" y="161" key="CommitChangelistDialog2/0.0.1792.1120@0.0.1792.1120" timestamp="1594844403604" />
-    <state x="515" y="169" key="CommitChangelistDialog2/0.23.1792.1022@0.23.1792.1022" timestamp="1595672823451" />
+    <state x="0" y="169" key="CommitChangelistDialog2/0.23.1792.1022@0.23.1792.1022" timestamp="1595689890655" />
     <state x="515" y="170" key="CommitChangelistDialog2/0.23.1792.1026@0.23.1792.1026" timestamp="1595421269245" />
     <state x="574" y="322" key="Downloadable.Font.Dialog.Size" timestamp="1594821379687">
       <screen x="0" y="0" width="1792" height="1120" />
@@ -460,12 +462,12 @@
       <screen x="0" y="23" width="1792" height="1031" />
     </state>
     <state x="673" y="247" key="Github.UntrackedFilesDialog/0.23.1792.1031@0.23.1792.1031" timestamp="1594313168601" />
-    <state width="1750" height="506" key="GridCell.Tab.0.bottom" timestamp="1595689556090">
+    <state width="1750" height="387" key="GridCell.Tab.0.bottom" timestamp="1595698808716">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="349" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1595662195434" />
     <state width="1750" height="500" key="GridCell.Tab.0.bottom/0.23.1792.1021@0.23.1792.1021" timestamp="1595217934611" />
-    <state width="1750" height="506" key="GridCell.Tab.0.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1595689556090" />
+    <state width="1750" height="387" key="GridCell.Tab.0.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1595698808716" />
     <state width="1750" height="488" key="GridCell.Tab.0.bottom/0.23.1792.1023@0.23.1792.1023" timestamp="1595644186492" />
     <state width="1750" height="530" key="GridCell.Tab.0.bottom/0.23.1792.1024@0.23.1792.1024" timestamp="1595335261471" />
     <state width="1750" height="300" key="GridCell.Tab.0.bottom/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826970" />
@@ -473,12 +475,12 @@
     <state width="1750" height="659" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
     <state width="1750" height="471" key="GridCell.Tab.0.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1595581584931" />
     <state width="1750" height="471" key="GridCell.Tab.0.bottom/0.23.1792.1031@0.23.1792.1031" timestamp="1595581654529" />
-    <state width="1750" height="506" key="GridCell.Tab.0.center" timestamp="1595689556090">
+    <state width="1750" height="387" key="GridCell.Tab.0.center" timestamp="1595698808715">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="349" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1595662195433" />
     <state width="1750" height="500" key="GridCell.Tab.0.center/0.23.1792.1021@0.23.1792.1021" timestamp="1595217934610" />
-    <state width="1750" height="506" key="GridCell.Tab.0.center/0.23.1792.1022@0.23.1792.1022" timestamp="1595689556090" />
+    <state width="1750" height="387" key="GridCell.Tab.0.center/0.23.1792.1022@0.23.1792.1022" timestamp="1595698808715" />
     <state width="1750" height="488" key="GridCell.Tab.0.center/0.23.1792.1023@0.23.1792.1023" timestamp="1595644186491" />
     <state width="1750" height="530" key="GridCell.Tab.0.center/0.23.1792.1024@0.23.1792.1024" timestamp="1595335261470" />
     <state width="1750" height="300" key="GridCell.Tab.0.center/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826969" />
@@ -486,12 +488,12 @@
     <state width="1750" height="659" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
     <state width="1750" height="471" key="GridCell.Tab.0.center/0.23.1792.1030@0.23.1792.1030" timestamp="1595581584930" />
     <state width="1750" height="471" key="GridCell.Tab.0.center/0.23.1792.1031@0.23.1792.1031" timestamp="1595581654529" />
-    <state width="1750" height="506" key="GridCell.Tab.0.left" timestamp="1595689556090">
+    <state width="1750" height="387" key="GridCell.Tab.0.left" timestamp="1595698808715">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="349" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1595662195433" />
     <state width="1750" height="500" key="GridCell.Tab.0.left/0.23.1792.1021@0.23.1792.1021" timestamp="1595217934610" />
-    <state width="1750" height="506" key="GridCell.Tab.0.left/0.23.1792.1022@0.23.1792.1022" timestamp="1595689556090" />
+    <state width="1750" height="387" key="GridCell.Tab.0.left/0.23.1792.1022@0.23.1792.1022" timestamp="1595698808715" />
     <state width="1750" height="488" key="GridCell.Tab.0.left/0.23.1792.1023@0.23.1792.1023" timestamp="1595644186491" />
     <state width="1750" height="530" key="GridCell.Tab.0.left/0.23.1792.1024@0.23.1792.1024" timestamp="1595335261470" />
     <state width="1750" height="300" key="GridCell.Tab.0.left/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826969" />
@@ -499,12 +501,12 @@
     <state width="1750" height="659" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
     <state width="1750" height="471" key="GridCell.Tab.0.left/0.23.1792.1030@0.23.1792.1030" timestamp="1595581584930" />
     <state width="1750" height="471" key="GridCell.Tab.0.left/0.23.1792.1031@0.23.1792.1031" timestamp="1595581654529" />
-    <state width="1750" height="506" key="GridCell.Tab.0.right" timestamp="1595689556090">
+    <state width="1750" height="387" key="GridCell.Tab.0.right" timestamp="1595698808716">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="349" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1595662195433" />
     <state width="1750" height="500" key="GridCell.Tab.0.right/0.23.1792.1021@0.23.1792.1021" timestamp="1595217934611" />
-    <state width="1750" height="506" key="GridCell.Tab.0.right/0.23.1792.1022@0.23.1792.1022" timestamp="1595689556090" />
+    <state width="1750" height="387" key="GridCell.Tab.0.right/0.23.1792.1022@0.23.1792.1022" timestamp="1595698808716" />
     <state width="1750" height="488" key="GridCell.Tab.0.right/0.23.1792.1023@0.23.1792.1023" timestamp="1595644186492" />
     <state width="1750" height="530" key="GridCell.Tab.0.right/0.23.1792.1024@0.23.1792.1024" timestamp="1595335261471" />
     <state width="1750" height="300" key="GridCell.Tab.0.right/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826970" />
@@ -629,12 +631,13 @@
     </state>
     <state x="561" y="246" key="run.anything.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1595666543739" />
     <state x="561" y="248" key="run.anything.popup/0.23.1792.1025@0.23.1792.1025" timestamp="1594989859130" />
-    <state x="561" y="252" width="670" height="621" key="search.everywhere.popup" timestamp="1595588818925">
-      <screen x="0" y="23" width="1792" height="1023" />
+    <state x="561" y="252" width="670" height="621" key="search.everywhere.popup" timestamp="1595697989973">
+      <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state x="561" y="251" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1594877880339" />
     <state x="561" y="252" width="670" height="617" key="search.everywhere.popup/0.23.1792.1020@0.23.1792.1020" timestamp="1595234364321" />
     <state x="561" y="252" width="670" height="617" key="search.everywhere.popup/0.23.1792.1021@0.23.1792.1021" timestamp="1595231804390" />
+    <state x="561" y="252" width="670" height="621" key="search.everywhere.popup/0.23.1792.1022@0.23.1792.1022" timestamp="1595697989973" />
     <state x="561" y="252" width="670" height="621" key="search.everywhere.popup/0.23.1792.1023@0.23.1792.1023" timestamp="1595588818925" />
     <state x="561" y="253" width="670" height="620" key="search.everywhere.popup/0.23.1792.1024@0.23.1792.1024" timestamp="1595284307649" />
     <state x="561" y="253" width="670" height="619" key="search.everywhere.popup/0.23.1792.1025@0.23.1792.1025" timestamp="1595064063360" />

@@ -1,6 +1,7 @@
 package com.erastus.orientate.institution.models;
 
 import com.erastus.orientate.models.ExtendedParseUser;
+import com.erastus.orientate.student.chat.conversations.FetchedLazily;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -26,6 +27,7 @@ public class Institution extends ParseObject {
         return getString(KEY_LOCATION);
     }
 
+    @FetchedLazily
     public ExtendedParseUser getUser() {
         return new ExtendedParseUser(getParseUser(KEY_USER));
     }

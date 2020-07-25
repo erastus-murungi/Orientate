@@ -36,4 +36,12 @@ public class Student extends ParseObject {
     public String getProfileImageUrl() {
         return Objects.requireNonNull(getParseFile(KEY_PROFILE_IMAGE)).getUrl();
     }
+
+    public String getFullName() {
+        if (getMiddleName() == null) {
+            return getFirstName() + " " + getLastName();
+        } else {
+            return getFirstName() + " " + getMiddleName() + " " + getLastName();
+        }
+    }
 }

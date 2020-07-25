@@ -24,6 +24,11 @@ public class ChatViewModel extends ViewModel {
     private ChatMessageRepository mRepository;
     private MutableLiveData<Boolean> mButtonPressState;
 
+    private MutableLiveData<List<ChatMessage>> newMessages;
+
+    LiveData<List<ChatMessage>> getNewMessages() {
+        return newMessages;
+    }
     @SuppressWarnings("unchecked")
     public ChatViewModel(Conversation conversation) {
         mRepository = ChatMessageRepository.getInstance();
@@ -36,11 +41,11 @@ public class ChatViewModel extends ViewModel {
             }
             return new MutableLiveData<>(new SimpleState<>((Boolean) true));
         });
+        newMessages = mRepository.getMessages();
     }
 
     public LiveData<SimpleState<List<ChatMessage>>> getState() {
         mRepository.getMessagesForConversation(mConversation);
-        mRepository.setUpMessageSubscriptionImpl(mConversation);
         return mListChatMessagesSimpleState;
     }
 

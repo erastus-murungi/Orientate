@@ -85,10 +85,7 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
         mEmptyView.setVisibility(View.VISIBLE);
         mSwipeRefreshLayout.setRefreshing(false);
 
-        LiveData<SimpleState<List<ChatMessage>>> m = mViewModel.getState();
-        LifecycleOwner s = getViewLifecycleOwner();
-
-        m.observe(s, listSimpleState -> {
+        mViewModel.getState().observe(getViewLifecycleOwner(), listSimpleState -> {
             if (listSimpleState == null || listSimpleState.isLoading()) {
                 return;
             }
@@ -108,6 +105,16 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
             }
         });
 
+        mViewModel.getNewMessages().observe(getViewLifecycleOwner(), messages -> {
+            if (messages != null && messages.size() > 0) {
+                if (mEmptyView.getVisibility() == View.VISIBLE) {
+                    mEmptyView.setVisibility(View.GONE);
+                }
+                showInformationSnackBar("New message");
+                mChatAdapter.update(messages);
+                scrollChatToBottom();
+            }
+        });
     }
 
     private void workWithData(List<ChatMessage> data) {
@@ -146,8 +153,6 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
     }
 
     private void prepareRecyclerView() {
-
-
 
         mSwipeRefreshLayout.setColorSchemeColors(requireContext().getColor(R.color.colorPrimary));
         mSwipeRefreshLayout.setOnRefreshListener(mViewModel::fetchHistory);
@@ -198,15 +203,6 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
 
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public String setScreenTitle() {
-//        hostActivity.enableBackButton(false);
-//        scrollChatToBottom();
-//        loadCurrentOccupancy();
-//        return mChannel;
-        return "";
     }
 
     @Override
@@ -299,7 +295,7 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
     private void showInformationSnackBar(String errorString) {
         Snackbar.make(getRootView(), errorString, BaseTransientBottomBar.LENGTH_LONG)
                 .setBackgroundTint(requireContext().getColor(R.color.darkBlue))
-                .setTextColor(requireContext().getColor(android.R.color.holo_red_light))
+                .setTextColor(requireContext().getColor(android.R.color.white))
                 .show();
     }
 

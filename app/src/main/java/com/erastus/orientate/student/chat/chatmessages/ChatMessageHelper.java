@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
 import com.erastus.orientate.student.chat.chatmessages.models.MessageType;
-import com.erastus.orientate.student.login.StudentLoginActivity;
 import com.erastus.orientate.student.login.StudentLoginRepository;
 
 import java.util.List;
@@ -38,6 +37,12 @@ class ChatMessageHelper {
             for (int i = 1; i < limit; i++) {
                 ChatMessage message = messages.get(i);
                 ChatMessageHelper.chain(message, messages.get(i - 1));
+            }
+            for (ChatMessage message: messages) {
+                if (message.getMessageType() < 1 || message.getMessageType() > 8) {
+                    Log.e(TAG, "chainMessages: message.getObjectId()" + " has a viewType of " + message.getMessageType());
+                    message.setMessageType(MessageType.OWN_MIDDLE);
+                }
             }
         }
     }
@@ -89,6 +94,7 @@ class ChatMessageHelper {
         if (type == END) {
             return instance.getMessageType() == MessageType.OWN_END || instance.getMessageType() == MessageType.REC_END;
         }
+        Log.e(TAG, "isTypeOf: " + instance.getObjectId() + " " + instance, new IllegalStateException());
         return false;
     }
 
@@ -105,6 +111,7 @@ class ChatMessageHelper {
         if (type == END) {
             return isOwnMessage(instance) ? MessageType.OWN_END : MessageType.REC_END;
         }
+        Log.e(TAG, "assignType: " + instance.getObjectId() + " " + instance, new IllegalStateException());
         return -1;
     }
 

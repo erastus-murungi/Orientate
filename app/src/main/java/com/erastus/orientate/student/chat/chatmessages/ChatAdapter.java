@@ -19,6 +19,7 @@ import com.erastus.orientate.R;
 import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
 import com.erastus.orientate.student.chat.chatmessages.models.MessageType;
 import com.erastus.orientate.student.login.StudentLoginRepository;
+import com.erastus.orientate.student.models.Student;
 import com.erastus.orientate.utils.DateUtils;
 import com.erastus.orientate.utils.Utils;
 import com.erastus.orientate.utils.circularimageview.CircularImageView;
@@ -157,6 +158,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                     .load(message.getSender().getProfileImageUrl())
                     .into(mAvatar);
 
+            mRoot.setOnClickListener(view -> showMessageInfoDialog(mContext, message));
+
         }
 
         private void handleType() {
@@ -223,9 +226,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
     }
 
     private void showMessageInfoDialog(Context context, ChatMessage ChatMessage) {
-
         String contentBuilder = "" + Utils.emphasizeText("Sender: ") +
-                ChatMessage.getSenderId() +
+                ChatMessage.getSender().getFullName() +
                 Utils.newLine() +
                 Utils.emphasizeText("Date time: ") +
                 DateUtils.parseDateTime(ChatMessage.getCreatedAt().getTime() / 10_000L) +
@@ -233,7 +235,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                 Utils.emphasizeText("Relative: ") +
                 DateUtils.getRelativeTimeAgo(ChatMessage.getCreatedAt().getTime() / 10_000L) +
                 Utils.newLine() +
-                Utils.emphasizeText("Own ChatMessage: ") +
+                Utils.emphasizeText("Own Message: ") +
                 ChatMessage.getSender().getObjectId().equals(StudentLoginRepository.getInstance().getLoggedInStudent().getObjectId()) +
                 Utils.newLine() +
                 Utils.emphasizeText("Type: ") +
@@ -241,10 +243,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                 Utils.newLine() +
                 Utils.emphasizeText("Is sent: ") +
                 ChatMessage.isSent();
+
         MaterialDialog materialDialog = new MaterialDialog.Builder(context)
                 .title(R.string.message_info)
                 .content(Html.fromHtml(contentBuilder, Html.FROM_HTML_OPTION_USE_CSS_COLORS))
                 .positiveText(android.R.string.ok)
+                .positiveColor(mContext.getColor(R.color.colorPrimaryDark))
                 .build();
         materialDialog.show();
     }

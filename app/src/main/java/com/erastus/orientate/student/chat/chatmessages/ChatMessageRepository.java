@@ -27,11 +27,19 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ChatMessageRepository {
     private static final String TAG = "ChatMessageRepository";
+
     private static volatile ChatMessageRepository sInstance;
-    private ParseLiveQueryClient parseLiveQueryClient = ParseLiveQueryClient.Factory.getClient();
-    private Map<String, List<ChatMessage>> mChats = new HashMap<>();
+    private static Map<String, List<ChatMessage>> mChats = new HashMap<>();
     private MutableLiveData<String> mErrors = new MutableLiveData<>();
-    private static HashSet<Conversation> seen = new HashSet<>();
+    private static HashSet<Conversation> sSeen = new HashSet<>();
+
+    private static final Object lock = new Object();
+
+    private static MutableLiveData<List<ChatMessage>> newMessages = new MutableLiveData<>();
+
+    public MutableLiveData<List<ChatMessage>> getMessages() {
+        return newMessages;
+    }
 
     class MessageProcessor implements Callable<DataState> {
         String mConversationId;
@@ -76,9 +84,10 @@ public class ChatMessageRepository {
         public Void call() {
             // subscribe each of the conversations
             for (Conversation conversation: conversations) {
-                if (!seen.contains(conversation)) {
-                    setUpMessageSubscriptionImpl(conversation);
-                    seen.add(conversation);
+                if (!sSeen.contains(conversation)) {
+                    setUpMessageSubscription(conversation);
+                    sSeen.add(conversation);
+                    Log.d(TAG, "call: conversation with title: " + conversation.getTitle() + " subscribed");
                 }
             }
             return null;
@@ -95,9 +104,9 @@ public class ChatMessageRepository {
         @Override
         public Void call() {
             // subscribe each of the conversations
-            if (!seen.contains(conversation)) {
-                    setUpMessageSubscriptionImpl(conversation);
-                    seen.add(conversation);
+            if (!sSeen.contains(conversation)) {
+                    setUpMessageSubscription(conversation);
+                    sSeen.add(conversation);
             }
             return null;
         }
@@ -155,7 +164,41 @@ public class ChatMessageRepository {
         this.isLoading.set(isLoading);
     }
 
-    public static void setUpMessageSubscriptionImpl(Conversation conversation) {
+
+    static class NewMessageHandler implements Callable<List<ChatMessage>> {
+        ChatMessage message;
+        String mConversationId;
+
+        NewMessageHandler(ChatMessage newMessage, String conversationId) {
+            message = newMessage;
+            mConversationId = conversationId;
+        }
+
+        @Override
+        public List<ChatMessage> call() throws Exception {
+            // we do not want to handle new messages on the UI Thread
+            assertNotIsMainThread();
+            Log.d(TAG, "handleNewMessage: new message is being handled");
+
+            // this method makes sure that we only send to the UI One message at a time
+            synchronized (lock) {
+                // find the appropriate List
+                List<ChatMessage> messages = mChats.get(mConversationId);
+                if (messages == null) {
+                    messages = new ArrayList<>();
+                    mChats.put(mConversationId, messages);
+                }
+                messages.add(message);
+
+                ChatMessageHelper.chainMessages(messages, messages.size());
+                // update the UI with this new message
+                return messages;
+            }
+        }
+    }
+
+
+    public static void setUpMessageSubscription(Conversation conversation) {
         // we are looking for messages
         ParseQuery<ChatMessage> query = ParseQuery.getQuery(ChatMessage.class);
 
@@ -169,8 +212,9 @@ public class ChatMessageRepository {
             refresh.post(() -> {
                 Log.d(TAG, "setUpMessageSubscriptionImpl: " + Looper.getMainLooper().isCurrentThread());
                 if (event == SubscriptionHandling.Event.CREATE) {
-                    handleNewMessage(message);
                     Log.d(TAG, "run: CREATE" + message.getContent());
+                    TaskRunner.getInstance().executeAsync(
+                            new NewMessageHandler(message, conversation.getObjectId()), messages -> {newMessages.postValue(messages);});
                 } else if (event == SubscriptionHandling.Event.DELETE) {
                     // Handle deletion of parseObjectSubclass here
                     Log.d(TAG, "run: DELETE" + message);
@@ -178,6 +222,7 @@ public class ChatMessageRepository {
             });
         });
     }
+
 
     private void setUpConversionObserver(int start) {
     }
@@ -189,15 +234,7 @@ public class ChatMessageRepository {
         if (Looper.getMainLooper().isCurrentThread()) {
             throw new IllegalThreadStateException();
         }
-    }
-
-
-    // this method makes sure that we only send to the UI One message at a time
-    private static synchronized void handleNewMessage(ChatMessage message) {
-        // we do not want to handle new messages on the UI Thread
-        assertNotIsMainThread();
-        Log.d(TAG, "handleNewMessage: new message is being handled");
-        // update the UI with this new message
+        //
     }
 
     public void getMessagesForConversation(Conversation conversation) {
