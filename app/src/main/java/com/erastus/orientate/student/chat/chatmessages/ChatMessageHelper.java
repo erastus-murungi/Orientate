@@ -29,7 +29,7 @@ class ChatMessageHelper {
             if (i > 0) {
                 ChatMessageHelper.chain(message, messages.get(i - 1));
             } else {
-                message.setMessageType(MessageType.OWN_END);
+                message.setMessageType(MessageType.OWN_HEADER_FULL);
             }
         }
     }

@@ -40,6 +40,7 @@ public class ChatViewModel extends ViewModel {
 
     public LiveData<SimpleState<List<ChatMessage>>> getState() {
         mRepository.getMessagesForConversation(mConversation);
+        mRepository.setUpMessageSubscriptionImpl(mConversation);
         return mListChatMessagesSimpleState;
     }
 
@@ -65,7 +66,6 @@ public class ChatViewModel extends ViewModel {
     }
 
     public void initListener() {
-        mRepository.make();
     }
 
     private Long getEarliestTimestamp(List<ChatMessage> messagesList) {

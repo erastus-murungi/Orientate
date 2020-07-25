@@ -340,4 +340,18 @@
     <color name="message_sent_text">@color/white</color>
     <color name="message_received_text">@color/black</color>
 
+    <array name="material_blue_gray">
+        <item>#ECEFF1</item>
+        <item>#CFD8DC</item>
+        <item>#B0BEC5</item>
+        <item>#90A4AE</item>
+        <item>#78909C</item>
+        <item>#607D8B</item>
+        <item>#546E7A</item>
+        <item>#455A64</item>
+        <item>#37474F</item>
+        <item name="material_blue_gray_9">#263238</item>
+    </array>
+
+
 </resources>

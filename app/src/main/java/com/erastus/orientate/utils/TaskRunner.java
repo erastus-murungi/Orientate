@@ -3,6 +3,8 @@ package com.erastus.orientate.utils;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.annotation.NonNull;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -24,7 +26,7 @@ public class TaskRunner {
         void onComplete(R result);
     }
 
-    public <R> void executeAsync(Callable<R> callable, Callback<R> callback) {
+    public <R> void executeAsync(Callable<R> callable, @NonNull Callback<R> callback) {
         mExecutor.execute(() -> {
             final R result;
             try {

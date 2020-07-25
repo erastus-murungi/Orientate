@@ -17,6 +17,7 @@ import com.erastus.orientate.databinding.ActivityStudentLoginBinding;
 import com.erastus.orientate.databinding.ProgressLoginInButtonBinding;
 import com.erastus.orientate.student.navigation.StudentNavActivity;
 import com.erastus.orientate.utils.Utils;
+import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -148,7 +149,7 @@ public class StudentLoginActivity extends AppCompatActivity {
 
 
     private static class LoginButtonProgress {
-        private ProgressBar mProgressBar;
+        private AVLoadingIndicatorView mProgressBar;
         private MaterialTextView mTextView;
 
         LoginButtonProgress(ProgressLoginInButtonBinding binding) {
@@ -159,9 +160,11 @@ public class StudentLoginActivity extends AppCompatActivity {
         void buttonReset() {
             mProgressBar.setVisibility(View.GONE);
             mTextView.setText(R.string.continue_as_student);
+            mProgressBar.hide();
         }
 
         void buttonActivated() {
+            mProgressBar.show();
             mProgressBar.setVisibility(View.VISIBLE);
             mTextView.setText(R.string.login_in);
         }

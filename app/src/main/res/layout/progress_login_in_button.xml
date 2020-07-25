@@ -29,19 +29,19 @@
             android:clickable="false"
             android:background="@color/darkBlue">
 
-            <ProgressBar
+            <com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView
                 android:id="@+id/progress_bar_login_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="20dp"
                 android:indeterminate="true"
                 android:indeterminateTint="@color/white"
                 android:indeterminateTintMode="src_atop"
                 android:visibility="gone"
+                style="@style/AVLoadingIndicatorView.Small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/text_view_login_student_loading"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_login_student_loading"

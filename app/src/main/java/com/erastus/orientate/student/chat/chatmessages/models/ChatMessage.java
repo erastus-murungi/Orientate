@@ -3,7 +3,9 @@ package com.erastus.orientate.student.chat.chatmessages.models;
 import com.erastus.orientate.applications.App;
 import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.chat.conversations.FetchedLazily;
+import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
@@ -68,6 +70,16 @@ public class ChatMessage extends ParseObject {
 
     public boolean isOnline() {
         return false;
+    }
+
+    @FetchedLazily
+    public Conversation getConversation() {
+        try {
+            return getParseObject(KEY_CONVERSATION).fetch();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }
