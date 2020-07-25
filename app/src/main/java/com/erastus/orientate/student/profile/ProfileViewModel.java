@@ -8,7 +8,6 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import com.erastus.orientate.institution.models.Institution;
-import com.erastus.orientate.institution.models.LocalInstitution;
 import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.models.SimpleState;
@@ -19,10 +18,10 @@ public class ProfileViewModel extends ViewModel {
     private static final String TAG = "ProfileViewModel";
 
     private LiveData<SimpleState<Student>> mStudent;
-    private LiveData<SimpleState<LocalInstitution>> mStudentInstitution;
+    private LiveData<SimpleState<Institution>> mStudentInstitution;
     private LiveData<ExtendedParseUser> mUser;
 
-    public LiveData<SimpleState<LocalInstitution>> getStudentInstitution() {
+    public LiveData<SimpleState<Institution>> getStudentInstitution() {
         return mStudentInstitution;
     }
 
@@ -51,7 +50,7 @@ public class ProfileViewModel extends ViewModel {
         mStudentInstitution = Transformations.switchMap(mRepository.getCurrentStudentInstitution(), input -> {
             if (input instanceof DataState.Success) {
                 Institution institution = ((DataState.Success<Institution>) input).getData();
-                return new MutableLiveData<>(new SimpleState<>(new LocalInstitution(institution)));
+                return new MutableLiveData<>(new SimpleState<>(institution));
             } else if (input instanceof DataState.Error) {
                 return new MutableLiveData<>(new SimpleState<>(((DataState.Error) input).getError().getMessage()));
             }

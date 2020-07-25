@@ -1,17 +1,27 @@
 package com.erastus.orientate.student.chat.chatmessages;
 
+import android.util.Log;
+
 import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
 import com.erastus.orientate.student.chat.chatmessages.models.MessageType;
+import com.erastus.orientate.student.login.StudentLoginActivity;
+import com.erastus.orientate.student.login.StudentLoginRepository;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 class ChatMessageHelper {
+    private static final String TAG = "ChatMessageHelper";
 
     private static final int HEADER_FULL = 10;
     private static final int HEADER = 20;
     private static final int MIDDLE = 30;
     private static final int END = 40;
+    private static String myId;
+
+    static {
+        myId = StudentLoginRepository.getInstance().getLoggedInStudent().getObjectId();
+    }
 
     private ChatMessageHelper() {
     }
@@ -23,13 +33,11 @@ class ChatMessageHelper {
         if (limit > messages.size()) {
             limit = messages.size();
         }
-
-        for (int i = 0; i < limit; i++) {
-            ChatMessage message = messages.get(i);
-            if (i > 0) {
+        if (messages.size() > 0) {
+            messages.get(0).setMessageType(assignType(messages.get(0), HEADER_FULL));
+            for (int i = 1; i < limit; i++) {
+                ChatMessage message = messages.get(i);
                 ChatMessageHelper.chain(message, messages.get(i - 1));
-            } else {
-                message.setMessageType(MessageType.OWN_HEADER_FULL);
             }
         }
     }
@@ -41,7 +49,7 @@ class ChatMessageHelper {
 
         long offset = TimeUnit.MINUTES.toMillis(1);
 
-        boolean ownMessage = previousMsg.getSender().getObjectId().equals(currentMsg.getSender().getObjectId());
+        boolean ownMessage = currentMsg.getSender().getObjectId().equals(previousMsg.getSender().getObjectId());
         boolean chainable = false;
 
         if (ownMessage)
@@ -70,7 +78,7 @@ class ChatMessageHelper {
 
     private static boolean isTypeOf(ChatMessage instance, int type) {
         if (type == HEADER_FULL) {
-            return instance.getMessageType() == MessageType.OWN_HEADER_FULL || instance.getMessageType() == MessageType.OWN_HEADER_FULL;
+            return instance.getMessageType() == MessageType.OWN_HEADER_FULL || instance.getMessageType() == MessageType.REC_HEADER_FULL;
         }
         if (type == HEADER) {
             return instance.getMessageType() == MessageType.OWN_HEADER_SERIES || instance.getMessageType() == MessageType.REC_HEADER_SERIES;
@@ -86,17 +94,21 @@ class ChatMessageHelper {
 
     private static int assignType(ChatMessage instance, int type) {
         if (type == HEADER_FULL) {
-            return instance.isOwnMessage() ? MessageType.OWN_HEADER_FULL : MessageType.REC_HEADER_FULL;
+            return isOwnMessage(instance) ? MessageType.OWN_HEADER_FULL : MessageType.REC_HEADER_FULL;
         }
         if (type == HEADER) {
-            return instance.isOwnMessage() ? MessageType.OWN_HEADER_SERIES : MessageType.REC_HEADER_SERIES;
+            return isOwnMessage(instance) ? MessageType.OWN_HEADER_SERIES : MessageType.REC_HEADER_SERIES;
         }
         if (type == MIDDLE) {
-            return instance.isOwnMessage() ? MessageType.OWN_MIDDLE : MessageType.REC_MIDDLE;
+            return isOwnMessage(instance) ? MessageType.OWN_MIDDLE : MessageType.REC_MIDDLE;
         }
         if (type == END) {
-            return instance.isOwnMessage() ? MessageType.OWN_END : MessageType.REC_END;
+            return isOwnMessage(instance) ? MessageType.OWN_END : MessageType.REC_END;
         }
         return -1;
+    }
+
+    private static boolean isOwnMessage(ChatMessage message) {
+        return message.getSender().getObjectId().equals(myId);
     }
 }

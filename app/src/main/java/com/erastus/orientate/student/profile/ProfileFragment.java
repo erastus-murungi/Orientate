@@ -16,8 +16,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.erastus.orientate.R;
+import com.erastus.orientate.applications.App;
 import com.erastus.orientate.databinding.FragmentProfileBinding;
 import com.erastus.orientate.student.chat.ChatPreviewFragment;
+import com.erastus.orientate.student.login.StudentLoginRepository;
 import com.erastus.orientate.student.models.Student;
 import com.erastus.orientate.utils.circularimageview.CircularImageView;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
@@ -51,7 +53,7 @@ public class ProfileFragment extends Fragment {
         setUpButtons();
         setUpObservers();
         setUpToolBar();
-        setUpNamesObservers();
+        bindData();
         return mBinding.getRoot();
     }
 
@@ -110,44 +112,28 @@ public class ProfileFragment extends Fragment {
                 mBottomSheet.getTag());
     }
 
-    private void setUpNamesObservers() {
+    private void bindData() {
         mUsernameTextView = mBinding.textViewUsername;
         mFullNameTextView = mBinding.textViewProfileFullName;
         mLoadingIndicator = mBinding.avLoadingIndicatorProfileFullName;
-        mLoadingIndicator.show();
-        mViewModel.getStudent().observe(getViewLifecycleOwner(), studentSimpleState -> {
-            Log.d(TAG, "setUpNamesObservers: called");
-            if (studentSimpleState == null) {
-                Log.d(TAG, "setUpNamesObservers: called with null");
-                return;
-            }
-            if (studentSimpleState.getData() != null) {
-                Log.d(TAG, "setUpNamesObservers: called with data");
-                Student s = studentSimpleState.getData();
-                if (s.getMiddleName() == null) {
-                    mFullNameTextView.setText(getString(R.string.format_two_names, s.getFirstName(), s.getLastName()));
-                } else {
-                    mFullNameTextView.setText(getString(R.string.format_three_names, s.getFirstName(), s.getMiddleName(), s.getLastName()));
-                }
-                mLoadingIndicator.hide();
-            }
-            if (studentSimpleState.getErrorMessage() != null) {
-                Log.e(TAG, "setUpNamesObservers: " + studentSimpleState.getErrorMessage());
-                showErrorSnackBar(studentSimpleState.getErrorMessage());
-                mLoadingIndicator.hide();
-            }
-        });
 
-        mViewModel.getUser().observe(getViewLifecycleOwner(), genericUser -> {
-            if (genericUser != null) {
-                mUsernameTextView.setText(getString(R.string.format_username,
-                        genericUser.getUsername()));
-                Glide.with(requireContext())
-                        .load(genericUser.getProfileImageUrl())
-                        .placeholder(R.drawable.ic_baseline_tag_faces_24)
-                        .into(mProfilePictureCircularImageView);
-            }
-        });
+        mLoadingIndicator.show();
+
+        Student s = StudentLoginRepository.getInstance().getLoggedInStudent();
+        mUsernameTextView.setText(getString(R.string.format_username,
+                App.get().getCurrentUser().getUsername()));
+
+        if (s.getMiddleName() == null) {
+            mFullNameTextView.setText(getString(R.string.format_two_names, s.getFirstName(), s.getLastName()));
+        } else {
+            mFullNameTextView.setText(getString(R.string.format_three_names, s.getFirstName(), s.getMiddleName(), s.getLastName()));
+        }
+
+        Glide.with(requireContext())
+                .load(s.getProfileImageUrl())
+                .placeholder(R.drawable.ic_baseline_tag_faces_24)
+                .into(mProfilePictureCircularImageView);
+        mLoadingIndicator.hide();
     }
 
 

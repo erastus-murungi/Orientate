@@ -31,20 +31,6 @@ public class ProfileRepository {
     }
 
     public LiveData<DataState> getStudent() {
-        requestStudent();
         return mStudentDataState;
-    }
-
-    private void requestStudent() {
-        ParseQuery<Student> query = ParseQuery.getQuery(Student.class);
-        query.include(Student.KEY_INSTITUTION);
-        query.whereEqualTo(Student.KEY_USER, ParseUser.getCurrentUser());
-        query.getFirstInBackground((object, e) -> {
-            if (e == null) {
-                mStudentDataState.postValue(new DataState.Success<>(object));
-            } else {
-                mStudentDataState.postValue(new DataState.Error(e));
-            }
-        });
     }
 }

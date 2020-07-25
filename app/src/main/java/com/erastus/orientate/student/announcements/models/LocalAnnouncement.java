@@ -1,6 +1,6 @@
 package com.erastus.orientate.student.announcements.models;
 
-import com.erastus.orientate.institution.models.LocalInstitution;
+import com.erastus.orientate.institution.models.Institution;
 import com.erastus.orientate.student.models.Urgency;
 
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ public class LocalAnnouncement {
     private String mTitle;
     private String mBody;
     private String mUrl;
-    private LocalInstitution mOwnerInstitution;
+    private Institution mOwnerInstitution;
     private LocalDateTime mCreatedAt;
     private String mPostedBy;
 
@@ -21,8 +21,7 @@ public class LocalAnnouncement {
         this.mTitle = announcement.getTitle();
         this.mBody = announcement.getBody();
         this.mUrl = announcement.getUrl();
-        this.mOwnerInstitution =
-                new LocalInstitution(announcement.getOwnerInstitution());
+        this.mOwnerInstitution = announcement.getOwnerInstitution();
         this.mCreatedAt = announcement.getCreatedAtAsLocalDateTime();
         this.mPostedBy = announcement.getPostedBy();
     }
@@ -51,7 +50,7 @@ public class LocalAnnouncement {
         return mUrl;
     }
 
-    public LocalInstitution getOwner() {
+    public Institution getOwner() {
         return mOwnerInstitution;
     }
 

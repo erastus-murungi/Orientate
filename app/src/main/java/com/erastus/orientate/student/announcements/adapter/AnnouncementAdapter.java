@@ -86,7 +86,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             mAnnouncementTitleMaterialTextView.setText(localAnnouncement.getTitle());
             mAnnouncementBodyMaterialTextView.setText(localAnnouncement.getBody());
             Glide.with(mContext)
-                    .load(localAnnouncement.getOwner().getUser().getProfileImageUrl())
+                    .load(localAnnouncement.getOwner().getProfileImageUrl())
                     .fitCenter()
                     .circleCrop()
                     .placeholder(R.drawable.ic_education)

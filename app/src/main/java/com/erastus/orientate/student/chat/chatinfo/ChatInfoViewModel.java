@@ -1,4 +1,4 @@
-package com.erastus.orientate.student.chat.chatmessages;
+package com.erastus.orientate.student.chat.chatinfo;
 
 import androidx.lifecycle.ViewModel;
 

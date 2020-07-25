@@ -210,6 +210,7 @@ public class ChatMessageRepository {
         ParseQuery<ChatMessage> parseQuery = ParseQuery.getQuery(ChatMessage.class);
         parseQuery.whereEqualTo(ChatMessage.KEY_CONVERSATION, conversation);
         parseQuery.include(ChatMessage.KEY_SENDER);
+        parseQuery.addAscendingOrder(ChatMessage.KEY_CREATED_AT);
         parseQuery.findInBackground((messages, e) -> {
             if (e == null) {
                 TaskRunner.getInstance().executeAsync(

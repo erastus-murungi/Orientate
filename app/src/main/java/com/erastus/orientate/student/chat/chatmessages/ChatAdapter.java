@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
 import com.erastus.orientate.student.chat.chatmessages.models.MessageType;
+import com.erastus.orientate.student.login.StudentLoginRepository;
 import com.erastus.orientate.utils.DateUtils;
 import com.erastus.orientate.utils.Utils;
 import com.erastus.orientate.utils.circularimageview.CircularImageView;
@@ -142,7 +143,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
             mBubble.setText(mMessage.getContent());
 
-            mSender.setText(mMessage.getSender().getUsername());
+            mSender.setText(mMessage.getSender().getFirstName());
 
             mTimestamp.setText(DateUtils.parseTime(mMessage.getCreatedAt().getTime(), mContext));
 
@@ -153,7 +154,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
             }
 
             Glide.with(mContext)
-                    .load(message.getExtendedParseUser().getProfileImageUrl())
+                    .load(message.getSender().getProfileImageUrl())
                     .into(mAvatar);
 
         }
@@ -233,7 +234,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                 DateUtils.getRelativeTimeAgo(ChatMessage.getCreatedAt().getTime() / 10_000L) +
                 Utils.newLine() +
                 Utils.emphasizeText("Own ChatMessage: ") +
-                ChatMessage.isOwnMessage() +
+                ChatMessage.getSender().getObjectId().equals(StudentLoginRepository.getInstance().getLoggedInStudent().getObjectId()) +
                 Utils.newLine() +
                 Utils.emphasizeText("Type: ") +
                 ChatMessage.getMessageType() +

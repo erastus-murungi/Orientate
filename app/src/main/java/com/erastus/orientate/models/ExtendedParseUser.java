@@ -16,7 +16,6 @@ import java.util.concurrent.TimeoutException;
 
 @ParseClassName("User")
 public class ExtendedParseUser extends ParseUser {
-    public static final String KEY_PROFILE_IMAGE = "profile_image";
     public static final String KEY_IS_STUDENT = "is_student";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_EMAIL_VERIFIED = "emailVerified";
@@ -35,23 +34,6 @@ public class ExtendedParseUser extends ParseUser {
 
     public ExtendedParseUser(ParseUser parseUser) {
         mUser = parseUser;
-    }
-
-    public String getProfileImageUrl() {
-        Task<ParseUser> parseUserTask = mUser.fetchIfNeededInBackground();
-
-        try {
-            parseUserTask.waitForCompletion(Announcement.MAX_DURATION, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (parseUserTask.isCompleted() && parseUserTask.getError() == null) {
-            mUser = parseUserTask.getResult();
-        }
-        if (!parseUserTask.isCompleted() && parseUserTask.getError() == null) {
-            Log.e(TAG, "Error timed out", new TimeoutException());
-        }
-        return Objects.requireNonNull(mUser.getParseFile(KEY_PROFILE_IMAGE)).getUrl();
     }
 
     public boolean getIsStudent() {

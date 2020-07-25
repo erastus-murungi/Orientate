@@ -10,11 +10,14 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ActivityStudentLoginBinding;
 import com.erastus.orientate.databinding.ProgressLoginInButtonBinding;
+import com.erastus.orientate.student.models.SimpleState;
+import com.erastus.orientate.student.models.Student;
 import com.erastus.orientate.student.navigation.StudentNavActivity;
 import com.erastus.orientate.utils.Utils;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
@@ -34,16 +37,31 @@ public class StudentLoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mLoginViewModel = new ViewModelProvider(this)
+                .get(StudentLoginViewModel.class);
+
         // no need for login in again
         if (ParseUser.getCurrentUser() != null) {
+            // get the active student
             goToStudentNavActivity();
+            mLoginViewModel.getStudent().observe(this, studentSimpleState -> {
+                if (studentSimpleState == null) {
+                    return;
+                }
+                if (studentSimpleState.getData() != null) {
+                    goToStudentNavActivity();
+                    finish();
+                }
+                if (studentSimpleState.getErrorMessage() != null) {
+                    showLoginFailed(studentSimpleState.getErrorMessage());
+                }
+
+            });
             finish();
         }
 
         activityStudentLoginBinding = ActivityStudentLoginBinding.inflate(getLayoutInflater());
         setContentView(activityStudentLoginBinding.getRoot());
-        mLoginViewModel = new ViewModelProvider(this, new StudentLoginViewModelFactory())
-                .get(StudentLoginViewModel.class);
 
         final TextInputLayout usernameTextInputLayout = activityStudentLoginBinding.textInputLayoutUsername;
         final TextInputLayout passwordTextInputLayout = activityStudentLoginBinding.textInputLayoutPassword;

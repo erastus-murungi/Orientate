@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -62,10 +63,12 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final CircularImageView mConversationImageView;
-        public final TextView mConversationTitleTextView;
-        public final TextView mLastMessageTextView;
-        public final TextView mLastSeenTextView;
+        private final CircularImageView mConversationImageView;
+        private final TextView mConversationTitleTextView;
+        private final TextView mLastMessageTextView;
+        private final TextView mLastSeenTextView;
+        private final ImageView mPinnedImageView;
+
 
         public ViewHolder(ItemConversationBinding binding) {
             super(binding.getRoot());
@@ -73,6 +76,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
             mConversationTitleTextView = binding.textViewConversationTitle;
             mLastMessageTextView = binding.textViewConversationLastMessage;
             mLastSeenTextView = binding.textViewLastSeen;
+            mPinnedImageView = binding.pinned;
             binding.getRoot().setOnClickListener((view) ->
                     mOnConversationClicked.onConversationClicked(
                             mConversations.get(getBindingAdapterPosition())));
