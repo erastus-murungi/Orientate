@@ -1,9 +1,8 @@
 package com.erastus.orientate.institution.models;
 
-import com.erastus.orientate.models.GenericUser;
+import com.erastus.orientate.models.ExtendedParseUser;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
 
 @ParseClassName("Institution")
 public class Institution extends ParseObject {
@@ -26,7 +25,7 @@ public class Institution extends ParseObject {
         return getString(KEY_LOCATION);
     }
 
-    public GenericUser getUser() {
-        return new GenericUser(getParseUser(KEY_USER));
+    public ExtendedParseUser getUser() {
+        return new ExtendedParseUser(getParseUser(KEY_USER));
     }
 }

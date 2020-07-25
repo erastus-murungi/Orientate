@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
 
     <com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView
         android:id="@+id/av_loading_conversations"
@@ -33,4 +33,12 @@
         app:layoutManager="LinearLayoutManager"
         tools:context=".student.chat.conversations.ConversationFragment"
         tools:listitem="@layout/fragment_conversation" />
+
+
+    <FrameLayout
+        android:id="@+id/frame_layout_chats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
 </RelativeLayout>

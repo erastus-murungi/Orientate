@@ -8,7 +8,7 @@
     android:paddingStart="@dimen/default_spacing"
     tools:ignore="RtlSymmetry">
 
-    <ImageView
+    <com.erastus.orientate.utils.circularimageview.CircularImageView
         android:id="@+id/message_avatar"
         android:layout_width="@dimen/avatar_bubble_size"
         android:layout_height="@dimen/avatar_bubble_size"
@@ -24,7 +24,6 @@
         android:layout_alignStart="@id/message_bubble"
         android:layout_toEndOf="@id/message_avatar"
         android:textColor="@color/message_metadata_user"
-        android:textSize="12sp"
         android:textStyle="bold"
         android:visibility="gone"
         tools:text="Monty the monkey" />

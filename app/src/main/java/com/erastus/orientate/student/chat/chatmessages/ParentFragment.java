@@ -33,6 +33,10 @@ abstract class ParentFragment extends Fragment {
     public void extractArguments() {
     }
 
+    public View getRootView() {
+        return rootView;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle

@@ -1,16 +1,22 @@
 package com.erastus.orientate.student.chat.conversations;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.erastus.orientate.applications.App;
 import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.utils.TaskRunner;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.livequery.ParseLiveQueryClient;
+import com.parse.livequery.SubscriptionHandling;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -30,24 +36,33 @@ public class ConversationRepository {
     }
 
     public LiveData<DataState> getState() {
-        fetchConversations();
+        fetchConversationsBelongingToThisUser();
+        filterConversations();
         return mState;
     }
 
 
-    public void fetchConversations() {
+    public void fetchConversationsBelongingToThisUser() {
         ParseQuery<Conversation> query = ParseQuery.getQuery(Conversation.class);
-        query.findInBackground((objects, e) -> {
+        query.whereEqualTo(Conversation.KEY_PARTICIPANTS, App.get().getCurrentUser().getObjectId()).findInBackground((objects, e) -> {
             if (e == null) {
                 mState.postValue(new DataState.Success<>(objects));
                 mConversationMutableLiveData.postValue(objects);
                 Log.d(TAG, "fetchConversations: " + objects);
-                getInnerConversationObjects(objects);
             } else {
                 mState.postValue(new DataState.Error(e));
                 Log.e(TAG, "fetchConversations: " + e);
             }
         });
+
+    }
+
+    void filterConversations() {
+        Log.d(TAG, "filterConversations: running");
+        ParseLiveQueryClient parseLiveQueryClient = ParseLiveQueryClient.Factory.getClient();
+        ParseQuery<Conversation> query = ParseQuery.getQuery(Conversation.class);
+        query.whereEqualTo(Conversation.KEY_PARTICIPANTS, App.get().getCurrentUser().getObjectId());
+        parseLiveQueryClient.subscribe(query).handleEvents((query1, event, object) -> Log.d(TAG, "onEvents: " + event));
     }
 
     private static class GetInnerFields implements Callable<DataState> {
@@ -71,7 +86,7 @@ public class ConversationRepository {
         }
     }
 
-    private void getInnerConversationObjects(List<Conversation> conversations) {
+    private void getNestedObjects(List<Conversation> conversations) {
         TaskRunner.getInstance().executeAsync(new GetInnerFields(conversations), data -> mState.postValue(data));
     }
 }

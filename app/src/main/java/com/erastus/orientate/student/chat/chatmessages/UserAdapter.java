@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.erastus.orientate.R;
-import com.erastus.orientate.models.GenericUser;
+import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     private final Conversation mConversation;
 
-    private List<GenericUser> mUsers;
+    private List<ExtendedParseUser> mUsers;
 
     public UserAdapter(Conversation conversation) {
         mConversation = conversation;
@@ -47,7 +47,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return mUsers.size();
     }
 
-    public void update(List<GenericUser> newData) {
+    public void update(List<ExtendedParseUser> newData) {
         Collections.sort(newData, (o1, o2) -> Boolean.compare(o1.isMe(), o2.isMe()) * (-1));
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new UserDiffCallback(newData, mUsers));
         diffResult.dispatchUpdatesTo(this);
@@ -63,7 +63,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
         TextView mStatus;
 
-        GenericUser mUser;
+        ExtendedParseUser mUser;
 
         UserViewHolder(View itemView) {
             super(itemView);
@@ -72,7 +72,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             mStatus = itemView.findViewById(R.id.user_status);
         }
 
-        void bindData(GenericUser user) {
+        void bindData(ExtendedParseUser user) {
             this.mUser = user;
 
             mUsername.setText(this.mUser.getUsername());
@@ -87,10 +87,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     static class UserDiffCallback extends DiffUtil.Callback {
 
-        List<GenericUser> newUsers;
-        List<GenericUser> oldUsers;
+        List<ExtendedParseUser> newUsers;
+        List<ExtendedParseUser> oldUsers;
 
-        public UserDiffCallback(List<GenericUser> newChats, List<GenericUser> oldChats) {
+        public UserDiffCallback(List<ExtendedParseUser> newChats, List<ExtendedParseUser> oldChats) {
             this.newUsers = newChats;
             this.oldUsers = oldChats;
         }

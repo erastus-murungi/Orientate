@@ -8,7 +8,7 @@
     android:paddingStart="@dimen/default_spacing"
     tools:ignore="RtlSymmetry">
 
-    <ImageView
+    <com.erastus.orientate.utils.circularimageview.CircularImageView
         android:id="@+id/message_avatar"
         android:layout_width="@dimen/avatar_bubble_size"
         android:layout_height="@dimen/avatar_bubble_size"

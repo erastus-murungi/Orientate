@@ -3,7 +3,7 @@ package com.erastus.orientate.student.navigation;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.erastus.orientate.models.GenericUser;
+import com.erastus.orientate.models.ExtendedParseUser;
 import com.parse.ParseUser;
 
 public class StudentNavViewModel extends ViewModel {
@@ -13,10 +13,10 @@ public class StudentNavViewModel extends ViewModel {
      */
     private MutableLiveData<ActionBarStatus> mStatus = new MutableLiveData<>();
 
-    private MutableLiveData<GenericUser> mUser =
-            new MutableLiveData<>(new GenericUser(ParseUser.getCurrentUser()));
+    private MutableLiveData<ExtendedParseUser> mUser =
+            new MutableLiveData<>(new ExtendedParseUser(ParseUser.getCurrentUser()));
 
-    public MutableLiveData<GenericUser> getUser() {
+    public MutableLiveData<ExtendedParseUser> getUser() {
         return mUser;
     }
 

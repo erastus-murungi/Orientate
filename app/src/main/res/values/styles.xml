@@ -125,5 +125,32 @@
     </style>
 
 
+    <style name="TextPrimary">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="textSize">primary</item>
+    </style>
+
+    <style name="TextSecondary">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="textSize">secondary</item>
+    </style>
+
+    <style name="TextTertiary">
+        <item name="android:textColor">?android:attr/textColorTertiary</item>
+        <item name="textSize">tertiary</item>
+    </style>
+
+    <style name="TextButton">
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textSize">secondary</item>
+    </style>
+
+
 
 </resources>

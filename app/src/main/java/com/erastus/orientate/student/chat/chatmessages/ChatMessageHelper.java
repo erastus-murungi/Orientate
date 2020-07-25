@@ -3,6 +3,7 @@ package com.erastus.orientate.student.chat.chatmessages;
 import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
 import com.erastus.orientate.student.chat.chatmessages.models.MessageType;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 class ChatMessageHelper {
@@ -14,6 +15,25 @@ class ChatMessageHelper {
 
     private ChatMessageHelper() {
     }
+
+
+    static void chainMessages(List<ChatMessage> messages, int count) {
+
+        int limit = count;
+        if (limit > messages.size()) {
+            limit = messages.size();
+        }
+
+        for (int i = 0; i < limit; i++) {
+            ChatMessage message = messages.get(i);
+            if (i > 0) {
+                ChatMessageHelper.chain(message, messages.get(i - 1));
+            } else {
+                message.setMessageType(MessageType.OWN_END);
+            }
+        }
+    }
+
 
     static void chain(ChatMessage currentMsg, ChatMessage previousMsg) {
 

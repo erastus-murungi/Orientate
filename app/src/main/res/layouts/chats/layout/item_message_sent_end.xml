@@ -5,21 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="100dp"
-    android:layout_marginLeft="100dp"
     android:gravity="end"
-    android:paddingEnd="@dimen/default_spacing"
-    android:paddingRight="@dimen/default_spacing"
-    tools:ignore="RtlSymmetry">
+    android:paddingStart="0dp"
+    android:paddingEnd="@dimen/default_spacing">
 
-    <ImageView
+    <com.erastus.orientate.utils.circularimageview.CircularImageView
         android:id="@+id/message_avatar"
         android:layout_width="@dimen/avatar_bubble_size"
         android:layout_height="@dimen/avatar_bubble_size"
         android:layout_alignTop="@id/message_bubble"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginStart="@dimen/half_spacing"
-        android:layout_marginLeft="@dimen/half_spacing"
         android:visibility="invisible"
         tools:src="@drawable/ic_baseline_tag_faces_24" />
 
@@ -28,7 +24,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@id/message_bubble"
-        android:layout_alignRight="@id/message_bubble"
         android:textColor="@color/message_metadata_user"
         android:textSize="@dimen/message_metadata_text_size"
         android:textStyle="bold"
@@ -42,7 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/message_sender"
         android:layout_toStartOf="@id/message_avatar"
-        android:layout_toLeftOf="@id/message_avatar"
         android:background="@drawable/message_sent_bubble"
         android:textColor="@color/message_sent_text"
         tools:text="@string/lorem_ipsum_short" />

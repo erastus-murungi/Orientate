@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.erastus.orientate.R;
-import com.erastus.orientate.models.GenericUser;
+import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.utils.EmptyView;
 
@@ -38,7 +38,7 @@ public class ChatInfoFragment extends ParentFragment {
     EmptyView mEmptyView;
 
     UserAdapter mUserAdapter;
-    List<GenericUser> mUsers = new ArrayList<>();
+    List<ExtendedParseUser> mUsers = new ArrayList<>();
 
     private Conversation mConversation;
 

@@ -1,12 +1,12 @@
 package com.erastus.orientate.institution.models;
 
-import com.erastus.orientate.models.GenericUser;
+import com.erastus.orientate.models.ExtendedParseUser;
 
 public class LocalInstitution {
     private String mInstitutionName;
     private String mInstitutionLocation;
     private String mInstitutionWebsiteUrl;
-    private GenericUser mUser;
+    private ExtendedParseUser mUser;
     private String mLocation;
 
     public String getInstitutionName() {
@@ -21,7 +21,7 @@ public class LocalInstitution {
         return mInstitutionWebsiteUrl;
     }
 
-    public GenericUser getUser() {
+    public ExtendedParseUser getUser() {
         return mUser;
     }
 

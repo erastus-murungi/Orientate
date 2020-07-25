@@ -7,31 +7,32 @@ import android.view.ViewGroup;
 
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.FragmentConversationBinding;
+import com.erastus.orientate.student.chat.chatmessages.ChatFragment;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.utils.EmptyView;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-/**
- * A fragment representing a list of Items.
- */
-public class ConversationFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
+public class ConversationFragment extends Fragment implements ConversationAdapter.OnConversationClicked {
 
     private FragmentConversationBinding mBinding;
     private RecyclerView mRecyclerView;
@@ -49,21 +50,8 @@ public class ConversationFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ConversationFragment newInstance(int columnCount) {
-        ConversationFragment fragment = new ConversationFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
+    public static ConversationFragment newInstance() {
+        return new ConversationFragment();
     }
 
     @Override
@@ -124,14 +112,40 @@ public class ConversationFragment extends Fragment {
     private void setUpRecyclerView() {
 
         // Set the adapter
-        mAdapter = new ConversationAdapter(getContext(), new ArrayList<>());
-        if (mColumnCount <= 1) {
-            mRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        } else {
-            mRecyclerView.setLayoutManager(new GridLayoutManager(requireContext(), mColumnCount));
-        }
+        mAdapter = new ConversationAdapter(getContext(), new ArrayList<>(), this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
         mRecyclerView.setAdapter(mAdapter);
+        linearLayoutManager.setReverseLayout(false);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), RecyclerView.VERTICAL);
+        dividerItemDecoration.setDrawable(Objects.requireNonNull(requireContext().getDrawable(R.drawable.chats_divider)));
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
+
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
 
+    private void hideFloatingButton() {
+        FloatingActionButton mFab = requireActivity().findViewById(R.id.fab_compose);
+        mFab.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onConversationClicked(Conversation conversation) {
+        ChatFragment chatFragment = ChatFragment.newInstance(Parcels.wrap(conversation));
+        FragmentManager manager = getParentFragmentManager();
+        FragmentTransaction ft = manager.beginTransaction();
+        hideFloatingButton();
+        setupAnimations(ft);
+        ft.replace(R.id.frame_layout_chats, chatFragment);
+        ft.addToBackStack(chatFragment.getClass().getSimpleName());
+        ft.commit();
+    }
+
+    private void setupAnimations(FragmentTransaction ft) {
+        /*ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim
+                .exit_to_right);*/
+        ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
+    }
 }

@@ -24,20 +24,24 @@ import java.util.List;
 public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapter.ViewHolder> {
 
     private final List<Conversation> mConversations;
-    private ItemConversationBinding mBinding;
     private Context mContext;
+    private OnConversationClicked mOnConversationClicked;
 
-    public ConversationAdapter(Context context, List<Conversation> conversations) {
+    public interface OnConversationClicked {
+        void onConversationClicked(Conversation conversation);
+    }
+
+    public ConversationAdapter(Context context, List<Conversation> conversations, OnConversationClicked onConversationClicked) {
         mContext = context;
         mConversations = conversations;
+        mOnConversationClicked = onConversationClicked;
     }
 
     @NotNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        mBinding = ItemConversationBinding.inflate(layoutInflater, parent, false);
-        return new ViewHolder(mBinding);
+        return new ViewHolder(ItemConversationBinding.inflate(layoutInflater, parent, false));
     }
 
     public void update(List<Conversation> newData) {
@@ -69,6 +73,15 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
             mConversationTitleTextView = binding.textViewConversationTitle;
             mLastMessageTextView = binding.textViewConversationLastMessage;
             mLastSeenTextView = binding.textViewLastSeen;
+            binding.getRoot().setOnClickListener((view) ->
+                    mOnConversationClicked.onConversationClicked(
+                            mConversations.get(getBindingAdapterPosition())));
+            setUpImageView(mConversationImageView);
+        }
+
+        private void setUpImageView(CircularImageView conversationImageView) {
+            conversationImageView.setBorderWidth(5);
+            conversationImageView.setBorderColor(R.color.colorPrimaryDark);
         }
 
         private void bind(Conversation conversation) {

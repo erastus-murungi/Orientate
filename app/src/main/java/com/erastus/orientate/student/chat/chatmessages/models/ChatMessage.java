@@ -1,6 +1,8 @@
 package com.erastus.orientate.student.chat.chatmessages.models;
 
-import com.erastus.orientate.student.chat.conversations.LateInit;
+import com.erastus.orientate.applications.App;
+import com.erastus.orientate.models.ExtendedParseUser;
+import com.erastus.orientate.student.chat.conversations.FetchedLazily;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -19,8 +21,8 @@ public class ChatMessage extends ParseObject {
     }
 
     private int messageType;
-    private boolean isOwnMessage;
-    private ParseUser mSender;
+
+    private ExtendedParseUser mExtendedParseUser;
 
 
     public int getMessageType() {
@@ -31,27 +33,29 @@ public class ChatMessage extends ParseObject {
         this.messageType = messageType;
     }
 
+    @FetchedLazily
     public boolean isOwnMessage() {
-        return isOwnMessage;
+        return getSenderId().equals(App.get().getCurrentUser().getObjectId());
     }
 
-    public void setOwnMessage(boolean ownMessage) {
-        isOwnMessage = ownMessage;
-    }
-
+    @FetchedLazily
     public String getSenderId() {
-        if (mSender == null) {
-            return null;
-        }
-        return mSender.getObjectId();
+        return getSender().getObjectId();
     }
 
     /**
      * This is a blocking method and should be used with LiveData
      */
-    @LateInit
+    @FetchedLazily
     public ParseUser getSender() {
-        return mSender;
+        return getParseUser(KEY_SENDER);
+    }
+
+    public ExtendedParseUser getExtendedParseUser() {
+        if (mExtendedParseUser == null) {
+            mExtendedParseUser = new ExtendedParseUser(getSender());
+        }
+        return mExtendedParseUser;
     }
 
     public String getContent() {

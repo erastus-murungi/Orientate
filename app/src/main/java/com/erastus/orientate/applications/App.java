@@ -5,7 +5,7 @@ import android.app.Application;
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
 import com.erastus.orientate.institution.models.Institution;
-import com.erastus.orientate.models.GenericUser;
+import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.announcements.models.Announcement;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.student.event.models.Event;
@@ -43,7 +43,7 @@ public class App extends Application {
         super.onCreate();
 
         ParseObject.registerSubclass(Announcement.class);
-        ParseObject.registerSubclass(GenericUser.class);
+        ParseObject.registerSubclass(ExtendedParseUser.class);
         ParseObject.registerSubclass(Institution.class);
         ParseObject.registerSubclass(Event.class);
         ParseObject.registerSubclass(Student.class);

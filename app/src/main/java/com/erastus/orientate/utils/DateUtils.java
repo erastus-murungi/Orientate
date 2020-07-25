@@ -1,7 +1,9 @@
 package com.erastus.orientate.utils;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Build;
+import android.text.format.DateFormat;
 
 import androidx.annotation.RequiresApi;
 
@@ -79,5 +81,14 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timeToken);
         return sdf.format(calendar.getTime());
+    }
+
+    public static String parseTime(long timeToken, Context context) {
+        @SuppressLint("SimpleDateFormat")
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timeToken);
+        SimpleDateFormat x = new SimpleDateFormat("h:mm a", context.getApplicationContext().getResources().getConfiguration().getLocales().get(0));
+//        java.text.DateFormat x = DateFormat.getDateFormat(context.getApplicationContext());
+        return x.format(calendar.getTime());
     }
 }

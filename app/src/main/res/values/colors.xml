@@ -333,11 +333,11 @@
     <color name="text_secondary">@color/bright_gray</color>
     <color name="message_composer">@color/white_smoke</color>
     <color name="message_composer_border">@color/pumice</color>
-    <color name="message_bubble_sent">@color/material400Red</color>
+    <color name="message_bubble_sent">@color/colorPrimaryDark</color>
     <color name="message_bubble_received">@color/white_smoke</color>
     <color name="message_metadata_user">@color/black</color>
     <color name="message_metadata_timestamp">@color/mountain_mist</color>
     <color name="message_sent_text">@color/white</color>
-    <color name="message_received_text">@color/black_overlay</color>
+    <color name="message_received_text">@color/black</color>
 
 </resources>

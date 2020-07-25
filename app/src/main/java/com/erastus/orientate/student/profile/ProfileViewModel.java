@@ -2,16 +2,14 @@ package com.erastus.orientate.student.profile;
 
 import android.util.Log;
 
-import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import com.erastus.orientate.institution.models.Institution;
 import com.erastus.orientate.institution.models.LocalInstitution;
-import com.erastus.orientate.models.GenericUser;
+import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.models.SimpleState;
 import com.erastus.orientate.student.models.Student;
@@ -22,7 +20,7 @@ public class ProfileViewModel extends ViewModel {
 
     private LiveData<SimpleState<Student>> mStudent;
     private LiveData<SimpleState<LocalInstitution>> mStudentInstitution;
-    private LiveData<GenericUser> mUser;
+    private LiveData<ExtendedParseUser> mUser;
 
     public LiveData<SimpleState<LocalInstitution>> getStudentInstitution() {
         return mStudentInstitution;
@@ -32,7 +30,7 @@ public class ProfileViewModel extends ViewModel {
         return mStudent;
     }
 
-    public LiveData<GenericUser> getUser() {
+    public LiveData<ExtendedParseUser> getUser() {
         return mUser;
     }
 
@@ -60,7 +58,7 @@ public class ProfileViewModel extends ViewModel {
             return new MutableLiveData<>(new SimpleState<>((Boolean) true));
         });
 
-        mUser = Transformations.map(mRepository.getCurrentUser(), GenericUser::new);
+        mUser = Transformations.map(mRepository.getCurrentUser(), ExtendedParseUser::new);
     }
 
     public void logout() {

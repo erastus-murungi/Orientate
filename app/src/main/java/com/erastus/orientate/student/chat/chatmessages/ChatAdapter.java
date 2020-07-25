@@ -14,22 +14,25 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
 import com.erastus.orientate.student.chat.chatmessages.models.MessageType;
 import com.erastus.orientate.utils.DateUtils;
 import com.erastus.orientate.utils.Utils;
+import com.erastus.orientate.utils.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHolder> {
-    // tag::BIND-2[]
     private List<ChatMessage> mItems;
-    // end::BIND-2[]
 
-    public ChatAdapter() {
+    private Context mContext;
+
+    public ChatAdapter(Context context) {
         mItems = new ArrayList<>();
+        mContext = context;
     }
 
     @Override
@@ -105,7 +108,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
         RelativeLayout mRoot;
 
-        ImageView mAvatar;
+        CircularImageView mAvatar;
 
         TextView mSender;
 
@@ -117,17 +120,23 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
         MessageViewHolder(View itemView, int type) {
             super(itemView);
-            this.mType = type;
+
+            mType = type;
+
             mRoot = itemView.findViewById(R.id.root);
+
             mBubble = itemView.findViewById(R.id.message_bubble);
+
             mTimestamp = itemView.findViewById(R.id.message_timestamp);
+
             mAvatar = itemView.findViewById(R.id.message_avatar);
+
             mSender = itemView.findViewById(R.id.message_sender);
 
         }
 
-        void bindData(ChatMessage ChatMessage) {
-            this.mMessage = ChatMessage;
+        void bindData(ChatMessage message) {
+            this.mMessage = message;
 
             handleType();
 
@@ -135,13 +144,17 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
             mSender.setText(mMessage.getSender().getUsername());
 
-            mTimestamp.setText(mMessage.getCreatedAt().toString());
+            mTimestamp.setText(DateUtils.parseTime(mMessage.getCreatedAt().getTime(), mContext));
 
             if (this.mMessage.isSent()) {
                 mBubble.setAlpha(1.0f);
             } else {
                 mBubble.setAlpha(0.5f);
             }
+
+            Glide.with(mContext)
+                    .load(message.getExtendedParseUser().getProfileImageUrl())
+                    .into(mAvatar);
 
         }
 
@@ -203,10 +216,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
         @Override
         public boolean areContentsTheSame(int i, int i1) {
             boolean type = oldMessages.get(i).getMessageType() == newMessages.get(i1).getMessageType();
-            boolean sent = oldMessages.get(i).isSent() == newMessages.get(i1).isSent();
+            boolean sent = oldMessages.get(i).getContent().equals(newMessages.get(i1).getContent());
             return type && sent;
         }
-
     }
 
     private void showMessageInfoDialog(Context context, ChatMessage ChatMessage) {

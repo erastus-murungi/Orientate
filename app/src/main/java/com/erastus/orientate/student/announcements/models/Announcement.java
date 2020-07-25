@@ -6,8 +6,6 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 
 import com.erastus.orientate.institution.models.Institution;
-import com.erastus.orientate.models.GenericUser;
-import com.erastus.orientate.student.announcements.AnnouncementViewModel;
 import com.erastus.orientate.student.models.Urgency;
 import com.erastus.orientate.utils.DateUtils;
 import com.parse.ParseClassName;
