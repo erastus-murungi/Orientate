@@ -5,7 +5,6 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,10 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.erastus.orientate.R;
-import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
+import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.student.chat.chatmessages.models.MessageType;
 import com.erastus.orientate.student.login.StudentLoginRepository;
-import com.erastus.orientate.student.models.Student;
 import com.erastus.orientate.utils.DateUtils;
 import com.erastus.orientate.utils.Utils;
 import com.erastus.orientate.utils.circularimageview.CircularImageView;
@@ -28,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHolder> {
-    private List<ChatMessage> mItems;
+    private List<Message> mItems;
 
     private Context mContext;
 
@@ -82,7 +80,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
     }
 
     // tag::BIND-4[]
-    public void update(List<ChatMessage> newData) {
+    public void update(List<Message> newData) {
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallback(newData, mItems));
         diffResult.dispatchUpdatesTo(this);
         mItems.clear();
@@ -118,7 +116,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
         TextView mTimestamp;
 
-        ChatMessage mMessage;
+        Message mMessage;
 
         MessageViewHolder(View itemView, int type) {
             super(itemView);
@@ -137,7 +135,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
         }
 
-        void bindData(ChatMessage message) {
+        void bindData(Message message) {
             this.mMessage = message;
 
             handleType();
@@ -194,10 +192,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
     class DiffCallback extends DiffUtil.Callback {
 
-        List<ChatMessage> newMessages;
-        List<ChatMessage> oldMessages;
+        List<Message> newMessages;
+        List<Message> oldMessages;
 
-        DiffCallback(List<ChatMessage> newMessages, List<ChatMessage> oldMessages) {
+        DiffCallback(List<Message> newMessages, List<Message> oldMessages) {
             this.newMessages = newMessages;
             this.oldMessages = oldMessages;
         }
@@ -225,24 +223,24 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
         }
     }
 
-    private void showMessageInfoDialog(Context context, ChatMessage ChatMessage) {
+    private void showMessageInfoDialog(Context context, Message Message) {
         String contentBuilder = "" + Utils.emphasizeText("Sender: ") +
-                ChatMessage.getSender().getFullName() +
+                Message.getSender().getFullName() +
                 Utils.newLine() +
                 Utils.emphasizeText("Date time: ") +
-                DateUtils.parseDateTime(ChatMessage.getCreatedAt().getTime() / 10_000L) +
+                DateUtils.parseDateTime(Message.getCreatedAt().getTime() / 10_000L) +
                 Utils.newLine() +
                 Utils.emphasizeText("Relative: ") +
-                DateUtils.getRelativeTimeAgo(ChatMessage.getCreatedAt().getTime() / 10_000L) +
+                DateUtils.getRelativeTimeAgo(Message.getCreatedAt().getTime() / 10_000L) +
                 Utils.newLine() +
                 Utils.emphasizeText("Own Message: ") +
-                ChatMessage.getSender().getObjectId().equals(StudentLoginRepository.getInstance().getLoggedInStudent().getObjectId()) +
+                Message.getSender().getObjectId().equals(StudentLoginRepository.getInstance().getLoggedInStudent().getObjectId()) +
                 Utils.newLine() +
                 Utils.emphasizeText("Type: ") +
-                ChatMessage.getMessageType() +
+                Message.getMessageType() +
                 Utils.newLine() +
                 Utils.emphasizeText("Is sent: ") +
-                ChatMessage.isSent();
+                Message.isSent();
 
         MaterialDialog materialDialog = new MaterialDialog.Builder(context)
                 .title(R.string.message_info)

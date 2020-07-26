@@ -3,10 +3,11 @@ package com.erastus.orientate.student.web;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.erastus.orientate.R;
+
 import com.erastus.orientate.databinding.ActivityWebBinding;
 
 public class WebActivity extends AppCompatActivity {

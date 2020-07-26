@@ -1,13 +1,17 @@
 package com.erastus.orientate.applications;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 
 import com.erastus.orientate.R;
-import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
+import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.institution.models.Institution;
 import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.announcements.models.Announcement;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
+import com.erastus.orientate.student.chat.models.Attachment;
 import com.erastus.orientate.student.event.models.Event;
 import com.erastus.orientate.student.models.Student;
 import com.parse.Parse;
@@ -18,7 +22,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class App extends Application {
-    public static final String APP_ID = "erastus-orientate";
+    public static final String CHANNEL_ID = "NewMessage";
+;    public static final String APP_ID = "erastus-orientate";
     public static final String SERVER_URL = "https://erastus-orientate.herokuapp.com/parse/";
     private ParseUser mCurrentUser;
 
@@ -47,8 +52,9 @@ public class App extends Application {
         ParseObject.registerSubclass(Institution.class);
         ParseObject.registerSubclass(Event.class);
         ParseObject.registerSubclass(Student.class);
-        ParseObject.registerSubclass(ChatMessage.class);
+        ParseObject.registerSubclass(Message.class);
         ParseObject.registerSubclass(Conversation.class);
+        ParseObject.registerSubclass(Attachment.class);
 
 
         //TODO only for troubleshooting -- remove this line for production
@@ -65,5 +71,21 @@ public class App extends Application {
                 .clientBuilder(builder)
                 .clientKey(getString(R.string.MasterKey))
                 .server(SERVER_URL).build());
+
+
+        createNotificationChannels();
+    }
+
+    private void createNotificationChannels() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Chat",
+                    NotificationManager.IMPORTANCE_MIN
+            );
+            channel.setDescription("Received a new Group message");
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
     }
 }

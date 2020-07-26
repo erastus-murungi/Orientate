@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class DateUtils {
 
     public static LocalDateTime localDateTimeFromDate(Date date) {

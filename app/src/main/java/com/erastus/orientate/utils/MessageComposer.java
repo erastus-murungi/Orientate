@@ -35,6 +35,10 @@ public class MessageComposer extends RelativeLayout {
         });
     }
 
+    public View sendButton() {
+        return mSend;
+    }
+
     public void setListener(Listener listener) {
         mListener = listener;
     }

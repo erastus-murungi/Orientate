@@ -1,5 +1,9 @@
 package com.erastus.orientate.student.chat.chatmessages;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
@@ -12,9 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -23,25 +27,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.erastus.orientate.R;
-import com.erastus.orientate.databinding.FragmentChatBinding;
-import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
+import com.erastus.orientate.applications.App;
+import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
-import com.erastus.orientate.student.models.SimpleState;
 import com.erastus.orientate.utils.EmptyView;
 import com.erastus.orientate.utils.EndlessRecyclerViewScrollListener;
 import com.erastus.orientate.utils.MessageComposer;
+import com.erastus.orientate.utils.TaskRunner;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ChatFragment extends ParentFragment implements MessageComposer.Listener {
-
+public class ChatFragment extends ParentFragment {
     private static final String ARGS_CONVERSATION = "ARGS_CONVERSATION";
 
     private ChatViewModel mViewModel;
@@ -62,6 +64,8 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
 
     private RecyclerView.OnScrollListener mOnScrollListener;
 
+    private NotificationManagerCompat mNotificationManager;
+
     public static ChatFragment newInstance(Parcelable conversation) {
         Bundle args = new Bundle();
         args.putParcelable(ARGS_CONVERSATION, conversation);
@@ -81,9 +85,15 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
         setUpObservers();
     }
 
-    private void setUpObservers() {
-        mEmptyView.setVisibility(View.VISIBLE);
+    private void setSwipeRefreshLayoutBehavior() {
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.darkBlue, R.color.white);
+        mSwipeRefreshLayout.setOnRefreshListener(mViewModel::fetchHistory);
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+
+
+    private void setUpObservers() {
 
         mViewModel.getState().observe(getViewLifecycleOwner(), listSimpleState -> {
             if (listSimpleState == null || listSimpleState.isLoading()) {
@@ -100,6 +110,7 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
                     showInformationSnackBar("Internal error occurred");
                 } else {
                     // work with data
+                    mSwipeRefreshLayout.setRefreshing(false);
                     workWithData(listSimpleState.getData());
                 }
             }
@@ -110,14 +121,33 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
                 if (mEmptyView.getVisibility() == View.VISIBLE) {
                     mEmptyView.setVisibility(View.GONE);
                 }
-                showInformationSnackBar("New message");
                 mChatAdapter.update(messages);
+            }
+        });
+
+
+        mViewModel.getNewMessageArrived().observe(getViewLifecycleOwner(), message -> {
+            if (message.getConversationId().equals(mViewModel.getMyConversationId())) {
                 scrollChatToBottom();
+            } else {
+                addToNotification(message.getContent(), mViewModel.getConversationTitle());
             }
         });
     }
 
-    private void workWithData(List<ChatMessage> data) {
+    private void addToNotification(String newMessage, String conversationTitle) {
+        Notification notification = new NotificationCompat.Builder(requireContext(), App.CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_icon)
+                .setContentTitle(conversationTitle)
+                .setContentText(newMessage)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+        mNotificationManager.notify(1, notification);
+    }
+
+
+    private void workWithData(List<Message> data) {
         if (data == null || data.size() == 0) {
             mEmptyView.setVisibility(View.VISIBLE);
             mChatsRecyclerView.setVisibility(View.GONE);
@@ -139,6 +169,8 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
         mChatsRecyclerView = rootView.findViewById(R.id.chat_recycler_view);
         mMessageComposer = rootView.findViewById(R.id.chats_message_composer);
         mEmptyView = rootView.findViewById(R.id.chat_empty_view);
+
+        mNotificationManager = NotificationManagerCompat.from(requireContext());
     }
 
     @Override
@@ -146,6 +178,8 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
         if (!viewFromCache) {
             setHasOptionsMenu(true);
             prepareRecyclerView();
+            setSwipeRefreshLayoutBehavior();
+            setMessageComposerBehavior();
             initializeScrollListener(mLinearLayoutManager);
             mSwipeRefreshLayout.setRefreshing(true);
             mViewModel.subscribe();
@@ -154,8 +188,6 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
 
     private void prepareRecyclerView() {
 
-        mSwipeRefreshLayout.setColorSchemeColors(requireContext().getColor(R.color.colorPrimary));
-        mSwipeRefreshLayout.setOnRefreshListener(mViewModel::fetchHistory);
         mLinearLayoutManager = new LinearLayoutManager(fragmentContext);
         mLinearLayoutManager.setReverseLayout(false);
         mLinearLayoutManager.setStackFromEnd(true);
@@ -169,8 +201,6 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
 
         mChatAdapter = new ChatAdapter(requireContext());
         mChatsRecyclerView.setAdapter(mChatAdapter);
-
-        mMessageComposer.setListener(this);
 
         // tag::HIS-5.2[]
 
@@ -187,7 +217,6 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
         };
         mChatsRecyclerView.addOnScrollListener(mOnScrollListener);
     }
-    // end::HIS-5.1[]
 
     @Override
     public void onCreateOptionsMenu(@NotNull Menu menu, MenuInflater inflater) {
@@ -198,9 +227,10 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_chat_info) {
-//            hostActivity.addFragment(ChatInfoFragment.newInstance(mChannel));
-//            return true;
-
+            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+            ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
+            ft.replace(R.id.frame_layout_profile, ChatInfoFragment.newInstance(mViewModel.getConversation()));
+            ft.commit();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -229,52 +259,13 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
         mViewModel.initListener();
     }
 
-    @Override
-    public void onSentClick(String message) {
-
-        mViewModel.sendMessage(message);
-        if (TextUtils.isEmpty(message)) {
-            return;
-        }
-        String finalMessage = message;
-
-        mViewModel.sendMessage(message);
-
-//        hostActivity.getPubNub()
-//                .publish()
-//                .channel(mChannel)
-//                .shouldStore(true)
-//                .message(Message.newBuilder().text(message).build())
-//                .async(new PNCallback<PNPublishResult>() {
-//                    @Override
-//                    public void onResponse(PNPublishResult result, PNStatus status) {
-//                        if (!status.isError()) {
-//                            long newMessageTimetoken = result.getTimetoken();
-//                        } else {
-//                            Message msg = Message.createUnsentMessage(Message.newBuilder().text(finalMessage).build());
-//                            mMessages.add(msg);
-//                            History.chainMessages(mMessages, mMessages.size());
-//                            runOnUiThread(() -> {
-//                                if (mEmptyView.getVisibility() == View.VISIBLE) {
-//                                    mEmptyView.setVisibility(View.GONE);
-//                                }
-//                                mChatAdapter.update(mMessages);
-//                                scrollChatToBottom();
-//
-//                                Toast.makeText(fragmentContext, R.string.message_not_sent, Toast.LENGTH_SHORT).show();
-//
-//                            });
-//                        }
-//                    }
-//                });
+    private void setMessageComposerBehavior() {
+        mMessageComposer.setListener(message -> mViewModel.sendMessage(message));
     }
-    // end::SEND-2[]
 
-    // tag::MSG-3[]
     private void scrollChatToBottom() {
-        mChatsRecyclerView.scrollToPosition(mChatAdapter.getItemCount() - 1);
+        mChatsRecyclerView.scrollToPosition(mChatAdapter.getItemCount());
     }
-    // end::MSG-3[]
 
     private void showErrorSnackBar(String errorString) {
         Snackbar.make(getRootView(), errorString, BaseTransientBottomBar.LENGTH_INDEFINITE)
@@ -298,5 +289,4 @@ public class ChatFragment extends ParentFragment implements MessageComposer.List
                 .setTextColor(requireContext().getColor(android.R.color.white))
                 .show();
     }
-
 }

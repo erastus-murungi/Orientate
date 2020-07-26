@@ -10,8 +10,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class TaskRunner {
-    private static volatile TaskRunner sInstance;
     public static final int DEFAULT_N_THREADS = 4;
+    private static volatile TaskRunner sInstance;
     private final Executor mExecutor = Executors.newFixedThreadPool(DEFAULT_N_THREADS);
     private final Handler mHandler = new Handler(Looper.getMainLooper());
 

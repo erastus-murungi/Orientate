@@ -2,7 +2,7 @@ package com.erastus.orientate.student.chat.conversations.models;
 
 import android.util.Log;
 
-import com.erastus.orientate.student.chat.chatmessages.models.ChatMessage;
+import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.student.chat.conversations.FetchedLazily;
 import com.erastus.orientate.utils.DateUtils;
 import com.parse.ParseClassName;
@@ -10,8 +10,6 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-
-import java.util.Objects;
 
 
 @ParseClassName("Conversation")
@@ -23,7 +21,7 @@ public class Conversation extends ParseObject {
     public static final String KEY_PARTICIPANTS = "participants";
     public static final String TAG = "Conversation";
 
-    private ChatMessage mLastMessage;
+    private Message mLastMessage;
 
 
     public String getTitle() {
@@ -51,12 +49,12 @@ public class Conversation extends ParseObject {
     }
 
 
-    public void setLastMessage(ChatMessage mLastMessage) {
+    public void setLastMessage(Message mLastMessage) {
         this.mLastMessage = mLastMessage;
     }
 
     @FetchedLazily
-    public ChatMessage getLastMessage() {
+    public Message getLastMessage() {
         try {
             return getParseObject(KEY_LAST_MESSAGE).fetch();
         } catch (ParseException e) {

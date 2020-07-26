@@ -45,9 +45,9 @@ public class ChatInfoFragment extends ParentFragment {
     private Conversation mConversation;
 
 
-    static ChatInfoFragment newInstance(String channel) {
+    static ChatInfoFragment newInstance(Conversation conversation) {
         Bundle args = new Bundle();
-        args.putString(ARGS_CONVERSATION, channel);
+        args.putParcelable(ARGS_CONVERSATION, conversation);
         ChatInfoFragment fragment = new ChatInfoFragment();
         fragment.setArguments(args);
         return fragment;

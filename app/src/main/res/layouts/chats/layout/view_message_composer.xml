@@ -19,7 +19,9 @@
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
         android:maxLines="5"
-        android:padding="20dp" />
+        android:padding="20dp"
+        android:textColor="@color/black"
+        />
 
     <LinearLayout
         android:id="@+id/composer_options"
@@ -39,7 +41,7 @@
             android:contentDescription="@string/attach"
             android:focusable="true"
             android:scaleType="centerInside"
-            android:visibility="gone"
+            android:visibility="visible"
             app:srcCompat="@drawable/ic_attachment" />
 
         <ImageView
