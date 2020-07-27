@@ -23,7 +23,6 @@
             app:civ_border="true"
             app:civ_borderColor="@color/colorPrimaryDark"
             app:civ_borderWidth="4dp"
-
             />
 
 

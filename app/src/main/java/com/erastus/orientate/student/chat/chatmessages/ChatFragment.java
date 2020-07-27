@@ -1,12 +1,8 @@
 package com.erastus.orientate.student.chat.chatmessages;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,7 +14,6 @@ import androidx.annotation.StringRes;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -28,12 +23,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.applications.App;
+import com.erastus.orientate.student.chat.chatinfo.ParticipantsFragment;
 import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.utils.EmptyView;
 import com.erastus.orientate.utils.EndlessRecyclerViewScrollListener;
 import com.erastus.orientate.utils.MessageComposer;
-import com.erastus.orientate.utils.TaskRunner;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -227,10 +222,9 @@ public class ChatFragment extends ParentFragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_chat_info) {
-            FragmentTransaction ft = getParentFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
-            ft.replace(R.id.frame_layout_profile, ChatInfoFragment.newInstance(mViewModel.getConversation()));
-            ft.commit();
+            hostActivity.addFragment(ParticipantsFragment.newInstance(mViewModel.getConversation()));
+            hostActivity.setTitle(mViewModel.getConversationTitle());
+            hostActivity.setTabsVisibility(View.GONE);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -257,6 +251,12 @@ public class ChatFragment extends ParentFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel.initListener();
+        setUpToolBarBehavior();
+    }
+
+    private void setUpToolBarBehavior() {
+        hostActivity.setTitle(mViewModel.getConversationTitle());
+        hostActivity.setTabsVisibility(View.GONE);
     }
 
     private void setMessageComposerBehavior() {

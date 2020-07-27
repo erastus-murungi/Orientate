@@ -28,18 +28,19 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/user_username"
+            android:id="@+id/text_view_profile_full_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Ollie the Owl" />
+            android:textColor="@color/darkBlue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="@string/john_doe" />
 
         <TextView
-            android:id="@+id/user_status"
+            android:id="@+id/text_view_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp"
-            tools:text="Available" />
+            tools:text="\@john_doe" />
     </LinearLayout>
 
 </LinearLayout>

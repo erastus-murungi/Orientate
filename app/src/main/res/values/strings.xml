@@ -194,7 +194,7 @@
 
     <string name="format_two_names">%s %s</string>
     <string name="format_three_names">%s %s %s</string>
-    <string name="title_activity_splash_screen">FullscreenActivity</string>
+    <string name="Orient">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="log_in_sign_up">Log in / Sign Up</string>
@@ -232,6 +232,7 @@
     <string name="chat_description">A chat group to talk to all your fuzzy friends in the animal kingdom.</string>
     <string name="no_internet">No internet connection</string>
     <string name="message_not_sent">Message not sent</string>
+    <string name="web">web</string>
 
 
 </resources>

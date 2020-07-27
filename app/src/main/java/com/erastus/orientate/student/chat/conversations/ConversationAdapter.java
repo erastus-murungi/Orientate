@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ItemConversationBinding;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
+import com.erastus.orientate.utils.DateUtils;
 import com.erastus.orientate.utils.circularimageview.CircularImageView;
 
 import org.jetbrains.annotations.NotNull;
@@ -96,7 +97,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
                     .into(mConversationImageView);
             mConversationTitleTextView.setText(conversation.getTitle());
             mLastMessageTextView.setText(conversation.getLastMessageText());
-            mLastSeenTextView.setText(conversation.getLastSeen());
+            mLastSeenTextView.setText(DateUtils.formatDate(conversation.getUpdatedAt(), mContext));
         }
     }
 

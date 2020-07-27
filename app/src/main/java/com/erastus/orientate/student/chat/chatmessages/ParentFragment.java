@@ -1,6 +1,5 @@
 package com.erastus.orientate.student.chat.chatmessages;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,15 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.erastus.orientate.utils.circularimageview.ParentActivityImpl;
+
 import org.jetbrains.annotations.NotNull;
 
-abstract class ParentFragment extends Fragment {
+public abstract class ParentFragment extends Fragment {
 
     private final String TAG = getClass().getSimpleName();
 
-    Context fragmentContext;
+    protected Context fragmentContext;
     private boolean mIsFromCache;
     private View rootView;
+
+    protected ParentActivityImpl hostActivity;
 
     public abstract int provideLayoutResourceId();
 
@@ -90,9 +93,7 @@ abstract class ParentFragment extends Fragment {
         }
         // end::ignore[]
     }
-    // end::FRG-5.1[]
 
-    // tag::FRG-1.2[]
     @Override
     public void onAttach(Context context) {
         // tag::ignore[]
@@ -102,8 +103,8 @@ abstract class ParentFragment extends Fragment {
         // tag::ignore[]
         this.fragmentContext = context;
         // end::ignore[]
+        this.hostActivity = (ParentActivityImpl) context;
     }
-    // end::FRG-1.2[]
 
     @Override
     public void onDetach() {

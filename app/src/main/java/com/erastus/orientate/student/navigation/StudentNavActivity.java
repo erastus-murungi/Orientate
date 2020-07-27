@@ -23,6 +23,7 @@ import com.erastus.orientate.student.announcements.AnnouncementFragment;
 import com.erastus.orientate.student.event.EventFragment;
 import com.erastus.orientate.student.info.InfoFragment;
 import com.erastus.orientate.student.profile.ProfileFragment;
+import com.erastus.orientate.student.web.WebActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class StudentNavActivity extends AppCompatActivity {
@@ -75,12 +76,9 @@ public class StudentNavActivity extends AppCompatActivity {
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                selectDrawerItem(item);
-                return true;
-            }
+        navigationView.setNavigationItemSelectedListener(item -> {
+            selectDrawerItem(item);
+            return true;
         });
     }
 
@@ -99,6 +97,9 @@ public class StudentNavActivity extends AppCompatActivity {
             case R.id.nav_helpful_information:
                 fragmentClass = InfoFragment.class;
                 break;
+            case R.id.nav_web:
+                startActivity(new Intent(this, WebActivity.class));
+                return;
             default:
                 fragmentClass = AnnouncementFragment.class;
         }

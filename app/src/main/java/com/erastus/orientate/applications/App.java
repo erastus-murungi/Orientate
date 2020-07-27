@@ -23,7 +23,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class App extends Application {
     public static final String CHANNEL_ID = "NewMessage";
-;    public static final String APP_ID = "erastus-orientate";
+    public static final String APP_ID = "erastus-orientate";
     public static final String SERVER_URL = "https://erastus-orientate.herokuapp.com/parse/";
     private ParseUser mCurrentUser;
 

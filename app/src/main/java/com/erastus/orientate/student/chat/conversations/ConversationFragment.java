@@ -6,9 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.StringRes;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -18,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.FragmentConversationBinding;
 import com.erastus.orientate.student.chat.chatmessages.ChatFragment;
+import com.erastus.orientate.student.chat.chatmessages.ParentFragment;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.utils.EmptyView;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
@@ -25,6 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.jetbrains.annotations.NotNull;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class ConversationFragment extends Fragment implements ConversationAdapter.OnConversationClicked {
+public class ConversationFragment extends ParentFragment implements ConversationAdapter.OnConversationClicked {
 
     private FragmentConversationBinding mBinding;
     private RecyclerView mRecyclerView;
@@ -55,7 +54,26 @@ public class ConversationFragment extends Fragment implements ConversationAdapte
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public int provideLayoutResourceId() {
+        return R.id.relative_layout_conversations;
+    }
+
+    @Override
+    public void performBindings(View rootView) {
+
+    }
+
+    @Override
+    public void setViewBehaviour(boolean viewFromCache) {
+
+    }
+
+    @Override
+    public void onReady() {
+    }
+
+    @Override
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         mBinding = FragmentConversationBinding.inflate(getLayoutInflater(), container, false);
@@ -134,18 +152,9 @@ public class ConversationFragment extends Fragment implements ConversationAdapte
     @Override
     public void onConversationClicked(Conversation conversation) {
         ChatFragment chatFragment = ChatFragment.newInstance(Parcels.wrap(conversation));
-        FragmentManager manager = getParentFragmentManager();
-        FragmentTransaction ft = manager.beginTransaction();
         hideFloatingButton();
-        setupAnimations(ft);
-        ft.replace(R.id.frame_layout_chats, chatFragment);
-        ft.addToBackStack(chatFragment.getClass().getSimpleName());
-        ft.commit();
-    }
-
-    private void setupAnimations(FragmentTransaction ft) {
-        /*ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim
-                .exit_to_right);*/
-        ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
+        hostActivity.addFragment(chatFragment);
+        hostActivity.setTabsVisibility(View.GONE);
+        hostActivity.setTitle("Chats");
     }
 }

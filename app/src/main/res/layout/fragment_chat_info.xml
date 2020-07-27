@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/info_image"
+        android:id="@+id/image_view_info_image"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_alignParentTop="true"
@@ -19,7 +19,7 @@
         android:id="@+id/info_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/info_image"
+        android:layout_below="@id/image_view_info_image"
         android:layout_marginBottom="@dimen/default_spacing"
         android:gravity="center"
         android:paddingStart="@dimen/default_spacing"
@@ -43,4 +43,14 @@
         android:layout_centerInParent="true"
         android:visibility="gone"
         app:evMessage="@string/no_members" />
+
+    <com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView
+        android:id="@+id/av_loading_conversations_info"
+        style="@style/AVLoadingIndicatorView.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:indicatorColor="@color/colorPrimaryDark"
+        app:indicatorName="com.erastus.orientate.utils.customindicators.LineSpinFadeLoaderIndicator" />
+
 </RelativeLayout>

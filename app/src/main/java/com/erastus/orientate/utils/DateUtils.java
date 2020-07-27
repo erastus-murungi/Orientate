@@ -90,4 +90,12 @@ public class DateUtils {
 //        java.text.DateFormat x = DateFormat.getDateFormat(context.getApplicationContext());
         return x.format(calendar.getTime());
     }
+
+
+    public static String formatDate(Date date, Context context) {
+        java.text.DateFormat x = DateFormat.getDateFormat(context);
+        return x.format(date);
+    }
 }
+
+

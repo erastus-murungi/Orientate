@@ -26,21 +26,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHolder> {
-    private List<Message> mItems;
+    private List<Message> mMessages;
 
     private Context mContext;
 
     public ChatAdapter(Context context) {
-        mItems = new ArrayList<>();
+        mMessages = new ArrayList<>();
         mContext = context;
     }
 
     @Override
     public int getItemViewType(int position) {
-        return mItems.get(position).getMessageType();
+        return mMessages.get(position).getMessageType();
     }
 
-    // tag::BIND-1[]
     @NonNull
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -62,31 +61,28 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
         }
         throw new IllegalStateException("No applicable view type found.");
     }
-    // end::BIND-1[]
 
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
-        holder.bindData(mItems.get(position));
+        holder.bindData(mMessages.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return mMessages.size();
     }
 
     @Override
     public long getItemId(int position) {
-        return mItems.get(position).getCreatedAt().getTime();
+        return mMessages.get(position).getCreatedAt().getTime();
     }
 
-    // tag::BIND-4[]
     public void update(List<Message> newData) {
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallback(newData, mItems));
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallback(newData, mMessages));
         diffResult.dispatchUpdatesTo(this);
-        mItems.clear();
-        mItems.addAll(newData);
+        mMessages.clear();
+        mMessages.addAll(newData);
     }
-    // end::BIND-4[]
 
     class DateViewHolder extends RecyclerView.ViewHolder {
 
@@ -228,25 +224,21 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                 Message.getSender().getFullName() +
                 Utils.newLine() +
                 Utils.emphasizeText("Date time: ") +
-                DateUtils.parseDateTime(Message.getCreatedAt().getTime() / 10_000L) +
+                DateUtils.parseDateTime(Message.getCreatedAt().getTime()) +
                 Utils.newLine() +
                 Utils.emphasizeText("Relative: ") +
-                DateUtils.getRelativeTimeAgo(Message.getCreatedAt().getTime() / 10_000L) +
+                DateUtils.getRelativeTimeAgo(Message.getCreatedAt().getTime()) +
                 Utils.newLine() +
                 Utils.emphasizeText("Own Message: ") +
-                Message.getSender().getObjectId().equals(StudentLoginRepository.getInstance().getLoggedInStudent().getObjectId()) +
-                Utils.newLine() +
-                Utils.emphasizeText("Type: ") +
-                Message.getMessageType() +
-                Utils.newLine() +
-                Utils.emphasizeText("Is sent: ") +
-                Message.isSent();
+                Message.getSender().getObjectId().equals(StudentLoginRepository.getInstance().getLoggedInStudent().getObjectId());
 
         MaterialDialog materialDialog = new MaterialDialog.Builder(context)
                 .title(R.string.message_info)
                 .content(Html.fromHtml(contentBuilder, Html.FROM_HTML_OPTION_USE_CSS_COLORS))
+                .contentColor(mContext.getColor(R.color.white))
                 .positiveText(android.R.string.ok)
-                .positiveColor(mContext.getColor(R.color.colorPrimaryDark))
+                .backgroundColor(mContext.getColor(R.color.colorPrimary))
+                .positiveColor(mContext.getColor(R.color.black))
                 .build();
         materialDialog.show();
     }

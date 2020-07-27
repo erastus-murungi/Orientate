@@ -11,6 +11,8 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import org.json.JSONArray;
+
 
 @ParseClassName("Conversation")
 public class Conversation extends ParseObject {
@@ -80,4 +82,9 @@ public class Conversation extends ParseObject {
             return DateUtils.getRelativeTimeAgo(mLastMessage.getCreatedAt());
         }
     }
+
+    public JSONArray getParticipants() {
+        return getJSONArray(KEY_PARTICIPANTS);
+    }
+
 }

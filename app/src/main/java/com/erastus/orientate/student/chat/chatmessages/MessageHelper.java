@@ -19,6 +19,7 @@ class MessageHelper {
     private static String myId;
 
     static {
+        while (StudentLoginRepository.getInstance().getLoggedInStudent() == null);
         myId = StudentLoginRepository.getInstance().getLoggedInStudent().getObjectId();
     }
 

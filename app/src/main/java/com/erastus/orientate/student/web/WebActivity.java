@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 import com.erastus.orientate.databinding.ActivityWebBinding;
 
 public class WebActivity extends AppCompatActivity {
-    public static final String DEFAULT_PAGE = "https//:www.google.com";
+    public static final String DEFAULT_PAGE = "https://www.google.com";
     private WebView mWebView;
 
     @Override

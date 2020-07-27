@@ -63,7 +63,7 @@ public class ChatViewModel extends ViewModel {
 
 
     public void loadMoreChats() {
-
+        fetchHistory();
     }
 
     public void sendMessage(String message) {
