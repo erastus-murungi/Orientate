@@ -45,6 +45,9 @@
         <activity android:name=".student.web.WebActivity"
             android:label="@string/web" />
 
+        <activity android:name=".student.signup.StudentSignUpActivity"
+            android:label="@string/sign_up" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

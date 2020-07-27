@@ -23,7 +23,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.applications.App;
-import com.erastus.orientate.student.chat.chatinfo.ParticipantsFragment;
+import com.erastus.orientate.student.chat.participants.ParticipantsFragment;
 import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.utils.EmptyView;
@@ -42,8 +42,6 @@ public class ChatFragment extends ParentFragment {
     private static final String ARGS_CONVERSATION = "ARGS_CONVERSATION";
 
     private ChatViewModel mViewModel;
-
-    private CoordinatorLayout mCoordinatorLayout;
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -159,7 +157,7 @@ public class ChatFragment extends ParentFragment {
 
     @Override
     public void performBindings(View rootView) {
-        mCoordinatorLayout = rootView.findViewById(R.id.coordinator);
+        CoordinatorLayout mCoordinatorLayout = rootView.findViewById(R.id.coordinator);
         mSwipeRefreshLayout = rootView.findViewById(R.id.chat_swipe);
         mChatsRecyclerView = rootView.findViewById(R.id.chat_recycler_view);
         mMessageComposer = rootView.findViewById(R.id.chats_message_composer);

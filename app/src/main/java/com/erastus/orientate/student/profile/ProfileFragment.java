@@ -108,7 +108,7 @@ public class ProfileFragment extends Fragment {
 
     private void setUpBottomSheet() {
         mBottomSheet = new ProfileBottomFragment();
-        mBottomSheet.show(getParentFragmentManager(),
+        mBottomSheet.show(getChildFragmentManager(),
                 mBottomSheet.getTag());
     }
 

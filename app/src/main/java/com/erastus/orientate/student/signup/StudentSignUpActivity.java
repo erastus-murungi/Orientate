@@ -39,11 +39,6 @@ public class StudentSignUpActivity extends AppCompatActivity {
         mViewPager = signUpBinding.viewPager;
         mViewPager.setAdapter(sectionsPagerAdapter);
 
-        FloatingActionButton fab = signUpBinding.fab;
-
-        fab.setOnClickListener(view -> {
-            //
-        });
 
         WormDotsIndicator wormDotsIndicator = signUpBinding.wormDotSignUp;
         wormDotsIndicator.setViewPager2(mViewPager);

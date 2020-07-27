@@ -233,6 +233,11 @@
     <string name="no_internet">No internet connection</string>
     <string name="message_not_sent">Message not sent</string>
     <string name="web">web</string>
+    <string name="invalid_email">Invalid email address</string>
+    <string name="empty_username">Empty Username</string>
+    <string name="empty_name">Empty Name</string>
+    <string name="invalid_name">Name Invalid</string>
+    <string name="empty_email">Empty email address</string>
 
 
 </resources>

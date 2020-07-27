@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.student.chat.main.SectionsPagerAdapter;
 import com.erastus.orientate.utils.circularimageview.ParentActivityImpl;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -17,7 +18,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.erastus.orientate.student.chat.ui.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class ChatActivity extends AppCompatActivity implements ParentActivityImpl {
