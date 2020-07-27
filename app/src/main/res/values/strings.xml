@@ -40,7 +40,7 @@
     <string name="title_activity_student_sign_up">StudentSignUpActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
-    <string name="hint_date_of_birth">yyyy/mm/dd</string>
+    <string name="hint_date_of_birth">Enter date: yyyy/mm/dd</string>
     <string name="title_activity_student_dash_board">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -238,6 +238,8 @@
     <string name="empty_name">Empty Name</string>
     <string name="invalid_name">Name Invalid</string>
     <string name="empty_email">Empty email address</string>
+    <string name="select_profile_picture">select profile picture</string>
+    <string name="retake">Retake</string>
 
 
 </resources>

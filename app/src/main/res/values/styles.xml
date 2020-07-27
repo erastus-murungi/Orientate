@@ -23,7 +23,9 @@
         <item name="android:fontFamily">@font/proxima_nova_regular</item>
     </style>
 
-    <style name="signUpDateOfBirthDatePicker" parent="@android:style/Widget.DatePicker" />
+    <style name="signUpDateOfBirthDatePicker" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:background">@color/colorPrimaryDark</item>
+    </style>
 
 
     <style name="AppTheme.NoActionBar">

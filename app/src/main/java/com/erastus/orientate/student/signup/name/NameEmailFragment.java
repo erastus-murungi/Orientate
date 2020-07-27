@@ -19,6 +19,7 @@ import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.FragmentNameEmailBinding;
 import com.erastus.orientate.databinding.ProgressLoginInButtonBinding;
 import com.erastus.orientate.databinding.ProgressSignUpButtonBinding;
+import com.erastus.orientate.student.signup.dob.DobFragment;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -92,6 +93,12 @@ public class NameEmailFragment extends Fragment {
 
         mContinueButtonView.setOnClickListener(view -> {
             Log.d(TAG, "setUpContinueButtonBehavior: done");
+            DobFragment fragment = DobFragment.newInstance();
+            getParentFragmentManager().beginTransaction().commit();
+
+            // mUsernameTextInputLayout.getEditText().getText().toString(),
+            //                    mFullNameTextInputLayout.getEditText().getText().toString(),
+            //                    mEmailTextInputLayout.getEditText().getText().toString()
         });
     }
 

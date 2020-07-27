@@ -1,8 +1,7 @@
 package com.erastus.orientate.student.signup.dob;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,7 +13,6 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
@@ -26,6 +24,10 @@ import java.util.Objects;
 
 public class DobFragment extends Fragment {
 
+    public static final String ARGS_USERNAME = "username";
+    public static final String ARGS_NAME = "name";
+    public static final String ARGS_EMAIL = "email";
+
     private TextInputLayout mDateTextInputLayout;
     private ImageButton mSelectDate;
 
@@ -36,7 +38,7 @@ public class DobFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dob_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_dob_profile_picture, container, false);
         mDateTextInputLayout = view.findViewById(R.id.text_input_layout_dob);
         mSelectDate = view.findViewById(R.id.image_button_pick_date);
         return view;
@@ -54,7 +56,6 @@ public class DobFragment extends Fragment {
                     (datePicker, i, i1, i2) ->
                             Objects.requireNonNull(mDateTextInputLayout.getEditText())
                                     .setText(getString(R.string.format_date, i, i1, i2)), c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH));
-//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color));
             dialog.show();
         });
 
