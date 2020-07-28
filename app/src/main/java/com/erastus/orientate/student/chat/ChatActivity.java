@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.chat.main.SectionsPagerAdapter;
-import com.erastus.orientate.utils.circularimageview.ParentActivityImpl;
+import com.erastus.orientate.utils.ParentActivityImpl;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;

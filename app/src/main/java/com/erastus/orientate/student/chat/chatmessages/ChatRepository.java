@@ -32,6 +32,7 @@ import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class ChatRepository {
@@ -68,6 +69,16 @@ public class ChatRepository {
     // for storing the latest messages
     // TODO persist in a local database
     private ArrayBlockingQueue<Message> queue = new ArrayBlockingQueue<>(N_MESSAGES_HISTORY);
+
+    private static AtomicReference<Conversation> currentConversation = new AtomicReference<>();
+
+    public static Conversation getCurrentConversation() {
+        return currentConversation.get();
+    }
+
+    public static void setCurrentConversation(Conversation currentConversation) {
+        getInstance().currentConversation.set(currentConversation);
+    }
 
     public List<Message> getLatestMessages() {
         List<Message> sink = new ArrayList<>();
@@ -209,11 +220,11 @@ public class ChatRepository {
 
     static class NewMessageHandler implements Callable<List<Message>> {
         Message message;
-        String mConversationId;
+        String currentConversationId;
 
-        NewMessageHandler(Message newMessage, String conversationId) {
+        NewMessageHandler(Message newMessage, String currentConversationId) {
             message = newMessage;
-            mConversationId = conversationId;
+            this.currentConversationId = currentConversationId;
         }
 
         @Override
@@ -225,10 +236,11 @@ public class ChatRepository {
             // this method makes sure that we only send to the UI One message at a time
             synchronized (lock) {
                 // find the appropriate List
-                List<Message> messages = mChats.get(mConversationId);
+                String conversationId = message.getConversationId();
+                List<Message> messages = mChats.get(conversationId);
                 if (messages == null) {
                     messages = new ArrayList<>();
-                    mChats.put(mConversationId, messages);
+                    mChats.put(conversationId, messages);
                 }
 
                 mNewMessageArrived.postValue(message);
@@ -237,7 +249,11 @@ public class ChatRepository {
 
                 MessageHelper.chainMessages(messages, messages.size());
                 // update the UI with this new message
-                return messages;
+                if (message.getConversationId().equals(getCurrentConversation().getObjectId())) {
+                    return messages;
+                } else {
+                    return null;
+                }
             }
         }
     }
@@ -259,8 +275,7 @@ public class ChatRepository {
                                 .post(() -> {
                                             Log.d(TAG, "run: CREATE" + message.getContent());
                                             TaskRunner.getInstance().executeAsync(
-                                                    new NewMessageHandler(message,
-                                                            conversation.getObjectId()),
+                                                    new NewMessageHandler(message, conversation.getObjectId()),
                                                     messages -> newMessages.postValue(messages));
                                         }
                                 )
@@ -315,16 +330,29 @@ public class ChatRepository {
             if (e == null) {
                 TaskRunner.getInstance().executeAsync(
                         new MessageProcessor(messages, conversationId),
-
-                        data -> mChatMessageDataSate.postValue(
-                                (data instanceof DataState.Error) ?
-                                        new DataState.Error(((DataState.Error) data).getError()) :
-                                        data));
+                        new NewMessageCallback());
             } else {
                 Log.e(TAG, "getMessagesForConversation: ", e);
                 mChatMessageDataSate.postValue(new DataState.Error(e));
             }
         });
+    }
+
+    class NewMessageCallback implements TaskRunner.Callback<DataState> {
+
+        @Override
+        public void onComplete(DataState result) {
+            // if result is null, the the new message does not belong to this conversation
+            // messages do not belong to current conversation
+            if (result != null) {
+                Log.d(TAG, "onComplete: message belongs to a different conversation");
+                if (result instanceof DataState.Error) {
+                    mChatMessageDataSate.postValue(new DataState.Error(((DataState.Error) result).getError()));
+                } else if (result instanceof DataState.Success) {
+                    mChatMessageDataSate.postValue(result);
+                }
+            }
+        }
     }
 
     private Date getEarliestTimestamp(List<Message> messagesList) {

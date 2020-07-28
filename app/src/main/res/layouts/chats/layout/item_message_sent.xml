@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/message_sender"
         android:layout_toStartOf="@id/message_avatar"
-        android:background="@drawable/message_sent_bubble"
+        android:background="@drawable/incoming_speech_bubble"
         android:textColor="@color/message_sent_text"
         android:textSize="14sp"
         tools:text="@string/lorem_ipsum_short" />

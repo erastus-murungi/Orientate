@@ -1,13 +1,7 @@
 package com.erastus.orientate.student.signup.name;
 
-import androidx.lifecycle.ViewModelProvider;
-
+import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,11 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.erastus.orientate.R;
+import com.erastus.orientate.databinding.ButtonContinueSignupBinding;
 import com.erastus.orientate.databinding.FragmentNameEmailBinding;
-import com.erastus.orientate.databinding.ProgressLoginInButtonBinding;
 import com.erastus.orientate.databinding.ProgressSignUpButtonBinding;
-import com.erastus.orientate.student.signup.dob.DobFragment;
+import com.erastus.orientate.student.signup.ParentSignUpActivity;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -42,6 +41,8 @@ public class NameEmailFragment extends Fragment {
     private NameEmailViewModel mViewModel;
 
     private ShouldContinueButton mContinueButton;
+
+    protected ParentSignUpActivity hostActivity;
 
     public static NameEmailFragment newInstance() {
         return new NameEmailFragment();
@@ -73,6 +74,14 @@ public class NameEmailFragment extends Fragment {
         setUpObservers();
     }
 
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        hostActivity = (ParentSignUpActivity) context;
+    }
+
     private void setUpObservers() {
         setUpTextChangedListeners();
         setUpUserNameObserver();
@@ -86,19 +95,26 @@ public class NameEmailFragment extends Fragment {
             if (enabled) {
                 // persist data to next fragment
                 mContinueButtonView.setEnabled(true);
+                mFragmentNameEmailBinding
+                        .buttonProceedNameEmail
+                        .constraintLayoutInner
+                        .setBackgroundColor(requireContext().getColor(R.color.colorPrimaryDark));
             } else {
                 mContinueButtonView.setEnabled(false);
+                mFragmentNameEmailBinding
+                        .buttonProceedNameEmail
+                        .constraintLayoutInner
+                        .setBackgroundColor(requireContext().getColor(R.color.blue));
             }
         });
 
         mContinueButtonView.setOnClickListener(view -> {
             Log.d(TAG, "setUpContinueButtonBehavior: done");
-            DobFragment fragment = DobFragment.newInstance();
-            getParentFragmentManager().beginTransaction().commit();
 
-            // mUsernameTextInputLayout.getEditText().getText().toString(),
-            //                    mFullNameTextInputLayout.getEditText().getText().toString(),
-            //                    mEmailTextInputLayout.getEditText().getText().toString()
+            hostActivity.setTab(1);
+            hostActivity.getViewModel().emailChanged(mEmailTextInputLayout.getEditText().getText().toString());
+            hostActivity.getViewModel().fullNameChanged(mFullNameTextInputLayout.getEditText().getText().toString());
+            hostActivity.getViewModel().userNameChanged(mUsernameTextInputLayout.getEditText().getText().toString());
         });
     }
 
@@ -213,7 +229,7 @@ public class NameEmailFragment extends Fragment {
     private static class ShouldContinueButton {
         private AVLoadingIndicatorView mProgressBar;
 
-        ShouldContinueButton(ProgressSignUpButtonBinding binding) {
+        ShouldContinueButton(ButtonContinueSignupBinding binding) {
             mProgressBar = binding.progressBarLoginIn;
         }
 

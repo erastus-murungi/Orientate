@@ -353,5 +353,7 @@
         <item name="material_blue_gray_9">#263238</item>
     </array>
 
+    <color name="speech_bubble_agent">@color/darkBlue</color>
+
 
 </resources>

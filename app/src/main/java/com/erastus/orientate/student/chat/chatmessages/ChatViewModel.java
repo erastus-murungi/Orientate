@@ -55,6 +55,7 @@ public class ChatViewModel extends ViewModel {
         newMessages = mRepository.getMessages();
         mRepository.getMessagesForConversation(mConversation);
         mNewMessageArrived = mRepository.getLatestMessage();
+        mRepository.setCurrentConversation(mConversation);
     }
 
     public LiveData<SimpleState<List<Message>>> getState() {
@@ -74,34 +75,6 @@ public class ChatViewModel extends ViewModel {
         //TODO replace the attachments argument with optional Attachment object
         mRepository.sendMessage(message, mConversation, ParseObject.create(Attachment.class));
         Log.d(TAG, "sendMessage: ");
-
-//        hostActivity.getPubNub()
-//                .publish()
-//                .channel(mChannel)
-//                .shouldStore(true)
-//                .message(Message.newBuilder().text(message).build())
-//                .async(new PNCallback<PNPublishResult>() {
-//                    @Override
-//                    public void onResponse(PNPublishResult result, PNStatus status) {
-//                        if (!status.isError()) {
-//                            long newMessageTimetoken = result.getTimetoken();
-//                        } else {
-//                            Message msg = Message.createUnsentMessage(Message.newBuilder().text(finalMessage).build());
-//                            mMessages.add(msg);
-//                            History.chainMessages(mMessages, mMessages.size());
-//                            runOnUiThread(() -> {
-//                                if (mEmptyView.getVisibility() == View.VISIBLE) {
-//                                    mEmptyView.setVisibility(View.GONE);
-//                                }
-//                                mChatAdapter.update(mMessages);
-//                                scrollChatToBottom();
-//
-//                                Toast.makeText(fragmentContext, R.string.message_not_sent, Toast.LENGTH_SHORT).show();
-//
-//                            });
-//                        }
-//                    }
-//                });
     }
 
     public void removeListener() {

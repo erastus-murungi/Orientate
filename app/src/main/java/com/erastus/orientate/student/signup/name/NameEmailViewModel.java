@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.student.signup.InputValid;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

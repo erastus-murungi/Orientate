@@ -31,7 +31,8 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class ConversationFragment extends ParentFragment implements ConversationAdapter.OnConversationClicked {
+public class ConversationFragment extends ParentFragment
+        implements ConversationAdapter.OnConversationClicked {
 
     private FragmentConversationBinding mBinding;
     private RecyclerView mRecyclerView;

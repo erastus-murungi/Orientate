@@ -240,6 +240,8 @@
     <string name="empty_email">Empty email address</string>
     <string name="select_profile_picture">select profile picture</string>
     <string name="retake">Retake</string>
+    <string name="invalid_initial_password">Input valid password before confirming</string>
+    <string name="passwords_dont_match">Passwords do not match</string>
 
 
 </resources>

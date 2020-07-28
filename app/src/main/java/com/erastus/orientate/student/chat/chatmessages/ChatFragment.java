@@ -3,6 +3,7 @@ package com.erastus.orientate.student.chat.chatmessages;
 import android.app.Notification;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,7 +12,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -40,6 +40,7 @@ import java.util.Objects;
 
 public class ChatFragment extends ParentFragment {
     private static final String ARGS_CONVERSATION = "ARGS_CONVERSATION";
+    private static final String TAG = "ChatFragment";
 
     private ChatViewModel mViewModel;
 
@@ -147,6 +148,7 @@ public class ChatFragment extends ParentFragment {
         } else {
             mEmptyView.setVisibility(View.GONE);
             mChatAdapter.update(data);
+            Log.d(TAG, "workWithData: updated from " + mViewModel.getConversationTitle());
         }
     }
 
@@ -157,7 +159,6 @@ public class ChatFragment extends ParentFragment {
 
     @Override
     public void performBindings(View rootView) {
-        CoordinatorLayout mCoordinatorLayout = rootView.findViewById(R.id.coordinator);
         mSwipeRefreshLayout = rootView.findViewById(R.id.chat_swipe);
         mChatsRecyclerView = rootView.findViewById(R.id.chat_recycler_view);
         mMessageComposer = rootView.findViewById(R.id.chats_message_composer);

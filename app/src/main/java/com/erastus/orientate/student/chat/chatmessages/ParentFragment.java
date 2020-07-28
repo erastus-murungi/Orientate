@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.erastus.orientate.utils.circularimageview.ParentActivityImpl;
+import com.erastus.orientate.utils.ParentActivityImpl;
 
 import org.jetbrains.annotations.NotNull;
 

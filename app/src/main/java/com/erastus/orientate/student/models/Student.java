@@ -2,9 +2,11 @@ package com.erastus.orientate.student.models;
 
 import com.erastus.orientate.utils.DateUtils;
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 @ParseClassName("Student")
@@ -43,5 +45,29 @@ public class Student extends ParseObject {
         } else {
             return getFirstName() + " " + getMiddleName() + " " + getLastName();
         }
+    }
+
+    public void setFirstName(String firstName) {
+        put(KEY_FIRST_NAME, firstName);
+    }
+
+    public void setMiddleName(String middleName) {
+        put(KEY_MIDDLE_NAME, middleName);
+    }
+
+    public void setLastName(String lastName) {
+        put(KEY_LAST_NAME, lastName);
+    }
+
+    public void setDob(Date dob) {
+        put(KEY_DOB, dob);
+    }
+
+    public void setUser(String parseUser) {
+        put(KEY_USER, parseUser);
+    }
+
+    public void setProfilePicture(ParseFile profilePicture) {
+        put(KEY_PROFILE_IMAGE, profilePicture);
     }
 }
