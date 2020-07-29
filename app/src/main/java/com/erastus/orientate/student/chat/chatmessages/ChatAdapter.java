@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.erastus.orientate.R;
+import com.erastus.orientate.applications.App;
 import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.student.chat.chatmessages.models.MessageType;
 import com.erastus.orientate.student.login.StudentLoginRepository;
@@ -230,7 +231,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
                 DateUtils.getRelativeTimeAgo(Message.getCreatedAt().getTime()) +
                 Utils.newLine() +
                 Utils.emphasizeText("Own Message: ") +
-                Message.getSender().getObjectId().equals(StudentLoginRepository.getInstance().getLoggedInStudent().getObjectId());
+                Message.getSender().getObjectId().equals(App.get().getCurrentUser().getStudent().getObjectId());
 
         MaterialDialog materialDialog = new MaterialDialog.Builder(context)
                 .title(R.string.message_info)

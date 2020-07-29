@@ -89,6 +89,21 @@ public class DobFragment extends Fragment implements ParentSignUpActivity {
         return mDobBinding.getRoot();
     }
 
+    private void setUpListeners() {
+        mSelectDateImageButton.setOnClickListener(view -> {
+            Calendar c = Calendar.getInstance();
+            DatePickerDialog dialog = new DatePickerDialog(requireContext(),
+                    R.style.signUpDateOfBirthDatePicker,
+                    (datePicker, i, i1, i2) ->
+                            Objects.requireNonNull(mDateTextInputLayout.getEditText())
+                                    .setText(getString(R.string.format_date, i, i1, i2)), c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH));
+            dialog.show();
+        });
+
+        mRetakeButton.setOnClickListener(view -> openCamera());
+
+    }
+
     private void performBindings() {
         mDateTextInputLayout = mDobBinding.textInputLayoutDob;
         mSelectDateImageButton = mDobBinding.imageButtonPickDate;
@@ -105,16 +120,7 @@ public class DobFragment extends Fragment implements ParentSignUpActivity {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(DobViewModel.class);
 
-        mSelectDateImageButton.setOnClickListener(view -> {
-            Calendar c = Calendar.getInstance();
-            DatePickerDialog dialog = new DatePickerDialog(requireContext(),
-                    R.style.signUpDateOfBirthDatePicker,
-                    (datePicker, i, i1, i2) ->
-                            Objects.requireNonNull(mDateTextInputLayout.getEditText())
-                                    .setText(getString(R.string.format_date, i, i1, i2)), c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH));
-            dialog.show();
-        });
-
+        setUpListeners();
         setUpTextWatchers();
         setUpObservers();
         setUpCameraBehavior();
@@ -241,6 +247,7 @@ public class DobFragment extends Fragment implements ParentSignUpActivity {
                 mRetakeButton.setVisibility(View.GONE);
                 return;
             }
+            mSelectProfilePictureImageView.setVisibility(View.GONE);
             mProfilePicturePreviewImageView.setImageBitmap(bitmap);
             mRetakeButton.setVisibility(View.VISIBLE);
         });

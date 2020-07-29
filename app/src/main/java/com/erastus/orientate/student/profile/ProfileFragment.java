@@ -119,7 +119,7 @@ public class ProfileFragment extends Fragment {
 
         mLoadingIndicator.show();
 
-        Student s = StudentLoginRepository.getInstance().getLoggedInStudent();
+        Student s = App.get().getCurrentUser().getStudent();
         mUsernameTextView.setText(getString(R.string.format_username,
                 App.get().getCurrentUser().getUsername()));
 

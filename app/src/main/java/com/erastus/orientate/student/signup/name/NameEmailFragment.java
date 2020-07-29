@@ -17,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ButtonContinueSignupBinding;
 import com.erastus.orientate.databinding.FragmentNameEmailBinding;
-import com.erastus.orientate.databinding.ProgressSignUpButtonBinding;
 import com.erastus.orientate.student.signup.ParentSignUpActivity;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
 import com.google.android.material.textfield.TextInputLayout;

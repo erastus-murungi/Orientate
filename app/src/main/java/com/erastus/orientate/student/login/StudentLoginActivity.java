@@ -7,17 +7,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ActivityStudentLoginBinding;
 import com.erastus.orientate.databinding.ProgressLoginInButtonBinding;
-import com.erastus.orientate.student.models.SimpleState;
-import com.erastus.orientate.student.models.Student;
 import com.erastus.orientate.student.navigation.StudentNavActivity;
 import com.erastus.orientate.utils.Utils;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
@@ -44,20 +40,6 @@ public class StudentLoginActivity extends AppCompatActivity {
         if (ParseUser.getCurrentUser() != null) {
             // get the active student
             goToStudentNavActivity();
-            mLoginViewModel.getStudent().observe(this, studentSimpleState -> {
-                if (studentSimpleState == null) {
-                    return;
-                }
-                if (studentSimpleState.getData() != null) {
-                    goToStudentNavActivity();
-                    finish();
-                }
-                if (studentSimpleState.getErrorMessage() != null) {
-                    showLoginFailed(studentSimpleState.getErrorMessage());
-                }
-
-            });
-            finish();
         }
 
         activityStudentLoginBinding = ActivityStudentLoginBinding.inflate(getLayoutInflater());

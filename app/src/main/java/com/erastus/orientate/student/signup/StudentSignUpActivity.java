@@ -45,7 +45,6 @@ public class StudentSignUpActivity extends AppCompatActivity implements ParentSi
 
         mViewPager.setPageTransformer(new ZoomOutPageTransformer());
 
-
         WormDotsIndicator wormDotsIndicator = signUpBinding.wormDotSignUp;
         wormDotsIndicator.setViewPager2(mViewPager);
 
@@ -150,7 +149,7 @@ public class StudentSignUpActivity extends AppCompatActivity implements ParentSi
         }
     }
 
-    public class ZoomOutPageTransformer implements ViewPager2.PageTransformer {
+    public static class ZoomOutPageTransformer implements ViewPager2.PageTransformer {
         private static final float MIN_SCALE = 0.85f;
         private static final float MIN_ALPHA = 0.5f;
 

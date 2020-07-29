@@ -91,7 +91,7 @@ public class DobViewModel extends ViewModel {
 
 
     public void confirmPasswordChanged(String password, String confirmPassword) {
-        if (mConfirmPasswordValid.getValue().isDataValid() && password.equals(confirmPassword)) {
+        if (mPasswordValid.getValue().isDataValid() && password.equals(confirmPassword)) {
             mConfirmPasswordValid.setValue(new InputValid(true));
         } else {
             if (!mPasswordValid.getValue().isDataValid()) {

@@ -2,6 +2,7 @@ package com.erastus.orientate.student.chat.chatmessages;
 
 import android.util.Log;
 
+import com.erastus.orientate.applications.App;
 import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.student.chat.chatmessages.models.MessageType;
 import com.erastus.orientate.student.login.StudentLoginRepository;
@@ -16,12 +17,6 @@ class MessageHelper {
     private static final int HEADER = 20;
     private static final int MIDDLE = 30;
     private static final int END = 40;
-    private static String myId;
-
-    static {
-        while (StudentLoginRepository.getInstance().getLoggedInStudent() == null);
-        myId = StudentLoginRepository.getInstance().getLoggedInStudent().getObjectId();
-    }
 
     private MessageHelper() {
     }
@@ -117,6 +112,6 @@ class MessageHelper {
     }
 
     private static boolean isOwnMessage(Message message) {
-        return message.getSender().getObjectId().equals(myId);
+        return message.getSender().getObjectId().equals(App.get().getCurrentUser().getStudent().getObjectId());
     }
 }

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.erastus.orientate.applications.App;
 import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.student.chat.conversations.ConversationRepository;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
@@ -401,7 +402,7 @@ public class ChatRepository {
         TaskRunner.getInstance()
                 .executeAsync(
                         new MessageSender(
-                                StudentLoginRepository.getInstance().getLoggedInStudent(),
+                                App.get().getCurrentUser().getStudent(),
                                 conversation, message, attachment),
                         (data) -> {
                         });
