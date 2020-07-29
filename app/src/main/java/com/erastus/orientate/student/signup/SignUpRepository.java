@@ -1,5 +1,6 @@
 package com.erastus.orientate.student.signup;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.erastus.orientate.models.ExtendedParseUser;
@@ -14,13 +15,17 @@ public class SignUpRepository {
 
     public static volatile SignUpRepository sInstance;
 
-    private static MutableLiveData<DataState> mSignUpResult = new MutableLiveData<>();
+    private MutableLiveData<DataState> mSignUpResult = new MutableLiveData<>();
 
     public static synchronized SignUpRepository getInstance() {
         if (sInstance == null) {
             sInstance = new SignUpRepository();
         }
         return sInstance;
+    }
+
+    public LiveData<DataState> getSignUpResult() {
+        return mSignUpResult;
     }
 
 
@@ -33,30 +38,43 @@ public class SignUpRepository {
         user.setEmail(email);
         user.put(ExtendedParseUser.KEY_IS_STUDENT, true);
 
-        // other fields can be set just like with ParseObject
+        // proceed to save the student object
+        Student student = new Student();
+        student.setFirstName(firstName);
+        student.setLastName(lastName);
+
+        // optional fields
+        if (middleName != null) {
+            student.setMiddleName(middleName);
+        }
+        if (dob != null) {
+            student.setDob(dob);
+        }
+        if (profilePicture != null) {
+            student.setProfilePicture(profilePicture);
+        }
+        // end of optional fields
 
         user.signUpInBackground(e -> {
             if (e == null) {
-                // Hooray! Let them use the app now.
-                Student student = new Student();
-                student.setFirstName(firstName);
-                student.setLastName(lastName);
-                if (middleName != null) {
-                    student.setMiddleName(middleName);
-                }
-                if (dob != null) {
-                    student.setDob(dob);
-                }
-                if (profilePicture != null) {
-                    student.setProfilePicture(profilePicture);
-                }
-                student.saveInBackground(e1 ->
-                        mSignUpResult.postValue(e1 == null ?
-                                new DataState.Success<>(user) : new DataState.Error(e1)));
-            } else {
-                // Sign up didn't succeed. Look at the ParseException
-                // to figure out what went wrong
-                mSignUpResult.postValue(new DataState.Error(e));
+                student.put(Student.KEY_USER, user);
+                student.saveInBackground(e1 -> {
+                    if (e1 == null) {
+                        user.put(ExtendedParseUser.KEY_STUDENT, student);
+                        user.saveInBackground(e2 -> {
+                            if (e2 == null) {
+                                // Hurray!
+                                mSignUpResult.postValue(new DataState.Success<>(user));
+                            } else {
+                                // Sign up didn't succeed. Look at the ParseException
+                                // to figure out what went wrong
+                                mSignUpResult.postValue(new DataState.Error(e2));
+                            }
+                        });
+                    } else {
+                        mSignUpResult.postValue(new DataState.Error(e1));
+                    }
+                });
             }
         });
     }

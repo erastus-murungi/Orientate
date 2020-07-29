@@ -1,14 +1,17 @@
 package com.erastus.orientate.student.models;
 
-public class DataState {
+import org.jetbrains.annotations.NotNull;
+
+public class DataState<T> {
     // hide the private constructor to limit subclass types (Success, Error)
     private DataState() {
     }
 
+    @NotNull
     @Override
     public String toString() {
         if (this instanceof DataState.Success) {
-            DataState.Success success = (DataState.Success) this;
+            DataState.Success<T> success = (DataState.Success<T>) this;
             return "Success[data=" + success.getData().toString() + "]";
         } else if (this instanceof DataState.Error) {
             DataState.Error error = (DataState.Error) this;
@@ -18,7 +21,7 @@ public class DataState {
     }
 
     // Success sub-class
-    public final static class Success<T> extends DataState {
+    public final static class Success<T> extends DataState<T> {
         private T data;
 
         public Success(T data) {
@@ -31,7 +34,7 @@ public class DataState {
     }
 
     // Error sub-class
-    public final static class Error extends DataState {
+    public final static class Error extends DataState<String> {
         private Exception error;
 
         public Error(Exception error) {

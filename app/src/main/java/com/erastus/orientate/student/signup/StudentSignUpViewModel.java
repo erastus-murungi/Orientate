@@ -1,10 +1,16 @@
 package com.erastus.orientate.student.signup;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import com.erastus.orientate.student.models.DataState;
+import com.erastus.orientate.student.models.SimpleState;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import java.io.File;
 import java.text.ParseException;
@@ -14,13 +20,23 @@ import java.util.Date;
 import java.util.Locale;
 
 public class StudentSignUpViewModel extends ViewModel {
+    private static final String TAG = "StudentSignUpViewModel";
 
-    private static SignUpRepository mRepo;
+    private SignUpRepository mRepo;
 
-    private MutableLiveData<InputValid> mSignUpResult = new MutableLiveData<>();
+    private LiveData<SimpleState<ParseUser>> mSignUpResult;
 
     public StudentSignUpViewModel() {
         mRepo = SignUpRepository.getInstance();
+        mSignUpResult = Transformations.map(mRepo.getSignUpResult(), input -> {
+            if (input instanceof DataState.Success) {
+                return new SimpleState<>(((DataState.Success<ParseUser>) input).getData());
+            } else if (input instanceof DataState.Error) {
+                Log.e(TAG, "sign up error: ", ((DataState.Error) input).getError());
+                return new SimpleState<>(((DataState.Error) input).getError().getLocalizedMessage());
+            }
+            return new SimpleState<>((Boolean) true);
+        });
     }
 
     private MutableLiveData<String> userName = new MutableLiveData<>();
@@ -73,7 +89,7 @@ public class StudentSignUpViewModel extends ViewModel {
     }
 
 
-    public LiveData<InputValid> getSignUpResult() {
+    public LiveData<SimpleState<ParseUser>> getSignUpResult() {
         return mSignUpResult;
     }
 
@@ -88,7 +104,7 @@ public class StudentSignUpViewModel extends ViewModel {
         } catch (ParseException e) {
             e.printStackTrace();
             date = null;
-            mSignUpResult.setValue(new InputValid(e.getLocalizedMessage()));
+            Log.e(TAG, "getDob: ", e);
         }
         return date;
     }

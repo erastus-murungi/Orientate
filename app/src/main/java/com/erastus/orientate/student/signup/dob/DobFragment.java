@@ -31,7 +31,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.FragmentDobProfilePictureBinding;
 import com.erastus.orientate.student.login.StudentLoginActivity;
-import com.erastus.orientate.student.signup.InputValid;
 import com.erastus.orientate.student.signup.ParentSignUpActivity;
 import com.erastus.orientate.student.signup.StudentSignUpViewModel;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -128,22 +127,23 @@ public class DobFragment extends Fragment implements ParentSignUpActivity {
     }
 
     private void setUpSignUpResultBehavior() {
-        hostActivity.getViewModel().getSignUpResult().observe(getViewLifecycleOwner(),
-                inputValid -> {
-                    if (inputValid == null) {
-                        return;
-                    }
-                    if (inputValid.getErrorCode() != null) {
-                        showErrorSnackBar(requireContext().getString(inputValid.getErrorCode()));
-                    }
-                    else if (inputValid.getErrorString() != null) {
-                        showErrorSnackBar(inputValid.getErrorString());
-                    }
-                    else if (inputValid.isDataValid()) {
-                        goToLoginActivity();
-                    }
-
-                });
+        hostActivity.getViewModel().getSignUpResult().observe(getViewLifecycleOwner(), parseUserSimpleState -> {
+            if (parseUserSimpleState == null) {
+                return;
+            }
+            if (parseUserSimpleState.getInternalErrorOccurred() != null) {
+                showErrorSnackBar("Internal error occurred");
+            } else {
+                if (parseUserSimpleState.getErrorCode() != null) {
+                    showErrorSnackBar(requireContext().getString(parseUserSimpleState.getErrorCode()));
+                } else if (parseUserSimpleState.getErrorMessage() != null) {
+                    showErrorSnackBar(parseUserSimpleState.getErrorMessage());
+                } else if (parseUserSimpleState.getData() != null) {
+                    Log.d(TAG, "onChanged: logging in " + parseUserSimpleState.getData());
+                    goToLoginActivity();
+                }
+            }
+        });
     }
 
     private void goToLoginActivity() {
