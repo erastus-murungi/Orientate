@@ -13,7 +13,6 @@ import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.student.chat.conversations.ConversationRepository;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.student.chat.models.Attachment;
-import com.erastus.orientate.student.login.StudentLoginRepository;
 import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.models.SimpleState;
 import com.erastus.orientate.student.models.Student;

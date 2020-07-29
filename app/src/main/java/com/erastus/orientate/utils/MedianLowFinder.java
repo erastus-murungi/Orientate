@@ -19,6 +19,13 @@ public class MedianLowFinder<Item extends Comparable<Item>> {
         return quickSelect(items, 0, items.size() - 1, mid);
     }
 
+
+    public Item nLogNMedian(@NonNull List<Item> items) {
+        int mid = items.size() >> 1;
+        Collections.sort(items);
+        return items.get(mid);
+    }
+
     public Item quickSelect(@NonNull List<Item> items, int lo, int hi, int k) {
         while ((hi - lo) >= 0) {
             partition(items, lo, hi);
