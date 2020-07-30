@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.PriorityQueue;
 import java.util.Random;
+import java.util.Stack;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BinaryOperator;
@@ -31,12 +33,12 @@ import java.util.stream.Collectors;
  *
  *  */
 
-public class VPTree<T, R extends Comparable<R>> {
+public class VPTree<T> {
 
     class VPNode {
 
         /** A radius value defining the range of the node */
-        private R mu;
+        private Double mu;
 
         /** Left subtree
          *  All the left children of a given node are the points inside the circle
@@ -52,13 +54,10 @@ public class VPTree<T, R extends Comparable<R>> {
 
         @NonNull private T vantagePoint;
 
-        @NonNull List<T> data;
-
         @Nullable List<T> children;
 
 
         VPNode(@NonNull List<T> points) {
-            data = points;
             vantagePoint = selectVantagePoint(points);
 
             if (points.size() < 1) {
@@ -68,10 +67,11 @@ public class VPTree<T, R extends Comparable<R>> {
                 children = points;
             }
 
-            List<R> distancesToVantagePoint = points
+            List<Double> distancesToVantagePoint = points
                     .parallelStream()
                     .map((point) -> distanceFunction.apply(vantagePoint, point))
                     .collect(Collectors.toList());
+
             mu = medianFinder.nLogNMedian(distancesToVantagePoint);
 
             int initialCapacity = (points.size() >> 1) + 1;
@@ -80,7 +80,7 @@ public class VPTree<T, R extends Comparable<R>> {
 
             for (int i = 0; i < points.size(); i++) {
                 T point = points.get(i);
-                R dist = distancesToVantagePoint.get(i);
+                Double dist = distancesToVantagePoint.get(i);
 
                 if (dist.compareTo(mu) < 0) {
                     leftPoints.add(point);
@@ -101,15 +101,15 @@ public class VPTree<T, R extends Comparable<R>> {
         }
     }
 
-    public interface DistanceFunction<T, R> {
-        R apply(T a, T b);
+    public interface DistanceFunction<T> {
+        Double apply(T a, T b);
     }
 
     public static final int DEFAULT_LEAF_SIZE = 16;
 
     public static final int MIN_NUMBER_OF_POINTS_TO_SAMPLE = 10;
 
-    private MedianLowFinder<R> medianFinder = new MedianLowFinder<>();
+    private MedianLowFinder<Double> medianFinder = new MedianLowFinder<>();
 
     private static int leafSize;
 
@@ -118,17 +118,93 @@ public class VPTree<T, R extends Comparable<R>> {
     /**
      * A distance function which satisfies the triangle inequality
      */
-    private DistanceFunction<T, R> distanceFunction;
+    private DistanceFunction<T> distanceFunction;
 
 
-    VPTree(List<T> items, DistanceFunction<T, R> distance, Integer leafSize) {
+    VPTree(List<T> items, DistanceFunction<T> distance, Integer leafSize) {
         distanceFunction = distance;
         VPTree.leafSize = leafSize;
         root = new VPNode(items);
     }
 
-    List<T> knnSearch(int k) {
-        return null;
+
+    private void addNode(PriorityQueue<BPQItem<VPNode>> queue, VPNode node, T q) {
+        if (node != null) {
+            Double dist = distanceFunction.apply(q, node.vantagePoint);
+            queue.add(new BPQItem<>(node, dist));
+        }
+    }
+
+
+
+    /**
+     * find the k nearest neighbors of q
+     * @param q the item whose nearest neighbors to find
+     * @param k the number of neighbors to find
+     * @return a list of q's k nearest neighbors
+     */
+
+    List<BPQItem<T>> knnSearch(VPNode root, T q, int k) {
+        /* buffer for nearest neighbors
+        * q is at a distance of 0 from itself */
+        BoundedPriorityQueue<BPQItem<T>> neighbors =
+                new BoundedPriorityQueue<>(k, new BPQItem<>(q, 0.0d),
+                        (v1, v2) -> distanceFunction.apply(v1.item, v2.item));
+
+        /* list of nodes to visit*/
+        PriorityQueue<BPQItem<VPNode>> visitStack =
+                new PriorityQueue<>((v1, v2) -> v1.dist.compareTo(v2.dist));
+
+        addNode(visitStack, root, q);
+
+        Double tau = Double.POSITIVE_INFINITY;
+
+        int totalSeen = 0;
+
+        while (visitStack.size() > 0) {
+            // remove the element with the smallest distance
+            BPQItem<VPNode> bpqItem = visitStack.poll();
+            Double dist = bpqItem.dist;
+            VPNode node = bpqItem.item;
+            totalSeen += 1;
+
+            if (node == null) {
+                continue;
+            }
+
+            if (dist < tau) {
+                neighbors.push(new BPQItem<>(node.vantagePoint, dist));
+                if (neighbors.size() == k) {
+                    BPQItem<T> farthest = neighbors.getLastItem();
+                    tau = farthest.dist;
+                }
+            }
+
+            if (node.isLeaf()) {
+                totalSeen += node.children.size();
+                for (T childP : node.children) {
+                    Double d = distanceFunction.apply(q, childP);
+                    neighbors.push(new BPQItem<>(childP, d));
+                }
+                if (neighbors.size() == k) {
+                    tau = neighbors.getLastItem().dist;
+                }
+                continue;
+            }
+            if (dist < node.mu) {
+                addNode(visitStack, node.left, q);
+                if ((node.mu - dist) <= tau) {
+                    addNode(visitStack, node.right, q);
+                }
+            } else {
+                addNode(visitStack, node.right, q);
+                if (dist - node.mu <= tau) {
+                    addNode(visitStack, node.left, q);
+                }
+            }
+        }
+        System.out.println(totalSeen);
+        return neighbors.getItems();
     }
 
 

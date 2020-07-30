@@ -4,26 +4,18 @@ package com.erastus.orientate.utils;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
-public class BoundedPriorityQueue<T, R extends Comparable<R>> {
-
-    class BPQItem {
-        T item;
-        R dist;
-
-        public BPQItem(T item, R dist) {
-            this.item = item;
-            this.dist = dist;
-        }
-    }
+public class BoundedPriorityQueue<T> extends PriorityQueue<T> {
 
     private final T base;
-    private final List<BPQItem> bpq;
+    private final List<BPQItem<T>> bpq;
     private final int k;
-    private VPTree.DistanceFunction<T, R> distanceFunction;
+    private VPTree.DistanceFunction<T> distanceFunction;
 
-    public BoundedPriorityQueue(int k, T base, VPTree.DistanceFunction<T, R> distanceFunction) {
+    public BoundedPriorityQueue(int k, T base, VPTree.DistanceFunction<T> distanceFunction) {
+        super();
         this.bpq = new ArrayList<>();
         this.k = k;
         this.base = base;
@@ -31,11 +23,11 @@ public class BoundedPriorityQueue<T, R extends Comparable<R>> {
     }
 
     void push(T point) {
-        R dist = distanceFunction.apply(base, point);
+        Double dist = distanceFunction.apply(base, point);
 
         /* if the list still has space or the last item */
         if (bpq.size() < k || dist.compareTo(bpq.get(bpq.size() - 1).dist) < 0) {
-            inSort(new BPQItem(point, dist));
+            inSort(new BPQItem<>(point, dist));
             if (bpq.size() > k) {
                 bpq.remove(k);
                 assert bpq.size() <= k;
@@ -46,7 +38,7 @@ public class BoundedPriorityQueue<T, R extends Comparable<R>> {
     /**
      * @param item the item to insert into the bounded priority queue
      */
-    void inSort(BPQItem item) {
+    void inSort(BPQItem<T> item) {
         int pos = bisectRight(bpq, item, (o1, o2) -> o1.dist.compareTo(o2.dist), 0, bpq.size());
         bpq.add(pos, item);
     }
@@ -101,5 +93,14 @@ public class BoundedPriorityQueue<T, R extends Comparable<R>> {
 
     List<T> getItems() {
         return bpq.parallelStream().map((bpqItem -> bpqItem.item)).collect(Collectors.toList());
+    }
+
+    List<BPQItem<T>> getPairs() {
+        return bpq;
+    }
+
+    @Override
+    public int size() {
+        return bpq.size();
     }
 }
