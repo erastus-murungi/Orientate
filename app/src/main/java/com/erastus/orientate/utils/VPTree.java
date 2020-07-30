@@ -1,22 +1,13 @@
 package com.erastus.orientate.utils;
 
-
-
 import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.PriorityQueue;
-import java.util.Random;
-import java.util.Stack;
-import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 /**
@@ -101,10 +92,6 @@ public class VPTree<T> {
         }
     }
 
-    public interface DistanceFunction<T> {
-        Double apply(T a, T b);
-    }
-
     public static final int DEFAULT_LEAF_SIZE = 16;
 
     public static final int MIN_NUMBER_OF_POINTS_TO_SAMPLE = 10;
@@ -127,6 +114,12 @@ public class VPTree<T> {
         root = new VPNode(items);
     }
 
+    VPTree(List<T> items, DistanceFunction<T> distance) {
+        distanceFunction = distance;
+        VPTree.leafSize = DEFAULT_LEAF_SIZE;
+        root = new VPNode(items);
+    }
+
 
     private void addNode(PriorityQueue<BPQItem<VPNode>> queue, VPNode node, T q) {
         if (node != null) {
@@ -135,8 +128,6 @@ public class VPTree<T> {
         }
     }
 
-
-
     /**
      * find the k nearest neighbors of q
      * @param q the item whose nearest neighbors to find
@@ -144,7 +135,7 @@ public class VPTree<T> {
      * @return a list of q's k nearest neighbors
      */
 
-    List<BPQItem<T>> knnSearch(VPNode root, T q, int k) {
+    List<BPQItem<T>> knnSearch(T q, int k) {
         /* buffer for nearest neighbors
         * q is at a distance of 0 from itself */
         BoundedPriorityQueue<BPQItem<T>> neighbors =

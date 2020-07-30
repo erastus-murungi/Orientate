@@ -1,7 +1,10 @@
 package com.erastus.orientate.utils;
 
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -12,9 +15,9 @@ public class BoundedPriorityQueue<T> extends PriorityQueue<T> {
     private final T base;
     private final List<BPQItem<T>> bpq;
     private final int k;
-    private VPTree.DistanceFunction<T> distanceFunction;
+    private DistanceFunction<T> distanceFunction;
 
-    public BoundedPriorityQueue(int k, T base, VPTree.DistanceFunction<T> distanceFunction) {
+    public BoundedPriorityQueue(int k, T base, DistanceFunction<T> distanceFunction) {
         super();
         this.bpq = new ArrayList<>();
         this.k = k;
@@ -102,5 +105,31 @@ public class BoundedPriorityQueue<T> extends PriorityQueue<T> {
     @Override
     public int size() {
         return bpq.size();
+    }
+
+    @Override
+    public void clear() {
+        bpq.clear();
+    }
+
+    @Override
+    public T peek() {
+        return bpq.get(0).item;
+    }
+
+    @Override
+    public T poll() {
+        if (bpq.size() == 0) {
+            return null;
+        }
+        T item = bpq.get(0).item;
+        bpq.remove(0);
+        return item;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return bpq.toString();
     }
 }
