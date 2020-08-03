@@ -23,7 +23,6 @@
             android:textColor="@color/darkBlue"
             android:textSize="16sp" />
 
-
         <RelativeLayout
             android:id="@+id/layout_student_info"
             android:layout_width="match_parent"
@@ -49,7 +48,6 @@
                 android:textColor="@color/colorPrimaryDark" />
 
         </RelativeLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_first_name_edit"
@@ -154,7 +152,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.erastus.orientate.utils.circularimageview.CircularImageView
-                android:id="@+id/image_view_account_profile"
+                android:id="@+id/image_view_profile_picture"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@mipmap/ic_launcher"
