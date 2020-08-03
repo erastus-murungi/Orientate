@@ -10,13 +10,18 @@ public class MedianLowFinder<Item extends Comparable<Item>> {
 
     private final PartitionInfo<Item> info = new PartitionInfo<>();
 
-    public Item median(@NonNull List<Item> items) {
+    public Item quickSelectMedian(@NonNull List<Item> items) {
         int n = items.size();
         if (n <= 0) {
             throw new IndexOutOfBoundsException();
         }
         int mid = n >> 1;
         return quickSelect(items, 0, items.size() - 1, mid);
+    }
+
+    public Item median(@NonNull List<Item> items) {
+        //TODO change to a more efficient algorithm later
+        return nLogNMedian(items);
     }
 
 

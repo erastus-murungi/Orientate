@@ -242,6 +242,16 @@
     <string name="retake">Retake</string>
     <string name="invalid_initial_password">Input valid password before confirming</string>
     <string name="passwords_dont_match">Passwords do not match</string>
+    <string name="hint_middle_name">Middle name</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="save">Save</string>
+    <string name="contact_details">Contact details</string>
+    <string name="institution_name">Institution name</string>
+    <string name="country_of_residence">Country of residence</string>
+    <string name="change_password">Change Password</string>
+    <string name="hint_new_password">New password</string>
+    <string name="hint_current_password">Current password</string>
 
 
 </resources>

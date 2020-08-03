@@ -59,9 +59,7 @@ public class ProfileFragment extends Fragment {
 
     private void setUpButtons() {
         mMessagesButton = mBinding.textViewGoToMessages;
-        mMessagesButton.setOnClickListener(view -> {
-            goToChatPreviewFragment();
-        });
+        mMessagesButton.setOnClickListener(view -> goToChatPreviewFragment());
 
     }
 

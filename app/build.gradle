@@ -94,6 +94,7 @@ dependencies {
 
     implementation 'com.sun.mail:android-mail:1.6.2'
     implementation 'com.sun.mail:android-activation:1.6.2'
+    implementation 'com.hbb20:ccp:2.4.0'
 
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 

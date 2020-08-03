@@ -28,7 +28,13 @@ public class VPTree<T> {
 
     class VPNode {
 
-        /** A radius value defining the range of the node */
+        /** A radius value defining the range of the node
+         *
+         * Once the vp is chosen, we will calculate <i>mu</i>.
+         * The <i>mu</i> value represents the radius at which half the data is inside the radius,
+         * and half is out.
+         */
+
         private Double mu;
 
         /** Left subtree
@@ -43,12 +49,16 @@ public class VPTree<T> {
 
         /** a vantage point chosen from the data */
 
-        @NonNull private T vantagePoint;
+        @NonNull
+        private T vantagePoint;
 
         @Nullable List<T> children;
 
 
         VPNode(@NonNull List<T> points) {
+            /* choosing a vantage point. It can be either be randomly chosen, or be calculated as
+             * the node with the largest spread. */
+
             vantagePoint = selectVantagePoint(points);
 
             if (points.size() < 1) {
@@ -57,18 +67,20 @@ public class VPTree<T> {
             if (points.size() <= leafSize) {
                 children = points;
             }
-
+            /* Calculate the distance from each point to the vantagePoint
+            * O(n) */
             List<Double> distancesToVantagePoint = points
                     .parallelStream()
                     .map((point) -> distanceFunction.apply(vantagePoint, point))
                     .collect(Collectors.toList());
 
-            mu = medianFinder.nLogNMedian(distancesToVantagePoint);
+            mu = medianFinder.median(distancesToVantagePoint);
 
             int initialCapacity = (points.size() >> 1) + 1;
             List<T> leftPoints = new ArrayList<>(initialCapacity);
             List<T> rightPoints = new ArrayList<>(initialCapacity);
 
+            /* O(n) */
             for (int i = 0; i < points.size(); i++) {
                 T point = points.get(i);
                 Double dist = distancesToVantagePoint.get(i);
@@ -137,7 +149,7 @@ public class VPTree<T> {
 
     List<BPQItem<T>> knnSearch(T q, int k) {
         /* buffer for nearest neighbors
-        * q is at a distance of 0 from itself */
+         * q is at a distance of 0 from itself */
         BoundedPriorityQueue<BPQItem<T>> neighbors =
                 new BoundedPriorityQueue<>(k, new BPQItem<>(q, 0.0d),
                         (v1, v2) -> distanceFunction.apply(v1.item, v2.item));
@@ -148,36 +160,44 @@ public class VPTree<T> {
 
         addNode(visitStack, root, q);
 
+        /* Consider a circle of radius tau around the query point that
+         * encloses all of its nearest neighbors.
+         * Suppose we are searching for k nearest neighbors,
+         * then tau would contain the closest k points.
+         */
+
         Double tau = Double.POSITIVE_INFINITY;
 
         int totalSeen = 0;
 
         while (visitStack.size() > 0) {
-            // remove the element with the smallest distance
-            BPQItem<VPNode> bpqItem = visitStack.poll();
-            Double dist = bpqItem.dist;
-            VPNode node = bpqItem.item;
+            /* pop of the element with the smallest distance */
+
+            BPQItem<VPNode> tuple = visitStack.poll();
+            Double dist = tuple.dist;
+            VPNode node = tuple.item;
+
             totalSeen += 1;
 
             if (node == null) {
                 continue;
             }
 
+            /* node os within area of interest, add node to the results and decrease tau*/
             if (dist < tau) {
                 neighbors.push(new BPQItem<>(node.vantagePoint, dist));
-                if (neighbors.size() == k) {
-                    BPQItem<T> farthest = neighbors.getLastItem();
-                    tau = farthest.dist;
-                }
+                if (neighbors.isfull())
+                    tau = neighbors.getLastItem().dist;
             }
 
-            if (node.isLeaf()) {
+            if (node.isLeaf() && node.children != null) {
                 totalSeen += node.children.size();
                 for (T childP : node.children) {
                     Double d = distanceFunction.apply(q, childP);
                     neighbors.push(new BPQItem<>(childP, d));
                 }
                 if (neighbors.size() == k) {
+                    // shrink the radius of interest
                     tau = neighbors.getLastItem().dist;
                 }
                 continue;

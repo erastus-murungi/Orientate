@@ -15,11 +15,10 @@ public class ExtendedParseUser extends ParseUser {
     public static final String KEY_EMAIL = "email";
     public static final String KEY_EMAIL_VERIFIED = "emailVerified";
     public static final String KEY_STUDENT = "student";
+    public static final String KEY_USER_INFO = "user_info";
     public final String TAG = getClassName();
 
     private ParseUser mUser;
-
-
 
     // for parse
     public ExtendedParseUser() {
@@ -66,6 +65,16 @@ public class ExtendedParseUser extends ParseUser {
     public Student getStudent() {
         try {
             ParseObject object = mUser.getParseObject(KEY_STUDENT);
+            return object.fetchIfNeeded();
+        } catch (ParseException e) {
+            Log.e(TAG, "getStudent: ", e);
+            return null;
+        }
+    }
+
+    public UserInfo getUserInfo() {
+        try {
+            ParseObject object = mUser.getParseObject(KEY_USER_INFO);
             return object.fetchIfNeeded();
         } catch (ParseException e) {
             Log.e(TAG, "getStudent: ", e);

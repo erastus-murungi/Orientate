@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.os.Build;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.models.UserInfo;
 import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.institution.models.Institution;
 import com.erastus.orientate.models.ExtendedParseUser;
@@ -55,6 +56,7 @@ public class App extends Application {
         ParseObject.registerSubclass(Message.class);
         ParseObject.registerSubclass(Conversation.class);
         ParseObject.registerSubclass(Attachment.class);
+        ParseObject.registerSubclass(UserInfo.class);
 
 
         //TODO only for troubleshooting -- remove this line for production

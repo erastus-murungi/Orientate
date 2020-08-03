@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,6 +16,7 @@ import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ActivityStudentLoginBinding;
 import com.erastus.orientate.databinding.ProgressLoginInButtonBinding;
 import com.erastus.orientate.student.navigation.StudentNavActivity;
+import com.erastus.orientate.student.signup.StudentSignUpActivity;
 import com.erastus.orientate.utils.Utils;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -27,7 +29,7 @@ import com.parse.ParseUser;
 public class StudentLoginActivity extends AppCompatActivity {
 
     private StudentLoginViewModel mLoginViewModel;
-    private ActivityStudentLoginBinding activityStudentLoginBinding;
+    private ActivityStudentLoginBinding mActivityStudentLoginBinding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,14 +44,15 @@ public class StudentLoginActivity extends AppCompatActivity {
             goToStudentNavActivity();
         }
 
-        activityStudentLoginBinding = ActivityStudentLoginBinding.inflate(getLayoutInflater());
-        setContentView(activityStudentLoginBinding.getRoot());
+        mActivityStudentLoginBinding = ActivityStudentLoginBinding.inflate(getLayoutInflater());
+        setContentView(mActivityStudentLoginBinding.getRoot());
 
-        final TextInputLayout usernameTextInputLayout = activityStudentLoginBinding.textInputLayoutUsername;
-        final TextInputLayout passwordTextInputLayout = activityStudentLoginBinding.textInputLayoutPassword;
-        final ProgressLoginInButtonBinding binding = activityStudentLoginBinding.buttonLogin;
+        final TextInputLayout usernameTextInputLayout = mActivityStudentLoginBinding.textInputLayoutUsername;
+        final TextInputLayout passwordTextInputLayout = mActivityStudentLoginBinding.textInputLayoutPassword;
+        final ProgressLoginInButtonBinding binding = mActivityStudentLoginBinding.buttonLogin;
         final View loginButton = binding.getRoot();
         final LoginButtonProgress loginButtonProgress = new LoginButtonProgress(binding);
+        final Button signUpButton = mActivityStudentLoginBinding.buttonSignUp;
 
         mLoginViewModel.getLoginFormState().observe(this, loginFormState -> {
             if (loginFormState == null) {
@@ -132,6 +135,12 @@ public class StudentLoginActivity extends AppCompatActivity {
                     passwordTextInputLayout.getEditText().getText().toString());
             Utils.forceHide(this, usernameTextInputLayout.getEditText());
         });
+
+        signUpButton.setOnClickListener(view -> goToSignUpActivity());
+    }
+
+    private void goToSignUpActivity() {
+        startActivity(new Intent(this, StudentSignUpActivity.class));
     }
 
     private void goToStudentNavActivity() {
@@ -140,7 +149,7 @@ public class StudentLoginActivity extends AppCompatActivity {
     }
 
     private void showLoginFailed(String errorString) {
-        Snackbar.make(activityStudentLoginBinding.getRoot(), errorString, BaseTransientBottomBar.LENGTH_LONG)
+        Snackbar.make(mActivityStudentLoginBinding.getRoot(), errorString, BaseTransientBottomBar.LENGTH_LONG)
                 .setBackgroundTint(getColor(R.color.darkBlue))
                 .setTextColor(getColor(android.R.color.darker_gray))
                 .show();

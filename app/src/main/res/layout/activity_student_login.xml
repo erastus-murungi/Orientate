@@ -86,6 +86,7 @@
                 android:paddingEnd="20dp"
                 android:textColorHint="@color/midBlue"
                 android:textColor="@color/darkBlue"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.51"
                 app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +155,7 @@
         android:lineSpacingExtra="8dp"
         android:text="@string/no_account"
         android:textAlignment="center"
-        android:textColor="@color/blue"
+        android:textColor="@color/darkBlue"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -162,8 +163,8 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="SmallSp" />
 
-    <TextView
-        android:id="@+id/text_view_sign_up"
+    <Button
+        android:id="@+id/button_sign_up"
         android:layout_width="126dp"
         android:layout_height="17dp"
         android:layout_marginBottom="56dp"
@@ -172,7 +173,7 @@
         android:textAlignment="center"
         android:textColor="@color/darkBlue"
         android:textAllCaps="true"
-        android:textSize="11sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/text_view_no_account"
         app:layout_constraintStart_toStartOf="@+id/text_view_no_account"

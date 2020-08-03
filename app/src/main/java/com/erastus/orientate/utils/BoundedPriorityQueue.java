@@ -132,4 +132,8 @@ public class BoundedPriorityQueue<T> extends PriorityQueue<T> {
     public String toString() {
         return bpq.toString();
     }
+
+    public boolean isfull() {
+        return size() == k;
+    }
 }

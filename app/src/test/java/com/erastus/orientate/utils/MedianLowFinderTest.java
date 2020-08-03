@@ -14,7 +14,7 @@ class MedianLowFinderTest {
         int[] A =  {9, 38, 99, 29, 13,  5, 19,  7, 57, 16, 1};
         MedianLowFinder<Integer> mA = new MedianLowFinder<>();
         List<Integer> integerList = Arrays.stream(A).boxed().collect(Collectors.toList());
-        int med = mA.median(integerList);
+        int med = mA.quickSelectMedian(integerList);
         assertEquals(16, med);
     }
 

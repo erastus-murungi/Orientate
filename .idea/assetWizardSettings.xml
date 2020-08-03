@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/web/baseline_web_24.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/arrow_forward_ios/baseline_arrow_forward_ios_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -34,7 +34,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="dbdbdb" />
-                            <entry key="outputName" value="ic_baseline_web_24" />
+                            <entry key="outputName" value="ic_baseline_arrow_forward_ios_24" />
                             <entry key="sourceFile" value="$USER_HOME$/Downloads/compose.svg" />
                           </map>
                         </option>

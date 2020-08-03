@@ -23,10 +23,12 @@ import com.erastus.orientate.student.announcements.AnnouncementFragment;
 import com.erastus.orientate.student.event.EventFragment;
 import com.erastus.orientate.student.info.InfoFragment;
 import com.erastus.orientate.student.profile.ProfileFragment;
+import com.erastus.orientate.student.profile.editprofile.EditProfileFragment;
 import com.erastus.orientate.student.web.WebActivity;
+import com.erastus.orientate.utils.ParentActivityImpl;
 import com.google.android.material.navigation.NavigationView;
 
-public class StudentNavActivity extends AppCompatActivity {
+public class StudentNavActivity extends AppCompatActivity implements ParentActivityImpl {
     public static final String TAG = "StudentNavActivity";
     private DrawerLayout mStudentNavDrawerLayout;
     private Toolbar mToolbar;
@@ -152,5 +154,50 @@ public class StudentNavActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void setTitle(String title) {
+
+    }
+
+    @Override
+    public void setSubtitle(String subtitle) {
+
+    }
+
+    @Override
+    public void addFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_layout_student_content,
+                        fragment)
+                .addToBackStack(fragment.getClass().getSimpleName())
+                .commit();
+    }
+
+    @Override
+    public void enableBackButton(boolean enable) {
+
+    }
+
+    @Override
+    public void backPress() {
+
+    }
+
+    @Override
+    public void hideToolbar(boolean hide) {
+
+    }
+
+    @Override
+    public void setTabsVisibility(int visibility) {
+
+    }
+
+    @Override
+    public void setToolbar(Toolbar toolbar) {
+
     }
 }
