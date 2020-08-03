@@ -1,6 +1,7 @@
 <component name="ProjectDictionaryState">
   <dictionary name="erastusmurungi">
     <words>
+      <w>damerau</w>
       <w>levenshtein</w>
       <w>minkowski</w>
     </words>

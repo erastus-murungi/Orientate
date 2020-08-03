@@ -50,7 +50,6 @@ public class EditProfileFragment extends Fragment {
     }
 
     private void loadCurrentData() {
-        mHostActivity.setToolbar(mBinding.toolbarStudentEditProfile);
         mFirstNameTextInputLayout.getEditText().setText(mViewModel.getCurrentUser().getStudent().getFirstName());
         mMiddleNameTextInputLayout.getEditText().setText(mViewModel.getCurrentUser().getStudent().getMiddleName());
         mLastNameTextInputLayout.getEditText().setText(mViewModel.getCurrentUser().getStudent().getLastName());

@@ -17,6 +17,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d08affa-353e-44e0-82f1-d083825d8189" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/test/java/com/erastus/orientate/utils/CompareUsersTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -30,10 +31,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/erastusmurungi.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/erastusmurungi.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/editprofile/EditProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/editprofile/EditProfileFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/editprofile/EditProfileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/editprofile/EditProfileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/editprofile/EditProfileViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/student/profile/editprofile/EditProfileViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/CompareUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/erastus/orientate/utils/CompareUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_edit_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/erastus/orientate/utils/BoundedPriorityQueueTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/erastus/orientate/utils/BoundedPriorityQueueTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,9 +66,9 @@
         <option value="AnnotationType" />
         <option value="layoutResourceFile" />
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="resourceFile" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -172,8 +171,8 @@
       <recent name="com.erastus.orientate.student.login" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
-    <configuration name="BoundedPriorityQueueTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Android JUnit.CompareUsersTest">
+    <configuration name="CompareUsersTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
@@ -182,14 +181,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.erastus.orientate.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.erastus.orientate.utils.BoundedPriorityQueueTest" />
+      <option name="MAIN_CLASS_NAME" value="com.erastus.orientate.utils.CompareUsersTest" />
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoundedPriorityQueueTest.Given_PriorityQueue_When" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompareUsersTest.GivenTwoStringsWithEditDistanceOfThree_Then_ReturnCorrectAnswer" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
@@ -198,15 +197,15 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.erastus.orientate.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.erastus.orientate.utils.BoundedPriorityQueueTest" />
-      <option name="METHOD_NAME" value="Given_PriorityQueue_When" />
+      <option name="MAIN_CLASS_NAME" value="com.erastus.orientate.utils.CompareUsersTest" />
+      <option name="METHOD_NAME" value="GivenTwoStringsWithEditDistanceOfThree_Then_ReturnCorrectAnswer" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoundedPriorityQueueTest.Given_PriorityQueue_WhenItIsEmpty_Then_InsertItemSuccessfully" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompareUsersTest.GivenTwoStrings_When_Empty_Then_ReturnZero" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
@@ -215,15 +214,15 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.erastus.orientate.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.erastus.orientate.utils.BoundedPriorityQueueTest" />
-      <option name="METHOD_NAME" value="Given_PriorityQueue_WhenItIsEmpty_Then_InsertItemSuccessfully" />
+      <option name="MAIN_CLASS_NAME" value="com.erastus.orientate.utils.CompareUsersTest" />
+      <option name="METHOD_NAME" value="GivenTwoStrings_When_Empty_Then_ReturnZero" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoundedPriorityQueueTest.Given_PriorityQueue_When_KPlusOneItemsInserted_Then_PollMakesListSizeEqualK" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompareUsersTest.GivenTwoStrings_When_SecondStringIsEmpty_Then_LengthOfNonEmptyFirstString" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
@@ -232,15 +231,15 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.erastus.orientate.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.erastus.orientate.utils.BoundedPriorityQueueTest" />
-      <option name="METHOD_NAME" value="Given_PriorityQueue_When_KPlusOneItemsInserted_Then_PollMakesListSizeEqualK" />
+      <option name="MAIN_CLASS_NAME" value="com.erastus.orientate.utils.CompareUsersTest" />
+      <option name="METHOD_NAME" value="GivenTwoStrings_When_SecondStringIsEmpty_Then_LengthOfNonEmptyFirstString" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoundedPriorityQueueTest.Given_PriorityQueue_When_KPlusOneItemsInserted_Then_ReturnSizeQueueIsK" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CompareUsersTest.Given_TwoStrings_ThenReturnCorrectAnswer" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
@@ -249,8 +248,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.erastus.orientate.utils" />
-      <option name="MAIN_CLASS_NAME" value="com.erastus.orientate.utils.BoundedPriorityQueueTest" />
-      <option name="METHOD_NAME" value="Given_PriorityQueue_When_KPlusOneItemsInserted_Then_ReturnSizeQueueIsK" />
+      <option name="MAIN_CLASS_NAME" value="com.erastus.orientate.utils.CompareUsersTest" />
+      <option name="METHOD_NAME" value="Given_TwoStrings_ThenReturnCorrectAnswer" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
@@ -317,11 +316,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Android JUnit.BoundedPriorityQueueTest.Given_PriorityQueue_When" />
-        <item itemvalue="Android JUnit.BoundedPriorityQueueTest" />
-        <item itemvalue="Android JUnit.BoundedPriorityQueueTest.Given_PriorityQueue_When_KPlusOneItemsInserted_Then_PollMakesListSizeEqualK" />
-        <item itemvalue="Android JUnit.BoundedPriorityQueueTest.Given_PriorityQueue_When_KPlusOneItemsInserted_Then_ReturnSizeQueueIsK" />
-        <item itemvalue="Android JUnit.BoundedPriorityQueueTest.Given_PriorityQueue_WhenItIsEmpty_Then_InsertItemSuccessfully" />
+        <item itemvalue="Android JUnit.CompareUsersTest" />
+        <item itemvalue="Android JUnit.CompareUsersTest.Given_TwoStrings_ThenReturnCorrectAnswer" />
+        <item itemvalue="Android JUnit.CompareUsersTest.GivenTwoStrings_When_Empty_Then_ReturnZero" />
+        <item itemvalue="Android JUnit.CompareUsersTest.GivenTwoStringsWithEditDistanceOfThree_Then_ReturnCorrectAnswer" />
+        <item itemvalue="Android JUnit.CompareUsersTest.GivenTwoStrings_When_SecondStringIsEmpty_Then_LengthOfNonEmptyFirstString" />
       </list>
     </recent_temporary>
   </component>
@@ -547,12 +546,12 @@
       <screen x="0" y="23" width="1792" height="1031" />
     </state>
     <state x="673" y="247" key="Github.UntrackedFilesDialog/0.23.1792.1031@0.23.1792.1031" timestamp="1594313168601" />
-    <state width="1750" height="460" key="GridCell.Tab.0.bottom" timestamp="1596474692596">
+    <state width="1750" height="460" key="GridCell.Tab.0.bottom" timestamp="1596484412883">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="349" key="GridCell.Tab.0.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1595662195434" />
     <state width="1750" height="460" key="GridCell.Tab.0.bottom/0.23.1792.1021@0.23.1792.1021" timestamp="1596210944707" />
-    <state width="1750" height="460" key="GridCell.Tab.0.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1596474692596" />
+    <state width="1750" height="460" key="GridCell.Tab.0.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1596484412883" />
     <state width="1750" height="488" key="GridCell.Tab.0.bottom/0.23.1792.1023@0.23.1792.1023" timestamp="1595644186492" />
     <state width="1750" height="460" key="GridCell.Tab.0.bottom/0.23.1792.1024@0.23.1792.1024" timestamp="1596101737430" />
     <state width="1750" height="300" key="GridCell.Tab.0.bottom/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826970" />
@@ -560,12 +559,12 @@
     <state width="1750" height="659" key="GridCell.Tab.0.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
     <state width="1750" height="471" key="GridCell.Tab.0.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1595581584931" />
     <state width="1750" height="471" key="GridCell.Tab.0.bottom/0.23.1792.1031@0.23.1792.1031" timestamp="1595581654529" />
-    <state width="1750" height="460" key="GridCell.Tab.0.center" timestamp="1596474692595">
+    <state width="1750" height="460" key="GridCell.Tab.0.center" timestamp="1596484412882">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="349" key="GridCell.Tab.0.center/0.0.1792.1120@0.0.1792.1120" timestamp="1595662195433" />
     <state width="1750" height="460" key="GridCell.Tab.0.center/0.23.1792.1021@0.23.1792.1021" timestamp="1596210944706" />
-    <state width="1750" height="460" key="GridCell.Tab.0.center/0.23.1792.1022@0.23.1792.1022" timestamp="1596474692595" />
+    <state width="1750" height="460" key="GridCell.Tab.0.center/0.23.1792.1022@0.23.1792.1022" timestamp="1596484412882" />
     <state width="1750" height="488" key="GridCell.Tab.0.center/0.23.1792.1023@0.23.1792.1023" timestamp="1595644186491" />
     <state width="1750" height="460" key="GridCell.Tab.0.center/0.23.1792.1024@0.23.1792.1024" timestamp="1596101737430" />
     <state width="1750" height="300" key="GridCell.Tab.0.center/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826969" />
@@ -573,12 +572,12 @@
     <state width="1750" height="659" key="GridCell.Tab.0.center/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
     <state width="1750" height="471" key="GridCell.Tab.0.center/0.23.1792.1030@0.23.1792.1030" timestamp="1595581584930" />
     <state width="1750" height="471" key="GridCell.Tab.0.center/0.23.1792.1031@0.23.1792.1031" timestamp="1595581654529" />
-    <state width="1750" height="460" key="GridCell.Tab.0.left" timestamp="1596474692595">
+    <state width="1750" height="460" key="GridCell.Tab.0.left" timestamp="1596484412882">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="349" key="GridCell.Tab.0.left/0.0.1792.1120@0.0.1792.1120" timestamp="1595662195433" />
     <state width="1750" height="460" key="GridCell.Tab.0.left/0.23.1792.1021@0.23.1792.1021" timestamp="1596210944706" />
-    <state width="1750" height="460" key="GridCell.Tab.0.left/0.23.1792.1022@0.23.1792.1022" timestamp="1596474692595" />
+    <state width="1750" height="460" key="GridCell.Tab.0.left/0.23.1792.1022@0.23.1792.1022" timestamp="1596484412882" />
     <state width="1750" height="488" key="GridCell.Tab.0.left/0.23.1792.1023@0.23.1792.1023" timestamp="1595644186491" />
     <state width="1750" height="460" key="GridCell.Tab.0.left/0.23.1792.1024@0.23.1792.1024" timestamp="1596101737429" />
     <state width="1750" height="300" key="GridCell.Tab.0.left/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826969" />
@@ -586,12 +585,12 @@
     <state width="1750" height="659" key="GridCell.Tab.0.left/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
     <state width="1750" height="471" key="GridCell.Tab.0.left/0.23.1792.1030@0.23.1792.1030" timestamp="1595581584930" />
     <state width="1750" height="471" key="GridCell.Tab.0.left/0.23.1792.1031@0.23.1792.1031" timestamp="1595581654529" />
-    <state width="1750" height="460" key="GridCell.Tab.0.right" timestamp="1596474692595">
+    <state width="1750" height="460" key="GridCell.Tab.0.right" timestamp="1596484412882">
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="349" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1595662195433" />
     <state width="1750" height="460" key="GridCell.Tab.0.right/0.23.1792.1021@0.23.1792.1021" timestamp="1596210944707" />
-    <state width="1750" height="460" key="GridCell.Tab.0.right/0.23.1792.1022@0.23.1792.1022" timestamp="1596474692595" />
+    <state width="1750" height="460" key="GridCell.Tab.0.right/0.23.1792.1022@0.23.1792.1022" timestamp="1596484412882" />
     <state width="1750" height="488" key="GridCell.Tab.0.right/0.23.1792.1023@0.23.1792.1023" timestamp="1595644186492" />
     <state width="1750" height="460" key="GridCell.Tab.0.right/0.23.1792.1024@0.23.1792.1024" timestamp="1596101737430" />
     <state width="1750" height="300" key="GridCell.Tab.0.right/0.23.1792.1025@0.23.1792.1025" timestamp="1595066826970" />
@@ -599,12 +598,12 @@
     <state width="1750" height="659" key="GridCell.Tab.0.right/0.23.1792.1028@0.23.1792.1028" timestamp="1595512180833" />
     <state width="1750" height="471" key="GridCell.Tab.0.right/0.23.1792.1030@0.23.1792.1030" timestamp="1595581584931" />
     <state width="1750" height="471" key="GridCell.Tab.0.right/0.23.1792.1031@0.23.1792.1031" timestamp="1595581654529" />
-    <state width="1750" height="403" key="GridCell.Tab.1.bottom" timestamp="1596205072577">
-      <screen x="0" y="23" width="1792" height="1021" />
+    <state width="1750" height="403" key="GridCell.Tab.1.bottom" timestamp="1596478722460">
+      <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.bottom/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684358" />
     <state width="1750" height="403" key="GridCell.Tab.1.bottom/0.23.1792.1021@0.23.1792.1021" timestamp="1596205072577" />
-    <state width="1750" height="403" key="GridCell.Tab.1.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1596097125180" />
+    <state width="1750" height="403" key="GridCell.Tab.1.bottom/0.23.1792.1022@0.23.1792.1022" timestamp="1596478722460" />
     <state width="1750" height="468" key="GridCell.Tab.1.bottom/0.23.1792.1023@0.23.1792.1023" timestamp="1595593494717" />
     <state width="1750" height="404" key="GridCell.Tab.1.bottom/0.23.1792.1024@0.23.1792.1024" timestamp="1595876066304" />
     <state width="1750" height="344" key="GridCell.Tab.1.bottom/0.23.1792.1025@0.23.1792.1025" timestamp="1595066764842" />
@@ -612,12 +611,12 @@
     <state width="1750" height="467" key="GridCell.Tab.1.bottom/0.23.1792.1028@0.23.1792.1028" timestamp="1595506312786" />
     <state width="1750" height="471" key="GridCell.Tab.1.bottom/0.23.1792.1030@0.23.1792.1030" timestamp="1595581584932" />
     <state width="1750" height="471" key="GridCell.Tab.1.bottom/0.23.1792.1031@0.23.1792.1031" timestamp="1595581654530" />
-    <state width="1750" height="403" key="GridCell.Tab.1.center" timestamp="1596205072577">
-      <screen x="0" y="23" width="1792" height="1021" />
+    <state width="1750" height="403" key="GridCell.Tab.1.center" timestamp="1596478722460">
+      <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.center/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684357" />
     <state width="1750" height="403" key="GridCell.Tab.1.center/0.23.1792.1021@0.23.1792.1021" timestamp="1596205072577" />
-    <state width="1750" height="403" key="GridCell.Tab.1.center/0.23.1792.1022@0.23.1792.1022" timestamp="1596097125180" />
+    <state width="1750" height="403" key="GridCell.Tab.1.center/0.23.1792.1022@0.23.1792.1022" timestamp="1596478722460" />
     <state width="1750" height="468" key="GridCell.Tab.1.center/0.23.1792.1023@0.23.1792.1023" timestamp="1595593494716" />
     <state width="1750" height="404" key="GridCell.Tab.1.center/0.23.1792.1024@0.23.1792.1024" timestamp="1595876066303" />
     <state width="1750" height="344" key="GridCell.Tab.1.center/0.23.1792.1025@0.23.1792.1025" timestamp="1595066764841" />
@@ -625,12 +624,12 @@
     <state width="1750" height="467" key="GridCell.Tab.1.center/0.23.1792.1028@0.23.1792.1028" timestamp="1595506312786" />
     <state width="1750" height="471" key="GridCell.Tab.1.center/0.23.1792.1030@0.23.1792.1030" timestamp="1595581584931" />
     <state width="1750" height="471" key="GridCell.Tab.1.center/0.23.1792.1031@0.23.1792.1031" timestamp="1595581654530" />
-    <state width="1750" height="403" key="GridCell.Tab.1.left" timestamp="1596205072577">
-      <screen x="0" y="23" width="1792" height="1021" />
+    <state width="1750" height="403" key="GridCell.Tab.1.left" timestamp="1596478722460">
+      <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.left/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684357" />
     <state width="1750" height="403" key="GridCell.Tab.1.left/0.23.1792.1021@0.23.1792.1021" timestamp="1596205072577" />
-    <state width="1750" height="403" key="GridCell.Tab.1.left/0.23.1792.1022@0.23.1792.1022" timestamp="1596097125179" />
+    <state width="1750" height="403" key="GridCell.Tab.1.left/0.23.1792.1022@0.23.1792.1022" timestamp="1596478722460" />
     <state width="1750" height="468" key="GridCell.Tab.1.left/0.23.1792.1023@0.23.1792.1023" timestamp="1595593494716" />
     <state width="1750" height="404" key="GridCell.Tab.1.left/0.23.1792.1024@0.23.1792.1024" timestamp="1595876066303" />
     <state width="1750" height="344" key="GridCell.Tab.1.left/0.23.1792.1025@0.23.1792.1025" timestamp="1595066764841" />
@@ -638,12 +637,12 @@
     <state width="1750" height="467" key="GridCell.Tab.1.left/0.23.1792.1028@0.23.1792.1028" timestamp="1595506312785" />
     <state width="1750" height="471" key="GridCell.Tab.1.left/0.23.1792.1030@0.23.1792.1030" timestamp="1595581584931" />
     <state width="1750" height="471" key="GridCell.Tab.1.left/0.23.1792.1031@0.23.1792.1031" timestamp="1595581654529" />
-    <state width="1750" height="403" key="GridCell.Tab.1.right" timestamp="1596205072577">
-      <screen x="0" y="23" width="1792" height="1021" />
+    <state width="1750" height="403" key="GridCell.Tab.1.right" timestamp="1596478722460">
+      <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="1750" height="391" key="GridCell.Tab.1.right/0.0.1792.1120@0.0.1792.1120" timestamp="1594939684358" />
     <state width="1750" height="403" key="GridCell.Tab.1.right/0.23.1792.1021@0.23.1792.1021" timestamp="1596205072577" />
-    <state width="1750" height="403" key="GridCell.Tab.1.right/0.23.1792.1022@0.23.1792.1022" timestamp="1596097125180" />
+    <state width="1750" height="403" key="GridCell.Tab.1.right/0.23.1792.1022@0.23.1792.1022" timestamp="1596478722460" />
     <state width="1750" height="468" key="GridCell.Tab.1.right/0.23.1792.1023@0.23.1792.1023" timestamp="1595593494717" />
     <state width="1750" height="404" key="GridCell.Tab.1.right/0.23.1792.1024@0.23.1792.1024" timestamp="1595876066304" />
     <state width="1750" height="344" key="GridCell.Tab.1.right/0.23.1792.1025@0.23.1792.1025" timestamp="1595066764842" />
@@ -672,11 +671,11 @@
       <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state width="896" height="510" key="XDebugger.FullValuePopup/0.23.1792.1022@0.23.1792.1022" timestamp="1595838212838" />
-    <state x="673" y="338" key="chooseDestDirectoryDialog" timestamp="1596097785747">
-      <screen x="0" y="23" width="1792" height="1024" />
+    <state x="673" y="337" key="chooseDestDirectoryDialog" timestamp="1596477754982">
+      <screen x="0" y="23" width="1792" height="1022" />
     </state>
     <state x="673" y="345" key="chooseDestDirectoryDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1594857008807" />
-    <state x="673" y="337" key="chooseDestDirectoryDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1596087483018" />
+    <state x="673" y="337" key="chooseDestDirectoryDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1596477754982" />
     <state x="673" y="338" key="chooseDestDirectoryDialog/0.23.1792.1024@0.23.1792.1024" timestamp="1596097785747" />
     <state x="673" y="339" key="chooseDestDirectoryDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1595487997559" />
     <state x="673" y="340" key="chooseDestDirectoryDialog/0.23.1792.1030@0.23.1792.1030" timestamp="1595557825100" />
@@ -698,10 +697,10 @@
       <screen x="0" y="23" width="1792" height="1026" />
     </state>
     <state x="677" y="458" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1792.1026@0.23.1792.1026" timestamp="1595348132983" />
-    <state x="792" y="174" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1596097785779">
-      <screen x="0" y="23" width="1792" height="1024" />
+    <state x="792" y="174" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1596477755014">
+      <screen x="0" y="23" width="1792" height="1022" />
     </state>
-    <state x="792" y="174" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1596087483056" />
+    <state x="792" y="174" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1792.1022@0.23.1792.1022" timestamp="1596477755014" />
     <state x="792" y="174" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1792.1024@0.23.1792.1024" timestamp="1596097785779" />
     <state x="792" y="175" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1792.1026@0.23.1792.1026" timestamp="1595487997633" />
     <state x="548" y="313" width="852" height="548" key="find.popup" timestamp="1595966416616">

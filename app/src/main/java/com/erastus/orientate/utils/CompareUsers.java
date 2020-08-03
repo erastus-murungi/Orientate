@@ -3,9 +3,19 @@ package com.erastus.orientate.utils;
 import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.models.UserInfo;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 public class CompareUsers {
 
-    public static final int COUNTRY_WEIGHT = 2;
+    public static final float COUNTRY_WEIGHT = 2.0f;
+
+    public static final float MAJOR_WEIGHT = 2.5f;
+
+    public static final float HOBBY_WEIGHT = 1.8f;
+
+    public static final float INTERESTS_WEIGHT = 3.0f;
+
 
     Double compare(ExtendedParseUser user1, ExtendedParseUser user2) {
         UserInfo userInfo1, userInfo2;
@@ -16,47 +26,74 @@ public class CompareUsers {
         return null;
     }
 
-
     /**
-     * @param x String
-     * @param y String
-     * @return
+     * Calculates the string distance between source and target strings using
+     * the Damerau-Levenshtein algorithm. The distance is case-sensitive.
+     *
+     * @param source The source String.
+     * @param target The target String.
+     * @return The distance between source and target strings.
+     * @throws IllegalArgumentException If either source or target is null.
      */
+    public static int damerauLevenshtein(CharSequence source, CharSequence target) {
+        if (source == null || target == null) {
+            throw new IllegalArgumentException("Parameter must not be null");
+        }
+        int sourceLength = source.length();
+        int targetLength = target.length();
 
+        if (sourceLength == 0)
+            return targetLength;
+        if (targetLength == 0)
+            return sourceLength;
 
-    private int levenshteinDistance(String x, String y) {
-        int nx = x.length();
-        int ny = y.length();
-
-        int[][] D = new int[nx + 1][ny + 1];
-
-        // the distance between x and (null) y
-        for (int ix = 1; ix <= nx; ix++) {
-            D[ix][0] = ix;
+        int[][] dist = new int[sourceLength + 1][targetLength + 1];
+        for (int i = 1; i < sourceLength + 1; i++) {
+            dist[i][0] = i;
+        }
+        for (int j = 1; j < targetLength + 1; j++) {
+            dist[0][j] = j;
         }
 
-        // the distance between y and (null) x
-        for (int iy = 1; iy <= ny; iy++) {
-            D[iy][0] = iy;
-        }
+        for (int i = 1; i < sourceLength + 1; i++) {
+            for (int j = 1; j < targetLength + 1; j++) {
+                // the substitution cost is 0 if the last characters of prefixes
+                // are the the same else 1
+                int subCost = source.charAt(i - 1) == target.charAt(j - 1) ? 0 : 1;
 
-        for (int ix = 1; ix < nx; ix++) {
-            for (int iy = 1; iy < ny; iy++) {
-                int subCost = x.charAt(ix + 1) == y.charAt(iy + 1) ? 0 : 1;
+                dist[i][j] = minimum(
+                        dist[i - 1][j] + 1,       // deletion
+                        dist[i][j - 1] + 1,            // insertion
+                        dist[i - 1][j - 1] + subCost); // substitution
 
-                D[ix][iy] = minimum(
-                        D[ix - 1][iy] + 1,   // delete a character in x
-                        D[ix][iy - 1] + 1,   // insert a character in x
-                        D[ix - 1][iy - 1] + subCost  // substitute a character in x
-                );
+                // swapping of adjacent characters
+                if (i > 1 && j > 1 &&
+                        source.charAt(i - 1) == target.charAt(j - 2) &&
+                        source.charAt(i - 2) == target.charAt(j - 1)) {
+                    dist[i][j] = minimum(dist[i][j],
+                            dist[i - 2][j - 2] + subCost);
+                }
             }
         }
-
-        return D[nx][ny];
+        return dist[sourceLength][targetLength];
     }
 
-    private int minimum(int x1, int x2, int x3) {
-        return Math.min(Math.min(x1, x2), x3);
+    public static int minimum(int... xs) {
+        if (xs.length == 0) {
+            throw new IllegalArgumentException("minimum of null elements is undefined");
+        }
+        int minX = Integer.MAX_VALUE;
+        for (int x : xs) {
+            minX = Math.min(x, minX);
+        }
+        return minX;
     }
 
+    private String[] toStringArray(JSONArray jsonStringArray) throws JSONException {
+        String[] output = new String[jsonStringArray.length()];
+        for (int i = 0; i < jsonStringArray.length(); i++) {
+            output[i] = jsonStringArray.getString(i);
+        }
+        return output;
+    }
 }
