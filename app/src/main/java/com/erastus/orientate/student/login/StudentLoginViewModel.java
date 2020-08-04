@@ -102,4 +102,8 @@ public class StudentLoginViewModel extends ViewModel {
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() >= 8;
     }
+
+    public void googleLoginDataChanged(String email) {
+        mStudentLoginRepository.findStudentWithEmail(email);
+    }
 }

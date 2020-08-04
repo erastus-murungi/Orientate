@@ -6,11 +6,14 @@ import androidx.lifecycle.Transformations;
 import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.models.Student;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import java.util.List;
 
 public class StudentLoginRepository {
     private static volatile StudentLoginRepository instance;
@@ -61,5 +64,19 @@ public class StudentLoginRepository {
 
     public MutableLiveData<DataState> loadStudent() {
         return mStudentState;
+    }
+
+    public void findStudentWithEmail(String email) {
+        ParseQuery<ParseUser> query = ParseQuery.getQuery(ParseUser.class);
+
+        query.whereEqualTo(ExtendedParseUser.KEY_EMAIL, email);
+
+        query.getFirstInBackground((user, e) -> {
+            if (e == null) {
+                mState.setValue(new DataState.Success<>(user));
+            } else {
+                mState.setValue(new DataState.Error(e));
+            }
+        });
     }
 }

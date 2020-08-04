@@ -2,13 +2,17 @@ package com.erastus.orientate.student.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.ImageButton;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,6 +23,12 @@ import com.erastus.orientate.student.navigation.StudentNavActivity;
 import com.erastus.orientate.student.signup.StudentSignUpActivity;
 import com.erastus.orientate.utils.Utils;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -28,8 +38,12 @@ import com.parse.ParseUser;
 
 public class StudentLoginActivity extends AppCompatActivity {
 
+    public static final int RC_SIGN_IN = 0;
+    private static final String TAG = "StudentLoginActivity";
+
     private StudentLoginViewModel mLoginViewModel;
     private ActivityStudentLoginBinding mActivityStudentLoginBinding;
+    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +51,8 @@ public class StudentLoginActivity extends AppCompatActivity {
 
         mLoginViewModel = new ViewModelProvider(this)
                 .get(StudentLoginViewModel.class);
+
+        configureGoogleSignIn();
 
         // no need for login in again
         if (ParseUser.getCurrentUser() != null) {
@@ -53,6 +69,9 @@ public class StudentLoginActivity extends AppCompatActivity {
         final View loginButton = binding.getRoot();
         final LoginButtonProgress loginButtonProgress = new LoginButtonProgress(binding);
         final Button signUpButton = mActivityStudentLoginBinding.buttonSignUp;
+        final ImageButton googleSignInButton = mActivityStudentLoginBinding.googlePlusLogin;
+        linkGoogleSignInButton(googleSignInButton);
+
 
         mLoginViewModel.getLoginFormState().observe(this, loginFormState -> {
             if (loginFormState == null) {
@@ -139,6 +158,50 @@ public class StudentLoginActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(view -> goToSignUpActivity());
     }
 
+    private void linkGoogleSignInButton(ImageButton button) {
+        button.setOnClickListener(view -> {
+            if (view.getId() == R.id.google_plus_login) {
+                signInWithGoogle();
+            }
+        });
+    }
+
+    private void signInWithGoogle() {
+        startActivityForResult(mGoogleSignInClient.getSignInIntent(), RC_SIGN_IN);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+            updateUI(account);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
+    }
+
+    private void updateUI(GoogleSignInAccount account) {
+        mLoginViewModel.googleLoginDataChanged(account.getEmail());
+    }
+
     private void goToSignUpActivity() {
         startActivity(new Intent(this, StudentSignUpActivity.class));
     }
@@ -154,7 +217,6 @@ public class StudentLoginActivity extends AppCompatActivity {
                 .setTextColor(getColor(android.R.color.darker_gray))
                 .show();
     }
-
 
 
     private static class LoginButtonProgress {
@@ -179,6 +241,23 @@ public class StudentLoginActivity extends AppCompatActivity {
         }
     }
 
+    private void configureGoogleSignIn() {
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (account != null)
+            goToStudentNavActivity();
+    }
 
     @Override
     public void onBackPressed() {
