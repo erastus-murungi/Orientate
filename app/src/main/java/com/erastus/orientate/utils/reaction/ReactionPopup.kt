@@ -1,15 +1,16 @@
-package com.github.pgreze.reactions
+package com.erastus.orientate.utils.reaction
+
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.view.Gravity
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
+import android.view.GestureDetector.SimpleOnGestureListener
 import android.widget.FrameLayout
 import android.widget.PopupWindow
+import com.erastus.orientate.student.chat.chatmessages.ChatAdapter
 
 /**
  * Entry point for reaction popup.
@@ -46,14 +47,23 @@ class ReactionPopup @JvmOverloads constructor(
         isFocusable = true
         setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
+    private var isDoubleTap = false
+    private val gestureDetector = GestureDetector(context, object : SimpleOnGestureListener() {
+        override fun onDoubleTap(e: MotionEvent): Boolean {
+            isDoubleTap = true
+            return super.onDoubleTap(e)
+        }
+    })
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View, event: MotionEvent): Boolean {
-        if (!isShowing) {
-            // Show fullscreen with button as context provider
+        gestureDetector.onTouchEvent(event);
+        if (!isShowing && isDoubleTap) {
+            println("Double tap: Reaction")
             showAtLocation(v, Gravity.NO_GRAVITY, 0, 0)
             view.show(event, v)
         }
+        isDoubleTap = false
         return view.onTouchEvent(event)
     }
 

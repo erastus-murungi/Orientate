@@ -106,6 +106,7 @@
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
+
     <style name="MessageBubble">
         <item name="android:paddingLeft">@dimen/default_spacing</item>
         <item name="android:paddingRight">@dimen/default_spacing</item>
@@ -153,6 +154,18 @@
         <item name="textSize">secondary</item>
     </style>
 
-
+    <!--Reaction Button Style-->
+    <style name="ReactImageButton">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_weight">@dimen/one</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:cropToPadding">false</item>
+        <item name="android:padding">@dimen/dimen7dp</item>
+    </style>
 
 </resources>

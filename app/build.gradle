@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 def apikeyPropertiesFile = rootProject.file("apikey.properties")
 def apikeyProperties = new Properties()
@@ -8,6 +10,10 @@ apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.0"
+
+    configurations {
+        compile.exclude group: "junit", module: "junit"
+    }
 
     buildFeatures {
         viewBinding true
@@ -70,6 +76,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
     implementation 'org.parceler:parceler-api:1.1.12'
+    implementation 'org.testng:testng:6.9.6'
     annotationProcessor 'org.parceler:parceler:1.1.12'
 
     implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
@@ -98,7 +105,6 @@ dependencies {
 
     // google sign-in
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
-
 
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 

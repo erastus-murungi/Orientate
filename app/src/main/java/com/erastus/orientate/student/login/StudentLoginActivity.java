@@ -51,14 +51,12 @@ public class StudentLoginActivity extends AppCompatActivity {
 
         mLoginViewModel = new ViewModelProvider(this)
                 .get(StudentLoginViewModel.class);
-
-        configureGoogleSignIn();
-
         // no need for login in again
         if (ParseUser.getCurrentUser() != null) {
             // get the active student
             goToStudentNavActivity();
         }
+        configureGoogleSignIn();
 
         mActivityStudentLoginBinding = ActivityStudentLoginBinding.inflate(getLayoutInflater());
         setContentView(mActivityStudentLoginBinding.getRoot());

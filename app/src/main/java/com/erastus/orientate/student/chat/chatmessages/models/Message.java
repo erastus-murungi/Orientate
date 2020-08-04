@@ -100,4 +100,8 @@ public class Message extends ParseObject {
     public String getConversationId() {
         return getConversation().getObjectId();
     }
+
+    public boolean isOwn() {
+        return getSenderId().equals(App.get().getCurrentUser().getStudent().getObjectId());
+    }
 }

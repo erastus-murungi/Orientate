@@ -10,6 +10,7 @@
     <dimen name="half_spacing">8dp</dimen>
     <dimen name="tiny_spacing">4dp</dimen>
     <dimen name="message_metadata_text_size">12sp</dimen>
+    <dimen name="message_timestamp_text_size">10sp</dimen>
     <dimen name="text_size">16sp</dimen>
 
 
@@ -17,4 +18,15 @@
     <dimen name="speech_bubble_corners_plus_tail">15dp</dimen>
     <dimen name="speech_bubble_spacing">5dp</dimen>
     <dimen name="speech_bubble_tail">25dp</dimen>
+
+    <dimen name="reactions_item_size">32dp</dimen>
+    <dimen name="reactions_item_margin">8dp</dimen>
+    <dimen name="reactions_text_horizontal_padding">12dp</dimen>
+    <dimen name="reactions_text_vertical_padding">4dp</dimen>
+    <dimen name="reactions_text_size">8sp</dimen>
+
+    <dimen name="one">1</dimen>
+    <dimen name="dimen7dp">7dp</dimen>
+    <public />
+
 </resources>

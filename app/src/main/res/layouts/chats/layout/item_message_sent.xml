@@ -1,55 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="100dp"
-    android:layout_marginLeft="100dp"
     android:gravity="end"
-    android:paddingEnd="@dimen/default_spacing"
-    android:paddingRight="@dimen/default_spacing"
+    android:layout_marginEnd="@dimen/default_spacing"
+    android:orientation="vertical"
     tools:ignore="RtlSymmetry">
 
-    <com.erastus.orientate.utils.circularimageview.CircularImageView
-        android:id="@+id/message_avatar"
-        android:layout_width="@dimen/avatar_bubble_size"
-        android:layout_height="@dimen/avatar_bubble_size"
-        android:layout_alignTop="@id/message_bubble"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="@dimen/half_spacing"
-        tools:src="@drawable/ic_baseline_tag_faces_24" />
-
-    <TextView
-        android:id="@+id/message_sender"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_bubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@id/message_bubble"
-        android:textColor="@color/message_metadata_user"
-        android:textSize="@dimen/message_metadata_text_size"
-        android:textStyle="bold"
-        tools:text="Monty the monkey" />
-
-    <TextView
-        android:id="@+id/message_bubble"
-        style="@style/MessageBubble"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/message_sender"
-        android:layout_toStartOf="@id/message_avatar"
         android:background="@drawable/incoming_speech_bubble"
-        android:textColor="@color/message_sent_text"
-        android:textSize="14sp"
-        tools:text="@string/lorem_ipsum_short" />
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/message_timestamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/message_bubble"
-        android:layout_alignEnd="@id/message_bubble"
-        android:textColor="@color/message_metadata_timestamp"
-        android:textSize="@dimen/message_metadata_text_size"
-        tools:text="7:22 PM" />
+        <TextView
+            android:id="@+id/message_bubble"
+            style="@style/MessageBubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/message_sent_text"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/message_timestamp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/lorem_ipsum_short" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/message_timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/message_metadata_timestamp"
+            android:textSize="@dimen/message_timestamp_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="3dp"
+            tools:text="7:22 PM" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/reaction"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/layout_bubble"
+        app:layout_constraintTop_toBottomOf="@id/layout_bubble" />
+
+</LinearLayout>

@@ -133,6 +133,9 @@ An app for insititutions to send students critical information and for students 
 | owned_by | Pointer<Institution> | The institution which released the announcement |
 | url | String | A link where additional info about the announcement may be found |
 
+Update: Schema for chatroom section of the app
+- ![Chat room schema](https://i.imgur.com/A13YaA3.jpg)
+
 
 
 

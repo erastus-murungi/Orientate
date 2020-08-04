@@ -1,11 +1,14 @@
 package com.erastus.orientate.student.chat.chatmessages;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.Html;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,15 +21,18 @@ import com.erastus.orientate.R;
 import com.erastus.orientate.applications.App;
 import com.erastus.orientate.student.chat.chatmessages.models.Message;
 import com.erastus.orientate.student.chat.chatmessages.models.MessageType;
-import com.erastus.orientate.student.login.StudentLoginRepository;
 import com.erastus.orientate.utils.DateUtils;
 import com.erastus.orientate.utils.Utils;
 import com.erastus.orientate.utils.circularimageview.CircularImageView;
+import com.erastus.orientate.utils.reaction.ReactionPopup;
+import com.erastus.orientate.utils.reaction.ReactionsConfig;
+import com.erastus.orientate.utils.reaction.ReactionsConfigBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHolder> {
+    private static final String TAG = "ChatAdapter";
     private List<Message> mMessages;
 
     private Context mContext;
@@ -103,32 +109,36 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
         private int mType;
 
-        RelativeLayout mRoot;
+        View mRootLayout;
 
-        CircularImageView mAvatar;
+        CircularImageView mAvatarImageView;
 
-        TextView mSender;
+        TextView mSenderTextView;
 
-        TextView mBubble;
+        TextView mBubbleTextView;
 
-        TextView mTimestamp;
+        TextView mTimestampTextView;
 
         Message mMessage;
+
+        View mRootView;
 
         MessageViewHolder(View itemView, int type) {
             super(itemView);
 
             mType = type;
 
-            mRoot = itemView.findViewById(R.id.root);
+            mRootView = itemView;
 
-            mBubble = itemView.findViewById(R.id.message_bubble);
+            mRootLayout = itemView.findViewById(R.id.root);
 
-            mTimestamp = itemView.findViewById(R.id.message_timestamp);
+            mBubbleTextView = itemView.findViewById(R.id.message_bubble);
 
-            mAvatar = itemView.findViewById(R.id.message_avatar);
+            mTimestampTextView = itemView.findViewById(R.id.message_timestamp);
 
-            mSender = itemView.findViewById(R.id.message_sender);
+            mAvatarImageView = itemView.findViewById(R.id.message_avatar);
+
+            mSenderTextView = itemView.findViewById(R.id.message_sender);
 
         }
 
@@ -137,57 +147,101 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
 
             handleType();
 
-            mBubble.setText(mMessage.getContent());
+            switch (this.mMessage.getMessageType()) {
+                case MessageType.REC_END:
+                    case MessageType.REC_HEADER_FULL:
+                        case MessageType.REC_MIDDLE:
+                            case MessageType.REC_HEADER_SERIES:
+                                mSenderTextView.setText(mMessage.getSender().getFirstName());
 
-            mSender.setText(mMessage.getSender().getFirstName());
-
-            mTimestamp.setText(DateUtils.parseTime(mMessage.getCreatedAt().getTime(), mContext));
-
-            if (this.mMessage.isSent()) {
-                mBubble.setAlpha(1.0f);
-            } else {
-                mBubble.setAlpha(0.5f);
+                                Glide.with(mContext)
+                                        .load(message.getSender().getProfileImageUrl())
+                                        .into(mAvatarImageView);
+                                break;
             }
 
-            Glide.with(mContext)
-                    .load(message.getSender().getProfileImageUrl())
-                    .into(mAvatar);
+            mBubbleTextView.setText(mMessage.getContent());
+            mTimestampTextView.setText(DateUtils.parseTime(mMessage.getCreatedAt().getTime(), mContext));
+            mBubbleTextView.setOnLongClickListener(view -> {showMessageInfoDialog(mContext, message); return true;});
+            showReaction();
+        }
 
-            mRoot.setOnClickListener(view -> showMessageInfoDialog(mContext, message));
+        @SuppressLint("ClickableViewAccessibility")
+        private void showReaction() {
+            final int[] reactions = new int[]{
+                    R.drawable.ic_like,
+                    R.drawable.ic_heart,
+                    R.drawable.ic_happy,
+                    R.drawable.ic_surprise,
+                    R.drawable.ic_sad,
+                    R.drawable.ic_angry};
 
+            final ReactionsConfig config =
+                    new ReactionsConfigBuilder(mContext)
+                    .withReactions(reactions)
+                    .build();
+
+            ReactionPopup popup = new
+                    ReactionPopup(mContext, config, (position) -> {
+                if (position != -1) {
+                    View reaction = mRootView.findViewById(R.id.reaction);
+                    reaction.setVisibility(View.VISIBLE);
+                    reaction.setBackground(mContext.getDrawable(reactions[position]));
+
+                    // user can only hide their own messages
+                    if (mMessage.isOwn()) {
+                        reaction.setOnTouchListener(new View.OnTouchListener() {
+                            private GestureDetector gestureDetector = new GestureDetector(mContext, new GestureDetector.SimpleOnGestureListener() {
+                                @Override
+                                public boolean onDoubleTap(MotionEvent e) {
+                                    Log.d(TAG, "onDoubleTap");
+                                    reaction.setVisibility(View.GONE);
+                                    return super.onDoubleTap(e);
+                                }// implement here other callback methods like onFling, onScroll as necessary
+                            });
+
+                            @Override
+                            public boolean onTouch(View view, MotionEvent motionEvent) {
+                                Log.d("TEST", "Raw event: " + motionEvent.getAction() + ", (" + motionEvent.getRawX() + ", " + motionEvent.getRawY() + ")");
+                                gestureDetector.onTouchEvent(motionEvent);
+                                return true;
+                            }
+                        });
+                    }
+                }
+                return true; // true is closing popup, false is requesting a new selection
+            });
+
+            mRootLayout.setOnTouchListener(popup);
         }
 
         private void handleType() {
             switch (mType) {
-                case MessageType.OWN_HEADER_FULL:
                 case MessageType.REC_HEADER_FULL:
-                    mAvatar.setVisibility(View.VISIBLE);
-                    mSender.setVisibility(View.VISIBLE);
-                    mTimestamp.setVisibility(View.VISIBLE);
+                    mAvatarImageView.setVisibility(View.VISIBLE);
+                    mSenderTextView.setVisibility(View.VISIBLE);
+                    mTimestampTextView.setVisibility(View.VISIBLE);
                     break;
-                case MessageType.OWN_HEADER_SERIES:
                 case MessageType.REC_HEADER_SERIES:
-                    mAvatar.setVisibility(View.VISIBLE);
-                    mSender.setVisibility(View.VISIBLE);
-                    mTimestamp.setVisibility(View.GONE);
+                    mAvatarImageView.setVisibility(View.VISIBLE);
+                    mSenderTextView.setVisibility(View.VISIBLE);
+                    mTimestampTextView.setVisibility(View.GONE);
                     break;
-                case MessageType.OWN_MIDDLE:
                 case MessageType.REC_MIDDLE:
-                    mAvatar.setVisibility(View.INVISIBLE);
-                    mSender.setVisibility(View.GONE);
-                    mTimestamp.setVisibility(View.GONE);
+                    mAvatarImageView.setVisibility(View.INVISIBLE);
+                    mSenderTextView.setVisibility(View.GONE);
+                    mTimestampTextView.setVisibility(View.GONE);
                     break;
-                case MessageType.OWN_END:
                 case MessageType.REC_END:
-                    mAvatar.setVisibility(View.INVISIBLE);
-                    mSender.setVisibility(View.GONE);
-                    mTimestamp.setVisibility(View.VISIBLE);
+                    mAvatarImageView.setVisibility(View.INVISIBLE);
+                    mSenderTextView.setVisibility(View.GONE);
+                    mTimestampTextView.setVisibility(View.VISIBLE);
                     break;
             }
         }
     }
 
-    class DiffCallback extends DiffUtil.Callback {
+    static class DiffCallback extends DiffUtil.Callback {
 
         List<Message> newMessages;
         List<Message> oldMessages;

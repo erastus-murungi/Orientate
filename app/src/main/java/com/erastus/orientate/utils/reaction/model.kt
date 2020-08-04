@@ -1,4 +1,5 @@
-package com.github.pgreze.reactions
+package com.erastus.orientate.utils.reaction
+
 
 import android.content.Context
 import android.graphics.Color
@@ -8,6 +9,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.Px
 import androidx.core.content.ContextCompat
 import android.widget.ImageView
+import com.erastus.orientate.R
 import kotlin.math.roundToInt
 
 /**

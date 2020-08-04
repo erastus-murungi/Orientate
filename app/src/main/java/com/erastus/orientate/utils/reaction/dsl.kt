@@ -1,14 +1,9 @@
-package com.github.pgreze.reactions.dsl
+package com.erastus.orientate.utils.reaction
 
 import android.content.Context
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat.getDrawable as getDrawableCompat
 import android.widget.ImageView
-import com.github.pgreze.reactions.Reaction
-import com.github.pgreze.reactions.ReactionPopup
-import com.github.pgreze.reactions.ReactionSelectedListener
-import com.github.pgreze.reactions.ReactionsConfig
-import com.github.pgreze.reactions.ReactionsConfigBuilder
 
 fun reactionPopup(
         context: Context,

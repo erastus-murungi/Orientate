@@ -1,15 +1,15 @@
-package com.github.pgreze.reactions
+package com.erastus.orientate.utils.reaction
+
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Point
-import android.widget.ImageView
 
 @SuppressLint("ViewConstructor")
 class ReactionView constructor(
         context: Context,
         val reaction: Reaction
-) : ImageView(context) {
+) : androidx.appcompat.widget.AppCompatImageView(context) {
 
     val location = Point()
         get() {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
     android:layout_width="match_parent"
@@ -12,19 +13,23 @@
         android:id="@+id/message_avatar"
         android:layout_width="@dimen/avatar_bubble_size"
         android:layout_height="@dimen/avatar_bubble_size"
-        android:layout_alignTop="@id/message_bubble"
         android:layout_marginEnd="@dimen/half_spacing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/message_bubble"
         tools:src="@drawable/ic_baseline_tag_faces_24" />
 
     <TextView
         android:id="@+id/message_sender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@id/message_bubble"
-        android:layout_toEndOf="@id/message_avatar"
+        android:layout_marginStart="@dimen/half_spacing"
         android:textColor="@color/message_metadata_user"
         android:textSize="12sp"
         android:textStyle="bold"
+        android:padding="@dimen/list_item_spacing_half"
+        app:layout_constraintStart_toEndOf="@id/message_avatar"
+        app:layout_constraintStart_toStartOf="@id/message_bubble"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Monty the monkey" />
 
     <TextView
@@ -32,20 +37,30 @@
         style="@style/MessageBubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/message_sender"
-        android:layout_toEndOf="@id/message_avatar"
+        android:layout_marginStart="@dimen/half_spacing"
         android:background="@drawable/message_received_bubble"
         android:textColor="@color/message_received_text"
+        app:layout_constraintStart_toEndOf="@id/message_avatar"
+        app:layout_constraintTop_toBottomOf="@id/message_sender"
         tools:text="@string/lorem_ipsum_long" />
 
     <TextView
         android:id="@+id/message_timestamp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/message_bubble"
-        android:layout_alignStart="@id/message_bubble"
         android:textColor="@color/message_metadata_timestamp"
         android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/message_bubble"
+        app:layout_constraintTop_toBottomOf="@+id/message_bubble"
         tools:text="7:22 PM" />
 
-</RelativeLayout>
+    <View
+        android:id="@+id/reaction"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintStart_toStartOf="@id/message_bubble"
+        android:layout_margin="3dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/message_bubble" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
