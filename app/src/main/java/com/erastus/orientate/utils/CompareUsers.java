@@ -6,24 +6,143 @@ import com.erastus.orientate.models.UserInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class CompareUsers {
 
-    public static final float COUNTRY_WEIGHT = 2.0f;
+    public static final double COUNTRY_WEIGHT = 2.0d;
 
-    public static final float MAJOR_WEIGHT = 2.5f;
+    public static final double MAJOR_WEIGHT = 2.5d;
 
-    public static final float HOBBY_WEIGHT = 1.8f;
+    public static final double HOBBY_WEIGHT = 1.8d;
 
-    public static final float INTERESTS_WEIGHT = 3.0f;
+    public static final double INTERESTS_WEIGHT = 3.0d;
 
+    public static final double MOVIE_WEIGHT = 2.0d;
 
-    Double compare(ExtendedParseUser user1, ExtendedParseUser user2) {
+    public static final double TV_WEIGHT = 2.0d;
+
+    public Double compare(ExtendedParseUser user1, ExtendedParseUser user2) throws JSONException {
+        double result = 0.0d;
+
         UserInfo userInfo1, userInfo2;
 
         userInfo1 = user1.getUserInfo();
         userInfo2 = user2.getUserInfo();
 
-        return null;
+        result += factorMovies(userInfo1, userInfo2);
+        result += factorTvShows(userInfo1, userInfo2);
+        result += factorInterests(userInfo1, userInfo2);
+        result += factorHobbies(userInfo1, userInfo2);
+
+        result += factorCountryOfResidence(userInfo1, userInfo2);
+
+
+        return result;
+    }
+
+    private double factorCountryOfResidence(UserInfo userInfo1, UserInfo userInfo2) {
+        String s1 = userInfo1.getCountry();
+        String s2 = userInfo2.getCountry();
+
+        double d = damerauLevenshtein(s1, s2);
+
+        return COUNTRY_WEIGHT * (d / Math.max(s1.length(), s2.length()));
+    }
+
+    private double factorHobbies(UserInfo userInfo1, UserInfo userInfo2) throws JSONException {
+        String[] m1 = toStringArray(
+                Objects.requireNonNull(
+                        userInfo1.getHobbies()));
+
+        Arrays.sort(m1);
+        String sm1 = String.join("", m1);
+
+        String[] m2 = toStringArray(
+                Objects.requireNonNull(
+                        userInfo2.getHobbies()));
+
+        Arrays.sort(m2);
+        String sm2 = String.join("", m2);
+
+        double d = damerauLevenshtein(sm1, sm2);
+
+        return HOBBY_WEIGHT * (d / Math.max(sm1.length(), sm2.length()));
+    }
+
+    private double factorInterests(UserInfo u1, UserInfo u2) throws JSONException {
+        String[] m1 = toStringArray(
+                Objects.requireNonNull(
+                        u1.getJSONArray(
+                                UserInfo.KEY_INTERESTS
+                        )));
+
+        Arrays.sort(m1);
+        String sm1 = String.join("", m1);
+
+        String[] m2 = toStringArray(
+                Objects.requireNonNull(
+                        u2.getJSONArray(
+                                UserInfo.KEY_INTERESTS
+                        )));
+
+        Arrays.sort(m2);
+        String sm2 = String.join("", m2);
+
+        double d = damerauLevenshtein(sm1, sm2);
+
+        // normalized
+        return INTERESTS_WEIGHT * (d / Math.max(sm1.length(), sm2.length()));
+    }
+
+    private double factorTvShows(UserInfo u1, UserInfo u2) throws JSONException {
+        String[] m1 = toStringArray(
+                Objects.requireNonNull(
+                        u1.getJSONArray(
+                                UserInfo.KEY_TV_SHOWS
+                        )));
+
+        Arrays.sort(m1);
+        String sm1 = String.join("", m1);
+
+        String[] m2 = toStringArray(
+                Objects.requireNonNull(
+                        u2.getJSONArray(
+                                UserInfo.KEY_TV_SHOWS
+                        )));
+
+        Arrays.sort(m2);
+        String sm2 = String.join("", m2);
+
+        double d = damerauLevenshtein(sm1, sm2);
+
+        // normalized
+        return TV_WEIGHT * (d / Math.max(sm1.length(), sm2.length()));
+    }
+
+    private double factorMovies(UserInfo u1, UserInfo u2) throws JSONException {
+        String[] m1 = toStringArray(
+                Objects.requireNonNull(
+                        u1.getJSONArray(
+                                UserInfo.KEY_MOVIES
+                        )));
+
+        Arrays.sort(m1);
+        String sm1 = String.join("", m1);
+
+        String[] m2 = toStringArray(
+                Objects.requireNonNull(
+                        u2.getJSONArray(
+                                UserInfo.KEY_MOVIES
+                        )));
+
+        Arrays.sort(m2);
+        String sm2 = String.join("", m2);
+        double d = damerauLevenshtein(sm1, sm2);
+
+        // normalized
+        return MOVIE_WEIGHT * (d / Math.max(sm1.length(), sm2.length()));
     }
 
     /**

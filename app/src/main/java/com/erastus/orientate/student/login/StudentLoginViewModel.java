@@ -16,6 +16,7 @@ import com.erastus.orientate.student.login.models.LoginResult;
 import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.student.models.SimpleState;
 import com.erastus.orientate.student.models.Student;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.parse.Parse;
 import com.parse.ParseUser;
 
@@ -103,7 +104,7 @@ public class StudentLoginViewModel extends ViewModel {
         return password != null && password.trim().length() >= 8;
     }
 
-    public void googleLoginDataChanged(String email) {
-        mStudentLoginRepository.findStudentWithEmail(email);
+    public void googleLoginDataChanged(GoogleSignInAccount account) {
+        mStudentLoginRepository.findStudentWithEmail(account.getIdToken(), account.getId());
     }
 }

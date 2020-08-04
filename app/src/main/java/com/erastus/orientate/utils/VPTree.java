@@ -106,8 +106,6 @@ public class VPTree<T> {
 
     public static final int DEFAULT_LEAF_SIZE = 16;
 
-    public static final int MIN_NUMBER_OF_POINTS_TO_SAMPLE = 10;
-
     private MedianLowFinder<Double> medianFinder = new MedianLowFinder<>();
 
     private static int leafSize;
@@ -227,40 +225,4 @@ public class VPTree<T> {
         int randomIndex = ThreadLocalRandom.current().nextInt(0, points.size());
         return points.remove(randomIndex);
     }
-
-    // picks the point with the largest spread
-//    VPNode optimalVantagePoint(List<T> items) {
-//        int numSamples, numTests;
-//        numSamples = Math.max(MIN_NUMBER_OF_POINTS_TO_SAMPLE, items.size() / 1000);
-//        numTests = numSamples;
-//        Collection<T> sampledPoints = pickSample(items, numSamples,
-//                ThreadLocalRandom.current());
-//        for (T point: sampledPoints) {
-//            List<T> randPoints = pickSample(items, numTests, ThreadLocalRandom.current());
-//            List<R> distances = randPoints
-//                    .parallelStream()
-//                    .map((randPoint) -> distanceFunction.apply(point, randPoint))
-//                    .collect(Collectors.toList());
-//        }
-//
-//        return null;
-//
-//    }
-
-//    @SuppressWarnings("unchecked")
-//    public static <T> List<T> pickSample(List<T> population, int nSamplesNeeded, Random r) {
-//        T[] samples = (T[]) Array.newInstance(Objects.requireNonNull(population.getClass().getComponentType()),
-//                nSamplesNeeded);
-//        int nPicked = 0, i = 0, nLeft = population.size();
-//        while (nSamplesNeeded > 0) {
-//            int rand = r.nextInt(nLeft);
-//            if (rand < nSamplesNeeded) {
-//                samples[nPicked++] = population.get(i);
-//                nSamplesNeeded--;
-//            }
-//            nLeft--;
-//            i++;
-//        }
-//        return List.of(samples);
-//    }
 }

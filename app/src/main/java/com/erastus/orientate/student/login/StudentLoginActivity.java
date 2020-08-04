@@ -199,7 +199,11 @@ public class StudentLoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(GoogleSignInAccount account) {
-        mLoginViewModel.googleLoginDataChanged(account.getEmail());
+        if (account == null) {
+            showLoginFailed("failed login");
+        } else {
+            mLoginViewModel.googleLoginDataChanged(account);
+        }
     }
 
     private void goToSignUpActivity() {

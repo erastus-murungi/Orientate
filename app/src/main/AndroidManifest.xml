@@ -23,21 +23,22 @@
         android:targetSandboxVersion="1"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".student.cluster.ClusterActivity"></activity>
 
-    <provider
-        android:name="androidx.core.content.FileProvider"
-        android:authorities="com.erastus.orientate"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/fileprovider" />
-    </provider>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.erastus.orientate"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
+        </provider>
+
         <activity
             android:name=".student.chat.ChatActivity"
             android:label="@string/title_activity_chat"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <!-- <activity android:name=".student.web.WebActivity" /> -->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- <activity android:name=".student.web.WebActivity" /> -->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -49,15 +50,14 @@
         <activity
             android:name=".student.navigation.StudentNavActivity"
             android:label="" />
-
         <activity
             android:name=".utils.AppRestart"
             android:label="" />
-
-        <activity android:name=".student.web.WebActivity"
+        <activity
+            android:name=".student.web.WebActivity"
             android:label="@string/web" />
-
-        <activity android:name=".student.signup.StudentSignUpActivity"
+        <activity
+            android:name=".student.signup.StudentSignUpActivity"
             android:label="@string/sign_up" />
 
         <meta-data

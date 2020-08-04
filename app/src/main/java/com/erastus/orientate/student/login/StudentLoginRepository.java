@@ -12,8 +12,12 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.boltsinternal.Task;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class StudentLoginRepository {
     private static volatile StudentLoginRepository instance;
@@ -66,17 +70,22 @@ public class StudentLoginRepository {
         return mStudentState;
     }
 
-    public void findStudentWithEmail(String email) {
-        ParseQuery<ParseUser> query = ParseQuery.getQuery(ParseUser.class);
+    public void findStudentWithEmail(String tokenString, String userId) {
+        Map<String, String> authData = new HashMap<>();
+        authData.put("access_token", tokenString);
+        authData.put("id", userId);
+        Task<ParseUser> task = ParseUser.logInWithInBackground("google", authData);
 
-        query.whereEqualTo(ExtendedParseUser.KEY_EMAIL, email);
-
-        query.getFirstInBackground((user, e) -> {
-            if (e == null) {
-                mState.setValue(new DataState.Success<>(user));
+        try {
+            task.waitForCompletion(100, TimeUnit.SECONDS);
+            if (task.getResult() != null) {
+                mState.setValue(new DataState.Success<>(task.getResult()));
             } else {
-                mState.setValue(new DataState.Error(e));
+                mState.setValue(new DataState.Error(task.getError()));
             }
-        });
+
+        } catch (InterruptedException e) {
+            mState.setValue(new DataState.Error(e));
+        }
     }
 }
