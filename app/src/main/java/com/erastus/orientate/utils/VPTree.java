@@ -146,8 +146,10 @@ public class VPTree<T> {
      */
 
     List<BPQItem<T>> knnSearch(T q, int k) {
-        /* buffer for nearest neighbors
-         * q is at a distance of 0 from itself */
+        /*
+         * buffer for nearest neighbors
+         * q is at a distance of 0 from itself x
+         */
         BoundedPriorityQueue<BPQItem<T>> neighbors =
                 new BoundedPriorityQueue<>(k, new BPQItem<>(q, 0.0d),
                         (v1, v2) -> distanceFunction.apply(v1.item, v2.item));

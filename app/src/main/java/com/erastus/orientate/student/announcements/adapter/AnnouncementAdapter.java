@@ -1,6 +1,7 @@
 package com.erastus.orientate.student.announcements.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
     }
 
     public class AnnouncementViewHolder extends RecyclerView.ViewHolder {
+        private static final String TAG = "AnnouncementViewHolder";
 
         private MaterialTextView mPostedOnMaterialTextView;
         private MaterialTextView mPostedByMaterialTextView;
@@ -69,6 +71,7 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
         private MaterialTextView mAnnouncementBodyMaterialTextView;
         private ImageView mProfilePictureImageView;
         private RichLinkView mRichLinkView;
+        private ImageView mImportanceImageView;
 
         public AnnouncementViewHolder(@NonNull ItemAnnouncementBinding announcementBinding) {
             super(announcementBinding.getRoot());
@@ -78,10 +81,11 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
             mAnnouncementBodyMaterialTextView = mAnnouncementBinding.textViewAnnouncementBody;
             mProfilePictureImageView = mAnnouncementBinding.imageViewProfilePicture;
             mRichLinkView = mAnnouncementBinding.richLinkViewAnnouncement;
+            mImportanceImageView = mAnnouncementBinding.imageViewImportance;
         }
 
         public void bind(LocalAnnouncement localAnnouncement) {
-            mPostedOnMaterialTextView.setText(DateUtils.getRelativeTimeAgo(localAnnouncement.getCreatedAt()));
+            mPostedOnMaterialTextView.setText(DateUtils.getDate(localAnnouncement.getCreatedAt()));
             mPostedByMaterialTextView.setText(localAnnouncement.getPostedBy());
             mAnnouncementTitleMaterialTextView.setText(localAnnouncement.getTitle());
             mAnnouncementBodyMaterialTextView.setText(localAnnouncement.getBody());
@@ -107,6 +111,19 @@ public class AnnouncementAdapter extends RecyclerView.Adapter<AnnouncementAdapte
                 });
             } else {
                 mRichLinkView.setVisibility(View.GONE);
+            }
+            switch (localAnnouncement.getUrgencyLevel()) {
+                case CASUAL:
+                    mImportanceImageView.setBackground(mContext.getDrawable(R.drawable.ic_circle_green_24dp));
+                    break;
+                case IMPORTANT:
+                    mImportanceImageView.setBackground(mContext.getDrawable(R.drawable.ic_circle_yellow_24dp));
+                    break;
+                case VERY_IMPORTANT:
+                    mImportanceImageView.setBackground(mContext.getDrawable(R.drawable.ic_circle_red_24dp));
+                    break;
+                default:
+                    Log.e(TAG, "bind: announcement" + localAnnouncement + "has no importance level");
             }
         }
     }

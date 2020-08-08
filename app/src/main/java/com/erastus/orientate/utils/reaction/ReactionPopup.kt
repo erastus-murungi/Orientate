@@ -47,23 +47,24 @@ class ReactionPopup @JvmOverloads constructor(
         isFocusable = true
         setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
-    private var isDoubleTap = false
-    private val gestureDetector = GestureDetector(context, object : SimpleOnGestureListener() {
-        override fun onDoubleTap(e: MotionEvent): Boolean {
-            isDoubleTap = true
-            return super.onDoubleTap(e)
-        }
-    })
+
+//    private var isDoubleTap = false
+//    private val gestureDetector = GestureDetector(context, object : SimpleOnGestureListener() {
+//        override fun onDoubleTap(e: MotionEvent): Boolean {
+//            isDoubleTap = true
+//            return super.onDoubleTap(e)
+//        }
+//    })
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View, event: MotionEvent): Boolean {
-        gestureDetector.onTouchEvent(event);
-        if (!isShowing && isDoubleTap) {
+//        gestureDetector.onTouchEvent(event);
+        if (!isShowing) {
             println("Double tap: Reaction")
             showAtLocation(v, Gravity.NO_GRAVITY, 0, 0)
             view.show(event, v)
         }
-        isDoubleTap = false
+//        isDoubleTap = false
         return view.onTouchEvent(event)
     }
 

@@ -17,6 +17,7 @@ import com.erastus.orientate.SplashScreen;
 import com.erastus.orientate.student.profile.editprofile.EditProfileFragment;
 import com.erastus.orientate.utils.ParentActivityImpl;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.parse.ParseUser;
 
 public class ProfileBottomFragment extends BottomSheetDialogFragment {
     private View mRootView;
@@ -63,6 +64,7 @@ public class ProfileBottomFragment extends BottomSheetDialogFragment {
     }
 
     private void goToStart() {
+        ParseUser.logOut();
         Intent i = new Intent(requireContext(), SplashScreen.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);

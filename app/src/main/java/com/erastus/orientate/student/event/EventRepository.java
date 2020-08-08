@@ -3,8 +3,11 @@ package com.erastus.orientate.student.event;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.erastus.orientate.applications.App;
+import com.erastus.orientate.institution.models.Institution;
 import com.erastus.orientate.student.event.models.Event;
 import com.erastus.orientate.student.models.DataState;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
 
 import java.util.ArrayList;
@@ -44,21 +47,26 @@ public class EventRepository {
     public void loadEvents(Integer maxNumber, Integer pageNumber) {
         ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
         query.setLimit(maxNumber);
-        query.include(Event.KEY_INSTITUTION);
-        query.orderByDescending(Event.KEY_STARTING_ON);
-        query.findInBackground((events, e) -> {
+        try {
+            Institution institution = App.get().getCurrentUser().getStudent().getEnrolledAtParseObject().fetchIfNeeded();
+            query.whereEqualTo(Event.KEY_INSTITUTION, institution);
+            query.orderByDescending(Event.KEY_STARTING_ON);
+            query.findInBackground((events, e) -> {
 //            mState.setValue(new DataState.Error(new Exception("Fake Exception")));
-            if (e == null) {
-                List<Event> l = mEventsDataSet.getValue();
-                assert l != null;
-                l.clear();
-                l.addAll(events);
-                mEventsDataSet.setValue(l);
-                mState.setValue(new DataState.Success<>(events));
-            } else {
-                mState.setValue(new DataState.Error(e));
-            }
-        });
+                if (e == null) {
+                    List<Event> l = mEventsDataSet.getValue();
+                    assert l != null;
+                    l.clear();
+                    l.addAll(events);
+                    mEventsDataSet.setValue(l);
+                    mState.setValue(new DataState.Success<>(events));
+                } else {
+                    mState.setValue(new DataState.Error(e));
+                }
+            });
+        } catch (ParseException e) {
+            mState.setValue(new DataState.Error(e));
+        }
     }
 
     public void loadEventsSpecificDate(Integer maxNumber, Calendar c) {

@@ -208,7 +208,7 @@ public class CompareUsers {
         return minX;
     }
 
-    private String[] toStringArray(JSONArray jsonStringArray) throws JSONException {
+    public static String[] toStringArray(JSONArray jsonStringArray) throws JSONException {
         String[] output = new String[jsonStringArray.length()];
         for (int i = 0; i < jsonStringArray.length(); i++) {
             output[i] = jsonStringArray.getString(i);

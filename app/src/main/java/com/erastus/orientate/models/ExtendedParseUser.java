@@ -16,15 +16,16 @@ public class ExtendedParseUser extends ParseUser {
     public static final String KEY_EMAIL_VERIFIED = "emailVerified";
     public static final String KEY_STUDENT = "student";
     public static final String KEY_USER_INFO = "user_info";
+    public static final String KEY_WANTS_ROOM = "wants_room";
+    public static final String KEY_IS_MASTER = "is_master";
     public final String TAG = getClassName();
 
     private ParseUser mUser;
 
-    // for parse
+    // empty constructor for parse
     public ExtendedParseUser() {
 
     }
-
 
     @Override
     public String getObjectId() {
@@ -80,5 +81,21 @@ public class ExtendedParseUser extends ParseUser {
             Log.e(TAG, "getStudent: ", e);
             return null;
         }
+    }
+
+    public ParseObject getStudentParseObject() {
+        return mUser.getParseObject(KEY_STUDENT);
+    }
+
+    public boolean getWantsRoom() {
+        return mUser.getBoolean(KEY_WANTS_ROOM);
+    }
+
+    public void setWantsRoom(boolean wantsRoom) {
+        put(KEY_WANTS_ROOM, wantsRoom);
+    }
+
+    public boolean getIsMaster() {
+        return mUser.getBoolean(KEY_IS_MASTER);
     }
 }

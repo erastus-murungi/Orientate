@@ -31,7 +31,6 @@
         android:layout_gravity="start"
         android:background="@color/darkBlue"
 
-        app:headerLayout="@layout/nav_student_header"
         app:itemTextAppearance="@style/navMenuStyle"
         app:menu="@menu/student_nav_drawer_items">
 

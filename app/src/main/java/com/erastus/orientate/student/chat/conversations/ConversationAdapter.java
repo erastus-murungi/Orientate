@@ -101,12 +101,12 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
         }
     }
 
-    static class ConversationsDiffCallBack extends DiffUtil.Callback {
+    public static class ConversationsDiffCallBack extends DiffUtil.Callback {
 
         List<Conversation> newConversations;
         List<Conversation> oldConversations;
 
-        ConversationsDiffCallBack(List<Conversation> newConversations, List<Conversation> oldConversations) {
+        public ConversationsDiffCallBack(List<Conversation> newConversations, List<Conversation> oldConversations) {
             this.newConversations = newConversations;
             this.oldConversations = oldConversations;
         }

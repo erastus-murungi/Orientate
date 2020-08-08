@@ -76,11 +76,11 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/text_view_go_to_messages"
+            android:id="@+id/button_go_to_messages"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@drawable/ic_baseline_chat_24"
+            android:drawableTop="@drawable/ic_baseline_chat_blue_24"
             android:gravity="center"
             android:text="@string/messages" />
 
@@ -93,12 +93,13 @@
             android:background="?android:attr/listDivider" />
 
         <Button
+            android:id="@+id/button_discover_people"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@drawable/ic_baseline_notifications_24_blue"
+            android:drawableTop="@drawable/ic_baseline_group_add_gray_24"
             android:gravity="center"
-            android:text="@string/tagged_events" />
+            android:text="@string/discover_people" />
 
         <View
             android:layout_width="1dp"
@@ -108,12 +109,13 @@
             android:background="?android:attr/listDivider" />
 
         <Button
+            android:id="@+id/button_contacts"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@drawable/ic_baseline_contacts_24"
+            android:drawableTop="@drawable/ic_baseline_contacts_gray_24"
             android:gravity="center"
-            android:text="@string/connections" />
+            android:text="@string/contacts" />
 
     </LinearLayout>
 

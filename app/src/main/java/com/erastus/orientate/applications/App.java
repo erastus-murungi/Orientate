@@ -13,6 +13,7 @@ import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.announcements.models.Announcement;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.student.chat.models.Attachment;
+import com.erastus.orientate.student.cluster.ClusterRepository;
 import com.erastus.orientate.student.event.models.Event;
 import com.erastus.orientate.student.models.Student;
 import com.parse.Parse;
@@ -31,7 +32,12 @@ public class App extends Application {
     public ExtendedParseUser getCurrentUser() {
         if (mCurrentUser == null) {
             mCurrentUser = new ExtendedParseUser(ParseUser.getCurrentUser());
+
+            if (mCurrentUser.getIsMaster()) {
+                ClusterRepository.init();
+            }
         }
+
         return mCurrentUser;
     }
 
@@ -59,7 +65,6 @@ public class App extends Application {
         ParseObject.registerSubclass(UserInfo.class);
 
 
-        //TODO only for troubleshooting -- remove this line for production
         Parse.setLogLevel(Parse.LOG_LEVEL_DEBUG);
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();

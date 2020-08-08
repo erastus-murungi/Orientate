@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,25 +16,33 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.institution.models.Institution;
 import com.erastus.orientate.student.chat.ChatActivity;
 import com.erastus.orientate.databinding.ActivityStudentNavBinding;
 import com.erastus.orientate.student.announcements.AnnouncementFragment;
 import com.erastus.orientate.student.event.EventFragment;
 import com.erastus.orientate.student.info.InfoFragment;
+import com.erastus.orientate.student.models.SimpleState;
 import com.erastus.orientate.student.profile.ProfileFragment;
 import com.erastus.orientate.student.profile.editprofile.EditProfileFragment;
 import com.erastus.orientate.student.web.WebActivity;
 import com.erastus.orientate.utils.ParentActivityImpl;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 public class StudentNavActivity extends AppCompatActivity implements ParentActivityImpl {
     public static final String TAG = "StudentNavActivity";
     private DrawerLayout mStudentNavDrawerLayout;
     private Toolbar mToolbar;
     private StudentNavViewModel mViewModel;
+    private NavigationView mNavigationView;
+    private View mHeaderView;
+    private View mRootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +50,16 @@ public class StudentNavActivity extends AppCompatActivity implements ParentActiv
         final ActivityStudentNavBinding studentNavBinding = ActivityStudentNavBinding.inflate(getLayoutInflater());
         setContentView(studentNavBinding.getRoot());
 
+        mRootView = studentNavBinding.getRoot();
+
         mViewModel = new ViewModelProvider(this).get(StudentNavViewModel.class);
 
         mToolbar = findViewById(R.id.toolbar_student_nav);
         setSupportActionBar(mToolbar);
         setTitle(R.string.app_name);
         mStudentNavDrawerLayout = findViewById(R.id.drawer_layout_student);
+        mNavigationView = (NavigationView) mStudentNavDrawerLayout.findViewById(R.id.nav_view_student);
+        mHeaderView = mNavigationView.inflateHeaderView(R.layout.nav_student_header);
 
         final ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mStudentNavDrawerLayout,
                 mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -68,6 +82,29 @@ public class StudentNavActivity extends AppCompatActivity implements ParentActiv
                getSupportActionBar().hide();
             }
         });
+
+        viewModel.getStudentInstitution().observe(this, institutionSimpleState -> {
+            if (institutionSimpleState == null) {
+                return;
+            }
+            if (institutionSimpleState.getData() != null) {
+                Institution institution = institutionSimpleState.getData();
+                TextView institutionName = mHeaderView.findViewById(R.id.text_view_institution_name);
+                TextView institutionLocation = mHeaderView.findViewById(R.id.text_view_institution_location);
+                institutionName.setText(institution.getInstitutionName());
+                institutionLocation.setText(institution.getLocation());
+            }
+            if (institutionSimpleState.getErrorMessage() != null) {
+                showErrorSnackBar(institutionSimpleState.getErrorMessage());
+            }
+        });
+    }
+
+    private void showErrorSnackBar(String message) {
+        Snackbar.make(mRootView, message, BaseTransientBottomBar.LENGTH_LONG)
+                .setBackgroundTint(getColor(R.color.colorPrimaryDark))
+                .setTextColor(getColor(R.color.md_red_400))
+                .show();
     }
 
     @Override

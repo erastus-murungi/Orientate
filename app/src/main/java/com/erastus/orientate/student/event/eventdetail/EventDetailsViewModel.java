@@ -12,6 +12,7 @@ import com.erastus.orientate.student.event.models.LocalEvent;
 import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.utils.TaskRunner;
 import com.google.android.gms.maps.model.LatLng;
+import com.parse.ParseUser;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -39,6 +40,9 @@ public class EventDetailsViewModel extends ViewModel {
 
     public MutableLiveData<LocalEvent> getLocalEvent() {
         return mLocalEvent;
+    }
+
+    public void upVoteEvent() {
     }
 
 //    public boolean isServicesOk(Context context) {

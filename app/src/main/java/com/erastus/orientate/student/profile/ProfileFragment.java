@@ -18,9 +18,8 @@ import com.bumptech.glide.Glide;
 import com.erastus.orientate.R;
 import com.erastus.orientate.applications.App;
 import com.erastus.orientate.databinding.FragmentProfileBinding;
-import com.erastus.orientate.student.chat.ChatPreviewFragment;
-import com.erastus.orientate.student.login.StudentLoginRepository;
 import com.erastus.orientate.student.models.Student;
+import com.erastus.orientate.student.profile.discoverpeople.DiscoverPeopleFragment;
 import com.erastus.orientate.utils.circularimageview.CircularImageView;
 import com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
@@ -37,8 +36,8 @@ public class ProfileFragment extends Fragment {
     private AVLoadingIndicatorView mLoadingIndicator;
     private CircularImageView mProfilePictureCircularImageView;
     private Button mMessagesButton;
-    private Button mConnectionsButton;
-    private Button mInterestsEventsButton;
+    private Button mContactsButton;
+    private Button mDiscoverPeopleButton;
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -58,9 +57,55 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setUpButtons() {
-        mMessagesButton = mBinding.textViewGoToMessages;
-        mMessagesButton.setOnClickListener(view -> goToChatPreviewFragment());
+        mMessagesButton = mBinding.buttonGoToMessages;
+        mDiscoverPeopleButton = mBinding.buttonDiscoverPeople;
+        mContactsButton = mBinding.buttonContacts;
+        mMessagesButton.setOnClickListener(view -> {
+            mMessagesButton.setCompoundDrawablesWithIntrinsicBounds(
+                    null, requireActivity().getDrawable(R.drawable.ic_baseline_chat_blue_24),
+                    null, null);
+            mDiscoverPeopleButton.setCompoundDrawablesWithIntrinsicBounds(null,
+                    requireActivity().getDrawable(R.drawable.ic_baseline_group_add_gray_24),
+                    null, null);
+            mContactsButton.setCompoundDrawablesWithIntrinsicBounds(null,
+                    requireActivity().getDrawable(R.drawable.ic_baseline_contacts_gray_24),
+                    null, null);
+            goToChatPreviewFragment();
+        });
 
+        mDiscoverPeopleButton.setOnClickListener(view -> {
+            mMessagesButton.setCompoundDrawablesWithIntrinsicBounds(null,
+                    requireActivity().getDrawable(R.drawable.ic_baseline_chat_gray_24),
+                    null, null);
+            mDiscoverPeopleButton.setCompoundDrawablesWithIntrinsicBounds(null,
+                    requireActivity().getDrawable(R.drawable.ic_baseline_group_add_blue_24),
+                    null, null);
+            mContactsButton.setCompoundDrawablesWithIntrinsicBounds(null,
+                    requireActivity().getDrawable(R.drawable.ic_baseline_contacts_gray_24),
+                    null, null);
+            goToDiscoverPeopleFragment();
+        });
+
+        mContactsButton.setOnClickListener(view -> {
+            mMessagesButton.setCompoundDrawablesWithIntrinsicBounds(null,
+                    requireActivity().getDrawable(R.drawable.ic_baseline_chat_gray_24),
+                    null, null);
+            mDiscoverPeopleButton.setCompoundDrawablesWithIntrinsicBounds(null,
+                    requireActivity().getDrawable(R.drawable.ic_baseline_group_add_gray_24),
+                    null, null);
+            mContactsButton.setCompoundDrawablesWithIntrinsicBounds(null,
+                    requireActivity().getDrawable(R.drawable.ic_baseline_contacts_blue_24),
+                    null, null);
+            goToContactsFragment();
+        });
+    }
+
+    private void goToContactsFragment() {
+
+    }
+
+    private void goToDiscoverPeopleFragment() {
+        addFragment(DiscoverPeopleFragment.newInstance());
     }
 
     private void setUpToolBar() {
@@ -117,9 +162,10 @@ public class ProfileFragment extends Fragment {
 
         mLoadingIndicator.show();
 
-        Student s = App.get().getCurrentUser().getStudent();
         mUsernameTextView.setText(getString(R.string.format_username,
                 App.get().getCurrentUser().getUsername()));
+
+        Student s = App.get().getCurrentUser().getStudent();
 
         if (s.getMiddleName() == null) {
             mFullNameTextView.setText(getString(R.string.format_two_names, s.getFirstName(), s.getLastName()));
@@ -150,12 +196,17 @@ public class ProfileFragment extends Fragment {
     }
 
     private void goToChatPreviewFragment() {
+        addFragment(ChatPreviewFragment.newInstance());
+    }
+
+    private void addFragment(Fragment fragment) {
         getParentFragmentManager()
                 .beginTransaction()
                 .replace(R.id.frame_layout_profile,
-                        ChatPreviewFragment.newInstance())
+                        fragment)
                 .commit();
     }
+
 
     private void inflateMiddleFragment() {
         // TODO if no messages inflate with the empty messages view

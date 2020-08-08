@@ -1,6 +1,6 @@
 package com.erastus.orientate.student.chat.conversations;
 
-import androidx.arch.core.util.Function;
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -17,7 +17,7 @@ public class ConversationViewModel extends ViewModel {
 
     private ConversationRepository mRepository;
 
-    private LiveData<SimpleState<List<Conversation>>> mState = new MutableLiveData<>(new SimpleState<List<Conversation>>(true));
+    @NonNull private LiveData<SimpleState<List<Conversation>>> mState;
 
     @SuppressWarnings("unchecked")
     public ConversationViewModel() {

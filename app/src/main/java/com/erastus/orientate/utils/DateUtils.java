@@ -69,6 +69,12 @@ public class DateUtils {
         return dateFormat.format(dateFromLocalTime(time));
     }
 
+    public static String getDate(LocalDateTime time) {
+        //Displaying current date and time in 12 hour format with AM/PM
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy hh:mm aa", Locale.getDefault());
+        return dateFormat.format(dateFromLocalTime(time));
+    }
+
     public static String getRelativeTimeAgo(long timeToken) {
         return (String) android.text.format.DateUtils.getRelativeTimeSpanString(timeToken, Calendar.getInstance()
                 .getTimeInMillis(), 0L, android.text.format.DateUtils.FORMAT_ABBREV_ALL);

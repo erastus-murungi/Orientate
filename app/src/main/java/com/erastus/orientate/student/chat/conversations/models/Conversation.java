@@ -16,12 +16,15 @@ import org.json.JSONArray;
 
 @ParseClassName("Conversation")
 public class Conversation extends ParseObject {
+
+    public static final String TAG = "Conversation";
+
     public static final String KEY_CREATOR = "creator";
     public static final String KEY_TITLE = "title";
     public static final String KEY_LAST_MESSAGE = "last_message";
     public static final String KEY_PROFILE_IMAGE = "profile_picture";
     public static final String KEY_PARTICIPANTS = "participants";
-    public static final String TAG = "Conversation";
+    public static final String KEY_IS_SYSTEM_GENERATED = "is_system_generated";
 
     private Message mLastMessage;
 
@@ -85,6 +88,10 @@ public class Conversation extends ParseObject {
 
     public JSONArray getParticipants() {
         return getJSONArray(KEY_PARTICIPANTS);
+    }
+
+    public boolean getIsSystemGenerated() {
+        return getBoolean(KEY_IS_SYSTEM_GENERATED);
     }
 
 }

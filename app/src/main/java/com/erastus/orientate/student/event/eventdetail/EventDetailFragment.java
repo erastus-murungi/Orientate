@@ -1,13 +1,16 @@
 package com.erastus.orientate.student.event.eventdetail;
 
 import android.Manifest;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +41,7 @@ import org.parceler.Parcels;
 
 import java.net.URI;
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Objects;
 
 public class EventDetailFragment extends Fragment {
@@ -58,6 +62,7 @@ public class EventDetailFragment extends Fragment {
     private TextView mNoBodyTextView;
     private TextView mGoBackTextView;
     private RichLinkView mRichLinkView;
+    private Button mUpVoteButton;
 
 
     private void hideMainNavBar() {
@@ -65,16 +70,14 @@ public class EventDetailFragment extends Fragment {
         viewModel.getActionBarStatus().postValue(new ActionBarStatus(null, false));
     }
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-
         mViewModel = new ViewModelProvider(this,
-                new EventDetailsViewModelFactory((LocalEvent) Parcels.unwrap(requireArguments()
+                new EventDetailsViewModelFactory(Parcels.unwrap(requireArguments()
                         .getParcelable(EventFragment.KEY))))
                 .get(EventDetailsViewModel.class);
 
@@ -90,16 +93,27 @@ public class EventDetailFragment extends Fragment {
         mNoBodyTextView = mRootView.findViewById(R.id.text_view_no_event_body);
         mGoBackTextView = mRootView.findViewById(R.id.text_view_go_back_to_main_events);
         mRichLinkView = mRootView.findViewById(R.id.rich_link_preview);
+        mUpVoteButton = mRootView.findViewById(R.id.button_upvote);
 
         initiateUrlChecker();
         setUpMaps(savedInstanceState);
         setUpBodyTextView();
         setUpVotesTextView();
         setUpGoingBackTextView();
+        setUpMapView();
         initiateUrlChecker();
         hideMainNavBar();
 
         return mRootView;
+    }
+
+    private void setUpMapView() {
+        mEventMapView.setOnClickListener(view -> {
+            LatLng latLng = Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation();
+            String uri = String.format(Locale.ENGLISH, "geo:%f,%f", latLng.latitude, latLng.longitude);
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+            startActivity(intent);
+        });
     }
 
     private void initiateUrlChecker() {
@@ -140,8 +154,17 @@ public class EventDetailFragment extends Fragment {
         if (voteCount == null || voteCount == 0) {
             mUpVoteTextView.setText(R.string.no_votes);
         } else {
-            mUpVoteTextView.setText(FormatNumbers.format(voteCount));
+            mUpVoteTextView.setText(getString(R.string.going_to, FormatNumbers.format(voteCount)));
         }
+    }
+
+    private void setUpVoteButton() {
+        mUpVoteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mViewModel.upVoteEvent();
+            }
+        });
     }
 
     private void setUpBodyTextView() {

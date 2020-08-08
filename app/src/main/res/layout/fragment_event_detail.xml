@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightBlue">
+    android:background="@color/white_smoke">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -97,8 +97,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
-                android:elevation="10dp"
-                />
+                android:elevation="10dp" />
         </RelativeLayout>
 
 
@@ -127,16 +126,32 @@
                 android:layout_weight="1"
                 android:background="?android:attr/listDivider" />
 
-            <TextView
-                android:id="@+id/text_view_votes"
-                android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
-                android:drawableStart="@drawable/ic_baseline_arrow_upward_24"
-                android:drawablePadding="4dp"
-                android:gravity="center_vertical"
-                tools:text="Going: 200" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_view_votes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    tools:text="Going: 200" />
+
+                <Button
+                    android:id="@+id/button_upvote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:drawableStart="@drawable/ic_baseline_thumb_up_24"
+                    android:drawablePadding="@dimen/list_item_spacing_half"
+                    android:gravity="center"
+                    android:text="@string/upvote" />
+
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -146,10 +161,10 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:background="@drawable/bg_event_body"
-                android:padding="5dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:layout_height="wrap_content">
+                android:background="@drawable/bg_event_body"
+                android:padding="5dp">
 
                 <RelativeLayout
                     android:id="@+id/relative_layout_event_body"
@@ -171,13 +186,13 @@
                         android:text="@string/large_text" />
 
                 </RelativeLayout>
+
                 <com.erastus.orientate.utils.richlinkpreview.RichLinkView
-                    android:layout_below="@+id/relative_layout_event_body"
                     android:id="@+id/rich_link_preview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relative_layout_event_body" />
             </RelativeLayout>
-
         </LinearLayout>
 
     </RelativeLayout>

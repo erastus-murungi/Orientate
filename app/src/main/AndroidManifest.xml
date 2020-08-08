@@ -23,7 +23,6 @@
         android:targetSandboxVersion="1"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".student.cluster.ClusterActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -15,7 +15,7 @@ public class Student extends ParseObject {
     public static final String KEY_MIDDLE_NAME = "middle_name";
     public static final String KEY_LAST_NAME = "last_name";
     public static final String KEY_DOB = "date_of_birth";
-    public static final String KEY_INSTITUTION = "institution";
+    public static final String KEY_ENROLLED_AT = "enrolled_at";
     public static final String KEY_USER = "user";
     public static final String KEY_PROFILE_IMAGE = "profile_image";
 
@@ -69,5 +69,9 @@ public class Student extends ParseObject {
 
     public void setProfilePicture(ParseFile profilePicture) {
         put(KEY_PROFILE_IMAGE, profilePicture);
+    }
+
+    public ParseObject getEnrolledAtParseObject() {
+        return getParseObject(KEY_ENROLLED_AT);
     }
 }
