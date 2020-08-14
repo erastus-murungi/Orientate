@@ -12,6 +12,7 @@ public class Institution extends ParseObject {
     public static final String KEY_LOCATION = "location";
     public static final String KEY_USER = "user";
     public static final String KEY_PROFILE_IMAGE = "profile_image";
+    public static final String KEY_PHYSICAL_ADDRESS = "physical_address";
 
     public Institution() {}
 
@@ -34,5 +35,9 @@ public class Institution extends ParseObject {
 
     public String getProfileImageUrl() {
         return getParseFile(KEY_PROFILE_IMAGE).getUrl();
+    }
+
+    public String getPhysicalAddress() {
+        return getString(KEY_PHYSICAL_ADDRESS);
     }
 }

@@ -2,8 +2,10 @@ package com.erastus.orientate.student.web;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -22,7 +24,13 @@ public class WebActivity extends AppCompatActivity {
         setContentView(webBinding.getRoot());
 
         mWebView = webBinding.webViewCustom;
-        mWebView.setWebViewClient(new WebViewClient());
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                mWebView.loadUrl(request.getUrl().toString());
+                return false;
+            }
+        });
         mWebView.loadUrl(DEFAULT_PAGE);
     }
 

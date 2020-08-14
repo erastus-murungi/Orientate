@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.erastus.orientate.applications.App;
+import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
 import com.erastus.orientate.student.models.DataState;
 import com.parse.ParseQuery;
@@ -33,7 +34,6 @@ public class ConversationRepository {
     public LiveData<DataState> getState() {
         return mState;
     }
-
 
     public static void fetchConversationsBelongingToThisUser() {
         ParseQuery<Conversation> query = ParseQuery.getQuery(Conversation.class);

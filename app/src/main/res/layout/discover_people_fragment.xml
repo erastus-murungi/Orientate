@@ -24,12 +24,128 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/text_view_undiscoverable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:text="@string/undiscoverable" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_undiscoverable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:text="@string/undiscoverable" />
+
+            <RelativeLayout
+                android:id="@+id/layout_conversation_found"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text_view_info_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/we_think_you_ll_like_these_people" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="16dp"
+                    android:layout_below="@+id/text_view_info_like"
+                    android:paddingBottom="8dp">
+
+                    <com.erastus.orientate.utils.circularimageview.CircularImageView
+                        android:id="@+id/image_view_conversation_profile_picture"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="top"
+                        app:civ_border="true"
+                        app:civ_borderColor="@color/darkBlue"
+                        app:civ_borderWidth="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0" />
+
+                    <TextView
+                        android:id="@+id/text_view_conversation_title"
+                        style="@style/TextPrimary"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="16dp"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        app:layout_constraintBottom_toTopOf="@id/text_view_conversation_last_message"
+                        app:layout_constraintEnd_toStartOf="@id/text_view_last_seen"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toEndOf="@id/image_view_conversation_profile_picture"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        app:layout_constraintWidth_default="wrap"
+                        tools:text="@tools:sample/full_names" />
+
+                    <TextView
+                        android:id="@+id/text_view_conversation_last_message"
+                        style="@style/TextSecondary"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/pinned"
+                        app:layout_constraintStart_toStartOf="@id/text_view_conversation_title"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_conversation_title"
+                        tools:text="@tools:sample/lorem/random" />
+
+                    <ImageView
+                        android:id="@+id/pinned"
+                        android:layout_width="20dp"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="2dp"
+                        android:paddingStart="4dp"
+                        android:src="@drawable/ic_black_pin"
+                        android:tint="?android:attr/textColorTertiary"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toStartOf="@id/unread"
+                        app:layout_constraintTop_toTopOf="@id/text_view_conversation_last_message"
+                        tools:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/unread"
+                        android:layout_width="20dp"
+                        android:layout_height="16sp"
+                        android:paddingStart="8dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:src="@drawable/ic_circle_white_8dp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/text_view_conversation_last_message"
+                        tools:tint="@color/colorPrimary"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/text_view_last_seen"
+                        style="@style/TextTertiary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        app:layout_constraintBottom_toBottomOf="@id/text_view_conversation_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="100"
+                        tools:text="Oct 11" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
 
 
         <RelativeLayout

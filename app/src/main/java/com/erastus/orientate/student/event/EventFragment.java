@@ -19,7 +19,7 @@ import com.erastus.orientate.R;
 import com.erastus.orientate.student.event.adapters.EventContentAdapter;
 import com.erastus.orientate.student.event.adapters.EventTimeAdapter;
 import com.erastus.orientate.student.event.eventdetail.EventDetailFragment;
-import com.erastus.orientate.student.event.models.LocalEvent;
+import com.erastus.orientate.student.event.models.Event;
 import com.erastus.orientate.utils.horizontalcalendar.HorizontalCalendar;
 import com.erastus.orientate.utils.horizontalcalendar.HorizontalCalendarView;
 import com.erastus.orientate.utils.horizontalcalendar.utils.HorizontalCalendarListener;
@@ -32,7 +32,7 @@ import java.util.Calendar;
 
 
 public class EventFragment extends Fragment {
-    public static final String KEY = LocalEvent.class.getSimpleName();
+    public static final String KEY = Event.class.getSimpleName();
     private EventViewModel mViewModel;
     private HorizontalCalendar mHorizontalCalendar;
     private TextView mNoEventsTextView;

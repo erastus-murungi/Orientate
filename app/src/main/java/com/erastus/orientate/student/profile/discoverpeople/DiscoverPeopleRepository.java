@@ -4,19 +4,24 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.erastus.orientate.applications.App;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
+import com.erastus.orientate.student.cluster.ClusterRepository;
 import com.erastus.orientate.student.models.DataState;
 import com.parse.ParseQuery;
 import com.parse.livequery.ParseLiveQueryClient;
 import com.parse.livequery.SubscriptionHandling;
 
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class DiscoverPeopleRepository {
     private static final String TAG = "DiscoverPeopleRepository";
 
-    private static MutableLiveData<Conversation> sConversationFound = new MutableLiveData<>();
+    private static MutableLiveData<DataState> sConversationFound = new MutableLiveData<>();
 
     private static MutableLiveData<DataState> sPreviousConversationMatches = new MutableLiveData<>();
 
@@ -34,7 +39,11 @@ public class DiscoverPeopleRepository {
         return sInstance;
     }
 
-    public MutableLiveData<DataState> getPreviousConversationMatchesState() {
+    public LiveData<DataState> getConversationFound() {
+        return sConversationFound;
+    }
+
+    public LiveData<DataState> getPreviousConversationMatchesState() {
         return sPreviousConversationMatches;
     }
 
@@ -50,7 +59,7 @@ public class DiscoverPeopleRepository {
             refresh.post(() -> {
                 Log.d(TAG, "run: " + event);
                 if (event == SubscriptionHandling.Event.CREATE) {
-                    sConversationFound.postValue(conversation);
+                    sConversationFound.postValue(new DataState.Success(conversation));
                 } else if (event == SubscriptionHandling.Event.DELETE) {
                 }
             });
@@ -68,6 +77,19 @@ public class DiscoverPeopleRepository {
             } else {
                 sPreviousConversationMatches.postValue(new DataState.Error(e));
                 Log.e(TAG, "fetchConversations: " + e);
+            }
+        });
+    }
+
+    public void findMatch() {
+        List<Conversation> conversations = ClusterRepository.getInstance().getConversations().getValue();
+        Conversation conversation = conversations.get(ThreadLocalRandom.current().nextInt(conversations.size()));
+        conversation.add(Conversation.KEY_PARTICIPANTS, App.get().getCurrentUser().getObjectId());
+        conversation.saveInBackground(e -> {
+            if (e == null) {
+                sConversationFound.postValue(new DataState.Success<>(conversation));
+            } else {
+                sConversationFound.postValue(new DataState.Error(new Exception("Couldn't find appropriate group")));
             }
         });
     }

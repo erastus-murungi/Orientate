@@ -8,20 +8,21 @@
     android:fitsSystemWindows="true"
     tools:context=".student.navigation.StudentNavActivity">
 
-    <!-- Content layout here-->
     <include
+        android:id="@+id/include_app_main"
         layout="@layout/student_nav_app_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:clickable="true"/>
 
-    <!--    <ProgressBar-->
-    <!--        android:id="@+id/progress_bar_announcements"-->
-    <!--        android:layout_width="20dp"-->
-    <!--        android:layout_height="20dp"-->
-    <!--        android:indeterminateTint="@color/darkBlue"-->
-    <!--        android:layout_centerInParent="true"-->
-    <!--        android:minHeight="20dp"-->
-    <!--        android:minWidth="20dp" />-->
+<!--        <ProgressBar-->
+<!--            android:id="@+id/progress_bar_announcements"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:indeterminateTint="@color/darkBlue"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:minHeight="20dp"-->
+<!--            android:minWidth="20dp" />-->
 
 
     <com.google.android.material.navigation.NavigationView

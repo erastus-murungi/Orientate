@@ -139,7 +139,6 @@ public class ParticipantsFragment extends ParentFragment {
 
     @Override
     public void extractArguments() {
-        super.extractArguments();
         assert getArguments() != null;
         mConversation = Parcels.unwrap(getArguments().getParcelable(ARGS_CONVERSATION));
     }

@@ -4,12 +4,16 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.erastus.orientate.models.ExtendedParseUser;
 import com.erastus.orientate.student.chat.conversations.models.Conversation;
+import com.erastus.orientate.student.models.DataState;
 import com.erastus.orientate.utils.CompareUsers;
 import com.erastus.orientate.utils.ParallelVpTree;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.livequery.ParseLiveQueryClient;
@@ -42,6 +46,7 @@ public class ClusterRepository {
     private static int maxGroupSize = defaultThreshold;
 
     public static volatile ClusterRepository sInstance;
+
 
     public static ClusterRepository getInstance() {
         if (sInstance == null) {
@@ -211,7 +216,23 @@ public class ClusterRepository {
     }
 
     public static void init() {
+        fetchConversations();
         fetchAllParticipants();
         setUpNewUserSubscription();
+    }
+
+    public static void fetchConversations() {
+        ParseQuery<Conversation> query = ParseQuery.getQuery(Conversation.class);
+        query.findInBackground((objects, e) -> {
+            if (e == null) {
+                sConversations.postValue(objects);
+            } else {
+                Log.e(TAG, "done: ", e);
+            }
+        });
+    }
+
+    public LiveData<List<Conversation>> getConversations() {
+        return sConversations;
     }
 }

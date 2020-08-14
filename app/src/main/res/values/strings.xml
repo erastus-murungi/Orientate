@@ -226,7 +226,7 @@
     <string name="welcome_to">Welcome to</string>
     <string name="animal_forest_chat">Animal Forest Chat</string>
     <string name="ops">Oops…</string>
-    <string name="no_messages">There are no messages!</string>
+    <string name="no_messages">There are no recent messages!</string>
     <string name="no_members">There are no members!</string>
     <string name="you">You</string>
     <string name="chat_description">A chat group to talk to all your fuzzy friends in the animal kingdom.</string>
@@ -263,6 +263,11 @@
     <string name="previous_matches">Previous matches</string>
     <string name="going_to">Going: %s</string>
     <string name="upvote">Upvote</string>
+    <string name="institution_profile_picture">Institution profile picture</string>
+    <string name="rate">Rate</string>
+    <string name="string_rate">Current: %f (%d votes)</string>
+    <string name="rate_this">Rate this</string>
+    <string name="we_think_you_ll_like_these_people">We think you\'ll like these people</string>
 
 
 </resources>

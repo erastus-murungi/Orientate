@@ -33,8 +33,7 @@ public abstract class ParentFragment extends Fragment {
 
     public abstract void onReady();
 
-    public void extractArguments() {
-    }
+    public abstract void extractArguments();
 
     public View getRootView() {
         return rootView;

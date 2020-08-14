@@ -263,7 +263,7 @@ public class ChatFragment extends ParentFragment {
     }
 
     private void scrollChatToBottom() {
-        mChatsRecyclerView.scrollToPosition(mChatAdapter.getItemCount());
+        mChatsRecyclerView.scrollToPosition(mChatAdapter.getItemCount() - 1);
     }
 
     private void showErrorSnackBar(String errorString) {

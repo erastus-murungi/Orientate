@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.erastus.orientate.R;
 import com.erastus.orientate.databinding.ItemOuterEventBinding;
 import com.erastus.orientate.student.event.EventViewModel;
-import com.erastus.orientate.student.event.models.LocalEvent;
+import com.erastus.orientate.student.event.models.Event;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,10 +24,9 @@ import java.util.Set;
 
 
 public class EventTimeAdapter extends RecyclerView.Adapter<EventTimeAdapter.EventTimeViewHolder> {
-    private Map<String, Set<LocalEvent>> mStartTimes = new HashMap<>();
+    private Map<String, Set<Event>> mStartTimes = new HashMap<>();
     private List<String> mKeys = new ArrayList<>();
     private Context mContext;
-    private EventViewModel mEventViewModel;
     private RecyclerView.RecycledViewPool mViewPool = new RecyclerView.RecycledViewPool();
     private EventContentAdapter.OnEventClickedListener mEventClickedListener;
 
@@ -36,12 +35,11 @@ public class EventTimeAdapter extends RecyclerView.Adapter<EventTimeAdapter.Even
                             EventViewModel viewModel,
                             EventContentAdapter.OnEventClickedListener listener) {
         this.mContext = context;
-        Map<String, Set<LocalEvent>> m = viewModel.getEvents().getValue();
+        Map<String, Set<Event>> m = viewModel.getEvents().getValue();
         if (m == null) {
             m = new HashMap<>();
         }
         mergeMaps(mStartTimes, Objects.requireNonNull(m));
-        this.mEventViewModel = viewModel;
         this.mEventClickedListener = listener;
     }
 
@@ -53,7 +51,7 @@ public class EventTimeAdapter extends RecyclerView.Adapter<EventTimeAdapter.Even
         mKeys = new ArrayList<>(mStartTimes.keySet());
     }
 
-    public void setEvents(Map<String, Set<LocalEvent>> events) {
+    public void setEvents(Map<String, Set<Event>> events) {
         mStartTimes.clear();
         mergeMaps(mStartTimes, events);
     }
@@ -95,7 +93,7 @@ public class EventTimeAdapter extends RecyclerView.Adapter<EventTimeAdapter.Even
         }
 
         private void initRecyclerView(String time) {
-            mRecyclerView.setAdapter(new EventContentAdapter(
+            mRecyclerView.setAdapter(new EventContentAdapter(mContext,
                     new ArrayList<>(Objects.requireNonNull(mStartTimes.get(time))),
                     mEventClickedListener));
 

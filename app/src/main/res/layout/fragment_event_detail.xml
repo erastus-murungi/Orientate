@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_smoke">
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -59,6 +59,7 @@
                 android:layout_toStartOf="@+id/text_view_duration"
                 android:gravity="start"
                 android:textSize="14sp"
+                android:textColor="@color/white"
                 tools:text="Friday, August 30" />
 
             <TextView
@@ -69,6 +70,7 @@
                 android:layout_gravity="end"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:textColor="@color/white"
                 tools:text="11:30AM-12:30PM" />
         </RelativeLayout>
 
@@ -139,6 +141,7 @@
                     android:layout_marginBottom="4dp"
                     android:drawablePadding="4dp"
                     android:gravity="center_vertical"
+                    android:textSize="16sp"
                     tools:text="Going: 200" />
 
                 <Button
@@ -149,7 +152,8 @@
                     android:drawableStart="@drawable/ic_baseline_thumb_up_24"
                     android:drawablePadding="@dimen/list_item_spacing_half"
                     android:gravity="center"
-                    android:text="@string/upvote" />
+                    android:text="@string/upvote"
+                    android:textSize="16sp"/>
 
             </RelativeLayout>
 
@@ -183,6 +187,7 @@
                         android:id="@+id/text_view_event_body"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/white"
                         android:text="@string/large_text" />
 
                 </RelativeLayout>

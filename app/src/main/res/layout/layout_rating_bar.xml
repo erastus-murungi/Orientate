@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <RatingBar
+        android:id="@+id/rating_bar_orientation_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Holo.RatingBar.Indicator"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="3dp"
+        android:numStars="5"
+        android:progressTint="@color/colorPrimaryDark"
+        android:isIndicator="false"
+        android:stepSize="0.5"/>
+
+    <TextView
+        android:id="@+id/text_view_num_votes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Current: 5.00 (19 votes)"/>
+</LinearLayout>

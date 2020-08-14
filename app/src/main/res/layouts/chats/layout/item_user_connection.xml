@@ -1,59 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/user_connection_background"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/default_spacing"
+    android:paddingLeft="@dimen/default_spacing"
+    android:paddingEnd="@dimen/default_spacing"
+    android:paddingRight="@dimen/default_spacing">
 
+    <ImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/half_spacing"
+        android:layout_marginBottom="@dimen/half_spacing" />
 
-    <com.erastus.orientate.utils.circularimageview.CircularImageView
-        android:id="@+id/image_view_profile_picture"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_baseline_tag_faces_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_connection_name"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:layout_toEndOf="@id/image_view_profile_picture"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_last_seen"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/image_view_profile_picture"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="John Doe" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/default_spacing"
+        android:layout_marginStart="@dimen/default_spacing"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_view_last_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/text_view_connection_name"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
-        android:layout_toEndOf="@id/image_view_profile_picture"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/text_view_last_seen"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/image_view_profile_picture"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_connection_name"
-        tools:text="Yeah no problem" />
+        <TextView
+            android:id="@+id/text_view_profile_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/darkBlue"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="@string/john_doe" />
 
-    <TextView
-        android:id="@+id/text_view_last_seen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Yesterday" />
+        <TextView
+            android:id="@+id/text_view_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="\@john_doe" />
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -3,24 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/lightBlue"
-    android:elevation="5dp"
+    android:background="@drawable/bg_event_title"
+    android:layout_marginTop="2dp"
+    android:elevation="10dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="100dp"
         android:layout_height="80dp"
-        android:background="@color/darkBlue"
+        android:background="@color/white"
         android:orientation="vertical"
-        android:gravity="start">
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/text_view_starting_on"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:textColor="@color/white"
+            android:textColor="@color/darkBlue"
             android:layout_marginBottom="4dp"
             tools:text="Starting on" />
 
@@ -29,8 +30,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:textColor="@color/md_grey_200"
+            android:textColor="@color/darkBlue"
             tools:text="Ending on" />
+
+        <ImageView
+            android:id="@+id/image_view_must_attend"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:background="@color/lightBlue"
+            android:contentDescription="@string/set_reminder"
+            android:elevation="10dp"
+            android:layout_marginStart="40dp" />
     </LinearLayout>
 
     <TextView
@@ -39,10 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="5dp"
-        android:layout_toStartOf="@+id/image_button_set_reminder"
         android:layout_toEndOf="@id/linearLayout"
-        android:textColor="@color/darkBlue"
-        android:textFontWeight="700"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         android:textSize="16sp"
         android:layout_marginStart="5dp"
         tools:text="Title" />
@@ -52,7 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/linearLayout"
-        android:textColor="@color/darkBlue"
+        android:textColor="@color/white"
         android:textSize="14sp"
         android:gravity="center"
         android:layout_below="@id/text_view_event_title"
@@ -60,17 +69,6 @@
         android:drawableStart="@drawable/ic_baseline_location_on_24"
 
         tools:text="Location" />
-
-    <ImageButton
-        android:id="@+id/image_button_set_reminder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/lightBlue"
-        android:contentDescription="@string/set_reminder"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"
-        app:srcCompat="@drawable/ic_baseline_add_circle_24" />
 
 
 </RelativeLayout>

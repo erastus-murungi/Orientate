@@ -2,8 +2,10 @@ package com.erastus.orientate.student.chat;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.erastus.orientate.R;
+import com.erastus.orientate.student.chat.connections.ConnectionsFragment;
 import com.erastus.orientate.student.chat.main.SectionsPagerAdapter;
 import com.erastus.orientate.utils.ParentActivityImpl;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -50,8 +52,8 @@ public class ChatActivity extends AppCompatActivity implements ParentActivityImp
 
         FloatingActionButton fab = findViewById(R.id.fab_compose);
 
-        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show());
+        fab.setOnClickListener(view -> Snackbar.make(view, "Compose Message", Snackbar.LENGTH_LONG)
+                .setAction("Compose", view1 -> viewPager.setCurrentItem(1)).show());
     }
 
     @Override

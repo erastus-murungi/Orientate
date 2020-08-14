@@ -9,6 +9,8 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import org.json.JSONArray;
+
 @ParseClassName("User")
 public class ExtendedParseUser extends ParseUser {
     public static final String KEY_IS_STUDENT = "is_student";
@@ -18,6 +20,7 @@ public class ExtendedParseUser extends ParseUser {
     public static final String KEY_USER_INFO = "user_info";
     public static final String KEY_WANTS_ROOM = "wants_room";
     public static final String KEY_IS_MASTER = "is_master";
+    public static final String KEY_CONNECTIONS = "connections";
     public final String TAG = getClassName();
 
     private ParseUser mUser;
@@ -97,5 +100,9 @@ public class ExtendedParseUser extends ParseUser {
 
     public boolean getIsMaster() {
         return mUser.getBoolean(KEY_IS_MASTER);
+    }
+
+    public JSONArray getConnections() {
+        return mUser.getJSONArray(KEY_CONNECTIONS);
     }
 }

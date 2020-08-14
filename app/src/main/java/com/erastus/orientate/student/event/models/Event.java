@@ -15,6 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -37,6 +38,19 @@ public class Event extends ParseObject {
     public static final String KEY_TITLE = "title";
     public static final String KEY_BODY = "body";
     public static final String KEY_LOCATION_STRING = "event_location_string";
+
+
+    public LocalDateTime getStartingOn() {
+        return Objects.requireNonNull(getStartDateTime(), "No happening date");
+    }
+
+    public LocalDateTime getEndingOn() {
+        return getEndingDateTime();
+    }
+
+    public String getStringLocation() {
+        return getString(KEY_LOCATION_STRING);
+    }
 
     public LocalDateTime getStartDateTime() {
         Date date = getDate(KEY_STARTING_ON);
@@ -127,5 +141,9 @@ public class Event extends ParseObject {
 
     public String getLocationString() {
         return getString(KEY_LOCATION_STRING);
+    }
+
+    public void setUpVoteCount(Integer newUpVoteCount) {
+        put(KEY_UPVOTE_COUNT, newUpVoteCount);
     }
 }

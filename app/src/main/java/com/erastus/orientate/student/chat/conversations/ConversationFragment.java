@@ -34,6 +34,8 @@ import java.util.Objects;
 public class ConversationFragment extends ParentFragment
         implements ConversationAdapter.OnConversationClicked {
 
+    public static final String ARGS_CONVERSATION = "conversation";
+
     private FragmentConversationBinding mBinding;
     private RecyclerView mRecyclerView;
     private EmptyView mEmptyView;
@@ -48,8 +50,14 @@ public class ConversationFragment extends ParentFragment
     public ConversationFragment() {
     }
 
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
+    public static ConversationFragment newInstance(Conversation conversation) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(ARGS_CONVERSATION, Parcels.wrap(conversation));
+        ConversationFragment fragment = new ConversationFragment();
+        fragment.setArguments(bundle);
+        return new ConversationFragment();
+    }
+
     public static ConversationFragment newInstance() {
         return new ConversationFragment();
     }
@@ -71,6 +79,16 @@ public class ConversationFragment extends ParentFragment
 
     @Override
     public void onReady() {
+    }
+
+    @Override
+    public void extractArguments() {
+        if (getArguments() != null) {
+            Conversation conversation = Parcels.unwrap(getArguments().getParcelable(ARGS_CONVERSATION));
+            if (conversation != null) {
+                onConversationClicked(conversation);
+            }
+        }
     }
 
     @Override

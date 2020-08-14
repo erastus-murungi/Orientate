@@ -4,13 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.erastus.orientate.student.event.models.LocalEvent;
+import com.erastus.orientate.student.event.models.Event;
 
 class EventDetailsViewModelFactory implements ViewModelProvider.Factory {
-    LocalEvent mLocalEvent;
+    Event mEvent;
 
-    EventDetailsViewModelFactory(LocalEvent event) {
-        mLocalEvent = event;
+    EventDetailsViewModelFactory(Event event) {
+        mEvent = event;
     }
 
     @NonNull
@@ -18,7 +18,7 @@ class EventDetailsViewModelFactory implements ViewModelProvider.Factory {
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(EventDetailsViewModel.class)) {
-            return (T) new EventDetailsViewModel(mLocalEvent);
+            return (T) new EventDetailsViewModel(mEvent);
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }

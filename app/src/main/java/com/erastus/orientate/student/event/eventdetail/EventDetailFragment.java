@@ -16,13 +16,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.erastus.orientate.R;
 import com.erastus.orientate.student.event.EventFragment;
 
-import com.erastus.orientate.student.event.models.LocalEvent;
 import com.erastus.orientate.student.models.DataState;
+import com.erastus.orientate.student.models.SimpleState;
 import com.erastus.orientate.student.navigation.ActionBarStatus;
 import com.erastus.orientate.student.navigation.StudentNavViewModel;
 import com.erastus.orientate.utils.DateUtils;
@@ -99,6 +100,7 @@ public class EventDetailFragment extends Fragment {
         setUpMaps(savedInstanceState);
         setUpBodyTextView();
         setUpVotesTextView();
+        setUpVoteButton();
         setUpGoingBackTextView();
         setUpMapView();
         initiateUrlChecker();
@@ -109,7 +111,7 @@ public class EventDetailFragment extends Fragment {
 
     private void setUpMapView() {
         mEventMapView.setOnClickListener(view -> {
-            LatLng latLng = Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation();
+            LatLng latLng = Objects.requireNonNull(mViewModel.getEvent().getValue()).getWhere();
             String uri = String.format(Locale.ENGLISH, "geo:%f,%f", latLng.latitude, latLng.longitude);
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
             startActivity(intent);
@@ -117,7 +119,7 @@ public class EventDetailFragment extends Fragment {
     }
 
     private void initiateUrlChecker() {
-        final String url = mViewModel.getLocalEvent().getValue().getUrl();
+        final String url = mViewModel.getEvent().getValue().getUrl();
         if (url != null) {
             mViewModel.checkUrlValidity(url);
             mViewModel.getUrlValidityState().observe(getViewLifecycleOwner(), uriDataState -> {
@@ -132,11 +134,11 @@ public class EventDetailFragment extends Fragment {
 
                         @Override
                         public void onError(Exception e) {
-                            notifyUserOfErrorUsingSnackBar(e.getMessage());
+                            showErrorSnackBar(e.getMessage());
                         }
                     });
                 } else if (uriDataState instanceof DataState.Error) {
-                    notifyUserOfErrorUsingSnackBar(((DataState.Error) uriDataState).getError().getMessage());
+                    showErrorSnackBar(((DataState.Error) uriDataState).getError().getMessage());
                     Log.e(TAG, "setUpObservers: Exception", ((DataState.Error) uriDataState).getError());
                 }
             });
@@ -150,7 +152,7 @@ public class EventDetailFragment extends Fragment {
     }
 
     private void setUpVotesTextView() {
-        Integer voteCount = mViewModel.getLocalEvent().getValue().getUpVoteCount();
+        Integer voteCount = mViewModel.getEvent().getValue().getUpVoteCount();
         if (voteCount == null || voteCount == 0) {
             mUpVoteTextView.setText(R.string.no_votes);
         } else {
@@ -159,16 +161,14 @@ public class EventDetailFragment extends Fragment {
     }
 
     private void setUpVoteButton() {
-        mUpVoteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mViewModel.upVoteEvent();
-            }
+        mUpVoteButton.setOnClickListener(view -> {
+            mViewModel.upVoteEvent();
+            mUpVoteButton.setEnabled(false);
         });
     }
 
     private void setUpBodyTextView() {
-        String textBody = mViewModel.getLocalEvent().getValue().getBody();
+        String textBody = mViewModel.getEvent().getValue().getBody();
         if (textBody == null) {
             mNoBodyTextView.setVisibility(View.VISIBLE);
             mBodyTextView.setVisibility(View.GONE);
@@ -181,13 +181,13 @@ public class EventDetailFragment extends Fragment {
 
 
     private void setUpMaps(Bundle savedInstanceState) {
-        if (Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation() != null) {
+        if (Objects.requireNonNull(mViewModel.getEvent().getValue()).getWhere() != null) {
             mEventMapView.onCreate(savedInstanceState);
             mEventMapView.getMapAsync(googleMap -> {
                 mMap = googleMap;
                 MapsInitializer.initialize(requireActivity());
                 mViewModel.getLocation(new Geocoder(requireContext()),
-                        Objects.requireNonNull(mViewModel.getLocalEvent().getValue()).getEventLocation());
+                        Objects.requireNonNull(mViewModel.getEvent().getValue()).getWhere());
             });
             mNoLocationTextView.setVisibility(View.GONE);
             mEventMapView.setVisibility(View.VISIBLE);
@@ -215,7 +215,7 @@ public class EventDetailFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel.getLocalEvent().observe(getViewLifecycleOwner(), event -> {
+        mViewModel.getEvent().observe(getViewLifecycleOwner(), event -> {
             mEventTitleTextView.setText(event.getTitle());
             LocalDateTime time = event.getStartingOn();
             mDateTextView.setText(getString(R.string.format_day_month_date,
@@ -249,33 +249,43 @@ public class EventDetailFragment extends Fragment {
         mEventMapView.onLowMemory();
     }
 
-
-    private void checkPermissions() {
-        String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION};
-//        if (ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.ACCE))
-
-    }
-
     @SuppressWarnings("unchecked")
     private void setUpObservers() {
         mViewModel.getLocationAddress().observe(getViewLifecycleOwner(), dataState -> {
             if (dataState instanceof DataState.Success) {
                 Address address = ((DataState.Success<Address>) dataState).getData();
                 if (address == null) {
-                    notifyUserOfErrorUsingSnackBar("No Addresses found");
+                    showErrorSnackBar("No Addresses found");
                     Log.d(TAG, "setUpObservers: No addresses found");
                 } else {
                     zoomToLoc(address);
                 }
             } else if (dataState instanceof DataState.Error){
-                notifyUserOfErrorUsingSnackBar(((DataState.Error) dataState).getError().getMessage());
+                showErrorSnackBar(((DataState.Error) dataState).getError().getMessage());
                 Log.e(TAG, "setUpObservers: Exception", ((DataState.Error) dataState).getError());
+            }
+        });
+
+        mViewModel.getUpVoteCount().observe(getViewLifecycleOwner(), integerSimpleState -> {
+            if (integerSimpleState == null) {
+                return;
+            }
+            if (integerSimpleState.getErrorMessage() != null) {
+                showErrorSnackBar(integerSimpleState.getErrorMessage());
+            } else if (integerSimpleState.getData() != null) {
+                mUpVoteTextView.setText(requireContext().getString(R.string.going_to,
+                        FormatNumbers.format(integerSimpleState.getData())));
+                mUpVoteButton.setEnabled(true);
+                if (mViewModel.isUpVoted()) {
+                    mUpVoteButton.setCompoundDrawablesRelativeWithIntrinsicBounds(requireContext().getDrawable(R.drawable.ic_baseline_thump_up_blue), null, null, null);
+                } else {
+                    mUpVoteButton.setCompoundDrawablesRelativeWithIntrinsicBounds(requireContext().getDrawable(R.drawable.ic_baseline_thumb_up_24), null, null, null);
+                }
             }
         });
     }
 
-    private void notifyUserOfErrorUsingSnackBar(String errorMessage) {
+    private void showErrorSnackBar(String errorMessage) {
     }
 
 }

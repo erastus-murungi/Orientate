@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:windowBackground"
+    android:orientation="vertical"
     tools:context=".student.chat.connections.ConnectionsFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/info_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent" />
 
-</FrameLayout>
+    <com.erastus.orientate.utils.EmptyView
+        android:id="@+id/info_empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:evMessage="@string/no_members" />
+
+    <com.erastus.orientate.utils.customindicators.AVLoadingIndicatorView
+        android:id="@+id/av_loading_conversations_info"
+        style="@style/AVLoadingIndicatorView.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:indicatorColor="@color/colorPrimaryDark"
+        app:indicatorName="com.erastus.orientate.utils.customindicators.LineSpinFadeLoaderIndicator" />
+
+</RelativeLayout>
